@@ -140,6 +140,7 @@
   "halt_reason": null,
   "halted": false,
   "peak_equity": 100000.0,
+  "risk_free_rate": 0.0412,
   "start_date": "2026-11-13",
   "start_equity": 100000.0,
   "version": 2
