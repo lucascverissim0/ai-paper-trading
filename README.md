@@ -18,13 +18,13 @@ Alpaca's paper-trading address and cannot place a real trade.
      of US government bonds, gold): returns, volatility, trend and strength against SPY;
    - economic data from FRED (free): interest rates, yield curve, Fed rate, inflation,
      unemployment, credit spreads, VIX;
-   - a news briefing that a separate Claude call writes from up to 5 web searches;
+   - a news briefing that a separate Claude call writes from up to 5 web searches (2 on a routine scheduled review);
    - a scorecard of its past decisions: what each earned against simply keeping the previous holdings.
 4. **Three independent answers, median used.** Claude (Opus 5.5, high effort) answers three times
    with the same information; the code takes the median share of each ETF. One odd answer cannot
    swing the portfolio, which also means fewer trades and fewer fees.
 5. The code enforces the rules, whatever Claude says: no borrowing, no betting on falls, at most
-   50% in one ETF, changes under 5% ignored, and **everything sold and the test stopped if the
+   100% in one ETF, changes under 5% ignored, and **everything sold and the test stopped if the
    value falls 15% from its peak**.
 6. Orders go to the Alpaca paper account. The ledger (`state/ledger.json`) and the
    results page (`report.md`) are saved in the GitHub project after each run.

@@ -27,7 +27,7 @@ UNIVERSE_DESCRIPTIONS = {
 BENCHMARK = "SPY"  # the AI must beat simply buying and holding this
 
 # --- Risk rules enforced by code, whatever the AI says ----------------------
-MAX_WEIGHT = 0.50          # at most 50% of the portfolio in one ETF
+MAX_WEIGHT = 1.00          # one ETF may be the whole portfolio (100% SPY = the benchmark itself)
 MIN_TRADE_FRACTION = 0.05  # ignore changes smaller than 5% of the portfolio (a $1 fee on $50 is already 2%)
 MAX_DRAWDOWN = 0.15        # sell everything and stop if value falls 15% from its peak
 
@@ -39,7 +39,8 @@ MAX_OUTPUT_TOKENS = 16000
 RESEARCH_MAX_TOKENS = 8000
 ENSEMBLE_SIZE = 3            # independent decisions, combined by median weight
 ENSEMBLE_MIN_VALID = 2       # fewer usable answers than this: hold
-NEWS_SEARCH_MAX_USES = 5     # web searches per research briefing
+NEWS_SEARCH_MAX_USES = 5     # web searches per briefing on the first decision and when markets jolt
+ROUTINE_SEARCH_MAX_USES = 2  # on a scheduled review: search results are most of the research bill
 WEB_SEARCH_USD = 0.01        # $10 per 1,000 searches
 RESEARCH_MAX_CONTINUATIONS = 2
 # Upper bound used before spending: research can read many pages, so it is priced generously.

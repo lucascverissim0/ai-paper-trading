@@ -92,8 +92,9 @@ class FakeAI:
         self.calls: list[tuple] = []
         self.research_calls: list[tuple] = []
 
-    def research(self, today, holdings):
+    def research(self, today, holdings, max_searches=config.NEWS_SEARCH_MAX_USES):
         self.research_calls.append((today, holdings))
+        self.max_searches = max_searches
         return Briefing("ok", "Fed held rates on 2026-11-05.", self.research_cost, self.searches)
 
     def decide(self, system, prompt):
@@ -112,7 +113,7 @@ def wake_cost(cost=0.10, research_cost=0.05, samples=config.ENSEMBLE_SIZE):
 
 class WeightsTest(unittest.TestCase):
     def test_bad_values_become_zero_and_caps_apply(self):
-        w = clean_weights({"SPY": 0.9, "QQQ": -0.2, "GLD": "x", "TLT": float("nan"), "XYZ": 0.5})
+        w = clean_weights({"SPY": 1.7, "QQQ": -0.2, "GLD": "x", "TLT": float("nan"), "XYZ": 0.5})
         self.assertEqual(w["SPY"], config.MAX_WEIGHT)
         self.assertEqual(w["QQQ"], 0.0)
         self.assertEqual(w["GLD"], 0.0)
@@ -190,6 +191,18 @@ class DailyRunTest(unittest.TestCase):
         self.assertAlmostEqual(broker.positions()["SPY"], 50_000, delta=1)
         run.write_report(state, broker.equity(), 100.0, state["days"][-1]["date"])
         self.assertIn("after all costs", Path(config.REPORT_PATH).read_text())
+
+    def test_first_decision_uses_the_full_search(self):
+        ai = ai_says({"SPY": 0.5})
+        run.run_once(FakeBroker(), ai, None)
+        self.assertEqual(ai.max_searches, config.NEWS_SEARCH_MAX_USES)
+
+    def test_can_hold_only_spy(self):
+        broker = FakeBroker()
+        state, _ = run.run_once(broker, ai_says({"SPY": 1.0}), None)
+        self.assertEqual(state["days"][0]["decision_status"], "ok")
+        self.assertEqual(len(state["days"][0]["orders"]), 1)
+        self.assertGreater(broker.positions()["SPY"], 95_000)
 
     def test_dashboard_numbers_match_the_report(self):
         broker = FakeBroker()
@@ -286,14 +299,17 @@ class DailyRunTest(unittest.TestCase):
             self.assertEqual(bool(ai.calls), expected == "ok")
         self.assertAlmostEqual(state["api_cost_usd"], cost + wake_cost())
         self.assertIn("scheduled review", state["days"][-1]["trigger"])
+        self.assertEqual(ai.max_searches, config.ROUTINE_SEARCH_MAX_USES)  # routine review: short search
         self.assertIn("SPY", state["days"][1]["prices"])  # waiting days still record prices
 
     def test_big_spy_day_wakes_it_early(self):
         broker, state = self._decided(review=10)
         broker.day = "2026-11-18"
         broker.closes_override = {"SPY": [("2026-11-13", 100.0), ("2026-11-16", 100.0), ("2026-11-17", 97.0)]}
-        state, _ = run.run_once(broker, ai_says({"SPY": 0.5}), state)
+        ai = ai_says({"SPY": 0.5})
+        state, _ = run.run_once(broker, ai, state)
         self.assertIn("SPY moved -3.0%", state["days"][-1]["trigger"])
+        self.assertEqual(ai.max_searches, config.NEWS_SEARCH_MAX_USES)  # market jolt: full search
 
     def test_held_etf_jump_wakes_it_early(self):
         broker, state = self._decided(review=10)

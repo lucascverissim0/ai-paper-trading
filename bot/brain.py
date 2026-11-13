@@ -14,6 +14,7 @@ BRIEFING_MAX_CHARS = 6000
 
 RESEARCH_SYSTEM = """You prepare a short market briefing for a portfolio manager who holds only these ETFs:
 {universe}.
+You have at most {max_searches} web searches: spend them on what matters most.
 Search the web for what happened in the last two weeks and what is scheduled in the next two weeks that
 matters for these ETFs: US Federal Reserve and rates, inflation and jobs data, large earnings, geopolitics,
 gold, emerging markets, market sentiment. Prefer primary or well-known financial sources and give dates.
@@ -160,7 +161,7 @@ def sources_from_content(contents: list) -> list[dict]:
 
 
 # --- research: one call with web search ------------------------------------------------
-def research(today: str, holdings: str) -> Briefing:
+def research(today: str, holdings: str, max_searches: int = config.NEWS_SEARCH_MAX_USES) -> Briefing:
     import anthropic  # imported here so the offline tests need no install
 
     client = anthropic.Anthropic(timeout=300.0, max_retries=2)
@@ -173,9 +174,9 @@ def research(today: str, holdings: str) -> Briefing:
             resp = client.messages.create(
                 model=config.CLAUDE_MODEL,
                 max_tokens=config.RESEARCH_MAX_TOKENS,
-                system=RESEARCH_SYSTEM.format(universe=universe),
+                system=RESEARCH_SYSTEM.format(universe=universe, max_searches=max_searches),
                 tools=[{"type": "web_search_20260209", "name": "web_search",
-                        "max_uses": config.NEWS_SEARCH_MAX_USES}],
+                        "max_uses": max_searches}],
                 output_config={"effort": config.RESEARCH_EFFORT},
                 messages=messages,
             )

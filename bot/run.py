@@ -296,7 +296,10 @@ def run_once(broker, ai, state: dict | None, save=lambda s: None, economy=_no_ec
         return finish("budget_reached", "API budget reached: holding current positions, no AI call.")
 
     economy_text = economy(today)
-    briefing = ai.research(today, holdings_text(weights_now))
+    # A routine review gets a shorter search; the first decision and market jolts get the full one.
+    routine = trigger.startswith("scheduled review")
+    max_searches = config.ROUTINE_SEARCH_MAX_USES if routine else config.NEWS_SEARCH_MAX_USES
+    briefing = ai.research(today, holdings_text(weights_now), max_searches)
     spend(briefing.cost_usd - briefing.searches * config.WEB_SEARCH_USD, "research")
     spend(briefing.searches * config.WEB_SEARCH_USD, "searches")
     day["briefing"] = briefing.text
