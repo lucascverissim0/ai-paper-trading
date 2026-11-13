@@ -35,12 +35,20 @@ All these numbers are in [bot/config.py](bot/config.py).
 
 ## Setup (about 30 minutes, once)
 
-1. **Alpaca paper account**: sign up at alpaca.markets with an email. A paper-only account needs
-   no ID or money. In the dashboard, switch to *Paper Trading*, open *API Keys*, generate a key, and
-   keep the two values (key ID and secret).
-2. **Anthropic API key**: in console.anthropic.com create an API key for this test. Also set a
-   monthly spend limit for it (for example $25) in the console's limits settings: that is the
-   last safety net if anything ever goes wrong.
+1. **Alpaca paper account**
+   - Open https://app.alpaca.markets/signup, fill in the form with your email and confirm it.
+     Alpaca: "Anyone globally can create an Alpaca Paper Only Account" with just an email.
+   - Log in at https://app.alpaca.markets/login.
+   - Top-left corner: click the account selector and choose the **Paper Trading** account.
+   - On the **Home** page, find the **API Keys** box and click **Generate** (or **Regenerate**).
+   - Copy both values into a password manager or note: **API Key ID** and **Secret Key**.
+     The secret is shown only once. Regenerating later cancels the old keys.
+2. **Anthropic API key and spend limit**
+   - Open https://platform.claude.com/settings/keys and sign in.
+   - Click **Create key**, name it `paper-trading`, keep the defaults, confirm.
+   - Copy the key (starts with `sk-ant-`). It is shown only once.
+   - Open https://platform.claude.com/settings/spend-limits, click **Set limit** (or **Adjust
+     limit**) next to *Monthly spend limit*, enter `25`, save. This caps all API use of your account.
 3. **GitHub**: create a free account if you have none and a **private** repository. Upload this
    folder to it (I can do this for you once the repository exists).
 4. In the repository: *Settings* > *Secrets and variables* > *Actions* > *New repository secret*,
