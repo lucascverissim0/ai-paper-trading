@@ -1,0 +1,531 @@
+{
+ "refreshed_at": "2026-11-13T15:05:10Z",
+ "market_open": true,
+ "next_open": "2026-11-16T09:30:00-05:00",
+ "next_close": "2026-11-13T16:00:00-05:00",
+ "errors": [],
+ "account": {
+  "value_real_usd": 994.92,
+  "today_real_usd": -5.08,
+  "today_pct": -0.005082100000000089,
+  "cash_weight": 0.05025570451592036,
+  "open_pl_real_usd": -5.08
+ },
+ "positions": [
+  {
+   "symbol": "SPY",
+   "name": "US large companies (S&P 500)",
+   "qty": 66.081107513,
+   "avg_entry_price": 756.645762,
+   "price": 752.42,
+   "weight": 0.4997472345708124,
+   "value_real_usd": 497.21,
+   "pl_real_usd": -2.79,
+   "pl_pct": -0.00558,
+   "today_real_usd": -2.79,
+   "today_pct": -0.00621
+  },
+  {
+   "symbol": "EFA",
+   "name": "Developed markets outside North America",
+   "qty": 239.978490493,
+   "avg_entry_price": 104.175962,
+   "price": 103.98,
+   "weight": 0.25080424667201184,
+   "value_real_usd": 249.53,
+   "pl_real_usd": -0.47,
+   "pl_pct": -0.00188,
+   "today_real_usd": -0.47,
+   "today_pct": -0.00029
+  },
+  {
+   "symbol": "QQQ",
+   "name": "US large tech-heavy companies (Nasdaq-100)",
+   "qty": 29.203887039,
+   "avg_entry_price": 684.84,
+   "price": 678.61,
+   "weight": 0.19919281564840677,
+   "value_real_usd": 198.18,
+   "pl_real_usd": -1.82,
+   "pl_pct": -0.0091,
+   "today_real_usd": -1.82,
+   "today_pct": -0.01389
+  }
+ ],
+ "trades": [
+  {
+   "time": "2026-11-13T14:49:17.438253Z",
+   "date": "2026-11-13",
+   "symbol": "EFA",
+   "side": "buy",
+   "qty": 239.97849,
+   "price": 104.176,
+   "amount_real_usd": 250.0,
+   "fee_real_usd": 1.25,
+   "realized_real_usd": null,
+   "realized_pct": null,
+   "reason": "The benchmark is SPY, so I hold the maximum 50% in SPY and fill the rest with QQQ and EFA, which track SPY closely, using only three orders to keep costs down. I am avoiding bonds and gold because rate-hike expectations are pushing yields up and gold is in a strong downtrend, and EEM is weak against a backdrop of rising US yields. QQQ is kept below its natural weight because of the Nvidia turmoil,"
+  },
+  {
+   "time": "2026-11-13T14:49:07.779234Z",
+   "date": "2026-11-13",
+   "symbol": "QQQ",
+   "side": "buy",
+   "qty": 29.203887,
+   "price": 684.84,
+   "amount_real_usd": 200.0,
+   "fee_real_usd": 1.2,
+   "realized_real_usd": null,
+   "realized_pct": null,
+   "reason": "The benchmark is SPY, so I hold the maximum 50% in SPY and fill the rest with QQQ and EFA, which track SPY closely, using only three orders to keep costs down. I am avoiding bonds and gold because rate-hike expectations are pushing yields up and gold is in a strong downtrend, and EEM is weak against a backdrop of rising US yields. QQQ is kept below its natural weight because of the Nvidia turmoil,"
+  },
+  {
+   "time": "2026-11-13T14:49:06.516055Z",
+   "date": "2026-11-13",
+   "symbol": "SPY",
+   "side": "buy",
+   "qty": 66.081108,
+   "price": 756.6458,
+   "amount_real_usd": 500.0,
+   "fee_real_usd": 1.5,
+   "realized_real_usd": null,
+   "realized_pct": null,
+   "reason": "The benchmark is SPY, so I hold the maximum 50% in SPY and fill the rest with QQQ and EFA, which track SPY closely, using only three orders to keep costs down. I am avoiding bonds and gold because rate-hike expectations are pushing yields up and gold is in a strong downtrend, and EEM is weak against a backdrop of rising US yields. QQQ is kept below its natural weight because of the Nvidia turmoil,"
+  }
+ ],
+ "trade_stats": {
+  "trades": 3,
+  "buys": 3,
+  "sells": 0,
+  "realized_real_usd": 0,
+  "winning_sells": 0,
+  "closed_sells": 0,
+  "fees_real_usd": 3.95,
+  "turnover": 0.949999700541827
+ },
+ "intraday": [
+  {
+   "time": "2026-11-13T14:30:00Z",
+   "value_real_usd": 1000.0
+  },
+  {
+   "time": "2026-11-13T14:45:00Z",
+   "value_real_usd": 1000.0
+  },
+  {
+   "time": "2026-11-13T15:00:00Z",
+   "value_real_usd": 997.28
+  }
+ ],
+ "headlines": [
+  {
+   "time": "2026-11-13T14:44:56Z",
+   "headline": "Fed\u2019s Logan Does Not Comment On Monetary Policy Or Economic Outlook In Remarks To Dallas Fed Conference On Bank Funding; Says Fed Should Further Develop Its Operational Readiness To Lend To Designated Financial Market Utilities; Treasury Market Currently Functioning Very Well, Trading Proceeding Smo",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/economics/macro-economic-events/26/11/63239820/fed-s-logan-does-not-comment-monetary-policy-or-economic-outlook-remarks-dallas-fed-conference-bank-",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T14:37:28Z",
+   "headline": "Nvidia Crisis Fails to Stop ETF Buying Frenzy: VOO, QQQ, SOXL Leads $37.5B ETF Inflow Surge",
+   "summary": "U.S. equity ETFs attracted $37.5 billion in five days as VOO, QQQ and SOXL led dip-buying despite Nvidia&#39;s leadership crisis and market volatility.",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/etfs/sector-etfs/26/11/63238767/nvidia-crisis-fails-to-stop-etf-buying-frenzy-voo-qqq-soxl-leads-37-5b-etf-inflow-surge",
+   "symbols": [
+    "QQQ"
+   ]
+  },
+  {
+   "time": "2026-11-13T14:29:24Z",
+   "headline": "Fed\u2019s Collins Does Not Comment On Economic Outlook Or Monetary Policy; Says Ensuring Price Stability Is A Long-Run Benefit For Housing Market; Notes Persistent Housing Shortage; Higher Productivity Has Helped Limit Some Inflationary Pressures",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/economics/macro-economic-events/26/11/63238225/fed-s-collins-does-not-comment-economic-outlook-or-monetary-policy-says-ensuring-price-stability-lon",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T14:07:17Z",
+   "headline": "11 AI Stocks to Buy on Dips: 'Don't Waste a Good Sell-Off,' Analyst Says",
+   "summary": "HSBC argues that the correction in equity markets is &#34;overdone,&#34; and names 11 Buy-rated AI stocks to buy on the dip.",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/analyst-stock-ratings/analyst-color/26/11/63237574/hsbc-ai-stocks-buy-dip-oracle-alphabet-vertiv-ge-vernova",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T13:59:39Z",
+   "headline": "Fed's Goolsbee Says Even If The Price Of Oil Drops Rapidly, Refining Capacity Remains 'Problematic' And Will Keep Diesel And Jet Fuel Prices Elevated",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/economics/macro-economic-events/26/11/63237248/fed-s-goolsbee-says-even-if-price-oil-drops-rapidly-refining-capacity-remains-problematic-and-will-k",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T13:54:47Z",
+   "headline": "Fed's Goolsbee Says Services Inflation And Rising Health Care Costs Don't Feel Like They Will Change Quickly; FOMC Trying To Figure Out The Same Thing As Bessent, Which Is Persistence Of Inflation; To The Extent Data Suggest Inflation Is Getting Worse It Would Make The Fed More Aggressive",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/quote/SPY",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T13:52:03Z",
+   "headline": "'UN watchdog calls on Iran to reopen nuclear facilities to inspection; Tehran has told the IAEA that it is not possible to resume inspections in the current security situation' - Al Jazeera",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/news/26/11/63236935/un-watchdog-calls-iran-reopen-nuclear-facilities-inspection-tehran-has-told-iaea-it-not-possible-res",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T13:49:37Z",
+   "headline": "Fed's Goolsbee Says Inflation Has Spread Into Categories Where Prices Are Not Being Driven By Energy; The Fed 'Definitely Has Work To Do' To Maintain Its Credibility; Need To Be Careful About Assessing Labor Market Impact On Inflation, Because Wages Are A Lagging Indicator Of Price Pressures",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/economics/macro-economic-events/26/11/63236878/fed-s-goolsbee-says-inflation-has-spread-categories-where-prices-are-not-being-driven-energy-fed-def",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T13:48:29Z",
+   "headline": "Fed's Goolsbee Says Can't Look Through Inflation If Demand Is Overheating; Data Center Buildout Is Pushing Up Prices; Inflation Is Rising And Proving Far More Persistent Than Expected When It Was Just A Matter Of Supply Shocks",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/economics/macro-economic-events/26/11/63236837/fed-s-goolsbee-says-can-t-look-through-inflation-if-demand-overheating-data-center-buildout-pushing-",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T13:40:44Z",
+   "headline": "Stock Market Today: Dow Jones, S&P 500, Nasdaq 100  Futures Rise as Nvidia CEO Exit Remains in Focus\u2014 CSCO, AMAT, NU in Focus(UPDATED)",
+   "summary": "U.S. stock futures were mixed on Friday, as the Dow Jones, S&amp;P 500, and Nasdaq 100 indices were mixed, after Thursday&#39;s close lower.",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/markets/equities/26/11/63231225/stock-market-today-dow-jones-sp-500-futures-rise-nvidia-ceo-exit-remains-in-focus-csco-amat-nu-in-focus",
+   "symbols": [
+    "QQQ",
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T13:30:24Z",
+   "headline": "USA PPI (MoM) For Oct. Revises Prior From 1.3% To 1.4%",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/quote/SPY",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T13:30:18Z",
+   "headline": "USA PPI (YoY) For October 6.5% Vs 6.6% Est.",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/quote/SPY",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T13:30:11Z",
+   "headline": "USA PPI (MoM) For Oct. 0.3% Vs 0.4% Est.",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/quote/SPY",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T13:30:11Z",
+   "headline": "USA Core PPI (YoY) For October 5.0% Vs 5.0% Est.; 5.0% Prior",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/quote/SPY",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T13:30:07Z",
+   "headline": "USA Core PPI (MoM) For October 0.3% Vs 0.3% Est. 0.7% Prior",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/quote/SPY",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T06:26:11Z",
+   "headline": "Stock Market: Will S&P 500 Open Up or Down Today?",
+   "summary": "Will the S&amp;P 500 open higher? Polymarket odds sit at 55% as Wall Street absorbs Nvidia&#39;s CEO exit, flat futures, and easing oil prices.",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/markets/prediction-markets/26/11/63229873/stock-market-will-sp-500-open-up-or-down-today-77",
+   "symbols": [
+    "QQQ",
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T00:27:59Z",
+   "headline": "Fed's Williams Said Inflation Remains Stubbornly Persistent , High; Fed Continues Steady Data Collection; Will Need To Take Action Over Time To Bring Inflation Back To 2%",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/quote/SPY",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T00:26:23Z",
+   "headline": "NY Fed President Williams, Speaking At UC Berkley, Said Says US Economy Has Been Resilient, Growth Strong But Not Overheating",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/quote/SPY",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-12T23:30:14Z",
+   "headline": "DeSantis Asks How Congress Members With 'No Investment Acumen' Outperform Warren Buffett \u2014 'Oh You Just Happened to Buy Something\u2026Then It Goes Up 150%'",
+   "summary": "Ron DeSantis questions how members of Congress with &#39;no investment acumen&#39; beat legendary investor Warren Buffett.",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/news/politics/26/11/63227874/desantis-asks-how-congress-members-with-no-investment-acumen-outperform-warren-buffett-oh-you-just-happened-to-buy-somethingthen-it-goes-up-150",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-12T22:56:23Z",
+   "headline": "TQQQ ETF Barely Outpaces QQQ Despite Its 3X Leverage",
+   "summary": "TQQQ is designed to deliver 3X the daily return of the Nasdaq-100, yet it has barely outpaced QQQ this year. Here&#39;s why.",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/opinion/26/11/63227572/tqqq-etf-barely-outpaces-qqq-despite-its-3x-leverage",
+   "symbols": [
+    "QQQ"
+   ]
+  },
+  {
+   "time": "2026-11-12T22:30:18Z",
+   "headline": "AOC Says Five Guys in Tuxedos Shouldn\u2019t Control the Economy: \u2018We Need to Check These Guys Power\u2019",
+   "summary": "Tech CEOs may have too much power over the economy, U.S. Rep. Alexandria Ocasio-Cortez (D-N.Y.) tells TMZ.",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/news/politics/26/11/63227251/aoc-says-five-guys-in-tuxedos-shouldnt-control-the-economy-we-need-to-check-these-guys-power",
+   "symbols": [
+    "QQQ",
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-12T18:52:08Z",
+   "headline": "Nvidia Crisis \u2013 Visionary Huang\u2019s Resignation Puts America's AI Advantage at Risk; Gold Falls Below $4000",
+   "summary": "\n\n\n\nAmerica\u2019s AI Advantage At Risk\n\n\n\nPlease click here for an enlarged weekly chart of NVIDIA Corp (NASDAQ:NVDA).\n\n\n\nNote the following:\n\n\n\n\nAt this time, it is critical for investors to remember our principle: Give",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/opinion/26/11/63213045/nvidia-crisis-visionary-huang-resignation-puts-america-ai-advantage-at-risk-gold-falls-below-4000",
+   "symbols": [
+    "GLD",
+    "QQQ",
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-12T18:52:35Z",
+   "headline": "Fed's Daly Says We Are In A Perfect Storm For Hiring",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/quote/SPY",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-12T18:42:37Z",
+   "headline": "Fed's Daly Says We Have Many Many Quarters To Make Policy Decisions",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/news/26/11/63212424/fed-s-daly-says-we-have-many-many-quarters-make-policy-decisions",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-12T18:32:30Z",
+   "headline": "Kansas City Fed\u2019s Schmid Does Not Comment On Monetary Policy Or Economic Outlook In Remarks On Housing Costs; Says Materials And Labor Costs May Worsen Housing Affordability",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/quote/SPY",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-12T18:21:39Z",
+   "headline": "Fed\u2019s Daly Says AI Pipeline Is Deep, So Continues Even If It Slows; Says Economy Being Driven By Technology Boom; Says No Doubt Of AI-Fueled Price Pressures",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/quote/SPY",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-12T18:16:23Z",
+   "headline": "Nasdaq 100 Turns Green Despite Nvidia's 5% Drop on Huang Exit: Stock Market Today",
+   "summary": "The Nasdaq 100 turned green as Nvidia recovered from a 14.3% plunge on Jensen Huang&#39;s exit, while AMD and Broadcom rallied and Treasury yields jumped.",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/markets/equities/26/11/63210863/stock-market-today-nvidia-huang-exit-amd-broadcom-rally",
+   "symbols": [
+    "IWM",
+    "QQQ"
+   ]
+  },
+  {
+   "time": "2026-11-12T18:15:14Z",
+   "headline": "Seeing Reports White House Discussing Howard Lutnick\u2019s Future As Commerce Secretary",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/quote/SPY",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-12T18:06:45Z",
+   "headline": "Nvidia ETFs Have a New Problem: Life After Jensen Huang",
+   "summary": "Nvidia ETF holdings are under scrutiny now that Jensen Huang is out of the company. Here&#39;s what it means for SMH, QQQ and VGT.",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/etfs/sector-etfs/26/11/63210299/nvidia-etfs-problem-life-after-jensen-huang",
+   "symbols": [
+    "QQQ"
+   ]
+  },
+  {
+   "time": "2026-11-12T17:58:03Z",
+   "headline": "Yemen\u2019s Houthis Say They Attacked Aramco Building In Riyadh",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/news/26/11/63209790/yemen-s-houthis-say-they-attacked-aramco-building-riyadh",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-12T17:34:10Z",
+   "headline": "Gold Stocks Dip: What's Going On?",
+   "summary": "Gold shares like Agnico Eagle Mines and Newmont are falling Thursday as gold slides to a one-year low on fading Middle East peace hopes.",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/trading-ideas/movers/26/11/63208148/gold-stocks-dip-whats-going-on",
+   "symbols": [
+    "GLD"
+   ]
+  },
+  {
+   "time": "2026-11-12T16:41:41Z",
+   "headline": "White House Expected In Coming Days To Extend Jones Act Waiver On Shipping Oil And Commodities On Foreign-Flagged Ships Between U.S. Ports",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/news/26/11/63203670/white-house-expected-coming-days-extend-jones-act-waiver-shipping-oil-and-commodities-foreign-flagge",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-12T16:20:54Z",
+   "headline": "Why Is IREN Stock Falling on Thursday?",
+   "summary": "IREN stock falls Thursday after Jensen Huang&#39;s immediate resignation as Nvidia CEO, adding to pressure on AI infrastructure stocks from midterm ballot measures restricting data centers.",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/trading-ideas/movers/26/11/63201719/why-is-iren-stock-falling-on-thursday-4",
+   "symbols": [
+    "QQQ",
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-12T16:19:42Z",
+   "headline": "Fed's Goolsbee Says Seeing 'Unanchoring Of Inflation Expectations'",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/news/26/11/63201585/fed-s-goolsbee-says-seeing-unanchoring-inflation-expectations",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-12T16:18:58Z",
+   "headline": "Seeing Reports House Democratic Leader Says Classified Briefing On Nvidia Situation Should Be Scheduled For U.S. House Members",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/quote/NVDA",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-12T16:18:05Z",
+   "headline": "Fed's Goolsbee Says AI Costs Are 'Extremely High;' Says 'OId-Fashioned Demand' Overheating",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/news/26/11/63201404/fed-s-goolsbee-says-ai-costs-are-extremely-high-says-oid-fashioned-demand-overheating",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-12T16:15:50Z",
+   "headline": "Fed's Goolsbee Says 'We're way above target' On Inflation",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/news/26/11/63201074/fed-s-goolsbee-says-we-re-way-above-target-inflation",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-12T16:00:25Z",
+   "headline": "Energy Leads Sectors In Thursday Trading As Materials Trail",
+   "summary": "Five sectors are higher and six are lower in Thursday\u2019s regular session, with cyclical, defensive and growth sectors split across the top three positions. The leaders are separated rather than clustered, with Energy clearly ahead of the next group.",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/etfs/sector-etfs/26/11/63199421/energy-leads-sectors-in-thursday-trading-as-materials-trail",
+   "symbols": [
+    "IWM",
+    "QQQ",
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-12T15:59:09Z",
+   "headline": "What Is Going on With Micron Stock on Thursday?",
+   "summary": "Micron (MU) stock fell over 5% Thursday after NVIDIA CEO Jensen Huang resigned. See how Nvidia\u2019s leadership shakeup impacts Micron\u2019s technicals and Wall Street outlook.",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/trading-ideas/movers/26/11/63199251/what-is-going-on-with-micron-stock-on-thursday-4",
+   "symbols": [
+    "QQQ"
+   ]
+  },
+  {
+   "time": "2026-11-12T15:17:21Z",
+   "headline": "Fed Governor Barr Issues Speech On American Inequality And the Future of AI; Says We Should Be Prepared For The Possibility Of Serious Short-Term Disruptions In The Labor Market That Need To Be Managed Effectively To Ensure The Benefits Of AI Are Realized Over The Long Term",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/general/macro-notification/26/11/63194738/fed-governor-barr-issues-speech-american-inequality-and-future-ai-says-we-should-be-prepared-possibi",
+   "symbols": [
+    "SPY"
+   ]
+  }
+ ]
+}
