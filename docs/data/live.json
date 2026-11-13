@@ -1,15 +1,15 @@
 {
- "refreshed_at": "2026-11-13T16:20:33Z",
- "market_open": true,
+ "refreshed_at": "2026-11-13T21:24:19Z",
+ "market_open": false,
  "next_open": "2026-11-16T09:30:00-05:00",
- "next_close": "2026-11-13T16:00:00-05:00",
+ "next_close": "2026-11-16T16:00:00-05:00",
  "errors": [],
  "account": {
-  "value_real_usd": 998.38,
-  "today_real_usd": -10.81,
-  "today_pct": -0.010715099999999977,
-  "cash_weight": 0.5528104189197671,
-  "open_pl_real_usd": -1.34
+  "value_real_usd": 998.14,
+  "today_real_usd": -11.05,
+  "today_pct": -0.010951199999999939,
+  "cash_weight": 0.6690738616739639,
+  "open_pl_real_usd": 0.76
  },
  "positions": [
   {
@@ -18,27 +18,13 @@
    "stop": 112.0,
    "qty": 105.0,
    "avg_entry_price": 113.5,
-   "price": 113.29,
-   "weight": 0.12024291485698407,
-   "value_real_usd": 120.05,
-   "pl_real_usd": -0.22,
-   "pl_pct": -0.00185,
-   "today_real_usd": -0.22,
-   "today_pct": -0.06364
-  },
-  {
-   "symbol": "ANDG",
-   "name": "Andersen Group Inc.",
-   "stop": 61.0,
-   "qty": 189.0,
-   "avg_entry_price": 61.998836,
-   "price": 61.805,
-   "weight": 0.11807665314612606,
-   "value_real_usd": 117.89,
-   "pl_real_usd": -0.37,
-   "pl_pct": -0.00313,
-   "today_real_usd": -0.37,
-   "today_pct": -0.05526
+   "price": 115.39,
+   "weight": 0.12250103331605074,
+   "value_real_usd": 122.27,
+   "pl_real_usd": 2.0,
+   "pl_pct": 0.01665,
+   "today_real_usd": 2.0,
+   "today_pct": -0.04628
   },
   {
    "symbol": "APPN",
@@ -46,13 +32,13 @@
    "stop": 50.9,
    "qty": 200.0,
    "avg_entry_price": 54.58,
-   "price": 54.49,
-   "weight": 0.11016037948218961,
-   "value_real_usd": 109.98,
-   "pl_real_usd": -0.18,
-   "pl_pct": -0.00165,
-   "today_real_usd": -0.18,
-   "today_pct": -0.01197
+   "price": 54.51,
+   "weight": 0.11022711922809066,
+   "value_real_usd": 110.02,
+   "pl_real_usd": -0.14,
+   "pl_pct": -0.00128,
+   "today_real_usd": -0.14,
+   "today_pct": -0.0116
   },
   {
    "symbol": "HAE",
@@ -60,16 +46,29 @@
    "stop": 115.0,
    "qty": 79.0,
    "avg_entry_price": 124.32,
-   "price": 123.61,
-   "weight": 0.09870958305337522,
-   "value_real_usd": 98.55,
-   "pl_real_usd": -0.57,
-   "pl_pct": -0.00571,
-   "today_real_usd": -0.57,
-   "today_pct": 0.00733
+   "price": 122.94,
+   "weight": 0.09819798578189469,
+   "value_real_usd": 98.02,
+   "pl_real_usd": -1.1,
+   "pl_pct": -0.0111,
+   "today_real_usd": -1.1,
+   "today_pct": 0.00187
   }
  ],
  "trades": [
+  {
+   "time": "2026-11-13T17:02:33.04464Z",
+   "date": "2026-11-13",
+   "symbol": "ANDG",
+   "side": "sell",
+   "qty": 189.0,
+   "price": 60.7723,
+   "amount_real_usd": 115.92,
+   "fee_real_usd": 1.1159,
+   "realized_real_usd": -2.34,
+   "realized_pct": -0.01978274237277622,
+   "reason": "The market is in a correction with QQQ below its 50-day average and a Fed hike looming, so I am swapping the index ETFs for about 45% in four leaders with tight bases near highs and holding the rest in cash. Each position is sized around 10-12% so costs stay small, and stops sit about 6-8% below the price, just under recent support. I will add exposure if the indexes recover their 50-day averages "
+  },
   {
    "time": "2026-11-13T16:20:31.609268Z",
    "date": "2026-11-13",
@@ -202,14 +201,14 @@
   }
  ],
  "trade_stats": {
-  "trades": 10,
+  "trades": 11,
   "buys": 7,
-  "sells": 3,
-  "realized_real_usd": -9.47,
+  "sells": 4,
+  "realized_real_usd": -11.81,
   "winning_sells": 0,
-  "closed_sells": 3,
-  "fees_real_usd": 12.3558,
-  "turnover": 2.3558032699778853
+  "closed_sells": 4,
+  "fees_real_usd": 13.4717,
+  "turnover": 2.4717191743251163
  },
  "intraday": [
   {
@@ -243,9 +242,245 @@
   {
    "time": "2026-11-13T16:15:00Z",
    "value_real_usd": 1000.1
+  },
+  {
+   "time": "2026-11-13T16:30:00Z",
+   "value_real_usd": 1000.59
+  },
+  {
+   "time": "2026-11-13T16:45:00Z",
+   "value_real_usd": 999.57
+  },
+  {
+   "time": "2026-11-13T17:00:00Z",
+   "value_real_usd": 997.2
+  },
+  {
+   "time": "2026-11-13T17:15:00Z",
+   "value_real_usd": 997.57
+  },
+  {
+   "time": "2026-11-13T17:30:00Z",
+   "value_real_usd": 997.97
+  },
+  {
+   "time": "2026-11-13T17:45:00Z",
+   "value_real_usd": 996.63
+  },
+  {
+   "time": "2026-11-13T18:00:00Z",
+   "value_real_usd": 997.43
+  },
+  {
+   "time": "2026-11-13T18:15:00Z",
+   "value_real_usd": 997.19
+  },
+  {
+   "time": "2026-11-13T18:30:00Z",
+   "value_real_usd": 998.23
+  },
+  {
+   "time": "2026-11-13T18:45:00Z",
+   "value_real_usd": 997.77
+  },
+  {
+   "time": "2026-11-13T19:00:00Z",
+   "value_real_usd": 998.2
+  },
+  {
+   "time": "2026-11-13T19:15:00Z",
+   "value_real_usd": 998.07
+  },
+  {
+   "time": "2026-11-13T19:30:00Z",
+   "value_real_usd": 998.49
+  },
+  {
+   "time": "2026-11-13T19:45:00Z",
+   "value_real_usd": 999.12
+  },
+  {
+   "time": "2026-11-13T20:00:00Z",
+   "value_real_usd": 999.3
+  },
+  {
+   "time": "2026-11-13T20:15:00Z",
+   "value_real_usd": 999.72
+  },
+  {
+   "time": "2026-11-13T20:30:00Z",
+   "value_real_usd": 999.1
+  },
+  {
+   "time": "2026-11-13T20:45:00Z",
+   "value_real_usd": 997.78
+  },
+  {
+   "time": "2026-11-13T21:00:00Z",
+   "value_real_usd": 998.07
   }
  ],
  "headlines": [
+  {
+   "time": "2026-11-13T21:19:20Z",
+   "headline": "'FAA confirms nationwide ground stop due to widespread ATC frequency issues' - The Air Current",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/economics/macro-economic-events/26/11/63269765/faa-confirms-nationwide-ground-stop-due-widespread-atc-frequency-issues-air-current",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T21:01:37Z",
+   "headline": "Federal Aviation Administration Issues National Ground Stop, Citing 'Extraordinary Circumstances'",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/content/63268257/federal-aviation-administration-issues-national-ground-stop-citing-extraordinary-circumstances",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T19:46:27Z",
+   "headline": "'Hassett Denies Report He\u2019s Leaving White House: \u2018Not True'- CNBC",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/news/26/11/63263618/hassett-denies-report-he-s-leaving-white-house-not-true-cnbc",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T19:13:01Z",
+   "headline": "'Hassett expected to depart White House'- Semafor",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/news/26/11/63261679/hassett-expected-depart-white-house-semafor",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T18:20:03Z",
+   "headline": "U.S. Trade Representative, Alongside Treasury, Held First Official U.S.-China Board Of Trade Meeting",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/news/26/11/63258802/u-s-trade-representative-alongside-treasury-held-first-official-u-s-china-board-trade-meeting",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T18:19:49Z",
+   "headline": "Why Is IREN Stock Falling on Friday?",
+   "summary": "IREN Limited (NASDAQ: IREN) stock falls Friday amid Bitcoin sliding under $70,000, rising Treasury yields, and NVIDIA Corp. (NASDAQ: NVDA) CEO Jensen Huang&#39;s resignation.",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/trading-ideas/movers/26/11/63258769/why-is-iren-stock-falling-on-friday-3",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T18:10:59Z",
+   "headline": "BZ Analysis: Long Non-Dealer Positioning In US Equity Futures Is Up To +$330B, Its 2nd-highest On Record",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/economics/26/11/63258274/bz-analysis-long-non-dealer-positioning-us-equity-futures-330b-its-2nd-highest-record",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T17:57:54Z",
+   "headline": "'Trump to Extend Shipping Waiver for Oil, Fertilizer for 90 Days'- Bloomberg",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/news/26/11/63257546/trump-extend-shipping-waiver-oil-fertilizer-90-days-bloomberg",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T17:50:00Z",
+   "headline": "Fed\u2019s Daly Says Just Starting To Hear That The Consumer May Be Running Out Of Gas",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/news/26/11/63257127/fed-s-daly-says-just-starting-hear-consumer-may-be-running-out-gas",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T17:35:15Z",
+   "headline": "Fed\u2019s Daly: Looking At How The Gap Between Consumer Sentiment And Behavior Gets Closed; Watch Services Ex-Housing Inflation Carefully, It\u2019s Not Moving In The Correct Direction",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/news/26/11/63256181/fed-s-daly-looking-how-gap-between-consumer-sentiment-and-behavior-gets-closed-watch-services-ex-hou",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T17:29:23Z",
+   "headline": "Fed\u2019s Daly Says A Myriad Of Things Are Pushing Up Inflation, Which Makes It Concerning; Consumer Spending Surprisingly Resilient",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/news/26/11/63255728/fed-s-daly-says-myriad-things-are-pushing-inflation-which-makes-it-concerning-consumer-spending-surp",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T17:22:42Z",
+   "headline": "Fed's Daly Says Bias Is That Rates Need To Go Up; Markets Understand Fed's Reaction Function; In All Likelihood We Will Need To Raise Rates",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/news/26/11/63255354/fed-s-daly-says-bias-rates-need-go-markets-understand-fed-s-reaction-function-all-likelihood-we-will",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T17:17:43Z",
+   "headline": "Fed\u2019s Daly Says Key Problem We Have Is Inflation; A Good Economy With One Problem, Inflation; Not Much Evidence That AI Is Driving Labor Productivity Up",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/news/26/11/63255026/fed-s-daly-says-key-problem-we-have-inflation-good-economy-one-problem-inflation-not-much-evidence-a",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T16:38:56Z",
+   "headline": "'Bessent Blames Lutnick\u2019s Commerce As He slams Nvidia Chip \u2018Leakage\u2019 To China'- CNBC",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/news/26/11/63251937/bessent-blames-lutnick-s-commerce-he-slams-nvidia-chip-leakage-china-cnbc",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T16:28:33Z",
+   "headline": "AMD Benefits From Nvidia's Troubles, Smart Money Sells Nvidia; Cooler PPI; Bitcoin Below $70K",
+   "summary": "\n\n\n\nAMD To Benefit\n\n\n\nPlease click here for an enlarged chart of Advanced Micro Devices Inc (NASDAQ:AMD).\n\n\n\nNote the following:\n\n\n\n\nThis article is about the big picture, not an individual stock.\u00a0 The chart of AMD",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/opinion/26/11/63250990/amd-benefits-from-nvidias-troubles-smart-money-sells-nvidia-cooler-ppi-bitcoin-below-70k",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T16:31:45Z",
+   "headline": "Wells Fargo Maintains Equal-Weight on Andersen Group, Raises Price Target to $61",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/news/26/11/63251278/wells-fargo-maintains-equal-weight-andersen-group-raises-price-target-61",
+   "symbols": [
+    "ANDG"
+   ]
+  },
   {
    "time": "2026-11-13T16:13:55Z",
    "headline": "'US wants Japan to nearly triple budget for hosting American troops'- Nikkei Asia",
@@ -484,166 +719,6 @@
    "url": "https://www.moomoo.com/news/post/1004564338?futusource=nnq_personal_guest",
    "symbols": [
     "HNGE"
-   ]
-  },
-  {
-   "time": "2026-11-13T12:32:28Z",
-   "headline": "Jefferies Initiates Coverage on Haemonetics With Buy Rating",
-   "summary": "Jefferies has initiated coverage on Haemonetics Corporation with a Buy rating and a price target of $150.",
-   "source": "fiscal.ai",
-   "url": "https://www.marketscreener.com/news/jefferies-initiates-coverage-on-haemonetics-with-buy-rating-150-price-target-ce785ed9df80f622",
-   "symbols": [
-    "HAE"
-   ]
-  },
-  {
-   "time": "2026-11-13T06:26:11Z",
-   "headline": "Stock Market: Will S&P 500 Open Up or Down Today?",
-   "summary": "Will the S&amp;P 500 open higher? Polymarket odds sit at 55% as Wall Street absorbs Nvidia&#39;s CEO exit, flat futures, and easing oil prices.",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/markets/prediction-markets/26/11/63229873/stock-market-will-sp-500-open-up-or-down-today-77",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T00:27:59Z",
-   "headline": "Fed's Williams Said Inflation Remains Stubbornly Persistent , High; Fed Continues Steady Data Collection; Will Need To Take Action Over Time To Bring Inflation Back To 2%",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/quote/SPY",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T00:26:23Z",
-   "headline": "NY Fed President Williams, Speaking At UC Berkley, Said Says US Economy Has Been Resilient, Growth Strong But Not Overheating",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/quote/SPY",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-12T23:30:14Z",
-   "headline": "DeSantis Asks How Congress Members With 'No Investment Acumen' Outperform Warren Buffett \u2014 'Oh You Just Happened to Buy Something\u2026Then It Goes Up 150%'",
-   "summary": "Ron DeSantis questions how members of Congress with &#39;no investment acumen&#39; beat legendary investor Warren Buffett.",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/news/politics/26/11/63227874/desantis-asks-how-congress-members-with-no-investment-acumen-outperform-warren-buffett-oh-you-just-happened-to-buy-somethingthen-it-goes-up-150",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-12T22:30:18Z",
-   "headline": "AOC Says Five Guys in Tuxedos Shouldn\u2019t Control the Economy: \u2018We Need to Check These Guys Power\u2019",
-   "summary": "Tech CEOs may have too much power over the economy, U.S. Rep. Alexandria Ocasio-Cortez (D-N.Y.) tells TMZ.",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/news/politics/26/11/63227251/aoc-says-five-guys-in-tuxedos-shouldnt-control-the-economy-we-need-to-check-these-guys-power",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-12T21:37:40Z",
-   "headline": "Andersen Group Q3 Adj. EPS $2.39 Beats $1.11 Estimate, Sales $337.318M Beat $333.636M Estimate",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/news/earnings/26/11/63225025/andersen-group-q3-adj-eps-2-39-beats-1-11-estimate-sales-337-318m-beat-333-636m-estimate",
-   "symbols": [
-    "ANDG"
-   ]
-  },
-  {
-   "time": "2026-11-12T21:05:16Z",
-   "headline": "Andersen Group Sees FY2027 Sales $1.275B-$1.325B vs $1.175B Est",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/news/26/11/63221370/andersen-group-sees-fy2027-sales-1-275b-1-325b-vs-1-175b-est",
-   "symbols": [
-    "ANDG"
-   ]
-  },
-  {
-   "time": "2026-11-12T18:52:08Z",
-   "headline": "Nvidia Crisis \u2013 Visionary Huang\u2019s Resignation Puts America's AI Advantage at Risk; Gold Falls Below $4000",
-   "summary": "\n\n\n\nAmerica\u2019s AI Advantage At Risk\n\n\n\nPlease click here for an enlarged weekly chart of NVIDIA Corp (NASDAQ:NVDA).\n\n\n\nNote the following:\n\n\n\n\nAt this time, it is critical for investors to remember our principle: Give",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/opinion/26/11/63213045/nvidia-crisis-visionary-huang-resignation-puts-america-ai-advantage-at-risk-gold-falls-below-4000",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-12T18:52:35Z",
-   "headline": "Fed's Daly Says We Are In A Perfect Storm For Hiring",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/quote/SPY",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-12T18:42:37Z",
-   "headline": "Fed's Daly Says We Have Many Many Quarters To Make Policy Decisions",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/news/26/11/63212424/fed-s-daly-says-we-have-many-many-quarters-make-policy-decisions",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-12T18:32:30Z",
-   "headline": "Kansas City Fed\u2019s Schmid Does Not Comment On Monetary Policy Or Economic Outlook In Remarks On Housing Costs; Says Materials And Labor Costs May Worsen Housing Affordability",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/quote/SPY",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-12T18:21:39Z",
-   "headline": "Fed\u2019s Daly Says AI Pipeline Is Deep, So Continues Even If It Slows; Says Economy Being Driven By Technology Boom; Says No Doubt Of AI-Fueled Price Pressures",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/quote/SPY",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-12T18:15:14Z",
-   "headline": "Seeing Reports White House Discussing Howard Lutnick\u2019s Future As Commerce Secretary",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/quote/SPY",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-12T17:58:03Z",
-   "headline": "Yemen\u2019s Houthis Say They Attacked Aramco Building In Riyadh",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/news/26/11/63209790/yemen-s-houthis-say-they-attacked-aramco-building-riyadh",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-12T16:41:41Z",
-   "headline": "White House Expected In Coming Days To Extend Jones Act Waiver On Shipping Oil And Commodities On Foreign-Flagged Ships Between U.S. Ports",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/news/26/11/63203670/white-house-expected-coming-days-extend-jones-act-waiver-shipping-oil-and-commodities-foreign-flagge",
-   "symbols": [
-    "SPY"
    ]
   }
  ]
