@@ -11,7 +11,8 @@ FRED_URL = "https://fred.stlouisfed.org/graph/fredgraph.csv?id={series}&cosd={st
 
 
 def fetch_text(url: str) -> str:
-    req = Request(url, headers={"User-Agent": "paper-trading-test/1.0"})
+    # Python's default client name: FRED silently drops requests with an unknown custom one.
+    req = Request(url)
     with urlopen(req, timeout=20) as resp:
         return resp.read().decode("utf-8", errors="replace")
 
