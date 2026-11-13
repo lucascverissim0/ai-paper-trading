@@ -1,58 +1,166 @@
 {
- "refreshed_at": "2026-11-13T15:07:53Z",
+ "refreshed_at": "2026-11-13T16:20:33Z",
  "market_open": true,
  "next_open": "2026-11-16T09:30:00-05:00",
  "next_close": "2026-11-13T16:00:00-05:00",
  "errors": [],
  "account": {
-  "value_real_usd": 995.01,
-  "today_real_usd": -4.99,
-  "today_pct": -0.004989200000000027,
-  "cash_weight": 0.05025101235082071,
-  "open_pl_real_usd": -4.97
+  "value_real_usd": 998.38,
+  "today_real_usd": -10.81,
+  "today_pct": -0.010715099999999977,
+  "cash_weight": 0.5528104189197671,
+  "open_pl_real_usd": -1.34
  },
  "positions": [
   {
-   "symbol": "SPY",
-   "name": "US large companies (S&P 500)",
-   "qty": 66.081107513,
-   "avg_entry_price": 756.645762,
-   "price": 752.35,
-   "weight": 0.49965408653855814,
-   "value_real_usd": 497.16,
-   "pl_real_usd": -2.84,
-   "pl_pct": -0.00568,
-   "today_real_usd": -2.84,
-   "today_pct": -0.0063
+   "symbol": "HNGE",
+   "name": "Hinge Health, Inc.",
+   "stop": 112.0,
+   "qty": 105.0,
+   "avg_entry_price": 113.5,
+   "price": 113.29,
+   "weight": 0.12024291485698407,
+   "value_real_usd": 120.05,
+   "pl_real_usd": -0.22,
+   "pl_pct": -0.00185,
+   "today_real_usd": -0.22,
+   "today_pct": -0.06364
   },
   {
-   "symbol": "EFA",
-   "name": "Developed markets outside North America",
-   "qty": 239.978490493,
-   "avg_entry_price": 104.175962,
-   "price": 104.0,
-   "weight": 0.25082906648852454,
-   "value_real_usd": 249.58,
-   "pl_real_usd": -0.42,
-   "pl_pct": -0.00169,
-   "today_real_usd": -0.42,
-   "today_pct": -0.0001
+   "symbol": "ANDG",
+   "name": "Andersen Group Inc.",
+   "stop": 61.0,
+   "qty": 189.0,
+   "avg_entry_price": 61.998836,
+   "price": 61.805,
+   "weight": 0.11807665314612606,
+   "value_real_usd": 117.89,
+   "pl_real_usd": -0.37,
+   "pl_pct": -0.00313,
+   "today_real_usd": -0.37,
+   "today_pct": -0.05526
   },
   {
-   "symbol": "QQQ",
-   "name": "US large tech-heavy companies (Nasdaq-100)",
-   "qty": 29.203887039,
-   "avg_entry_price": 684.84,
-   "price": 678.99,
-   "weight": 0.1992857490692563,
-   "value_real_usd": 198.29,
-   "pl_real_usd": -1.71,
-   "pl_pct": -0.00854,
-   "today_real_usd": -1.71,
-   "today_pct": -0.01334
+   "symbol": "APPN",
+   "name": "Appian Corporation Class A Common Stock",
+   "stop": 50.9,
+   "qty": 200.0,
+   "avg_entry_price": 54.58,
+   "price": 54.49,
+   "weight": 0.11016037948218961,
+   "value_real_usd": 109.98,
+   "pl_real_usd": -0.18,
+   "pl_pct": -0.00165,
+   "today_real_usd": -0.18,
+   "today_pct": -0.01197
+  },
+  {
+   "symbol": "HAE",
+   "name": "Haemonetics Corporation",
+   "stop": 115.0,
+   "qty": 79.0,
+   "avg_entry_price": 124.32,
+   "price": 123.61,
+   "weight": 0.09870958305337522,
+   "value_real_usd": 98.55,
+   "pl_real_usd": -0.57,
+   "pl_pct": -0.00571,
+   "today_real_usd": -0.57,
+   "today_pct": 0.00733
   }
  ],
  "trades": [
+  {
+   "time": "2026-11-13T16:20:31.609268Z",
+   "date": "2026-11-13",
+   "symbol": "HNGE",
+   "side": "buy",
+   "qty": 105.0,
+   "price": 113.5,
+   "amount_real_usd": 120.27,
+   "fee_real_usd": 1.1203,
+   "realized_real_usd": null,
+   "realized_pct": null,
+   "reason": "The market is in a correction with QQQ below its 50-day average and a Fed hike looming, so I am swapping the index ETFs for about 45% in four leaders with tight bases near highs and holding the rest in cash. Each position is sized around 10-12% so costs stay small, and stops sit about 6-8% below the price, just under recent support. I will add exposure if the indexes recover their 50-day averages "
+  },
+  {
+   "time": "2026-11-13T16:20:28.594228Z",
+   "date": "2026-11-13",
+   "symbol": "HAE",
+   "side": "buy",
+   "qty": 79.0,
+   "price": 124.32,
+   "amount_real_usd": 99.12,
+   "fee_real_usd": 1.0991,
+   "realized_real_usd": null,
+   "realized_pct": null,
+   "reason": "The market is in a correction with QQQ below its 50-day average and a Fed hike looming, so I am swapping the index ETFs for about 45% in four leaders with tight bases near highs and holding the rest in cash. Each position is sized around 10-12% so costs stay small, and stops sit about 6-8% below the price, just under recent support. I will add exposure if the indexes recover their 50-day averages "
+  },
+  {
+   "time": "2026-11-13T16:20:26.792746Z",
+   "date": "2026-11-13",
+   "symbol": "APPN",
+   "side": "buy",
+   "qty": 200.0,
+   "price": 54.58,
+   "amount_real_usd": 110.16,
+   "fee_real_usd": 1.1102,
+   "realized_real_usd": null,
+   "realized_pct": null,
+   "reason": "The market is in a correction with QQQ below its 50-day average and a Fed hike looming, so I am swapping the index ETFs for about 45% in four leaders with tight bases near highs and holding the rest in cash. Each position is sized around 10-12% so costs stay small, and stops sit about 6-8% below the price, just under recent support. I will add exposure if the indexes recover their 50-day averages "
+  },
+  {
+   "time": "2026-11-13T16:20:25.731307Z",
+   "date": "2026-11-13",
+   "symbol": "ANDG",
+   "side": "buy",
+   "qty": 189.0,
+   "price": 61.9988,
+   "amount_real_usd": 118.26,
+   "fee_real_usd": 1.1183,
+   "realized_real_usd": null,
+   "realized_pct": null,
+   "reason": "The market is in a correction with QQQ below its 50-day average and a Fed hike looming, so I am swapping the index ETFs for about 45% in four leaders with tight bases near highs and holding the rest in cash. Each position is sized around 10-12% so costs stay small, and stops sit about 6-8% below the price, just under recent support. I will add exposure if the indexes recover their 50-day averages "
+  },
+  {
+   "time": "2026-11-13T16:20:22.030674Z",
+   "date": "2026-11-13",
+   "symbol": "SPY",
+   "side": "sell",
+   "qty": 66.081108,
+   "price": 749.1885,
+   "amount_real_usd": 499.62,
+   "fee_real_usd": 1.4996,
+   "realized_real_usd": -4.97,
+   "realized_pct": -0.009855717661443775,
+   "reason": "The market is in a correction with QQQ below its 50-day average and a Fed hike looming, so I am swapping the index ETFs for about 45% in four leaders with tight bases near highs and holding the rest in cash. Each position is sized around 10-12% so costs stay small, and stops sit about 6-8% below the price, just under recent support. I will add exposure if the indexes recover their 50-day averages "
+  },
+  {
+   "time": "2026-11-13T16:20:17.726877Z",
+   "date": "2026-11-13",
+   "symbol": "QQQ",
+   "side": "sell",
+   "qty": 29.203887,
+   "price": 672.94,
+   "amount_real_usd": 198.33,
+   "fee_real_usd": 1.1983,
+   "realized_real_usd": -3.51,
+   "realized_pct": -0.017376321476549217,
+   "reason": "The market is in a correction with QQQ below its 50-day average and a Fed hike looming, so I am swapping the index ETFs for about 45% in four leaders with tight bases near highs and holding the rest in cash. Each position is sized around 10-12% so costs stay small, and stops sit about 6-8% below the price, just under recent support. I will add exposure if the indexes recover their 50-day averages "
+  },
+  {
+   "time": "2026-11-13T16:20:13.579241Z",
+   "date": "2026-11-13",
+   "symbol": "EFA",
+   "side": "sell",
+   "qty": 239.97849,
+   "price": 103.7658,
+   "amount_real_usd": 251.31,
+   "fee_real_usd": 1.2513,
+   "realized_real_usd": -0.99,
+   "realized_pct": -0.0039368774919495975,
+   "reason": "The market is in a correction with QQQ below its 50-day average and a Fed hike looming, so I am swapping the index ETFs for about 45% in four leaders with tight bases near highs and holding the rest in cash. Each position is sized around 10-12% so costs stay small, and stops sit about 6-8% below the price, just under recent support. I will add exposure if the indexes recover their 50-day averages "
+  },
   {
    "time": "2026-11-13T14:49:17.438253Z",
    "date": "2026-11-13",
@@ -60,11 +168,11 @@
    "side": "buy",
    "qty": 239.97849,
    "price": 104.176,
-   "amount_real_usd": 250.0,
-   "fee_real_usd": 1.25,
+   "amount_real_usd": 252.3,
+   "fee_real_usd": 1.2523,
    "realized_real_usd": null,
    "realized_pct": null,
-   "reason": "The benchmark is SPY, so I hold the maximum 50% in SPY and fill the rest with QQQ and EFA, which track SPY closely, using only three orders to keep costs down. I am avoiding bonds and gold because rate-hike expectations are pushing yields up and gold is in a strong downtrend, and EEM is weak against a backdrop of rising US yields. QQQ is kept below its natural weight because of the Nvidia turmoil,"
+   "reason": "The market is in a correction with QQQ below its 50-day average and a Fed hike looming, so I am swapping the index ETFs for about 45% in four leaders with tight bases near highs and holding the rest in cash. Each position is sized around 10-12% so costs stay small, and stops sit about 6-8% below the price, just under recent support. I will add exposure if the indexes recover their 50-day averages "
   },
   {
    "time": "2026-11-13T14:49:07.779234Z",
@@ -73,11 +181,11 @@
    "side": "buy",
    "qty": 29.203887,
    "price": 684.84,
-   "amount_real_usd": 200.0,
-   "fee_real_usd": 1.2,
+   "amount_real_usd": 201.84,
+   "fee_real_usd": 1.2018,
    "realized_real_usd": null,
    "realized_pct": null,
-   "reason": "The benchmark is SPY, so I hold the maximum 50% in SPY and fill the rest with QQQ and EFA, which track SPY closely, using only three orders to keep costs down. I am avoiding bonds and gold because rate-hike expectations are pushing yields up and gold is in a strong downtrend, and EEM is weak against a backdrop of rising US yields. QQQ is kept below its natural weight because of the Nvidia turmoil,"
+   "reason": "The market is in a correction with QQQ below its 50-day average and a Fed hike looming, so I am swapping the index ETFs for about 45% in four leaders with tight bases near highs and holding the rest in cash. Each position is sized around 10-12% so costs stay small, and stops sit about 6-8% below the price, just under recent support. I will add exposure if the indexes recover their 50-day averages "
   },
   {
    "time": "2026-11-13T14:49:06.516055Z",
@@ -86,38 +194,128 @@
    "side": "buy",
    "qty": 66.081108,
    "price": 756.6458,
-   "amount_real_usd": 500.0,
-   "fee_real_usd": 1.5,
+   "amount_real_usd": 504.6,
+   "fee_real_usd": 1.5046,
    "realized_real_usd": null,
    "realized_pct": null,
-   "reason": "The benchmark is SPY, so I hold the maximum 50% in SPY and fill the rest with QQQ and EFA, which track SPY closely, using only three orders to keep costs down. I am avoiding bonds and gold because rate-hike expectations are pushing yields up and gold is in a strong downtrend, and EEM is weak against a backdrop of rising US yields. QQQ is kept below its natural weight because of the Nvidia turmoil,"
+   "reason": "The market is in a correction with QQQ below its 50-day average and a Fed hike looming, so I am swapping the index ETFs for about 45% in four leaders with tight bases near highs and holding the rest in cash. Each position is sized around 10-12% so costs stay small, and stops sit about 6-8% below the price, just under recent support. I will add exposure if the indexes recover their 50-day averages "
   }
  ],
  "trade_stats": {
-  "trades": 3,
-  "buys": 3,
-  "sells": 0,
-  "realized_real_usd": 0,
+  "trades": 10,
+  "buys": 7,
+  "sells": 3,
+  "realized_real_usd": -9.47,
   "winning_sells": 0,
-  "closed_sells": 0,
-  "fees_real_usd": 3.95,
-  "turnover": 0.949999700541827
+  "closed_sells": 3,
+  "fees_real_usd": 12.3558,
+  "turnover": 2.3558032699778853
  },
  "intraday": [
   {
    "time": "2026-11-13T14:30:00Z",
-   "value_real_usd": 1000.0
+   "value_real_usd": 1009.2
   },
   {
    "time": "2026-11-13T14:45:00Z",
-   "value_real_usd": 1000.0
+   "value_real_usd": 1009.2
   },
   {
    "time": "2026-11-13T15:00:00Z",
-   "value_real_usd": 997.28
+   "value_real_usd": 1006.45
+  },
+  {
+   "time": "2026-11-13T15:15:00Z",
+   "value_real_usd": 1000.26
+  },
+  {
+   "time": "2026-11-13T15:30:00Z",
+   "value_real_usd": 1001.16
+  },
+  {
+   "time": "2026-11-13T15:45:00Z",
+   "value_real_usd": 1000.66
+  },
+  {
+   "time": "2026-11-13T16:00:00Z",
+   "value_real_usd": 1001.31
+  },
+  {
+   "time": "2026-11-13T16:15:00Z",
+   "value_real_usd": 1000.1
   }
  ],
  "headlines": [
+  {
+   "time": "2026-11-13T16:13:55Z",
+   "headline": "'US wants Japan to nearly triple budget for hosting American troops'- Nikkei Asia",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/news/26/11/63249620/us-wants-japan-nearly-triple-budget-hosting-american-troops-nikkei-asia",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T16:00:18Z",
+   "headline": "Consumer Staples Leads Sectors As Technology Trails",
+   "summary": "Six sectors are higher and five are lower in Friday&#39;s regular session, with the top three split across defensive, growth and cyclical groups. Consumer Staples sits well clear of the rest, separated by a margin several times wider than any other gap in the table.",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/etfs/sector-etfs/26/11/63248349/consumer-staples-leads-sectors-as-technology-trails",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T15:49:57Z",
+   "headline": "Live On Bloomberg TV, Fed\u2019s Collins Says Possible Fed May Have To Raise More Than Expected; Best Case Scenario Is \u2018careful Adjustment\u2019 Of Monetary Policy; Energy Is An Inflation Driver, But I See It As Broader; Many Firms Expect To Pass On Higher Costs To Consumers",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/quote/SPY",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T15:49:36Z",
+   "headline": "Bitcoin Could Crash Below $10,000, Peter Schiff Warns: \u2018Get the Hell Out\u2019",
+   "summary": "Peter Schiff tells Bitcoin holders to \u201cget the hell out,\u201d predicting a crash below $10,000 as its historic streak breaks.",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/crypto/cryptocurrency/26/11/63247338/bitcoin-could-crash-below-10000-peter-schiff-warns-get-the-hell-out",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T15:47:34Z",
+   "headline": "Live On Bloomberg TV, Fed\u2019s Collins Says Inflation Is Too High And Appears To Be Broadening; Recent Inflation Data Less Promising Than I Hope; I Would Think Some Additional Policy Tightening Warranted Soon",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/quote/SPY",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T15:46:37Z",
+   "headline": "'Senate Republicans eye defense-only spending bill' - Semafor",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/news/26/11/63247055/senate-republicans-eye-defense-only-spending-bill-semafor",
+   "symbols": [
+    "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-13T15:21:28Z",
+   "headline": "'Israeli spy chief in D.C. as Netanyahu presses Trump to resume war'- Axios",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/news/26/11/63244259/israeli-spy-chief-d-c-netanyahu-presses-trump-resume-war-axios",
+   "symbols": [
+    "SPY"
+   ]
+  },
   {
    "time": "2026-11-13T14:44:56Z",
    "headline": "Fed\u2019s Logan Does Not Comment On Monetary Policy Or Economic Outlook In Remarks To Dallas Fed Conference On Bank Funding; Says Fed Should Further Develop Its Operational Readiness To Lend To Designated Financial Market Utilities; Treasury Market Currently Functioning Very Well, Trading Proceeding Smo",
@@ -126,16 +324,6 @@
    "url": "https://www.benzinga.com/economics/macro-economic-events/26/11/63239820/fed-s-logan-does-not-comment-monetary-policy-or-economic-outlook-remarks-dallas-fed-conference-bank-",
    "symbols": [
     "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T14:37:28Z",
-   "headline": "Nvidia Crisis Fails to Stop ETF Buying Frenzy: VOO, QQQ, SOXL Leads $37.5B ETF Inflow Surge",
-   "summary": "U.S. equity ETFs attracted $37.5 billion in five days as VOO, QQQ and SOXL led dip-buying despite Nvidia&#39;s leadership crisis and market volatility.",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/etfs/sector-etfs/26/11/63238767/nvidia-crisis-fails-to-stop-etf-buying-frenzy-voo-qqq-soxl-leads-37-5b-etf-inflow-surge",
-   "symbols": [
-    "QQQ"
    ]
   },
   {
@@ -215,7 +403,6 @@
    "source": "benzinga",
    "url": "https://www.benzinga.com/markets/equities/26/11/63231225/stock-market-today-dow-jones-sp-500-futures-rise-nvidia-ceo-exit-remains-in-focus-csco-amat-nu-in-focus",
    "symbols": [
-    "QQQ",
     "SPY"
    ]
   },
@@ -270,13 +457,52 @@
    ]
   },
   {
+   "time": "2026-11-13T13:15:41Z",
+   "headline": "Jefferies Initiates Coverage On Haemonetics with Buy Rating, Announces Price Target of $150",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/news/26/11/63235574/jefferies-initiates-coverage-haemonetics-buy-rating-announces-price-target-150",
+   "symbols": [
+    "HAE"
+   ]
+  },
+  {
+   "time": "2026-11-13T12:40:21Z",
+   "headline": "Baird Maintains Outperform on Andersen Group, Raises Price Target to $71",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/news/26/11/63234245/baird-maintains-outperform-andersen-group-raises-price-target-71",
+   "symbols": [
+    "ANDG"
+   ]
+  },
+  {
+   "time": "2026-11-13T12:32:49Z",
+   "headline": "Hinge Health Insider Reports Sale of Shares",
+   "summary": "An insider at Hinge Health, Inc. has sold shares of the company's stock, according to a recent regulatory filing.",
+   "source": "fiscal.ai",
+   "url": "https://www.moomoo.com/news/post/1004564338?futusource=nnq_personal_guest",
+   "symbols": [
+    "HNGE"
+   ]
+  },
+  {
+   "time": "2026-11-13T12:32:28Z",
+   "headline": "Jefferies Initiates Coverage on Haemonetics With Buy Rating",
+   "summary": "Jefferies has initiated coverage on Haemonetics Corporation with a Buy rating and a price target of $150.",
+   "source": "fiscal.ai",
+   "url": "https://www.marketscreener.com/news/jefferies-initiates-coverage-on-haemonetics-with-buy-rating-150-price-target-ce785ed9df80f622",
+   "symbols": [
+    "HAE"
+   ]
+  },
+  {
    "time": "2026-11-13T06:26:11Z",
    "headline": "Stock Market: Will S&P 500 Open Up or Down Today?",
    "summary": "Will the S&amp;P 500 open higher? Polymarket odds sit at 55% as Wall Street absorbs Nvidia&#39;s CEO exit, flat futures, and easing oil prices.",
    "source": "benzinga",
    "url": "https://www.benzinga.com/markets/prediction-markets/26/11/63229873/stock-market-will-sp-500-open-up-or-down-today-77",
    "symbols": [
-    "QQQ",
     "SPY"
    ]
   },
@@ -311,24 +537,33 @@
    ]
   },
   {
-   "time": "2026-11-12T22:56:23Z",
-   "headline": "TQQQ ETF Barely Outpaces QQQ Despite Its 3X Leverage",
-   "summary": "TQQQ is designed to deliver 3X the daily return of the Nasdaq-100, yet it has barely outpaced QQQ this year. Here&#39;s why.",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/opinion/26/11/63227572/tqqq-etf-barely-outpaces-qqq-despite-its-3x-leverage",
-   "symbols": [
-    "QQQ"
-   ]
-  },
-  {
    "time": "2026-11-12T22:30:18Z",
    "headline": "AOC Says Five Guys in Tuxedos Shouldn\u2019t Control the Economy: \u2018We Need to Check These Guys Power\u2019",
    "summary": "Tech CEOs may have too much power over the economy, U.S. Rep. Alexandria Ocasio-Cortez (D-N.Y.) tells TMZ.",
    "source": "benzinga",
    "url": "https://www.benzinga.com/news/politics/26/11/63227251/aoc-says-five-guys-in-tuxedos-shouldnt-control-the-economy-we-need-to-check-these-guys-power",
    "symbols": [
-    "QQQ",
     "SPY"
+   ]
+  },
+  {
+   "time": "2026-11-12T21:37:40Z",
+   "headline": "Andersen Group Q3 Adj. EPS $2.39 Beats $1.11 Estimate, Sales $337.318M Beat $333.636M Estimate",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/news/earnings/26/11/63225025/andersen-group-q3-adj-eps-2-39-beats-1-11-estimate-sales-337-318m-beat-333-636m-estimate",
+   "symbols": [
+    "ANDG"
+   ]
+  },
+  {
+   "time": "2026-11-12T21:05:16Z",
+   "headline": "Andersen Group Sees FY2027 Sales $1.275B-$1.325B vs $1.175B Est",
+   "summary": "",
+   "source": "benzinga",
+   "url": "https://www.benzinga.com/news/26/11/63221370/andersen-group-sees-fy2027-sales-1-275b-1-325b-vs-1-175b-est",
+   "symbols": [
+    "ANDG"
    ]
   },
   {
@@ -338,8 +573,6 @@
    "source": "benzinga",
    "url": "https://www.benzinga.com/opinion/26/11/63213045/nvidia-crisis-visionary-huang-resignation-puts-america-ai-advantage-at-risk-gold-falls-below-4000",
    "symbols": [
-    "GLD",
-    "QQQ",
     "SPY"
    ]
   },
@@ -384,17 +617,6 @@
    ]
   },
   {
-   "time": "2026-11-12T18:16:23Z",
-   "headline": "Nasdaq 100 Turns Green Despite Nvidia's 5% Drop on Huang Exit: Stock Market Today",
-   "summary": "The Nasdaq 100 turned green as Nvidia recovered from a 14.3% plunge on Jensen Huang&#39;s exit, while AMD and Broadcom rallied and Treasury yields jumped.",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/markets/equities/26/11/63210863/stock-market-today-nvidia-huang-exit-amd-broadcom-rally",
-   "symbols": [
-    "IWM",
-    "QQQ"
-   ]
-  },
-  {
    "time": "2026-11-12T18:15:14Z",
    "headline": "Seeing Reports White House Discussing Howard Lutnick\u2019s Future As Commerce Secretary",
    "summary": "",
@@ -402,16 +624,6 @@
    "url": "https://www.benzinga.com/quote/SPY",
    "symbols": [
     "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-12T18:06:45Z",
-   "headline": "Nvidia ETFs Have a New Problem: Life After Jensen Huang",
-   "summary": "Nvidia ETF holdings are under scrutiny now that Jensen Huang is out of the company. Here&#39;s what it means for SMH, QQQ and VGT.",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/etfs/sector-etfs/26/11/63210299/nvidia-etfs-problem-life-after-jensen-huang",
-   "symbols": [
-    "QQQ"
    ]
   },
   {
@@ -425,104 +637,11 @@
    ]
   },
   {
-   "time": "2026-11-12T17:34:10Z",
-   "headline": "Gold Stocks Dip: What's Going On?",
-   "summary": "Gold shares like Agnico Eagle Mines and Newmont are falling Thursday as gold slides to a one-year low on fading Middle East peace hopes.",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/trading-ideas/movers/26/11/63208148/gold-stocks-dip-whats-going-on",
-   "symbols": [
-    "GLD"
-   ]
-  },
-  {
    "time": "2026-11-12T16:41:41Z",
    "headline": "White House Expected In Coming Days To Extend Jones Act Waiver On Shipping Oil And Commodities On Foreign-Flagged Ships Between U.S. Ports",
    "summary": "",
    "source": "benzinga",
    "url": "https://www.benzinga.com/news/26/11/63203670/white-house-expected-coming-days-extend-jones-act-waiver-shipping-oil-and-commodities-foreign-flagge",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-12T16:20:54Z",
-   "headline": "Why Is IREN Stock Falling on Thursday?",
-   "summary": "IREN stock falls Thursday after Jensen Huang&#39;s immediate resignation as Nvidia CEO, adding to pressure on AI infrastructure stocks from midterm ballot measures restricting data centers.",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/trading-ideas/movers/26/11/63201719/why-is-iren-stock-falling-on-thursday-4",
-   "symbols": [
-    "QQQ",
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-12T16:19:42Z",
-   "headline": "Fed's Goolsbee Says Seeing 'Unanchoring Of Inflation Expectations'",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/news/26/11/63201585/fed-s-goolsbee-says-seeing-unanchoring-inflation-expectations",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-12T16:18:58Z",
-   "headline": "Seeing Reports House Democratic Leader Says Classified Briefing On Nvidia Situation Should Be Scheduled For U.S. House Members",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/quote/NVDA",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-12T16:18:05Z",
-   "headline": "Fed's Goolsbee Says AI Costs Are 'Extremely High;' Says 'OId-Fashioned Demand' Overheating",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/news/26/11/63201404/fed-s-goolsbee-says-ai-costs-are-extremely-high-says-oid-fashioned-demand-overheating",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-12T16:15:50Z",
-   "headline": "Fed's Goolsbee Says 'We're way above target' On Inflation",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/news/26/11/63201074/fed-s-goolsbee-says-we-re-way-above-target-inflation",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-12T16:00:25Z",
-   "headline": "Energy Leads Sectors In Thursday Trading As Materials Trail",
-   "summary": "Five sectors are higher and six are lower in Thursday\u2019s regular session, with cyclical, defensive and growth sectors split across the top three positions. The leaders are separated rather than clustered, with Energy clearly ahead of the next group.",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/etfs/sector-etfs/26/11/63199421/energy-leads-sectors-in-thursday-trading-as-materials-trail",
-   "symbols": [
-    "IWM",
-    "QQQ",
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-12T15:59:09Z",
-   "headline": "What Is Going on With Micron Stock on Thursday?",
-   "summary": "Micron (MU) stock fell over 5% Thursday after NVIDIA CEO Jensen Huang resigned. See how Nvidia\u2019s leadership shakeup impacts Micron\u2019s technicals and Wall Street outlook.",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/trading-ideas/movers/26/11/63199251/what-is-going-on-with-micron-stock-on-thursday-4",
-   "symbols": [
-    "QQQ"
-   ]
-  },
-  {
-   "time": "2026-11-12T15:17:21Z",
-   "headline": "Fed Governor Barr Issues Speech On American Inequality And the Future of AI; Says We Should Be Prepared For The Possibility Of Serious Short-Term Disruptions In The Labor Market That Need To Be Managed Effectively To Ensure The Benefits Of AI Are Realized Over The Long Term",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/general/macro-notification/26/11/63194738/fed-governor-barr-issues-speech-american-inequality-and-future-ai-says-we-should-be-prepared-possibi",
    "symbols": [
     "SPY"
    ]
