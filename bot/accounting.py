@@ -56,6 +56,83 @@ def summarize(state: dict, equity_now: float, bench_now: float, today: str) -> d
     }
 
 
+def dashboard_payload(state: dict, equity_now: float, bench_now: float, today: str, updated_at: str) -> dict:
+    """Everything the web dashboard shows, already computed here so the page only displays it."""
+    real = config.REAL_CAPITAL_USD
+    start = date.fromisoformat(state["start_date"])
+    bench_fees = config.FEE_PER_ORDER_USD + config.FEE_RATE * real
+
+    # One point per day: the value measured at each run, and for today the value after today's trades.
+    points = [(d["date"], d["equity"], d["bench_price"]) for d in state["days"]]
+    if points and points[-1][0] == today:
+        points[-1] = (today, equity_now, bench_now)
+    else:
+        points.append((today, equity_now, bench_now))
+
+    series = []
+    fees_cum = api_cum = 0.0
+    day_costs = {}
+    for d in state["days"]:
+        fees = sum(o.get("fee_real_usd", 0.0) for o in d.get("orders", []))
+        prev = day_costs.get(d["date"], (0.0, 0.0))
+        day_costs[d["date"]] = (prev[0] + fees, prev[1] + d.get("api_cost_usd", 0.0))
+    for day, equity, bench in points:
+        fees, api = day_costs.pop(day, (0.0, 0.0))
+        fees_cum += fees
+        api_cum += api
+        other = config.OTHER_MONTHLY_COSTS_USD * (date.fromisoformat(day) - start).days / 30.44
+        series.append({
+            "date": day,
+            "ai_before_costs": round(real * equity / state["start_equity"], 2),
+            "ai_after_costs": round(real * equity / state["start_equity"] - fees_cum - api_cum - other, 2),
+            "spy_after_costs": round(real * bench / state["bench_start_price"] - bench_fees, 2),
+            "fees_cum": round(fees_cum, 4),
+            "api_cum": round(api_cum, 4),
+        })
+
+    trades, log = [], []
+    for d in state["days"]:
+        scale = real / d["equity"] if d["equity"] else 0.0
+        for o in d.get("orders", []):
+            trades.append({
+                "date": d["date"],
+                "symbol": o["symbol"],
+                "side": o["side"],
+                "amount_real_usd": round(o.get("filled_usd", 0.0) * scale, 2),
+                "fee_real_usd": round(o.get("fee_real_usd", 0.0), 4),
+                "status": o.get("status", ""),
+            })
+        log.append({
+            "date": d["date"],
+            "status": d.get("decision_status", ""),
+            "api_cost_usd": round(d.get("api_cost_usd", 0.0), 4),
+            "weights": d.get("weights"),
+            "rationale": d.get("rationale", ""),
+        })
+
+    last = next((d for d in reversed(state["days"]) if d.get("decision_status") == "ok"), None)
+    return {
+        "updated_at": updated_at,
+        "status": "stopped" if state.get("halted") else "running",
+        "halt_reason": state.get("halt_reason"),
+        "start_date": state["start_date"],
+        "settings": {
+            "real_capital_usd": real,
+            "api_budget_usd": config.API_BUDGET_USD,
+            "fee_per_order_usd": config.FEE_PER_ORDER_USD,
+            "fee_rate": config.FEE_RATE,
+            "model": config.CLAUDE_MODEL,
+            "max_drawdown": config.MAX_DRAWDOWN,
+            "universe": config.UNIVERSE_DESCRIPTIONS,
+        },
+        "summary": summarize(state, equity_now, bench_now, today),
+        "holdings": last["weights"] if last else {},
+        "series": series,
+        "trades": trades[::-1],
+        "log": log[::-1],
+    }
+
+
 def render_report(s: dict, state: dict) -> str:
     real = config.REAL_CAPITAL_USD
     status = f"STOPPED - {state['halt_reason']}" if state.get("halted") else "running"

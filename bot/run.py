@@ -8,7 +8,7 @@ import json
 import math
 import os
 import statistics
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 from . import accounting, brain, config
@@ -47,6 +47,11 @@ def save_state(path: str, state: dict) -> None:
 def write_report(state: dict, equity: float, bench_price: float, today: str) -> None:
     summary = accounting.summarize(state, equity, bench_price, today)
     Path(config.REPORT_PATH).write_text(accounting.render_report(summary, state))
+    updated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    payload = accounting.dashboard_payload(state, equity, bench_price, today, updated_at)
+    data_path = Path(config.DASHBOARD_DATA_PATH)
+    data_path.parent.mkdir(parents=True, exist_ok=True)
+    data_path.write_text(json.dumps(payload, indent=1))
 
 
 def _stats(closes: list[float]) -> str:

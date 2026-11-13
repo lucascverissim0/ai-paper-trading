@@ -60,6 +60,7 @@ RECENT_DECISIONS = 10         # past decisions shown to the AI
 # --- Files ----------------------------------------------------------------------
 STATE_PATH = os.environ.get("STATE_PATH") or "state/ledger.json"
 REPORT_PATH = os.environ.get("REPORT_PATH") or "report.md"
+DASHBOARD_DATA_PATH = os.environ.get("DASHBOARD_DATA_PATH") or "docs/data/dashboard.json"
 
 
 def check() -> None:

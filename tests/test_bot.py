@@ -4,6 +4,7 @@ Run with:  python3 -m unittest tests.test_bot
 """
 from __future__ import annotations
 
+import json
 import os
 import tempfile
 import unittest
@@ -145,7 +146,9 @@ class CostTest(unittest.TestCase):
 class DailyRunTest(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
+        # Never let a test write into the real project files (CI commits them).
         config.REPORT_PATH = os.path.join(self.tmp.name, "report.md")
+        config.DASHBOARD_DATA_PATH = os.path.join(self.tmp.name, "data", "dashboard.json")
 
     def tearDown(self):
         self.tmp.cleanup()
@@ -159,6 +162,22 @@ class DailyRunTest(unittest.TestCase):
         self.assertAlmostEqual(broker.positions()["SPY"], 50_000, delta=1)
         run.write_report(state, broker.equity(), 100.0, state["days"][-1]["date"])
         self.assertIn("after all costs", Path(config.REPORT_PATH).read_text())
+
+    def test_dashboard_numbers_match_the_report(self):
+        broker = FakeBroker()
+        state, _ = run.run_once(broker, ai_says({"SPY": 0.5, "GLD": 0.2}), None)
+        broker.prices["SPY"] = 110.0
+        broker.day = "2026-11-17"
+        state, _ = run.run_once(broker, ai_says({"SPY": 0.5, "GLD": 0.2}), state)
+        run.write_report(state, broker.equity(), broker.prices["SPY"], "2026-11-17")
+        data = json.loads(Path(config.DASHBOARD_DATA_PATH).read_text())
+        last = data["series"][-1]
+        self.assertEqual([p["date"] for p in data["series"]], ["2026-11-16", "2026-11-17"])
+        self.assertAlmostEqual(last["ai_after_costs"], config.REAL_CAPITAL_USD + data["summary"]["strat_net_usd"], places=1)
+        self.assertAlmostEqual(last["spy_after_costs"], config.REAL_CAPITAL_USD + data["summary"]["bench_net_usd"], places=1)
+        self.assertAlmostEqual(last["api_cum"], state["api_cost_usd"], places=4)
+        self.assertAlmostEqual(last["fees_cum"], state["fees_real_usd"], places=3)
+        self.assertTrue(all(t["amount_real_usd"] <= config.REAL_CAPITAL_USD for t in data["trades"]))
 
     def test_todays_partial_bar_is_not_shown_to_ai(self):
         broker = FakeBroker()

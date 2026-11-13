@@ -61,7 +61,10 @@ GitHub emails you if a run fails. GitHub may pause scheduled runs in a project w
 
 ## Reading the results
 
-Open `report.md` in the repository. The line that matters: **"the AI is AHEAD of / BEHIND
+Live dashboard: https://lucascverissim0.github.io/ai-paper-trading/ (trades, costs, holdings, the AI's
+reasons, and the value of $1,000 over time against SPY). It updates after each daily run.
+
+Or open `report.md` in the repository. The line that matters: **"the AI is AHEAD of / BEHIND
 buy-and-hold by $X after all costs"**.
 
 ## Before any real money (rule decided now, before seeing results)
