@@ -1,15 +1,15 @@
 {
- "refreshed_at": "2026-11-13T15:07:37Z",
+ "refreshed_at": "2026-11-13T15:07:53Z",
  "market_open": true,
  "next_open": "2026-11-16T09:30:00-05:00",
  "next_close": "2026-11-13T16:00:00-05:00",
  "errors": [],
  "account": {
-  "value_real_usd": 995.36,
-  "today_real_usd": -4.64,
-  "today_pct": -0.004638999999999949,
-  "cash_weight": 0.05023333242913877,
-  "open_pl_real_usd": -4.71
+  "value_real_usd": 995.01,
+  "today_real_usd": -4.99,
+  "today_pct": -0.004989200000000027,
+  "cash_weight": 0.05025101235082071,
+  "open_pl_real_usd": -4.97
  },
  "positions": [
   {
@@ -17,13 +17,13 @@
    "name": "US large companies (S&P 500)",
    "qty": 66.081107513,
    "avg_entry_price": 756.645762,
-   "price": 752.55,
-   "weight": 0.499611070345332,
-   "value_real_usd": 497.29,
-   "pl_real_usd": -2.71,
-   "pl_pct": -0.00541,
-   "today_real_usd": -2.71,
-   "today_pct": -0.00604
+   "price": 752.35,
+   "weight": 0.49965408653855814,
+   "value_real_usd": 497.16,
+   "pl_real_usd": -2.84,
+   "pl_pct": -0.00568,
+   "today_real_usd": -2.84,
+   "today_pct": -0.0063
   },
   {
    "symbol": "EFA",
@@ -31,7 +31,7 @@
    "qty": 239.978490493,
    "avg_entry_price": 104.175962,
    "price": 104.0,
-   "weight": 0.2507408167589447,
+   "weight": 0.25082906648852454,
    "value_real_usd": 249.58,
    "pl_real_usd": -0.42,
    "pl_pct": -0.00169,
@@ -43,13 +43,13 @@
    "name": "US large tech-heavy companies (Nasdaq-100)",
    "qty": 29.203887039,
    "avg_entry_price": 684.84,
-   "price": 679.42,
-   "weight": 0.1993417959112322,
-   "value_real_usd": 198.42,
-   "pl_real_usd": -1.58,
-   "pl_pct": -0.00791,
-   "today_real_usd": -1.58,
-   "today_pct": -0.01271
+   "price": 678.99,
+   "weight": 0.1992857490692563,
+   "value_real_usd": 198.29,
+   "pl_real_usd": -1.71,
+   "pl_pct": -0.00854,
+   "today_real_usd": -1.71,
+   "today_pct": -0.01334
   }
  ],
  "trades": [
