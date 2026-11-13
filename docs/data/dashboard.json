@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-13 16:20 UTC",
+ "updated_at": "2026-11-13 22:05 UTC",
  "status": "running",
  "halt_reason": null,
  "start_date": "2026-11-13",
@@ -17,17 +17,17 @@
   "today": "2026-11-13",
   "days_elapsed": 0,
   "decisions": 1,
-  "gross_return": -0.0016180432868209138,
-  "bench_return": -0.0005736010138063241,
+  "gross_return": -0.0017291557210996622,
+  "bench_return": 0.00325485226439004,
   "fees_real": 8.397067763245818,
   "bench_fees": 2.0,
   "api_cost": 1.0276404000000001,
   "other_costs": 0.0,
-  "strat_net_usd": -11.042751450066731,
-  "bench_net_usd": -2.573601013806324,
-  "edge_usd": -8.469150436260406,
-  "strat_drawdown": 0.0016180432868209138,
-  "bench_drawdown": 0.0005736010138063241,
+  "strat_net_usd": -11.15386388434548,
+  "bench_net_usd": 1.2548522643900402,
+  "edge_usd": -12.40871614873552,
+  "strat_drawdown": 0.0017291557210996622,
+  "bench_drawdown": 0.0,
   "shadows": {
    "s_qqq": -2.0,
    "s_6040": -3.0,
@@ -46,43 +46,43 @@
  "metrics": {
   "ai_after_costs": {
    "days": 1,
-   "total_return": -0.011039999999999939,
+   "total_return": -0.011149999999999993,
    "annual_return": null,
    "volatility": null,
    "sharpe": null,
    "sortino": null,
-   "max_drawdown": 0.011039999999999939,
-   "best_day": -0.011039999999999939,
-   "worst_day": -0.011039999999999939,
+   "max_drawdown": 0.011149999999999993,
+   "best_day": -0.011149999999999993,
+   "worst_day": -0.011149999999999993,
    "up_days": 0.0,
    "beta": null,
    "correlation": null
   },
   "ai_before_costs": {
    "days": 1,
-   "total_return": -0.0016199999999999548,
+   "total_return": -0.0017300000000000093,
    "annual_return": null,
    "volatility": null,
    "sharpe": null,
    "sortino": null,
-   "max_drawdown": 0.0016199999999999548,
-   "best_day": -0.0016199999999999548,
-   "worst_day": -0.0016199999999999548,
+   "max_drawdown": 0.0017300000000000093,
+   "best_day": -0.0017300000000000093,
+   "worst_day": -0.0017300000000000093,
    "up_days": 0.0,
    "beta": null,
    "correlation": null
   },
   "spy_after_costs": {
    "days": 1,
-   "total_return": -0.0025700000000000722,
+   "total_return": 0.0012499999999999734,
    "annual_return": null,
    "volatility": null,
    "sharpe": null,
    "sortino": null,
-   "max_drawdown": 0.0025700000000000722,
-   "best_day": -0.0025700000000000722,
-   "worst_day": -0.0025700000000000722,
-   "up_days": 0.0,
+   "max_drawdown": 0.0,
+   "best_day": 0.0012499999999999734,
+   "worst_day": 0.0012499999999999734,
+   "up_days": 1.0,
    "beta": null,
    "correlation": null
   },
@@ -157,49 +157,49 @@
   "HNGE": 0.12
  },
  "names": {
-  "SG": "Sweetgreen, Inc.",
-  "FIGS": "FIGS, Inc.",
-  "XNCR": "Xencor, Inc. Common Stock",
-  "HNGE": "Hinge Health, Inc.",
-  "SPY": "State Street SPDR S&P 500 ETF Trust",
+  "AMD": "Advanced Micro Devices, Inc. Common Stock",
+  "AMLX": "Amylyx Pharmaceuticals, Inc. Common Stock",
+  "AMPL": "Amplitude, Inc. Class A Common Stock",
+  "ANDG": "Andersen Group Inc.",
+  "ANF": "Abercrombie & Fitch Co.",
+  "APPN": "Appian Corporation Class A Common Stock",
+  "ATEX": "Anterix Inc. Common Stock",
   "BMBL": "Bumble Inc. Class A Common Stock",
   "BRZE": "Braze, Inc. Class A Common Stock",
-  "PLSE": "Pulse Biosciences, Inc Common Stock (DE)",
-  "HTFL": "Heartflow, Inc. Common Stock",
-  "ETON": "Eton Pharmaceuticals, Inc. Common Stock",
-  "SYRE": "Spyre Therapeutics, Inc. Common Stock",
-  "SDGR": "Schrodinger, Inc. Common Stock",
-  "KNSA": "Kiniksa Pharmaceuticals International, plc Class A Ordinary Shares",
   "CBRL": "Cracker Barrel Old Country Store, Inc Common Stock",
-  "AMD": "Advanced Micro Devices, Inc. Common Stock",
-  "MGNI": "Magnite, Inc. Common Stock",
-  "REPL": "Replimune Group, Inc. Common Stock",
-  "AMPL": "Amplitude, Inc. Class A Common Stock",
-  "TBBB": "BBB Foods Inc.",
-  "QQQ": "Invesco QQQ Trust, Series 1",
-  "SLN": "Silence Therapeutics Plc American Depository Share",
-  "APPN": "Appian Corporation Class A Common Stock",
   "CDNA": "CareDx, Inc. Common Stock",
+  "CERT": "Certara, Inc. Common Stock",
+  "CHPT": "ChargePoint Holdings, Inc.",
+  "CRL": "Charles River Laboratories International, Inc.",
+  "ECO": "Okeanis Eco Tankers Corp.",
+  "EFA": "iShares MSCI EAFE ETF",
+  "ETON": "Eton Pharmaceuticals, Inc. Common Stock",
+  "FIGS": "FIGS, Inc.",
+  "GKOS": "Glaukos Corporation",
+  "HAE": "Haemonetics Corporation",
+  "HNGE": "Hinge Health, Inc.",
+  "HTFL": "Heartflow, Inc. Common Stock",
+  "KNSA": "Kiniksa Pharmaceuticals International, plc Class A Ordinary Shares",
+  "KOD": "Kodiak Sciences Inc Common Stock",
+  "MGNI": "Magnite, Inc. Common Stock",
   "MRNA": "Moderna, Inc. Common Stock",
   "ORKA": "Oruka Therapeutics, Inc. Common Stock",
-  "VIA": "Via Transportation, Inc.",
-  "CRL": "Charles River Laboratories International, Inc.",
+  "PLSE": "Pulse Biosciences, Inc Common Stock (DE)",
   "PRCH": "Porch Group, Inc. Common Stock",
-  "ANDG": "Andersen Group Inc.",
-  "CHPT": "ChargePoint Holdings, Inc.",
-  "EFA": "iShares MSCI EAFE ETF",
-  "XERS": "Xeris Biopharma Holdings, Inc. Common Stock",
-  "ECO": "Okeanis Eco Tankers Corp.",
-  "GKOS": "Glaukos Corporation",
-  "ZETA": "Zeta Global Holdings Corp.",
-  "CERT": "Certara, Inc. Common Stock",
-  "ATEX": "Anterix Inc. Common Stock",
-  "VSXY": "Victorias Secret & Co.",
-  "HAE": "Haemonetics Corporation",
+  "QQQ": "Invesco QQQ Trust, Series 1",
+  "REPL": "Replimune Group, Inc. Common Stock",
+  "SDGR": "Schrodinger, Inc. Common Stock",
+  "SG": "Sweetgreen, Inc.",
   "SGRY": "Surgery Partners, Inc. Common Stock",
-  "AMLX": "Amylyx Pharmaceuticals, Inc. Common Stock",
-  "ANF": "Abercrombie & Fitch Co.",
-  "KOD": "Kodiak Sciences Inc Common Stock"
+  "SLN": "Silence Therapeutics Plc American Depository Share",
+  "SPY": "State Street SPDR S&P 500 ETF Trust",
+  "SYRE": "Spyre Therapeutics, Inc. Common Stock",
+  "TBBB": "BBB Foods Inc.",
+  "VIA": "Via Transportation, Inc.",
+  "VSXY": "Victorias Secret & Co.",
+  "XERS": "Xeris Biopharma Holdings, Inc. Common Stock",
+  "XNCR": "Xencor, Inc. Common Stock",
+  "ZETA": "Zeta Global Holdings Corp."
  },
  "stops": {
   "ANDG": 61.0,
@@ -209,16 +209,21 @@
  },
  "candidates": [
   {
-   "symbol": "MRNA",
-   "rs": 100,
-   "price": 231.35,
    "from_high": -0.14,
-   "r3m": 2.6536639292482627,
+   "price": 231.35,
    "r12m": 7.759939416887542,
+   "r3m": 2.6536639292482627,
+   "rs": 100,
+   "symbol": "MRNA",
    "name": "Moderna, Inc. Common Stock",
    "held": false,
    "card": {
     "business": "Moderna, Inc. (MRNA) is a biotech company whose headlines cover COVID-19 vaccines (including mNEXSPIKE and Comirnaty comparisons), its mRNA platform, and an expanding oncology program centred on intismeran.",
+    "catalysts": [
+     "Jefferies Global Health Care Conference presentation on November 18, 2026.",
+     "Oncology pipeline progress for intismeran and commercial readiness, as outlined at Analyst Day.",
+     "Publication of real-world mNEXSPIKE effectiveness data in JAMA Network Open (2026-11-11)."
+    ],
     "growth_facts": [
      "Raised FY26 sales growth guidance to 15%-25% from 10% (2026-11-12).",
      "Q3 results showed a surprise profit of $0.38/share on strong global vaccine sales and cost cuts (2026-11-06).",
@@ -226,11 +231,7 @@
      "Accelerating oncology investments and expanding the mRNA platform into new therapies, per Analyst Day (2026-11-12).",
      "Price 231.35 with 3m +265.4%, 6m +362.4%, 12m +776.0%; RS percentile 100."
     ],
-    "catalysts": [
-     "Jefferies Global Health Care Conference presentation on November 18, 2026.",
-     "Oncology pipeline progress for intismeran and commercial readiness, as outlined at Analyst Day.",
-     "Publication of real-world mNEXSPIKE effectiveness data in JAMA Network Open (2026-11-11)."
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Price is 14.0% below its 52-week high, and the 10-day range is 20.8%, so the stock is not tightly consolidating just below a high.",
      "Five-day volume is 0.7x normal, so buying volume is not heavy at present.",
@@ -238,23 +239,27 @@
      "A litigation settlement charge is referenced in guidance, indicating legal exposure.",
      "Goldman Sachs maintains Neutral, and the Redburn target of $82 sits far below the current price."
     ],
-    "next_earnings_date": "",
     "setup_quality": 6,
     "summary": "Moderna is a top-ranked momentum leader (RS 100, huge 6-12 month gains) with accelerating news flow: raised FY26 sales guidance to 15%-25%, a surprise profit, and rising price targets. However, the stock sits 14% below its 52-week high after a volatile post-earnings pattern, volume is currently ligh"
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "KOD",
-   "rs": 100,
-   "price": 108.25,
    "from_high": -0.01,
-   "r3m": 1.6178960096735184,
+   "price": 108.25,
    "r12m": 4.514518593988793,
+   "r3m": 1.6178960096735184,
+   "rs": 100,
+   "symbol": "KOD",
    "name": "Kodiak Sciences Inc Common Stock",
    "held": false,
    "card": {
     "business": "Kodiak Sciences Inc (NASDAQ:KOD) is a clinical-stage biopharmaceutical company developing eye disease treatments; its Phase 3 eye disease trial results in late September 2026 drove a large share price surge.",
+    "catalysts": [
+     "Positive Phase 3 eye disease trial results (2026-09-28) as a real clinical catalyst.",
+     "Analyst price target raises from UBS and HC Wainwright.",
+     "Participation in three upcoming investor conferences (announced 2026-11-12)."
+    ],
     "growth_facts": [
      "Shares surged 174% on 2026-09-28 after positive Phase 3 eye disease trial results (headline states 174%; another headline states 172.3% to $88.08 intraday).",
      "Price 108.25 is -1.0% from 52-week high; 12m return +451.5%, 6m +179.7%, 3m +161.8%, 1m +33.5%.",
@@ -262,11 +267,7 @@
      "Q3 2026 EPS reported as $(1.05) versus $(1.01) estimate, a miss on 2026-11-12; no sales or earnings growth trend is stated in the material.",
      "Analysts raised price targets: UBS to $120 (2026-09-28), HC Wainwright to $96 (2026-09-28) and $126 (2026-10-12)."
     ],
-    "catalysts": [
-     "Positive Phase 3 eye disease trial results (2026-09-28) as a real clinical catalyst.",
-     "Analyst price target raises from UBS and HC Wainwright.",
-     "Participation in three upcoming investor conferences (announced 2026-11-12)."
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Q3 2026 EPS miss: $(1.05) vs $(1.01) estimate, with the company reporting a loss.",
      "Shelf prospectus filed 2026-10-20 for an offering of undisclosed size; dilution risk.",
@@ -274,23 +275,27 @@
      "Parabolic move: 12m +451.5% and 3m +161.8% suggest one-off event-driven spike, with a 10-day range of 16.9% and 5-day volume only 0.4x normal.",
      "Quarterly results were released 2026-11-12, so no earnings date within days is stated; next earnings date is not given in the material."
     ],
-    "next_earnings_date": "",
     "setup_quality": 5,
     "summary": "KOD is a dramatic momentum leader (RS 100, near 52-week high at 108.25) driven by a Phase 3 trial win, but the spike was event-driven rather than a steady sales and earnings acceleration story. The latest quarter missed EPS estimates, a shelf prospectus raises dilution risk, and volume has dried up "
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "CDNA",
-   "rs": 100,
-   "price": 79.81,
    "from_high": -0.0979,
-   "r3m": 0.7610326566637247,
+   "price": 79.81,
    "r12m": 3.7562574493444574,
+   "r3m": 0.7610326566637247,
+   "rs": 100,
+   "symbol": "CDNA",
    "name": "CareDx, Inc. Common Stock",
    "held": false,
    "card": {
     "business": "CareDx, Inc. (NASDAQ: CDNA) is a transplant diagnostics company; its headlines reference its AlloSure Registry (KOAR) analyses and its Q3 2026 revenue report.",
+    "catalysts": [
+     "Q3 2026 beat and raised full-year guidance (reported 2026-10-29).",
+     "Fresh analyst initiations and target raises on 2026-10-30 to 2026-11-11, including Piper Sandler Overweight with $100 target.",
+     "Publication of a third KOAR analysis in Transplantation (2026-11-03)."
+    ],
     "growth_facts": [
      "Q3 2026 revenue of $139.4 million exceeded analyst expectations, per the 2026-10-29 headline.",
      "Full-year 2026 revenue and adjusted EBITDA guidance were raised in the Q3 2026 report.",
@@ -298,11 +303,7 @@
      "Price 79.81 is 9.8% below the 52-week high and 414.6% above the 52-week low.",
      "Analyst price targets were raised: BTIG from $81 to $92 (Buy), H.C. Wainwright from $46 to $90 (Neutral), and Piper Sandler initiated at Overweight with a $100 target."
     ],
-    "catalysts": [
-     "Q3 2026 beat and raised full-year guidance (reported 2026-10-29).",
-     "Fresh analyst initiations and target raises on 2026-10-30 to 2026-11-11, including Piper Sandler Overweight with $100 target.",
-     "Publication of a third KOAR analysis in Transplantation (2026-11-03)."
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Single-day spike of about 22% on 2026-10-30 after earnings; price has since pulled back from about 88 to 79.81, so the breakout is not holding cleanly.",
      "Insider selling: CFO/COO Keith Kennedy sold 61,961 shares (about $4.8M) on 2026-11-05; Form 144 filed 2026-11-05.",
@@ -310,34 +311,34 @@
      "Extended price: 50-day average is 21.3% below... specifically price sits 21.3% above the 50-day average and 119.1% above the 200-day average, a stretched setup.",
      "Recent 10-day range of 15.2% is wide, not tight."
     ],
-    "next_earnings_date": "",
     "setup_quality": 5,
     "summary": "CDNA is a strong relative-strength leader with a clear earnings beat-and-raise and multiple analyst target increases, but the setup is loose: the stock gave back much of its post-earnings gap, volume is light this week, the 10-day range is wide, insiders sold, and the stock sits well above its movin"
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "SLN",
-   "rs": 100,
-   "price": 19.8,
    "from_high": 0.0,
-   "r3m": 0.4431486880466473,
+   "price": 19.8,
    "r12m": 1.9464285714285716,
+   "r3m": 0.4431486880466473,
+   "rs": 100,
+   "symbol": "SLN",
    "name": "Silence Therapeutics Plc American Depository Share",
    "held": false,
    "card": {
     "business": "Silence Therapeutics plc (NASDAQ: SLN) is a clinical-stage biopharmaceutical company; its Phase 2 divesiran program in polycythemia vera was accepted for oral presentation at ASH 2026. On 2026-10-19 it agreed to be acquired by Merck KGaA in an all-cash deal valued at about $1.3 billion, or $20 per A",
+    "catalysts": [
+     "Merck KGaA acquisition at $20 per ADS, expected to close in Q1 2027; Moody's confirmed Merck KGaA's A3 rating citing planned acquisitions including Silence (2026-11-11).",
+     "German Federal Cartel Office recorded the merger control proceeding (2026-11-06).",
+     "Divesiran Phase 2 SANRECO data accepted for oral presentation at ASH 2026 (2026-11-12)."
+    ],
     "growth_facts": [
      "Q3 2026 revenue was $0 versus $159K a year earlier (reported 2026-11-12).",
      "Q3 2026 EPS was reported as $(0.08) versus $(0.15) a year earlier, though one headline cites $(0.24) versus a $(0.12) estimate, so the figures conflict.",
      "Q3 2026 cash was $247.7M.",
      "Price is 19.80, essentially at the 52-week high (+0.0%), with 12-month change +194.6%."
     ],
-    "catalysts": [
-     "Merck KGaA acquisition at $20 per ADS, expected to close in Q1 2027; Moody's confirmed Merck KGaA's A3 rating citing planned acquisitions including Silence (2026-11-11).",
-     "German Federal Cartel Office recorded the merger control proceeding (2026-11-06).",
-     "Divesiran Phase 2 SANRECO data accepted for oral presentation at ASH 2026 (2026-11-12)."
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Price is pinned near the $20 deal price, so upside is capped; this is a merger-arbitrage pattern, not a growth breakout.",
      "The move was a one-off spike on takeover news (+126% on 2026-10-20), which the criteria penalise.",
@@ -345,23 +346,26 @@
      "Shareholder investigation by Halper Sadeh over whether the deal price is fair (2026-10-23).",
      "HC Wainwright downgraded to Neutral with a $20 price target (2026-10-21)."
     ],
-    "next_earnings_date": "",
     "setup_quality": 2,
     "summary": "SLN is a takeover-driven spike pinned just under the $20 Merck KGaA cash offer, with 5-day volume at 0.3x normal and no revenue. It has a tight range near the high, but the price is a deal-arbitrage level rather than a growth-leader breakout, so it fails the momentum criteria."
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "REPL",
-   "rs": 100,
-   "price": 21.98,
    "from_high": -0.0558,
-   "r3m": 0.4682698730794923,
+   "price": 21.98,
    "r12m": 1.4074479737130337,
+   "r3m": 0.4682698730794923,
+   "rs": 100,
+   "symbol": "REPL",
    "name": "Replimune Group, Inc. Common Stock",
    "held": false,
    "card": {
     "business": "Replimune Group, Inc. (REPL), a biotechnology company with a commercial product TUDRIQEV, made available in the U.S. on 2026-10-01 for unresectable advanced cutaneous melanoma.",
+    "catalysts": [
+     "Commercial availability of TUDRIQEV in the U.S. announced 2026-10-01, a new product launch.",
+     "Analyst target increases from JP Morgan and Leerink Partners in late October 2026."
+    ],
     "growth_facts": [
      "Q2 FY2027 EPS was $(0.54) versus a $(0.77) estimate, reported 2026-10-28; Q1 EPS was $(0.72) versus a $(0.73) estimate, reported 2026-08-14.",
      "Price 21.98, RS percentile 100, 1m +93.0%, 3m +46.8%, 6m +345.8%, 12m +140.7%, -5.6% from 52-week high.",
@@ -369,10 +373,7 @@
      "Five-day volume is 1.2x normal, with about $40M traded per day; 10-day range is 25.8%.",
      "Analyst price targets were raised: JP Morgan from $21 to $27 (2026-10-30); Leerink Partners from $19 to $31 with Outperform maintained (2026-10-30)."
     ],
-    "catalysts": [
-     "Commercial availability of TUDRIQEV in the U.S. announced 2026-10-01, a new product launch.",
-     "Analyst target increases from JP Morgan and Leerink Partners in late October 2026."
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Earnings for fiscal Q2 2027 were already reported on 2026-10-28; no next earnings date is stated in the material.",
      "Dilution: about $150M underwritten offering of 9,701,490 shares and warrants at $12.06 per unit priced 2026-08-10, and authorized common shares were increased from 150M to 300M approved 2026-09-15.",
@@ -380,23 +381,28 @@
      "Stock is speculative per Jim Cramer (2026-11-04).",
      "Losses continue, with negative EPS in both recent quarters; industry group strength is not stated in the material."
     ],
-    "next_earnings_date": "",
     "setup_quality": 6,
     "summary": "REPL is a relative-strength leader trading 5.6% below its 52-week high after a strong run, with a new product launch, upward analyst target revisions, and EPS beats. Offsetting this are heavy dilution from the 2026 offering and authorization increase, continued losses, and a short-term volume pick-u"
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "XNCR",
-   "rs": 100,
-   "price": 38.13,
    "from_high": -0.046,
-   "r3m": 0.6336760925449874,
+   "price": 38.13,
    "r12m": 1.5642232683254877,
+   "r3m": 0.6336760925449874,
+   "rs": 100,
+   "symbol": "XNCR",
    "name": "Xencor, Inc. Common Stock",
    "held": false,
    "card": {
     "business": "Xencor, Inc. (XNCR) is a clinical-stage biopharmaceutical company developing antibody therapeutics, including plamotamab, XmAb657, XmAb412, and the Xtend technology used in an elebsiran and tobevibart regimen.",
+    "catalysts": [
+     "Positive Phase 3 results for the elebsiran and tobevibart regimen using Xencor's Xtend technology in chronic hepatitis delta (2026-11-09).",
+     "Initial positive Phase 1b dose-escalation data for subcutaneous plamotamab in rheumatoid arthritis (2026-11-09).",
+     "First-in-human initiation for XmAb412 and XmAb657 study progress update (2026-11-09).",
+     "Analyst price target raises from Wedbush ($45), Wells Fargo ($44), RBC ($43), Truist ($40), and Cantor Fitzgerald reiterated Overweight with $70 target (2026-11-05)."
+    ],
     "growth_facts": [
      "Q3 2026 revenue of $116.5 million and EPS of $0.50, reported 2026-11-04, both well above analyst estimates (EPS estimate cited as $(0.73), sales estimate $78.587M).",
      "Price 38.13 is 4.6% below the 52-week high; 1m +63.0%, 3m +63.4%, 6m +221.0%, 12m +156.4%.",
@@ -404,12 +410,7 @@
      "Price is above the 50-day average by 40.5% and the 200-day average by 112.0%.",
      "Trading volume about $43M per day; 5-day volume is 0.8x normal, so volume is not heavy."
     ],
-    "catalysts": [
-     "Positive Phase 3 results for the elebsiran and tobevibart regimen using Xencor's Xtend technology in chronic hepatitis delta (2026-11-09).",
-     "Initial positive Phase 1b dose-escalation data for subcutaneous plamotamab in rheumatoid arthritis (2026-11-09).",
-     "First-in-human initiation for XmAb412 and XmAb657 study progress update (2026-11-09).",
-     "Analyst price target raises from Wedbush ($45), Wells Fargo ($44), RBC ($43), Truist ($40), and Cantor Fitzgerald reiterated Overweight with $70 target (2026-11-05)."
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Insider sale of about $3.19 million disclosed 2026-11-13.",
      "Stock is extended well above its moving averages, raising pullback and stop-loss risk.",
@@ -417,30 +418,22 @@
      "Recent 10-day range of 27.0% indicates volatility; price has pulled back from 39.97 to 38.13 over the last two closes.",
      "Next earnings date is not stated in the material; no date is provided for a gap-risk check."
     ],
-    "next_earnings_date": "",
     "setup_quality": 6,
     "summary": "XNCR is a top-ranked relative strength leader, up sharply over six months and trading 4.6% below its 52-week high, with a strong Q3 beat and positive clinical news plus analyst target raises. Offsetting this, volume in the last five days was below normal, the 10-day range is wide, the stock is far a"
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "ETON",
-   "rs": 100,
-   "price": 61.45,
    "from_high": -0.1016,
-   "r3m": 0.04400271831464497,
+   "price": 61.45,
    "r12m": 2.479614949037373,
+   "r3m": 0.04400271831464497,
+   "rs": 100,
+   "symbol": "ETON",
    "name": "Eton Pharmaceuticals, Inc. Common Stock",
    "held": false,
    "card": {
     "business": "Eton Pharmaceuticals (ETON), a US specialty pharmaceutical company with products such as GALZIN and an active pipeline including ET-700 (zinc acetate formulation for Wilson disease) and ET-900 (mecasermin for infantile and epileptic spasms).",
-    "growth_facts": [
-     "Q3 2026 revenue was a record $57.9 million, up 158% year over year.",
-     "Q3 2026 adjusted EPS of $0.50 beat the $0.31 estimate; sales of $57.925M beat the $41.985M estimate.",
-     "Full-year 2026 revenue is expected to be more than $175.0M versus a $149.702M estimate, and full-year guidance was raised.",
-     "Stock is up 248.0% over 12 months, 105.1% over 6 months, and 16.2% over 1 month; RS percentile is 100.",
-     "Price is above the 50-day average by 11.4% and the 200-day average by 63.4%."
-    ],
     "catalysts": [
      "Record Q3 2026 results and raised full-year guidance reported 2026-11-05.",
      "Analyst price target raises: B. Riley to $81 from $70 (Buy, 2026-11-10); Canaccord Genuity to $80 (Buy, 2026-11-06); HC Wainwright to $80 (Buy, 2026-11-06).",
@@ -448,6 +441,14 @@
      "New ET-900 development program announced 2026-11-02.",
      "Presentation at the 2026 Jefferies Global Healthcare Conference in November 2026."
     ],
+    "growth_facts": [
+     "Q3 2026 revenue was a record $57.9 million, up 158% year over year.",
+     "Q3 2026 adjusted EPS of $0.50 beat the $0.31 estimate; sales of $57.925M beat the $41.985M estimate.",
+     "Full-year 2026 revenue is expected to be more than $175.0M versus a $149.702M estimate, and full-year guidance was raised.",
+     "Stock is up 248.0% over 12 months, 105.1% over 6 months, and 16.2% over 1 month; RS percentile is 100.",
+     "Price is above the 50-day average by 11.4% and the 200-day average by 63.4%."
+    ],
+    "next_earnings_date": "",
     "risks": [
      "Price closed at 61.45 after a high of 68.40, a 10.2% pullback from the 52-week high; the last two sessions show a sharp reversal.",
      "Insider sold shares worth approximately $5.3 million (reported 2026-11-12).",
@@ -455,23 +456,26 @@
      "Volume is elevated (5-day volume 2.0x normal) and the 10-day range is wide at 34.6%, so the setup is not tight.",
      "Three-month return is only +4.4%, showing the strong 12-month gain has been uneven."
     ],
-    "next_earnings_date": "",
     "setup_quality": 6,
     "summary": "ETON is an RS-100 leader with strong accelerating revenue and EPS beats, raised guidance, and multiple price-target raises, which are real momentum drivers. However, the stock reversed sharply from 68.40 to 61.45 within two sessions, the 10-day range is wide, the 5-day volume is elevated, and an ins"
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "XERS",
-   "rs": 100,
-   "price": 16.65,
    "from_high": 0.0,
-   "r3m": 0.9360465116279069,
+   "price": 16.65,
    "r12m": 1.2379032258064515,
+   "r3m": 0.9360465116279069,
+   "rs": 100,
+   "symbol": "XERS",
    "name": "Xeris Biopharma Holdings, Inc. Common Stock",
    "held": false,
    "card": {
     "business": "Xeris Biopharma Holdings (NASDAQ: XERS) is a biopharmaceutical company; the provided material does not describe its products in detail beyond its reported revenue and guidance.",
+    "catalysts": [
+     "Raised FY2026 and FY2030 revenue outlooks on Q3 beat (2026-11-05).",
+     "Analyst price target raises: Oppenheimer to $21 (Outperform), HC Wainwright to $18 (Buy), Barclays to $18 (Overweight, 2026-11-11); Piper Sandler to $12 (Neutral)."
+    ],
     "growth_facts": [
      "Q3 2026 revenue rose 44% year-over-year to $107 million (reported 2026-11-05).",
      "Q3 2026 adjusted EPS of $0.06 beat a $0.02 estimate; sales of $106.267M beat a $101.517M estimate.",
@@ -479,10 +483,7 @@
      "Company expects FY2030 revenue of more than $1 billion, up from $750M previously.",
      "Stock is at its 52-week high (0.0% below) with 1m +70.4%, 3m +93.6%, 6m +161.0%, 12m +123.8%; relative strength percentile 100."
     ],
-    "catalysts": [
-     "Raised FY2026 and FY2030 revenue outlooks on Q3 beat (2026-11-05).",
-     "Analyst price target raises: Oppenheimer to $21 (Outperform), HC Wainwright to $18 (Buy), Barclays to $18 (Overweight, 2026-11-11); Piper Sandler to $12 (Neutral)."
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Earnings already reported on 2026-11-05; no next earnings date is stated in the material.",
      "Stock rose sharply in the last month (from roughly $10.2-10.8 to $16.65), so it is extended from its base and the 10-day range is wide at 38.9%.",
@@ -490,23 +491,27 @@
      "Broad market weakness on 2026-11-05 (Nasdaq -4.5%, S&P 500 -3.3%).",
      "Piper Sandler target of $12 is well below the current price."
     ],
-    "next_earnings_date": "",
     "setup_quality": 7,
     "summary": "XERS is a relative-strength leader at a 52-week high, with a strong Q3 beat, raised full-year guidance, and multiple analyst target raises. Volume is elevated and the stock is well above its moving averages. Offsetting this, the move is extended after a sharp run from about $10.5 to $16.65 with a wi"
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "HNGE",
-   "rs": 99,
-   "price": 120.99,
    "from_high": -0.0182,
-   "r3m": 0.367273138207707,
+   "price": 120.99,
    "r12m": 1.730534867975626,
+   "r3m": 0.367273138207707,
+   "rs": 99,
+   "symbol": "HNGE",
    "name": "Hinge Health, Inc.",
    "held": true,
    "card": {
     "business": "Hinge Health, Inc. (HNGE), a US-listed company reporting Q3 2026 revenue of $235.0 million and adjusted EPS of $0.71; FY2026 sales guidance raised to $879M-$881M.",
+    "catalysts": [
+     "Q3 2026 beat and FY2026 guidance raise (reported 2026-11-02/03).",
+     "Multiple analyst price target raises after Q3 results, including Truist $145, Evercore ISI $150, Stifel $135 reaffirmed on 2026-11-10.",
+     "Announced executive leadership changes (2026-11-03); details not stated in the material."
+    ],
     "growth_facts": [
      "Q3 2026 revenue of $235.0 million, exceeding analyst expectations (reported 2026-11-02).",
      "Adjusted EPS of $0.71 in Q3 2026, exceeding analyst expectations.",
@@ -514,11 +519,7 @@
      "FY2026 sales guidance raised to $879M-$881M.",
      "Relative strength percentile 99; 6m return +124.6%, 12m return +173.1%."
     ],
-    "catalysts": [
-     "Q3 2026 beat and FY2026 guidance raise (reported 2026-11-02/03).",
-     "Multiple analyst price target raises after Q3 results, including Truist $145, Evercore ISI $150, Stifel $135 reaffirmed on 2026-11-10.",
-     "Announced executive leadership changes (2026-11-03); details not stated in the material."
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Insider share sale reported 2026-11-13.",
      "Volume is currently light: 5-day volume is 0.7x normal, below the average daily traded value of $197M for breakout confirmation.",
@@ -526,23 +527,27 @@
      "Executive leadership changes disclosed without detail in the material.",
      "Q3 earnings already reported 2026-11-03, so no near-term earnings gap risk is stated in the material."
     ],
-    "next_earnings_date": "",
     "setup_quality": 8,
     "summary": "HNGE is a top relative-strength leader (RS 99) with accelerating reported growth: Q3 revenue up 52% y/y, EPS beat, guidance raised, and a broad wave of analyst target increases. The price sits just under its 52-week high in a tight 10-day range of 7.4%, above both moving averages. Concerns are the i"
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "SYRE",
-   "rs": 99,
-   "price": 102.91,
    "from_high": -0.0559,
-   "r3m": -0.0069477950400462785,
+   "price": 102.91,
    "r12m": 3.4072805139186295,
+   "r3m": -0.0069477950400462785,
+   "rs": 99,
+   "symbol": "SYRE",
    "name": "Spyre Therapeutics, Inc. Common Stock",
    "held": false,
    "card": {
     "business": "Spyre Therapeutics, Inc. (SYRE) is a biotech company developing antibody therapeutics for inflammatory conditions; headlines reference anti-\u03b14\u03b27, anti-TL1A and anti-IL-23 antibodies in colitis models and clinical data for SPY003.",
+    "catalysts": [
+     "Management will present at the UBS Global Biopharma Conference in London on November 16, 2026.",
+     "Positive induction data for SPY003 was reported with the Q3 2026 results.",
+     "Deutsche Bank raised its price target to $141 on 2026-11-13."
+    ],
     "growth_facts": [
      "Q3 2026 EPS was $(0.94), missing the $(0.84) estimate; the company reported a net loss of $96.1 million for the quarter.",
      "Stock is up 340.7% over 12 months and 36.0% over 6 months, but down 0.7% over 3 months.",
@@ -550,11 +555,7 @@
      "Price is 12.9% above the 50-day average and 34.8% above the 200-day average.",
      "Daily dollar volume is about $114M; the 5-day volume is 0.9x normal, so recent volume is not heavy."
     ],
-    "catalysts": [
-     "Management will present at the UBS Global Biopharma Conference in London on November 16, 2026.",
-     "Positive induction data for SPY003 was reported with the Q3 2026 results.",
-     "Deutsche Bank raised its price target to $141 on 2026-11-13."
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Next earnings report timing is not stated in the material; recent Q3 report was on 2026-11-03, so no gap risk from earnings is confirmed within days.",
      "Q3 EPS missed estimates and the company posted a $96.1M net loss, which conflicts with the earnings-acceleration criterion.",
@@ -562,30 +563,22 @@
      "Volume in the last 5 days is below normal, not heavy buying.",
      "Biotech clinical and FDA outcomes are binary; no profitability is shown."
     ],
-    "next_earnings_date": "",
     "setup_quality": 5,
     "summary": "SYRE shows exceptional relative strength (RS 99) and a large 12-month gain, trading above its 50- and 200-day averages with supportive analyst target increases. However, the quarterly EPS miss and net loss, a negative 3-month return, below-normal recent volume, and a 13.1% 10-day range weaken the te"
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "ATEX",
-   "rs": 99,
-   "price": 82.69,
    "from_high": -0.2358,
-   "r3m": -0.09658035616737681,
+   "price": 82.69,
    "r12m": 3.5938888888888885,
+   "r3m": -0.09658035616737681,
+   "rs": 99,
+   "symbol": "ATEX",
    "name": "Anterix Inc. Common Stock",
    "held": false,
    "card": {
     "business": "Anterix Inc. (NASDAQ: ATEX) holds 900 MHz spectrum and is positioned around private LTE networks; headlines reference iPhone models operating on dedicated private LTE networks using its 900 MHz spectrum.",
-    "growth_facts": [
-     "Q2 fiscal 2027 (reported 2026-11-10): revenue $2.0 million ($1.958M) missed the $2.054M estimate; loss per share $0.25 missed the $(0.11) estimate.",
-     "Q1 fiscal 2027 (reported 2026-08-11): EPS $0.01 beat the $(0.21) estimate; sales $1.958M missed the $1.977M estimate.",
-     "Price performance: 12m +359.4%, 6m +46.0%, 3m -9.7%, 1m -0.7%; shares 23.6% below 52-week high and 350.6% above 52-week low.",
-     "Trades 1.8% above 50-day average and 22.1% above 200-day average; 5-day volume 1.2x normal; average daily traded value $24M.",
-     "RS percentile 99; 10-day range 26.8%."
-    ],
     "catalysts": [
      "B. Riley upgraded Anterix to Buy from Neutral on 2026-11-12 and raised its price target to $103 from $86.",
      "Anterix announced a $250M buyback program effective September 22, 2026.",
@@ -593,6 +586,14 @@
      "Anterix backed a SpaceX FCC ex parte letter on low band spectrum buildout (2026-08-11).",
      "JP Morgan maintained Overweight; price target lowered to $130 on 2026-08-13 from $133 on 2026-07-20."
     ],
+    "growth_facts": [
+     "Q2 fiscal 2027 (reported 2026-11-10): revenue $2.0 million ($1.958M) missed the $2.054M estimate; loss per share $0.25 missed the $(0.11) estimate.",
+     "Q1 fiscal 2027 (reported 2026-08-11): EPS $0.01 beat the $(0.21) estimate; sales $1.958M missed the $1.977M estimate.",
+     "Price performance: 12m +359.4%, 6m +46.0%, 3m -9.7%, 1m -0.7%; shares 23.6% below 52-week high and 350.6% above 52-week low.",
+     "Trades 1.8% above 50-day average and 22.1% above 200-day average; 5-day volume 1.2x normal; average daily traded value $24M.",
+     "RS percentile 99; 10-day range 26.8%."
+    ],
+    "next_earnings_date": "",
     "risks": [
      "Latest quarter missed revenue and EPS estimates by a wide margin; earnings are not growing.",
      "Stock is 23.6% below its 52-week high and down 9.7% over 3 months, so it is not near a new high.",
@@ -600,23 +601,25 @@
      "Gap risk: the next earnings date is not stated in the material, and the most recent report was on 2026-11-10 and call on 2026-11-11, so no near-term report is confirmed.",
      "Upgrade and price-target news is analyst-driven, not a clear new-product or new-market breakout."
     ],
-    "next_earnings_date": "",
     "setup_quality": 4,
     "summary": "ATEX has a very strong 12-month run and top relative strength, and it has fresh bullish analyst news (B. Riley upgrade, PT $103) plus a buyback. However, the latest quarter missed on sales and EPS, the stock sits about 24% below its 52-week high after a choppy 3-month decline, and the volume surge i"
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "SG",
-   "rs": 99,
-   "price": 12.38,
    "from_high": -0.0734,
-   "r3m": 0.9713375796178345,
+   "price": 12.38,
    "r12m": 1.3671128107074568,
+   "r3m": 0.9713375796178345,
+   "rs": 99,
+   "symbol": "SG",
    "name": "Sweetgreen, Inc.",
    "held": false,
    "card": {
     "business": "Sweetgreen, Inc. (NYSE: SG), a restaurant company operating fast-casual salad restaurants.",
+    "catalysts": [
+     "New Emeryville, California location grand opening scheduled for November 17, 2026."
+    ],
     "growth_facts": [
      "Q3 2026 EPS $(0.26) beat the $(0.27) estimate; sales $176.018M beat the $169.417M estimate (reported 2026-11-05).",
      "Price 12.38, RS percentile 99, 1m +22.1%, 3m +97.1%, 6m +79.7%, 12m +136.7%.",
@@ -624,9 +627,7 @@
      "Trades about $49M per day; 5-day volume is 1.4x normal.",
      "Analysts raised price targets after Q3: Citigroup Buy $15, Oppenheimer Outperform $14, Wells Fargo Overweight $14, Keybanc Overweight $13, DA Davidson Neutral $12, TD Cowen Hold $11 (from $9)."
     ],
-    "catalysts": [
-     "New Emeryville, California location grand opening scheduled for November 17, 2026."
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Q3 earnings were reported 2026-11-05, so the post-earnings move is already in the price; no next earnings date is stated in the material.",
      "Last 20 closes show a pullback from 13.36 to 12.38 after the post-earnings high, with 10-day range of 18.5%.",
@@ -634,23 +635,28 @@
      "Industry group strength and new-product or new-market catalyst are not stated in the material.",
      "Volume is only 1.4x normal over 5 days, not a clear heavy-buying signal."
     ],
-    "next_earnings_date": "",
     "setup_quality": 6,
     "summary": "SG is a top-ranked relative-strength leader (RS 99, 12m +136.7%) trading 7.3% below its 52-week high after a post-Q3 beat and broad target raises. The setup is decent but not textbook: the earnings catalyst is already priced in, the recent price has pulled back from 13.36, volume is only modestly el"
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "ORKA",
-   "rs": 99,
-   "price": 104.99,
    "from_high": -0.0715,
-   "r3m": -0.054484870317003,
+   "price": 104.99,
    "r12m": 2.7230496453900708,
+   "r3m": -0.054484870317003,
+   "rs": 99,
+   "symbol": "ORKA",
    "name": "Oruka Therapeutics, Inc. Common Stock",
    "held": false,
    "card": {
     "business": "Clinical-stage biotech developing ORKA-001, a biologic for moderate-to-severe plaque psoriasis, currently in Phase 2b testing.",
+    "catalysts": [
+     "Positive Week 16 Phase 2b psoriasis data for ORKA-001 (reported 2026-10-26)",
+     "Planned Phase 3 trial start for ORKA-001 in 1H 2027",
+     "Analyst Buy or Outperform reiterations with price targets from $120 to $200 (2026-10-19 to 2026-10-27)",
+     "Participation in four healthcare investor conferences in November 2026"
+    ],
     "growth_facts": [
      "12-month price change of +272.3% and 6-month change of +64.3%",
      "1-month change of +36.9%, but 3-month change of -5.4%",
@@ -658,12 +664,7 @@
      "Price 104.99 is 7.2% below its 52-week high and 298.0% above its 52-week low",
      "Price is 17.5% above the 50-day average and 45.2% above the 200-day average"
     ],
-    "catalysts": [
-     "Positive Week 16 Phase 2b psoriasis data for ORKA-001 (reported 2026-10-26)",
-     "Planned Phase 3 trial start for ORKA-001 in 1H 2027",
-     "Analyst Buy or Outperform reiterations with price targets from $120 to $200 (2026-10-19 to 2026-10-27)",
-     "Participation in four healthcare investor conferences in November 2026"
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Q3 2026 EPS miss versus estimate, reported 2026-11-09",
      "Ongoing net losses",
@@ -671,23 +672,28 @@
      "3-month price performance is negative (-5.4%)",
      "Stock rallied on clinical data, so the move may be partly priced in; the 10-day range is 13.4%"
     ],
-    "next_earnings_date": "",
     "setup_quality": 6,
     "summary": "ORKA is a relative-strength leader (RS 99, +272% over 12 months) trading 7.2% below its 52-week high after positive Phase 2b psoriasis data and a 1-month gain of +36.9%. Offsetting this, the Q3 report missed EPS estimates, the 3-month trend is negative, the company is loss-making, and an insider sol"
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "SDGR",
-   "rs": 99,
-   "price": 30.85,
    "from_high": -0.0761,
-   "r3m": 0.7538374076179648,
+   "price": 30.85,
    "r12m": 0.6857923497267759,
+   "r3m": 0.7538374076179648,
+   "rs": 99,
+   "symbol": "SDGR",
    "name": "Schrodinger, Inc. Common Stock",
    "held": false,
    "card": {
     "business": "Schrodinger, Inc. (SDGR) is a computational drug discovery and software company, with a platform (including the Bunsen platform) used in drug discovery and collaborations with pharma partners such as Novartis.",
+    "catalysts": [
+     "Q3 2026 beat and raised full-year outlook.",
+     "Expanded Novartis collaboration.",
+     "TD Cowen maintained Buy and raised price target from $31 to $36 (2026-11-05).",
+     "KeyBanc Overweight with price target raised to $32 (2026-10-16); UBS raised target to $21 with Neutral rating (2026-10-20)."
+    ],
     "growth_facts": [
      "Q3 2026 revenue of $64.49 million, up 18.7% year over year (reported 2026-11-05 and 2026-11-04).",
      "Q3 2026 adjusted EPS of $(0.50) beat a $(0.70) estimate; sales of $64.491M beat a $47.258M estimate.",
@@ -695,12 +701,7 @@
      "Expanded collaboration with Novartis announced with Q3 results.",
      "Milestone payment received from Structure Therapeutics tied to Phase 1/2a study of obesity candidate ACCG-2671."
     ],
-    "catalysts": [
-     "Q3 2026 beat and raised full-year outlook.",
-     "Expanded Novartis collaboration.",
-     "TD Cowen maintained Buy and raised price target from $31 to $36 (2026-11-05).",
-     "KeyBanc Overweight with price target raised to $32 (2026-10-16); UBS raised target to $21 with Neutral rating (2026-10-20)."
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Earnings were just reported on 2026-11-04, so the post-earnings gap has already occurred; no next earnings date is stated in the material.",
      "Recent price action is choppy: the 20-day closes swing from about 22.60 to 33.39 and the stock is now 7.6% off its high, with a 10-day range of 23.3%.",
@@ -708,23 +709,27 @@
      "Stock trades 15.3% above its 50-day average and 77.6% above its 200-day average, so it is extended.",
      "UBS remains Neutral with target $21, well below the current price."
     ],
-    "next_earnings_date": "",
     "setup_quality": 6,
     "summary": "SDGR is a strong relative-strength leader (RS 99, +144.5% over 6 months) with a beat-and-raise Q3 2026, revenue up 18.7%, and a Novartis expansion, plus a Bunsen award. Analyst target raises support the story. However, the stock is extended well above its moving averages, has pulled back about 7.6% "
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "ECO",
-   "rs": 99,
-   "price": 87.67,
    "from_high": -0.1374,
-   "r3m": 0.4541383313982419,
+   "price": 87.67,
    "r12m": 1.962825278810409,
+   "r3m": 0.4541383313982419,
+   "rs": 99,
+   "symbol": "ECO",
    "name": "Okeanis Eco Tankers Corp.",
    "held": false,
    "card": {
     "business": "Okeanis Eco Tankers Corp. (NYSE: ECO), a tanker shipping company; headlines reference tanker rates and oil tanker market conditions.",
+    "catalysts": [
+     "Strong Q3 2026 beat on EPS and revenue",
+     "Soaring oil tanker rates amid rising attacks and longer voyages (WSJ, 2026-10-12)",
+     "Analyst price target raise to $120 with Buy rating"
+    ],
     "growth_facts": [
      "Q3 2026 adjusted EPS of $7.67 vs $4.26 estimate, reported 2026-11-11",
      "Q3 2026 sales of $501.504M vs $234.910M estimate, reported 2026-11-11",
@@ -732,11 +737,7 @@
      "Tanker rates reported at $1.3M a day as of 2026-10-09; nine of 13 U.S.-listed tanker stocks more than doubled in 2026",
      "12-month price change +196.3%, 6-month +82.1%, 3-month +45.4%"
     ],
-    "catalysts": [
-     "Strong Q3 2026 beat on EPS and revenue",
-     "Soaring oil tanker rates amid rising attacks and longer voyages (WSJ, 2026-10-12)",
-     "Analyst price target raise to $120 with Buy rating"
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Price is -8.4% over 1 month and -13.7% below 52-week high, with a pullback from the 101.63 close",
      "Stock dipped premarket despite the earnings beat, per 2026-11-12 headline",
@@ -744,33 +745,33 @@
      "Overbought RSI above 70 flagged on 2026-10-01",
      "Volume only x1.1 of normal over 5 days, not showing heavy buying"
     ],
-    "next_earnings_date": "",
     "setup_quality": 5,
     "summary": "ECO is a 99 RS leader with very strong 6- and 12-month gains and a blowout Q3 beat, plus a raised B. Riley target. However, the stock is 13.7% off its high after a choppy pullback, volume is not elevated, the rally rests on cyclical tanker rates rather than a clear new catalyst, and the premarket re"
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "BMBL",
-   "rs": 99,
-   "price": 6.01,
    "from_high": 0.0,
-   "r3m": 1.2177121771217712,
+   "price": 6.01,
    "r12m": 0.5025,
+   "r3m": 1.2177121771217712,
+   "rs": 99,
+   "symbol": "BMBL",
    "name": "Bumble Inc. Class A Common Stock",
    "held": false,
    "card": {
     "business": "Bumble Inc. (NASDAQ: BMBL) operates a dating app platform; in October 2026 it agreed to a roughly $1.3 billion all-cash take-private by Ithaca Holdings at $6.05 per Class A share.",
+    "catalysts": [
+     "Pending take-private by Ithaca Holdings at $6.05 per share in cash, announced 2026-10-13; the price is pinned just below the offer price.",
+     "UBS maintained Neutral and raised its price target to $6.05 on 2026-10-14, matching the deal price."
+    ],
     "growth_facts": [
      "Q3 2026 results (reported 2026-11-05): revenue and net income declined year over year, citing a decrease in paying users.",
      "Q3 EPS of $0.20 and sales of $207.091M beat the $200.166M estimate (reported 2026-11-09).",
      "Stock is 121.8% higher over 3 months and 50.2% higher over 12 months, but its move is driven by the buyout offer rather than organic growth.",
      "Stock trades at $6.01, essentially at its 52-week high, with a 10-day range of 0.7% and 5-day volume at 0.4x normal."
     ],
-    "catalysts": [
-     "Pending take-private by Ithaca Holdings at $6.05 per share in cash, announced 2026-10-13; the price is pinned just below the offer price.",
-     "UBS maintained Neutral and raised its price target to $6.05 on 2026-10-14, matching the deal price."
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Not a momentum leader: the price action reflects a fixed cash buyout, so there is no organic breakout or accelerating growth to trade.",
      "Revenue and net income declined in Q3 2026 due to falling paying users.",
@@ -778,23 +779,28 @@
      "Recent one-off spike on takeover news (up over 50% in a session) is the kind of move the setup criteria penalise.",
      "Low daily volume relative to normal and a flat 20-day price series indicate no institutional buying conviction."
     ],
-    "next_earnings_date": "",
     "setup_quality": 2,
     "summary": "BMBL is a takeover-pinned stock trading at the $6.05 buyout level rather than a momentum growth leader. Revenue and net income fell in Q3 2026 on fewer paying users, the price range is flat, and the upside is capped by the cash offer. It fails the criteria for accelerating growth, organic catalyst, "
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "ANDG",
-   "rs": 99,
-   "price": 65.42,
    "from_high": -0.0302,
-   "r3m": 0.3381059521374514,
+   "price": 65.42,
    "r12m": null,
+   "r3m": 0.3381059521374514,
+   "rs": 99,
+   "symbol": "ANDG",
    "name": "Andersen Group Inc.",
    "held": true,
    "card": {
     "business": "Andersen Group Inc. (ANDG) operates advisory and consulting businesses, including Andersen Consulting and Andersen Global, expanding through acquisitions and collaborations across multiple countries.",
+    "catalysts": [
+     "Earnings beat and raised FY2027 sales outlook (2026-11-12).",
+     "Baird maintained Outperform and raised price target to $71 (2026-11-13).",
+     "Truist maintained Buy and raised price target to $70 (2026-09-25).",
+     "Steady flow of acquisitions and collaborations expanding service lines (Oct-Nov 2026)."
+    ],
     "growth_facts": [
      "Q3 adjusted EPS of $2.39 beat the $1.11 estimate, reported 2026-11-12.",
      "Q3 sales of $337.318M beat the $333.636M estimate, reported 2026-11-12.",
@@ -802,35 +808,34 @@
      "Total 2026 M&A transactions cited at about $228M after five new acquisition agreements, reported 2026-11-10.",
      "Price 65.42, 1m +14.2%, 3m +33.8%, 6m +87.0%, RS percentile 99."
     ],
-    "catalysts": [
-     "Earnings beat and raised FY2027 sales outlook (2026-11-12).",
-     "Baird maintained Outperform and raised price target to $71 (2026-11-13).",
-     "Truist maintained Buy and raised price target to $70 (2026-09-25).",
-     "Steady flow of acquisitions and collaborations expanding service lines (Oct-Nov 2026)."
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Acquisition-driven growth may depend on continued M&A; funding or dilution not stated in the material.",
      "Stock has run sharply (6m +87%), raising pullback risk.",
      "Security incident on 2026-10-06 was resolved, with no material impact anticipated per the company; still a note of operational risk.",
      "12-month return not available; longer-term track record not shown."
     ],
-    "next_earnings_date": "",
     "setup_quality": 8,
     "summary": "Strong momentum leader near highs (RS 99, 3% off 52-week high, tight 3.8% 10-day range) with a fresh earnings beat, raised FY2027 guidance, and analyst target raises, supported by heavy recent volume. Setup is attractive, though the stock is extended above its 50-day average and the next earnings da"
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "PLSE",
-   "rs": 99,
-   "price": 52.25,
    "from_high": -0.1018,
-   "r3m": 0.1731028289178267,
+   "price": 52.25,
    "r12m": 2.410574412532637,
+   "r3m": 0.1731028289178267,
+   "rs": 99,
+   "symbol": "PLSE",
    "name": "Pulse Biosciences, Inc Common Stock (DE)",
    "held": false,
    "card": {
     "business": "Pulse Biosciences (PLSE) is a medical technology company developing nPulse electrode and catheter systems; headlines reference the nPulse Vybrance Percutaneous Electrode System for benign thyroid nodules (PRECISE-BTN study) and a pivotal atrial fibrillation catheter study.",
+    "catalysts": [
+     "Positive six-month PRECISE-BTN interim results for the thyroid nodule product presented at the 95th ATA Annual Meeting",
+     "Completion of pivotal atrial fibrillation enrollment, ahead of schedule",
+     "Analyst target raises from Needham, Canaccord and Oppenheimer"
+    ],
     "growth_facts": [
      "Price 52.25, relative strength percentile 99, 12-month gain +241.1%, 6-month gain +92.8%, 3-month gain +17.3%, 1-month gain +12.8%",
      "Trades 10.2% below its 52-week high and 312.7% above its 52-week low",
@@ -838,11 +843,7 @@
      "Q3 2026 EPS $(0.32) beat the $(0.36) estimate, but sales of $395K missed the $516.667K estimate",
      "Atrial fibrillation pivotal study completed 164-patient enrollment three months ahead of schedule (announced 2026-10-07)"
     ],
-    "catalysts": [
-     "Positive six-month PRECISE-BTN interim results for the thyroid nodule product presented at the 95th ATA Annual Meeting",
-     "Completion of pivotal atrial fibrillation enrollment, ahead of schedule",
-     "Analyst target raises from Needham, Canaccord and Oppenheimer"
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Q3 2026 sales missed estimates by a wide margin",
      "Earnings report not due within days; the Q3 report was released 2026-11-05 and no next date is stated",
@@ -850,23 +851,26 @@
      "Price is in a choppy range (closes such as 58.17 then 52.25) and the stock is 10.2% off its high",
      "Price targets from analysts are well above the current price, but the material does not state valuation or dilution details; financing or dilution is not discussed in the headlines"
     ],
-    "next_earnings_date": "",
     "setup_quality": 6,
     "summary": "PLSE is a top-ranked relative strength leader (RS 99, +241% over 12 months) with positive interim clinical data and multiple analyst target raises, but Q3 sales missed, volume is below normal, and the price is 10% off its 52-week high in a choppy range, so it is a moderate setup rather than a clean "
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "BRZE",
-   "rs": 99,
-   "price": 46.61,
    "from_high": 0.0,
-   "r3m": 0.6111303145523679,
+   "price": 46.61,
    "r12m": 0.631431571578579,
+   "r3m": 0.6111303145523679,
+   "rs": 99,
+   "symbol": "BRZE",
    "name": "Braze, Inc. Class A Common Stock",
    "held": false,
    "card": {
     "business": "Braze, Inc. (BRZE) is a customer-engagement software company; headlines describe a proposed $47.50 per share acquisition of Braze by Salesforce, announced around 2026-10-20/21, valued at $5.66 billion.",
+    "catalysts": [
+     "Proposed Salesforce acquisition at $47.50 per share, price trades just below that offer",
+     "Analyst price targets set at or near $47.50 to $48 after downgrades"
+    ],
     "growth_facts": [
      "Price 46.61, 0.0% from 52-week high, 195.2% above 52-week low",
      "RS percentile 99; 1m +65.0%, 3m +61.1%, 6m +134.6%, 12m +63.1%",
@@ -874,10 +878,7 @@
      "Traded $216M per day; 5-day volume 0.9x normal; 10-day range 2.0%",
      "Last 20 closes jump from 30.04 to 45.57 and then hold a tight 45.67-46.61 band"
     ],
-    "catalysts": [
-     "Proposed Salesforce acquisition at $47.50 per share, price trades just below that offer",
-     "Analyst price targets set at or near $47.50 to $48 after downgrades"
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Price action is driven by a takeover offer, a one-off spike rather than organic breakout",
      "Multiple analyst downgrades to Neutral, Hold or Equal-Weight on 2026-10-21 (UBS, Stephens, TD Cowen, Barclays, DA Davidson, Raymond James, BTIG)",
@@ -885,23 +886,27 @@
      "Upside appears capped near the $47.50 deal price",
      "No earnings or sales acceleration figures provided in the material"
     ],
-    "next_earnings_date": "",
     "setup_quality": 3,
     "summary": "BRZE is at its 52-week high with extreme relative strength, but the move came from a $47.50 per share Salesforce takeover offer rather than organic fundamentals, and analysts have downgraded to neutral with price targets pinned to the offer. Upside looks capped near the deal price, and the material "
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "AMPL",
-   "rs": 99,
-   "price": 17.33,
    "from_high": -0.0063,
-   "r3m": 0.3300076745970837,
+   "price": 17.33,
    "r12m": 0.5500894454382825,
+   "r3m": 0.3300076745970837,
+   "rs": 99,
+   "symbol": "AMPL",
    "name": "Amplitude, Inc. Class A Common Stock",
    "held": false,
    "card": {
     "business": "Amplitude, Inc. (NASDAQ: AMPL), a digital analytics software company; headlines reference customer growth and new AI-driven agent tools.",
+    "catalysts": [
+     "Launch of new AI-driven agent tools referenced in analyst coverage",
+     "Reported customer growth cited in analyst price target updates",
+     "Price trading at -0.6% from 52-week high with a 10-day range of 7.1%"
+    ],
     "growth_facts": [
      "Q3 2026 revenue reported at $110.6 million, beating the $107.0 million estimate",
      "Q3 2026 adjusted EPS of $0.04 beat the $0.03 estimate",
@@ -909,11 +914,7 @@
      "FY2026 adjusted EPS guidance raised to $0.07-$0.09 from $0.06-$0.08, versus $0.07 estimate",
      "Q4 2026 sales guided at $110.8M-$113.2M versus $108.9M estimate"
     ],
-    "catalysts": [
-     "Launch of new AI-driven agent tools referenced in analyst coverage",
-     "Reported customer growth cited in analyst price target updates",
-     "Price trading at -0.6% from 52-week high with a 10-day range of 7.1%"
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Q4 2026 adjusted EPS guidance of $0.05-$0.06 is below the $0.06 estimate, with EPS guidance for the year implying a narrower beat",
      "Average daily dollar volume of $27M is modest and 5-day volume is only 1.1x normal, so no heavy buying volume confirmation",
@@ -921,23 +922,28 @@
      "Citigroup rated Neutral",
      "Market cap about $2.0 billion, a small-cap profile with higher volatility"
     ],
-    "next_earnings_date": "",
     "setup_quality": 6,
     "summary": "AMPL is a high relative-strength leader (RS 99) with a clear beat-and-raise Q3 and broad analyst target increases, trading just below its 52-week high. However, volume is not heavy, the post-earnings move was modest, and the stock sits in a tight range rather than a fresh breakout, so it is a constr"
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "APPN",
-   "rs": 99,
-   "price": 55.15,
    "from_high": 0.0,
-   "r3m": 0.5574696413442533,
+   "price": 55.15,
    "r12m": 0.247173224785165,
+   "r3m": 0.5574696413442533,
+   "rs": 99,
+   "symbol": "APPN",
    "name": "Appian Corporation Class A Common Stock",
    "held": true,
    "card": {
     "business": "Appian Corporation (APPN), a low-code software platform for business process automation, with a notable US public sector/defense business (Appian Defense Cloud, IL5 authorization, US Army TACTMIS deployment).",
+    "catalysts": [
+     "Analyst upgrades and target raises on 2026-11-06: William Blair upgrade to Outperform; Citigroup Buy with $69 target; Morgan Stanley target $57 from $32; DA Davidson target $60; TD Cowen Hold with $50 target (2026-11-03).",
+     "US Army fielded TACTMIS on Appian Defense Cloud (2026-10-29).",
+     "Appian Defense Cloud received IL5 Provisional Authorization to Operate (2026-10-29).",
+     "CEO cites US government embracing AI efficiency as federal deals grow (2026-11-05)."
+    ],
     "growth_facts": [
      "Q3 2026 revenue rose 25% to $234.6M (reported 2026-11-05).",
      "Q3 2026 adjusted EPS $0.51 vs $0.33 estimate; sales $234.632M vs $215.224M estimate.",
@@ -945,12 +951,7 @@
      "FY2026 sales guidance raised to $873M-$877M from $845M-$853M (est. $849.77M).",
      "Q4 guidance: adjusted EPS $0.30-$0.34 vs $0.37 estimate; sales $233M-$237M vs $226.43M estimate."
     ],
-    "catalysts": [
-     "Analyst upgrades and target raises on 2026-11-06: William Blair upgrade to Outperform; Citigroup Buy with $69 target; Morgan Stanley target $57 from $32; DA Davidson target $60; TD Cowen Hold with $50 target (2026-11-03).",
-     "US Army fielded TACTMIS on Appian Defense Cloud (2026-10-29).",
-     "Appian Defense Cloud received IL5 Provisional Authorization to Operate (2026-10-29).",
-     "CEO cites US government embracing AI efficiency as federal deals grow (2026-11-05)."
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Next earnings date not stated; Q3 results were already reported on 2026-11-05, so no near-term gap from that report is indicated in the material.",
      "Q4 EPS guidance ($0.30-$0.34) is below the $0.37 estimate, a possible sequential softness signal.",
@@ -958,23 +959,27 @@
      "Volume is only modestly above normal (5-day x1.1); daily dollar traded $43M.",
      "12-month return only +24.7% versus 6-month +186.9%, indicating a volatile, recently concentrated rally."
     ],
-    "next_earnings_date": "",
     "setup_quality": 8,
     "summary": "APPN is trading at a 52-week high with RS 99, accelerating growth (Q3 revenue +25%, FY guidance raised above estimates), and a fresh wave of analyst upgrades and target raises, plus defense-related product milestones. Setup is strong but extended after a +43% month, volume expansion is modest, and Q"
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "FIGS",
-   "rs": 99,
-   "price": 22.68,
    "from_high": -0.0308,
-   "r3m": 0.5439074200136147,
+   "price": 22.68,
    "r12m": 1.3526970954356843,
+   "r3m": 0.5439074200136147,
+   "rs": 99,
+   "symbol": "FIGS",
    "name": "FIGS, Inc.",
    "held": false,
    "card": {
     "business": "FIGS, Inc. (NYSE: FIGS) sells healthcare apparel and related products; the headlines reference Q3 2026 results and a partnership with European Wax Center for uniforms.",
+    "catalysts": [
+     "Q3 2026 beat and raised full-year sales guidance.",
+     "Multiple analyst price target raises after results: Barclays to $28, Keybanc to $27, Cantor Fitzgerald initiated Overweight at $25 (2026-11-10).",
+     "European Wax Center uniform partnership announced 2026-11-02."
+    ],
     "growth_facts": [
      "Q3 2026 revenue of $190.7 million exceeded FactSet consensus of $182.8 million (reported 2026-11-05).",
      "Q3 2026 EPS of $0.10 beat the $0.07 estimate; sales of $190.689M beat the $180.200M estimate.",
@@ -982,11 +987,7 @@
      "Q4 sales outlook of $232.180M versus $221.726M estimate.",
      "Price performance: 3m +54.4%, 6m +89.5%, 12m +135.3%; RS percentile 99."
     ],
-    "catalysts": [
-     "Q3 2026 beat and raised full-year sales guidance.",
-     "Multiple analyst price target raises after results: Barclays to $28, Keybanc to $27, Cantor Fitzgerald initiated Overweight at $25 (2026-11-10).",
-     "European Wax Center uniform partnership announced 2026-11-02."
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Next earnings date not stated in the material; Q3 was reported 2026-11-05 so next report is likely well away, but this is unconfirmed.",
      "Recent daily closes are volatile (e.g., 21.58 to 20.21 range swings), with 10-day range 15.8%, so stop placement needs care.",
@@ -994,23 +995,26 @@
      "Stock is extended well above its 50- and 200-day averages, raising pullback risk.",
      "Industry group strength is not stated in the material."
     ],
-    "next_earnings_date": "",
     "setup_quality": 8,
     "summary": "FIGS is a high-RS leader (99) with a clear post-earnings beat-and-raise, accelerating sales guidance, and a cluster of analyst target raises, trading near its 52-week high at 22.68. Setup is strong but somewhat extended above moving averages, with modest volume expansion and a volatile recent range;"
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "GKOS",
-   "rs": 99,
-   "price": 246.03,
    "from_high": -0.0046,
-   "r3m": 0.33327914160299144,
+   "price": 246.03,
    "r12m": 1.7370119034375349,
+   "r3m": 0.33327914160299144,
+   "rs": 99,
+   "symbol": "GKOS",
    "name": "Glaukos Corporation",
    "held": false,
    "card": {
     "business": "Glaukos Corporation (NYSE:GKOS) is a US-listed healthcare company with a market cap of about $10.7 billion per the headlines; the materials do not describe its products in detail.",
+    "catalysts": [
+     "Management scheduled to participate in the Stifel Healthcare Conference and Jefferies Global Healthcare Conference in November 2026 (announced 2026-11-03).",
+     "Raised FY26 sales guidance following a beat on Q3 earnings."
+    ],
     "growth_facts": [
      "Q3 2026 earnings beat estimates and FY26 sales guidance was raised to $775M-$785M (reported 2026-10-29).",
      "Shares jumped 17.4% after Q3 earnings, and intraday on 2026-10-29 rose 30.8% to $237.26 per Benzinga.",
@@ -1018,10 +1022,7 @@
      "Price is 34.2% above the 50-day average and 67.8% above the 200-day average.",
      "Price is -0.5% from its 52-week high and 178.3% above its 52-week low; last close 246.03."
     ],
-    "catalysts": [
-     "Management scheduled to participate in the Stifel Healthcare Conference and Jefferies Global Healthcare Conference in November 2026 (announced 2026-11-03).",
-     "Raised FY26 sales guidance following a beat on Q3 earnings."
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Insider sold shares worth approximately $10.6 million, disclosed 2026-11-04.",
      "Post-earnings jump of about 17% on 2026-10-29 means part of the move is a one-off gap; the stock has since traded in a wide band (last 20 closes range roughly 164.84 to 247.16).",
@@ -1029,23 +1030,28 @@
      "Five-day volume is 0.7x normal and 10-day range is 11.0%, so the recent tight-range setup is not clearly confirmed by volume.",
      "The materials give no next earnings date; Q3 was reported 2026-10-28, so the next report is not stated."
     ],
-    "next_earnings_date": "",
     "setup_quality": 6,
     "summary": "GKOS is a strong relative-strength leader sitting just below its 52-week high after a large earnings-driven gap, with a raised FY26 sales guidance and broad analyst target raises. Against that, the setup is extended well above its moving averages, five-day volume is light, an insider sold about $10."
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "VSXY",
-   "rs": 99,
-   "price": 104.63,
    "from_high": -0.0783,
-   "r3m": 0.17535385306672668,
+   "price": 104.63,
    "r12m": 1.9919931369745494,
+   "r3m": 0.17535385306672668,
+   "rs": 99,
+   "symbol": "VSXY",
    "name": "Victorias Secret & Co.",
    "held": false,
    "card": {
     "business": "Victoria's Secret & Co. (VSXY), a US-listed apparel and lingerie retailer including the PINK brand; recent news covers its fashion show, PINK product launches and analyst coverage.",
+    "catalysts": [
+     "Third-quarter 2026 earnings call scheduled for December 3, 2026",
+     "PINK and Stoney Clover Lane holiday collection launched 2026-11-09",
+     "PINK Mini Bar beauty destination launched 2026-10-28",
+     "Fashion show in Los Angeles on 2026-10-19 with a debut $50 million diamond-encrusted Fantasy Bra"
+    ],
     "growth_facts": [
      "Price 104.63; RS percentile 99; 1m +18.4%, 3m +17.5%, 6m +123.7%, 12m +199.2%",
      "-7.8% from 52-week high; +209.6% above 52-week low",
@@ -1053,12 +1059,7 @@
      "Daily dollar volume about $155M; 5-day volume at 0.8x normal, so recent volume is light",
      "10-day range 16.2%"
     ],
-    "catalysts": [
-     "Third-quarter 2026 earnings call scheduled for December 3, 2026",
-     "PINK and Stoney Clover Lane holiday collection launched 2026-11-09",
-     "PINK Mini Bar beauty destination launched 2026-10-28",
-     "Fashion show in Los Angeles on 2026-10-19 with a debut $50 million diamond-encrusted Fantasy Bra"
-    ],
+    "next_earnings_date": "2026-12-03",
     "risks": [
      "BofA downgraded to Neutral on 2026-11-12 (from Buy), though it raised its target to $112",
      "Stock has pulled back from the 52-week high of about 113 (last close 104.63 after closing 113.52 on the prior-to-last close window)",
@@ -1066,23 +1067,26 @@
      "Extended well above 200-day average, with a sharp 6m and 12m run-up raising reversal risk",
      "Light recent volume (0.8x normal) during the pullback"
     ],
-    "next_earnings_date": "2026-12-03",
     "setup_quality": 5,
     "summary": "VSXY is a strong relative-strength leader (RS 99, up 199% over 12 months) with several analyst target raises, but the downgrade by BofA on 2026-11-12, a pullback of about 8% from its high, light recent volume, and earnings on 2026-12-03 weaken the near-term setup. Accelerating sales and earnings are"
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "VIA",
-   "rs": 99,
-   "price": 42.11,
    "from_high": -0.1661,
-   "r3m": 0.6078655975563192,
+   "price": 42.11,
    "r12m": -0.13973442288049032,
+   "r3m": 0.6078655975563192,
+   "rs": 99,
+   "symbol": "VIA",
    "name": "Via Transportation, Inc.",
    "held": false,
    "card": {
     "business": "Via Transportation, Inc. (NYSE: VIA), a US-listed transportation technology company; the material does not describe its products or markets in detail.",
+    "catalysts": [
+     "Q3 beat and raised FY2026 sales guidance, with analyst price target increases following on 2026-11-10.",
+     "Broad analyst upgrades to price targets, as listed."
+    ],
     "growth_facts": [
      "Q3 2026 revenue reported at $143.5 million vs $137.9 million estimate (reported 2026-11-09).",
      "Q3 2026 adjusted EPS of $0.00 vs $(0.02) estimate (reported 2026-11-09).",
@@ -1090,10 +1094,7 @@
      "Q4 2026 sales guidance of $150.0M-$151.7M vs $150.7M estimate (2026-11-09).",
      "Stock up +192.8% over 6 months and +60.8% over 3 months; RS percentile 99."
     ],
-    "catalysts": [
-     "Q3 beat and raised FY2026 sales guidance, with analyst price target increases following on 2026-11-10.",
-     "Broad analyst upgrades to price targets, as listed."
-    ],
+    "next_earnings_date": "",
     "risks": [
      "12-month return is -14.0%, and the stock is 16.6% below its 52-week high.",
      "Price fell from a 44.65 close to 42.11 in the last two sessions, after the post-earnings run.",
@@ -1101,23 +1102,28 @@
      "Q3 adjusted EPS of $0.00 is only break-even; the material gives no earnings growth trend.",
      "No industry group strength data provided; no new product or new market detail stated."
     ],
-    "next_earnings_date": "",
     "setup_quality": 6,
     "summary": "VIA is a high-RS leader (99 percentile) with strong 3- and 6-month gains, a raised FY2026 sales outlook, and a wave of analyst target raises after Q3 results. It trades about 16.6% below its 52-week high after a post-earnings pullback from 44.65 to 42.11, with a 10-day range of 19.5%. Weak 12-month "
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "AMLX",
-   "rs": 99,
-   "price": 29.86,
    "from_high": -0.2471,
-   "r3m": 0.3804900601017107,
+   "price": 29.86,
    "r12m": 1.3548895899053628,
+   "r3m": 0.3804900601017107,
+   "rs": 99,
+   "symbol": "AMLX",
    "name": "Amylyx Pharmaceuticals, Inc. Common Stock",
    "held": false,
    "card": {
     "business": "Amylyx Pharmaceuticals (AMLX), a US-listed biopharmaceutical company whose recent headlines centre on its Phase 3 LUCIDITY trial of avexitide for post-bariatric hypoglycemia (PBH).",
+    "catalysts": [
+     "Investor event at ObesityWeek 2026 featuring PBH experts (announced 2026-11-04).",
+     "Mizuho raised price target to $39 with Outperform rating (2026-11-10).",
+     "Citigroup maintained Buy and raised price target to $39 (2026-10-15).",
+     "Presentation of Phase 3 topline data for avexitide at ObesityWeek 2026 (announced 2026-10-06)."
+    ],
     "growth_facts": [
      "Q3 2026 results reported 2026-11-05 highlighted positive topline data from the Phase 3 LUCIDITY trial of avexitide and a strengthened balance sheet.",
      "Q3 2026 EPS reported as $(0.38), described as inline.",
@@ -1125,12 +1131,7 @@
      "Relative strength percentile 99; 6-month return +115.1%; 12-month return +135.5%.",
      "Price 29.86 sits 0.5% above the 50-day average and 44.1% above the 200-day average."
     ],
-    "catalysts": [
-     "Investor event at ObesityWeek 2026 featuring PBH experts (announced 2026-11-04).",
-     "Mizuho raised price target to $39 with Outperform rating (2026-11-10).",
-     "Citigroup maintained Buy and raised price target to $39 (2026-10-15).",
-     "Presentation of Phase 3 topline data for avexitide at ObesityWeek 2026 (announced 2026-10-06)."
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Price is about 25% below its 52-week high, so it is not trading at a new high.",
      "Stock fell from 31.80 to 29.86 in the latest session and has been choppy over the last 20 closes.",
@@ -1138,23 +1139,27 @@
      "Dilution: $500M public offering at $35.50 in August 2026, below the current price's recent range.",
      "Analyst price targets ($39) sit only about 31% above the current price while several earlier targets were cut from the $57 Guggenheim level, which is not stated as a change; treat with caution."
     ],
-    "next_earnings_date": "",
     "setup_quality": 4,
     "summary": "AMLX is a high relative-strength biotech (RS 99, strong 6- and 12-month gains) with positive Phase 3 news and analyst support, but it trades about 25% below its 52-week high, volume is not heavy, the company posted a loss and diluted shareholders in August, and sales growth and industry strength are"
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "MGNI",
-   "rs": 99,
-   "price": 29.34,
    "from_high": 0.0,
-   "r3m": 0.18641326324302465,
+   "price": 29.34,
    "r12m": 0.9851150202976997,
+   "r3m": 0.18641326324302465,
+   "rs": 99,
+   "symbol": "MGNI",
    "name": "Magnite, Inc. Common Stock",
    "held": false,
    "card": {
     "business": "Magnite, Inc. operates a sell-side advertising platform for connected TV (CTV) and digital advertising; the material describes it as integrating Gracenote's content intelligence into its CTV advertising platform.",
+    "catalysts": [
+     "Gracenote content intelligence partnership for CTV advertising platform (2026-11-10).",
+     "Post-Q3 analyst target raises and reaffirmed Buy/Outperform ratings (2026-11-05 to 2026-11-09).",
+     "Trade Desk Q3 beat cited as a positive read-across for the ad-tech group (2026-11-10)."
+    ],
     "growth_facts": [
      "Price 29.34 is at its 52-week high (+0.0% from 52-week high) and +162.0% above the 52-week low.",
      "Relative strength percentile 99.",
@@ -1162,11 +1167,7 @@
      "Price is +19.8% above the 50-day average and +61.9% above the 200-day average.",
      "Recent closes rose from about 21.5-22.8 to 27.52 on a single jump, then 29.34 on the latest close."
     ],
-    "catalysts": [
-     "Gracenote content intelligence partnership for CTV advertising platform (2026-11-10).",
-     "Post-Q3 analyst target raises and reaffirmed Buy/Outperform ratings (2026-11-05 to 2026-11-09).",
-     "Trade Desk Q3 beat cited as a positive read-across for the ad-tech group (2026-11-10)."
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Next earnings date is not stated in the material; no confirmed report date given.",
      "Insider sale of shares worth $275,916 reported 2026-11-12.",
@@ -1174,23 +1175,28 @@
      "Trade Desk commentary flags political ads and a one-time partner boost, suggesting part of sector strength may be non-recurring.",
      "Large move from about 22 to 27.5 in one session may be a sharp spike, and the 10-day range of 26.8% is wide for a tight base."
     ],
-    "next_earnings_date": "",
     "setup_quality": 7,
     "summary": "MGNI sits at a 52-week high with relative strength 99, strong 6m and 12m gains, and a cluster of post-Q3 price target raises plus a CTV partnership, which fits the leader-at-highs profile. Offsets: a 10-day range of 26.8%, a one-session jump from about 22 to 27.5 that may reflect an event spike, onl"
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "ZETA",
-   "rs": 99,
-   "price": 37.27,
    "from_high": -0.0125,
-   "r3m": 0.28296041308089515,
+   "price": 37.27,
    "r12m": 0.8823232323232324,
+   "r3m": 0.28296041308089515,
+   "rs": 99,
+   "symbol": "ZETA",
    "name": "Zeta Global Holdings Corp.",
    "held": false,
    "card": {
     "business": "Zeta Global Holdings Corp. (NYSE: ZETA), a US-listed company; the material does not describe its products or markets beyond earnings and analyst coverage.",
+    "catalysts": [
+     "Post-Q3 earnings beat and guidance raise, with the stock surging on 2026-11-10.",
+     "Multiple price target raises on 2026-11-10: B. Riley to $39, Truist to $40, RBC to $41, Citi to $38.",
+     "Freedom Broker and Morgan Stanley raised targets to $33 on 2026-11-11 and 2026-11-13, though with Hold/Equal-Weight ratings.",
+     "Industry tailwind or new product/market is not stated in the material."
+    ],
     "growth_facts": [
      "Q3 2026 revenue and adjusted EPS exceeded analyst estimates (reported 2026-11-09).",
      "FY2026 sales guidance raised from $1.811B-$1.824B to $1.853B-$1.857B vs $1.820B estimate.",
@@ -1198,12 +1204,7 @@
      "Q4 2026 sales guided to $521M-$525M vs $504.9M estimate.",
      "Price 37.27 with RS percentile 99; 6m +124.8%, 12m +88.2%; 1.2% below 52-week high."
     ],
-    "catalysts": [
-     "Post-Q3 earnings beat and guidance raise, with the stock surging on 2026-11-10.",
-     "Multiple price target raises on 2026-11-10: B. Riley to $39, Truist to $40, RBC to $41, Citi to $38.",
-     "Freedom Broker and Morgan Stanley raised targets to $33 on 2026-11-11 and 2026-11-13, though with Hold/Equal-Weight ratings.",
-     "Industry tailwind or new product/market is not stated in the material."
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Next earnings date not stated in the material; the Q3 report was on 2026-11-09, so the next report is likely not within days, but this is unconfirmed.",
      "Price pulled back from 37.74 to 37.27 after the post-earnings surge; 10-day range 22.2% indicates high volatility.",
@@ -1211,23 +1212,27 @@
      "Industry group strength is not stated in the material.",
      "Earnings-driven spike may be a one-off reaction rather than a sustained base."
     ],
-    "next_earnings_date": "",
     "setup_quality": 8,
     "summary": "ZETA is a strong momentum leader (RS 99, near its 52-week high, 6m +124.8%) that broke out on a clear earnings beat and guidance raise with sales and EPS guidance sharply higher and heavy volume. The setup is strong, but the stock is extended after a post-earnings surge, price targets are clustered "
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "HTFL",
-   "rs": 99,
-   "price": 59.92,
    "from_high": -0.0101,
-   "r3m": 0.42395437262357416,
+   "price": 59.92,
    "r12m": 0.7535850160959905,
+   "r3m": 0.42395437262357416,
+   "rs": 99,
+   "symbol": "HTFL",
    "name": "Heartflow, Inc. Common Stock",
    "held": false,
    "card": {
     "business": "HeartFlow, Inc. (HTFL) is a US-listed company offering AI-based cardiac imaging and plaque analysis; its headlines reference CT-guided PCI planning, the PCI Navigator product, and the DECIDE registry.",
+    "catalysts": [
+     "Q3 beat and full-year guidance raise reported 2026-11-12.",
+     "P4 Trial (1,105 patients) met primary endpoint: CT-guided PCI non-inferior to IVUS at one year, with shorter procedures and lower contrast use (announced 2026-11-01).",
+     "DECIDE registry prospective outcomes showing 34% reduction in major cardiovascular events to be presented at AHA Scientific Sessions 2026 (announced 2026-11-02)."
+    ],
     "growth_facts": [
      "Q3 2026 (reported 2026-11-12): revenue up 57% year over year to $72.857M versus a $65.264M estimate.",
      "Q3 adjusted EPS $(0.03) versus a $(0.10) estimate.",
@@ -1235,11 +1240,7 @@
      "Price performance: 1m +21.1%, 3m +42.4%, 6m +85.9%, 12m +75.4%; RS percentile 99.",
      "Price 59.92, -1.0% from 52-week high, 50-day average +15.4% and 200-day average +70.6% below/above as stated."
     ],
-    "catalysts": [
-     "Q3 beat and full-year guidance raise reported 2026-11-12.",
-     "P4 Trial (1,105 patients) met primary endpoint: CT-guided PCI non-inferior to IVUS at one year, with shorter procedures and lower contrast use (announced 2026-11-01).",
-     "DECIDE registry prospective outcomes showing 34% reduction in major cardiovascular events to be presented at AHA Scientific Sessions 2026 (announced 2026-11-02)."
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Next earnings date is not stated in the material; the Q3 report was on 2026-11-12, so no near-term gap risk from a scheduled report is confirmed here.",
      "Recent 10-day range of 13.3% and closes swinging between about 52 and 60 indicate choppy price action rather than a tight base.",
@@ -1247,23 +1248,28 @@
      "Post-earnings price target raises may already be priced in after a 3m gain of +42.4%.",
      "Headline 'Watching Heartflow; Hearing Investor Business Daily SwingTrader Sells Stock' appears on 2026-10-30 and 2026-11-13; content not stated."
     ],
-    "next_earnings_date": "",
     "setup_quality": 7,
     "summary": "HTFL is a strong momentum leader (RS 99, 6m +85.9%) trading 1% below its 52-week high after a clear Q3 beat with revenue +57% y/y and a raised FY2026 guide, supported by clinical catalysts and three analyst target raises. Volume is not heavy and the recent range is wide, so the setup is good but not"
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "PRCH",
-   "rs": 98,
-   "price": 21.31,
    "from_high": -0.0375,
-   "r3m": 0.22612197928653632,
+   "price": 21.31,
    "r12m": 1.0549662487945999,
+   "r3m": 0.22612197928653632,
+   "rs": 98,
+   "symbol": "PRCH",
    "name": "Porch Group, Inc. Common Stock",
    "held": false,
    "card": {
     "business": "Porch Group, Inc. (PRCH) operates home-related software and insurance services, including Inspection Support Network (ISN) for home inspection offices and Floify, a mortgage-tech subsidiary, plus a relationship with Porch Insurance Reciprocal Exchange.",
+    "catalysts": [
+     "Q3 2026 earnings beat and raised full-year guidance (2026-10-28/29).",
+     "Analyst price target increases from Oppenheimer and StoneX (2026-10-29).",
+     "New ISN features Route Builder and Unified Calendar launched (2026-11-10).",
+     "Management attending investor conferences in November and December 2026 (2026-11-02)."
+    ],
     "growth_facts": [
      "Q3 2026 revenue reported at $143.9 million, exceeding analyst expectations (2026-10-28).",
      "Company raised full-year 2026 guidance with Q3 results (2026-10-28).",
@@ -1271,12 +1277,7 @@
      "RS percentile 98; 12m +105.5%, 6m +104.3%, 3m +22.6%, 1m +29.6%.",
      "Price 21.31 is 3.7% below the 52-week high and 233.0% above the 52-week low; 50-day average is 19.0% below price and 200-day average 69.0% below price."
     ],
-    "catalysts": [
-     "Q3 2026 earnings beat and raised full-year guidance (2026-10-28/29).",
-     "Analyst price target increases from Oppenheimer and StoneX (2026-10-29).",
-     "New ISN features Route Builder and Unified Calendar launched (2026-11-10).",
-     "Management attending investor conferences in November and December 2026 (2026-11-02)."
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Equity dilution: $15 million-share at-the-market distribution agreement with StoneX (2026-11-01).",
      "Mixed shelf offering filed (2026-11-02) and prospectus registering 16,220,158 shares for resale by Porch Reciprocal Exchange (2026-10-30), creating supply overhang.",
@@ -1284,23 +1285,27 @@
      "Volume is only 1.0x normal over 5 days, not showing heavy accumulation.",
      "Next earnings date not stated in the material; the sources give no date for the next report."
     ],
-    "next_earnings_date": "",
     "setup_quality": 6,
     "summary": "PRCH is a strong relative-strength leader (RS 98, 12m +105.5%) trading 3.7% below its 52-week high after a Q3 beat and raised guidance. However, the setup is weakened by dilution from an ATM program and share registrations, unremarkable recent volume, and choppy price action since the post-earnings "
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "CHPT",
-   "rs": 98,
-   "price": 12.05,
    "from_high": -0.0368,
-   "r3m": 0.9498381877022655,
+   "price": 12.05,
    "r12m": 0.22708757637474553,
+   "r3m": 0.9498381877022655,
+   "rs": 98,
+   "symbol": "CHPT",
    "name": "ChargePoint Holdings, Inc.",
    "held": false,
    "card": {
     "business": "ChargePoint Holdings (CHPT) operates EV charging infrastructure, including home chargers and a channel partner network for resellers, with recent expansion into European reseller programs.",
+    "catalysts": [
+     "Launch of a Channel Partner Program for European resellers with financial incentives and deal protection, announced 2026-10-27.",
+     "Q2 earnings beat and near-zero cash burn reported 2026-09-02/03.",
+     "Analyst price target raises by UBS to $9 (2026-09-22) and B. Riley to $8 (2026-09-04), both rated Neutral."
+    ],
     "growth_facts": [
      "Q2 fiscal 2027 sales were $116.075M versus a $105.223M estimate, a beat, reported 2026-09-02.",
      "Q2 adjusted EPS was $(0.35) versus a $(0.84) estimate, a beat, reported 2026-09-02.",
@@ -1308,11 +1313,7 @@
      "Price is 12.05, 98th RS percentile, 1m +81.2%, 3m +95.0%, 6m +76.9%, 12m +22.7%.",
      "Market cap was stated as $134.4M in early September headlines, a small-cap float."
     ],
-    "catalysts": [
-     "Launch of a Channel Partner Program for European resellers with financial incentives and deal protection, announced 2026-10-27.",
-     "Q2 earnings beat and near-zero cash burn reported 2026-09-02/03.",
-     "Analyst price target raises by UBS to $9 (2026-09-22) and B. Riley to $8 (2026-09-04), both rated Neutral."
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Price is well above the cited analyst targets of $8 and $9 while analysts remain Neutral or Hold.",
      "Needham and another analyst keep Hold ratings, citing macro EV drag and slow US EV adoption.",
@@ -1320,23 +1321,26 @@
      "The early-September rally was a one-off spike on earnings news, which momentum traders typically discount.",
      "Daily dollar volume of $22M is thin for a momentum leader."
     ],
-    "next_earnings_date": "",
     "setup_quality": 6,
     "summary": "CHPT is a strong-RS small-cap near its 52-week high (-3.7%) with a tight 10-day range of 24.6% and a clear Q2 beat, but volume has dried up to 0.3x normal, the stock trades above Neutral analyst targets, and the rally rests on earnings-driven spikes. Sales and EPS trends are improving, but the setup"
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "TBBB",
-   "rs": 98,
-   "price": 68.0,
    "from_high": 0.0,
-   "r3m": 0.4228918183720445,
+   "price": 68.0,
    "r12m": 1.3726448011165386,
+   "r3m": 0.4228918183720445,
+   "rs": 98,
+   "symbol": "TBBB",
    "name": "BBB Foods Inc.",
    "held": false,
    "card": {
     "business": "BBB Foods Inc. (NYSE: TBBB), operating as Tiendas 3B, a US-listed grocery/consumer staples retailer.",
+    "catalysts": [
+     "Post-earnings beat and growth-target outperformance in Q3 2026.",
+     "Analyst support: UBS Buy with price target raised to $69 (2026-10-21); JP Morgan Overweight with target $67 (2026-09-10); Citigroup initiated Buy with $49 target (2026-07-31)."
+    ],
     "growth_facts": [
      "Q3 2026 EPS $0.01 beat a $(0.15) estimate; sales $1.648B beat a $1.610B estimate (reported 2026-11-02).",
      "Q2 2026 EPS $(0.19) missed a $(0.17) estimate, though sales $1.497B beat a $1.420B estimate (reported 2026-08-12).",
@@ -1344,10 +1348,7 @@
      "Price 68.00 is at its 52-week high; +137.3% over 12 months, +89.8% over 6 months, +42.3% over 3 months, +20.7% over 1 month; RS percentile 98.",
      "Trading volume about $50M/day; 5-day volume is 1.2x normal."
     ],
-    "catalysts": [
-     "Post-earnings beat and growth-target outperformance in Q3 2026.",
-     "Analyst support: UBS Buy with price target raised to $69 (2026-10-21); JP Morgan Overweight with target $67 (2026-09-10); Citigroup initiated Buy with $49 target (2026-07-31)."
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Q2 2026 EPS miss, and the Q3 EPS beat is small against a low bar; earnings quality is not clearly accelerating.",
      "Stock is up sharply and in an overbought condition (RSI above 70 flagged on 2026-10-13); risk of pullback.",
@@ -1355,23 +1356,27 @@
      "Q3 earnings already reported on 2026-11-02/03, so no earnings gap risk in the next days from the material given.",
      "Next earnings date not stated in the material."
     ],
-    "next_earnings_date": "",
     "setup_quality": 7,
     "summary": "TBBB is an RS 98 leader at its 52-week high after a sharp run (+137% over 12 months), with a Q3 2026 sales and EPS beat and multiple analyst target raises. Volume is only modestly elevated, the stock is overbought, and the Q2 EPS miss weakens the earnings-acceleration case. The last 20 closes show a"
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "CBRL",
-   "rs": 98,
-   "price": 64.86,
    "from_high": -0.1048,
-   "r3m": 0.12389533876277947,
+   "price": 64.86,
    "r12m": 1.2662473794549265,
+   "r3m": 0.12389533876277947,
+   "rs": 98,
+   "symbol": "CBRL",
    "name": "Cracker Barrel Old Country Store, Inc Common Stock",
    "held": false,
    "card": {
     "business": "Cracker Barrel Old Country Store, Inc. (CBRL), a US restaurant and retail operator known for its family dining restaurants and country store merchandise.",
+    "catalysts": [
+     "Rockers Across America Veterans Day campaign running through November 30, 2026 (announced 2026-11-09).",
+     "Holiday menu and Thanksgiving catering launch (2026-10-20), including new items and Heat & Serve meals.",
+     "Breakfast and early-dine value deals ($7.99 breakfast, $8.99 early dine) launched to counter consumer pressure (2026-09-23)."
+    ],
     "growth_facts": [
      "Price 64.86 with RS percentile 98, 6m +124.3%, 12m +126.6%, showing a large multi-month price gain.",
      "Price is 10.5% below the 52-week high and 165.5% above the 52-week low.",
@@ -1379,11 +1384,7 @@
      "Q4 2026 adjusted EPS of $0.99 beat a $0.15 estimate; sales of $849.342M beat a $836.894M estimate (reported 2026-09-23).",
      "Company guided FY2027 sales to $3.325B-$3.400B, below the prior $3.800B-$3.900B range and below the $3.386B estimate."
     ],
-    "catalysts": [
-     "Rockers Across America Veterans Day campaign running through November 30, 2026 (announced 2026-11-09).",
-     "Holiday menu and Thanksgiving catering launch (2026-10-20), including new items and Heat & Serve meals.",
-     "Breakfast and early-dine value deals ($7.99 breakfast, $8.99 early dine) launched to counter consumer pressure (2026-09-23)."
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Forward guidance cut: FY2027 sales outlook lowered well below prior range and consensus, signalling falling top-line momentum.",
      "Analyst stance is negative: Citigroup maintains Sell with a $44 target (2026-09-25); UBS is Neutral with a $46 target (2026-09-21). Both targets sit well below the 64.86 price.",
@@ -1391,23 +1392,28 @@
      "Animal welfare criticism: The Humane League's 2026 report names Cracker Barrel for insufficient cage-free egg transparency (2026-11-10).",
      "Price has fallen 10.5% from its 52-week high and sits below recent closes near 70-72."
     ],
-    "next_earnings_date": "",
     "setup_quality": 2,
     "summary": "CBRL has strong long-term relative strength (RS 98, 6m +124%) but the setup is weak for a momentum buyer: the last earnings report came with a sharp FY2027 sales guidance cut, both covering analysts hold Sell or Neutral with targets in the $40s, the stock is 10.5% off its high with a lower recent pr"
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "AMD",
-   "rs": 98,
-   "price": 585.3,
    "from_high": -0.0987,
-   "r3m": 0.1378526021112385,
+   "price": 585.3,
    "r12m": 1.464213539912428,
+   "r3m": 0.1378526021112385,
+   "rs": 98,
+   "symbol": "AMD",
    "name": "Advanced Micro Devices, Inc. Common Stock",
    "held": false,
    "card": {
     "business": "Advanced Micro Devices (AMD) designs CPUs, GPUs and AI accelerators (e.g., Instinct MI325X) for data centers, PCs and embedded markets, competing with Nvidia and Broadcom in AI chips.",
+    "catalysts": [
+     "Nvidia leadership turmoil after CEO Jensen Huang's exit driving capital rotation into competing AI chip stocks such as AMD",
+     "Analyst upgrades and price target raises (William Blair upgrade, BofA target to $700)",
+     "Management confidence in CPU revenue doubling by 2027",
+     "New AI collaborations such as Arena Physica training on AMD's Lux AI supercomputer"
+    ],
     "growth_facts": [
      "12-month price performance +146.4%; 6-month +30.2%; 3-month +13.8%; 1-month +2.5%",
      "RS percentile 98",
@@ -1415,12 +1421,7 @@
      "Trades about $14,247M per day; 5-day volume is 1.9x normal",
      "Price is 5.8% above the 50-day average and 38.8% above the 200-day average"
     ],
-    "catalysts": [
-     "Nvidia leadership turmoil after CEO Jensen Huang's exit driving capital rotation into competing AI chip stocks such as AMD",
-     "Analyst upgrades and price target raises (William Blair upgrade, BofA target to $700)",
-     "Management confidence in CPU revenue doubling by 2027",
-     "New AI collaborations such as Arena Physica training on AMD's Lux AI supercomputer"
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Move is largely driven by Nvidia-turmoil news flow rather than a new product breakout; the rally is sharp and short-term (30%+ in five days)",
      "Price is extended about 5.8% above the 50-day average after a volatile 10-day range of 30.9%",
@@ -1428,34 +1429,34 @@
      "Broader tech weakness on Nasdaq slide and rising Treasury yields",
      "RBC rates the stock Sector Perform with $540 target, below the current price"
     ],
-    "next_earnings_date": "",
     "setup_quality": 6,
     "summary": "AMD is a strong momentum leader (RS 98, +146% over 12 months, within 10% of its 52-week high) with heavy volume and positive analyst upgrades amid Nvidia's turmoil. However, the setup is a sharp, news-driven five-day spike with high volatility and price extended above the 50-day average, so it is le"
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "SGRY",
-   "rs": 98,
-   "price": 26.58,
    "from_high": -0.0056,
-   "r3m": 0.7684630738522953,
+   "price": 26.58,
    "r12m": 0.6881549698316927,
+   "r3m": 0.7684630738522953,
+   "rs": 98,
+   "symbol": "SGRY",
    "name": "Surgery Partners, Inc. Common Stock",
    "held": false,
    "card": {
     "business": "Surgery Partners, Inc. (SGRY) operates surgical facilities and related healthcare services; the stock is currently driven by a pending acquisition by HealthSpan Partners at $25.00 per share in cash.",
+    "catalysts": [
+     "Amended merger agreement with HealthSpan Partners raises price to $25.00/share in cash, per headline dated 2026-11-09",
+     "Deal values company at up to about $6.0B enterprise value and still expects Q1 2027 close, per headline dated 2026-11-09",
+     "Ticking fee at 10% annual rate on $25.00 if deal not closed by March 1, 2027, per headline dated 2026-11-09"
+    ],
     "growth_facts": [
      "Q3 adjusted EPS $0.16 vs $0.13 a year earlier and $0.12 estimate, per headline dated 2026-11-09",
      "Q3 sales $815.3M, down from $821.5M year over year and below the $825.6M estimate, per headline dated 2026-11-09",
      "Company withdrew guidance and will not host an earnings call due to the pending merger, per headline dated 2026-11-09",
      "Price figures: 1m +79.2%, 3m +76.8%, 6m +83.6%, 12m +68.8%, RS percentile 98"
     ],
-    "catalysts": [
-     "Amended merger agreement with HealthSpan Partners raises price to $25.00/share in cash, per headline dated 2026-11-09",
-     "Deal values company at up to about $6.0B enterprise value and still expects Q1 2027 close, per headline dated 2026-11-09",
-     "Ticking fee at 10% annual rate on $25.00 if deal not closed by March 1, 2027, per headline dated 2026-11-09"
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Price is pinned to a cash takeover price, so the stock behaves like merger arbitrage rather than a growth leader; the one-off spike on takeover news is penalised under this strategy",
      "Unsolicited competing proposal from a third party and a report of a UnitedHealth bid at $28 per share, per headlines dated 2026-11-09, leave deal terms uncertain",
@@ -1463,23 +1464,28 @@
      "Guidance withdrawn; no earnings call",
      "Multiple analyst downgrades to Neutral/Hold (UBS 2026-10-28, TD Cowen 2026-11-02, Mizuho 2026-11-11) with price targets around $23.50 to $25, below or at the current price of 26.58"
     ],
-    "next_earnings_date": "",
     "setup_quality": 2,
     "summary": "SGRY has a strong price trend (RS 98, -0.6% from 52-week high) driven by a takeover: the stock jumped from about 15 to 23 and then 26.6 on the HealthSpan $25 cash deal and a reported competing bid. Momentum metrics reflect deal speculation rather than accelerating sales or earnings, sales fell year "
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "CERT",
-   "rs": 98,
-   "price": 11.9,
    "from_high": -0.0262,
-   "r3m": 0.48750000000000004,
+   "price": 11.9,
    "r12m": 0.38694638694638694,
+   "r3m": 0.48750000000000004,
+   "rs": 98,
+   "symbol": "CERT",
    "name": "Certara, Inc. Common Stock",
    "held": false,
    "card": {
     "business": "Certara, Inc. (NASDAQ: CERT). The material only references its AI-powered predictive toxicology market position and its role in clinical trial and drug development topics; no fuller business description is given.",
+    "catalysts": [
+     "Identified as a leader in the AI-powered predictive toxicology market (October 27, 2026).",
+     "HHS launched a project to speed up clinical trials (September 30, 2026 headline; relevance to Certara not explicitly stated).",
+     "Analyst price target raises: Keybanc Overweight to $12 (Oct 16), TD Cowen Buy to $11 (Oct 13), Barclays Equal-Weight to $12 (Nov 6).",
+     "Volume is elevated: 5-day volume is 1.4x normal, with $27M average daily traded value."
+    ],
     "growth_facts": [
      "Q3 2026 revenue of $94.9M beat the $92.867M estimate, but Q3 adjusted EPS of $0.09 was only in line.",
      "Q3 2026 net loss from continuing operations was $3.6M.",
@@ -1487,12 +1493,7 @@
      "FY2026 revenue is expected to grow 2% to 3% year over year, which is not an accelerating sales profile.",
      "Price performance: 6m +158.1%, 12m +38.7%, 3m +48.8%, 1m +27.1%, RS percentile 98."
     ],
-    "catalysts": [
-     "Identified as a leader in the AI-powered predictive toxicology market (October 27, 2026).",
-     "HHS launched a project to speed up clinical trials (September 30, 2026 headline; relevance to Certara not explicitly stated).",
-     "Analyst price target raises: Keybanc Overweight to $12 (Oct 16), TD Cowen Buy to $11 (Oct 13), Barclays Equal-Weight to $12 (Nov 6).",
-     "Volume is elevated: 5-day volume is 1.4x normal, with $27M average daily traded value."
-    ],
+    "next_earnings_date": "",
     "risks": [
      "UBS downgraded Certara from Buy to Neutral with a $13 target on November 6, 2026, after a September 30 downgrade to Neutral.",
      "Barclays rates the stock Equal-Weight.",
@@ -1500,23 +1501,27 @@
      "Q3 2026 showed a net loss from continuing operations.",
      "The 10-day range is 12.7%, which is not a tight base, and the stock is already about 2.6% below its 52-week high after a 158% six-month run, leaving it extended."
     ],
-    "next_earnings_date": "",
     "setup_quality": 4,
     "summary": "CERT is a strong relative-strength leader (RS 98, +158% over six months) trading near its 52-week high with above-average volume. However, the fundamental picture is weaker than a textbook momentum setup: Q3 EPS was only in line, FY2026 EPS guidance was trimmed at the top end, revenue growth is only"
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "HAE",
-   "rs": 98,
-   "price": 122.71,
    "from_high": -0.037,
-   "r3m": 0.35143171806167395,
+   "price": 122.71,
    "r12m": 0.7107207583995536,
+   "r3m": 0.35143171806167395,
+   "rs": 98,
+   "symbol": "HAE",
    "name": "Haemonetics Corporation",
    "held": true,
    "card": {
     "business": "Haemonetics Corporation (NYSE: HAE) is a US-listed company whose products include the PerQseal Elite vascular closure system for large-bore arterial procedures, which received FDA approval on 2026-10-19.",
+    "catalysts": [
+     "FDA approval of PerQseal Elite vascular closure system (2026-10-19).",
+     "Guidance raise and earnings beat (2026-11-05).",
+     "Analyst price target raises: Barrington to $140 (2026-10-09) then $145 (2026-11-06); Mizuho Outperform at $140 (2026-10-09); BTIG Buy at $142 (2026-11-05); Citigroup Buy at $149 (2026-11-06); Jefferies initiated Buy at $150 (2026-11-13)."
+    ],
     "growth_facts": [
      "Q2 fiscal 2027 adjusted EPS of $1.35 beat the $1.29 estimate (reported 2026-11-05).",
      "Q2 fiscal 2027 sales of $357.759M beat the $345.003M estimate (reported 2026-11-05).",
@@ -1524,11 +1529,7 @@
      "Stock 12m return +71.1%, 6m +114.8%, 3m +35.1%, 1m +1.3%; RS percentile 98.",
      "Price 122.71 is 3.7% below the 52-week high and 134.9% above the 52-week low; trades above 50-day (+8.7%) and 200-day (+51.5%) averages."
     ],
-    "catalysts": [
-     "FDA approval of PerQseal Elite vascular closure system (2026-10-19).",
-     "Guidance raise and earnings beat (2026-11-05).",
-     "Analyst price target raises: Barrington to $140 (2026-10-09) then $145 (2026-11-06); Mizuho Outperform at $140 (2026-10-09); BTIG Buy at $142 (2026-11-05); Citigroup Buy at $149 (2026-11-06); Jefferies initiated Buy at $150 (2026-11-13)."
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Earnings already reported 2026-11-05, so the immediate gap risk from earnings is past; no next earnings date is stated in the material.",
      "Stock is only 1.3% higher over one month and has been trading in a roughly 116-128 band, so it is not clearly breaking out to new highs.",
@@ -1536,23 +1537,27 @@
      "Volume surge is modest (1.1x normal), not clearly heavy buying.",
      "Sales and earnings acceleration cannot be verified from the figures given (no prior-period comparison provided)."
     ],
-    "next_earnings_date": "",
     "setup_quality": 7,
     "summary": "Strong momentum leader (RS 98, 6m +114.8%) with a clear recent catalyst (FDA approval) and a beat-and-raise quarter, plus a wave of analyst target increases. Price sits 3.7% below its 52-week high within a tight range, but volume is only modestly above normal and industry group strength and next ear"
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "CRL",
-   "rs": 98,
-   "price": 340.81,
    "from_high": -0.0938,
-   "r3m": 0.2169612569184074,
+   "price": 340.81,
    "r12m": 0.9643227665706051,
+   "r3m": 0.2169612569184074,
+   "rs": 98,
+   "symbol": "CRL",
    "name": "Charles River Laboratories International, Inc.",
    "held": false,
    "card": {
     "business": "Charles River Laboratories International, Inc. (CRL) provides drug discovery and development support services and research models to pharmaceutical and biotech companies.",
+    "catalysts": [
+     "Frontage bioanalysis and DMPK acquisition expanding clinical drug testing scale",
+     "Analyst price target raises after Q3 results",
+     "Expanded Toxys collaboration on toxicity assessment"
+    ],
     "growth_facts": [
      "Price 340.81 with RS percentile 98; 1m +12.9%, 3m +21.7%, 6m +114.2%, 12m +96.4%",
      "9.4% below 52-week high and 127.3% above 52-week low",
@@ -1560,11 +1565,7 @@
      "Average daily traded value about $347M",
      "Q3 earnings reported around 2026-11-05 followed by multiple price target raises (Evercore $400, TD Cowen $388, Jefferies $385, UBS $387, Barclays $375, RBC $352)"
     ],
-    "catalysts": [
-     "Frontage bioanalysis and DMPK acquisition expanding clinical drug testing scale",
-     "Analyst price target raises after Q3 results",
-     "Expanded Toxys collaboration on toxicity assessment"
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Price has pulled back from 376.10 peak in the last 20 closes and is 9.4% below 52-week high, not a tight breakout",
      "10-day range of 13.6% is not tight",
@@ -1572,34 +1573,34 @@
      "Acquisition cost of $470M cash plus up to $75M additional payments adds balance sheet and integration risk",
      "No next earnings date stated in material; Q3 report already occurred on about 2026-11-05 so gap risk from an imminent report is not indicated"
     ],
-    "next_earnings_date": "",
     "setup_quality": 6,
     "summary": "CRL is a strong relative-strength leader with robust six-month gains and broad analyst target raises following Q3 results, plus an acquisition and collaboration news flow. However, the stock is consolidating about 9% below its high with a wide 10-day range and below-normal volume, so it is not a cle"
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "KNSA",
-   "rs": 98,
-   "price": 96.28,
    "from_high": -0.0251,
-   "r3m": 0.25446254071661234,
+   "price": 96.28,
    "r12m": 1.3731821543012077,
+   "r3m": 0.25446254071661234,
+   "rs": 98,
+   "symbol": "KNSA",
    "name": "Kiniksa Pharmaceuticals International, plc Class A Ordinary Shares",
    "held": false,
    "card": {
     "business": "Kiniksa Pharmaceuticals International, plc (NASDAQ:KNSA) is a pharmaceutical company; the provided material does not describe its products or markets beyond reported revenue.",
+    "catalysts": [
+     "Raised FY2026 sales guidance above prior range and above consensus estimate",
+     "Analyst price target increases from multiple brokers in late October 2026",
+     "Fireside chat at Jefferies Global Healthcare Conference in London on November 16, 2026"
+    ],
     "growth_facts": [
      "Q3 2026 revenue reported at $286.0 million with EPS of $0.56 (reported 2026-10-27)",
      "FY2026 sales guidance raised from $980M-$995M to $1.045B-$1.050B vs $996.102M estimate (2026-10-27)",
      "Relative strength percentile 98; 12-month price change +137.3%; 6-month +64.5%",
      "Price target raises: Wedbush to $102 (from $99), Wells Fargo to $110, Goldman Sachs to $101, JP Morgan to $122 (Oct 27-30, 2026)"
     ],
-    "catalysts": [
-     "Raised FY2026 sales guidance above prior range and above consensus estimate",
-     "Analyst price target increases from multiple brokers in late October 2026",
-     "Fireside chat at Jefferies Global Healthcare Conference in London on November 16, 2026"
-    ],
+    "next_earnings_date": "",
     "risks": [
      "Insider sales reported: about $14.33M (2026-11-06) and about $9.63M (2026-11-04)",
      "Stock is extended: 50-day average is 17.6% below price and 200-day average is 53.9% below price, and it rose 23.1% on Oct 27 earnings day",
@@ -1607,23 +1608,27 @@
      "Market value about $5.6 billion per headline; 5-day volume only 0.8x normal, showing no heavy buying volume now",
      "Earnings next report date is not stated in the material; the latest report was Oct 27, 2026, so no gap risk within days is evident from the data provided"
     ],
-    "next_earnings_date": "",
     "setup_quality": 6,
     "summary": "KNSA is a strong relative-strength leader (RS 98), trading 2.5% below its 52-week high at $96.28 after a sharp post-earnings gain on raised FY2026 sales guidance and multiple price target hikes. Offsetting this, insider sales of over $20M in early November, a recent volume contraction to 0.8x normal"
    },
    "card_date": "2026-11-13"
   },
   {
-   "symbol": "ANF",
-   "rs": 98,
-   "price": 150.49,
    "from_high": -0.1204,
-   "r3m": 0.3917506704892262,
+   "price": 150.49,
    "r12m": 1.1594202898550727,
+   "r3m": 0.3917506704892262,
+   "rs": 98,
+   "symbol": "ANF",
    "name": "Abercrombie & Fitch Co.",
    "held": false,
    "card": {
     "business": "Abercrombie & Fitch Co. (ANF), US apparel retailer with brands including Abercrombie & Fitch, Hollister, and activewear brand YPB, per the headlines provided.",
+    "catalysts": [
+     "Third-quarter 2026 results scheduled for November 24, 2026",
+     "CeeDee Lamb co-designed collection launched (2026-11-04)",
+     "YPB multi-season collaboration with Barry's Workout Studio (2026-09-24)"
+    ],
     "growth_facts": [
      "RS percentile 98",
      "6m price change +108.1%",
@@ -1631,11 +1636,7 @@
      "3m price change +39.2%",
      "1m price change +0.5%"
     ],
-    "catalysts": [
-     "Third-quarter 2026 results scheduled for November 24, 2026",
-     "CeeDee Lamb co-designed collection launched (2026-11-04)",
-     "YPB multi-season collaboration with Barry's Workout Studio (2026-09-24)"
-    ],
+    "next_earnings_date": "2026-11-24",
     "risks": [
      "Q3 earnings on 2026-11-24 are 11 days away, a gap risk the PM should weigh against a tight stop",
      "No stated earnings growth or sales acceleration figures in the material",
@@ -1643,7 +1644,6 @@
      "Volume in the latest 5 days is below normal (0.7x), not showing heavy buying",
      "Recent closes show choppy action, with a sharp drop from 171.09 to 157.59 within two sessions"
     ],
-    "next_earnings_date": "2026-11-24",
     "setup_quality": 5,
     "summary": "ANF is a high-RS leader with strong 6m and 12m gains, trading above both moving averages, and supported by recent analyst target raises. However, the price sits 12% below its high after a flat month, volume is light, and Q3 earnings are due November 24, 2026, close enough to create gap risk. No acce"
    },
@@ -1653,9 +1653,9 @@
  "series": [
   {
    "date": "2026-11-13",
-   "ai_before_costs": 998.38,
-   "ai_after_costs": 988.96,
-   "spy_after_costs": 997.43,
+   "ai_before_costs": 998.27,
+   "ai_after_costs": 988.85,
+   "spy_after_costs": 1001.25,
    "fees_cum": 8.3971,
    "api_cum": 1.0276,
    "s_qqq": 998.0,
@@ -1741,15 +1741,16 @@
    },
    "drivers": [
     {
+     "effect": "lower",
      "factor": "QQQ is 4.2% and SPY 1.0% below their 50-day averages after the Nasdaq correction, so the index ETFs carry weak trends",
      "input": "prices",
      "symbols": [
       "SPY",
       "QQQ"
-     ],
-     "effect": "lower"
+     ]
     },
     {
+     "effect": "lower",
      "factor": "Hot CPI (core +0.3% for three months, headline 4.1%) and Fed signals of a December hike pressure growth multiples, which argues for partial exposure only",
      "input": "economy",
      "symbols": [
@@ -1757,18 +1758,18 @@
       "QQQ",
       "HNGE",
       "APPN"
-     ],
-     "effect": "lower"
+     ]
     },
     {
+     "effect": "lower",
      "factor": "EFA has RS 47 with a negative 3-month return and no catalyst, so it is not a leader",
      "input": "screen",
      "symbols": [
       "EFA"
-     ],
-     "effect": "lower"
+     ]
     },
     {
+     "effect": "raise",
      "factor": "Top-rated cards (8/10 for HNGE, ANDG and APPN, 7/10 for HAE) combine a beat-and-raise with tight ranges near highs",
      "input": "analyst",
      "symbols": [
@@ -1776,10 +1777,10 @@
       "ANDG",
       "APPN",
       "HAE"
-     ],
-     "effect": "raise"
+     ]
     },
     {
+     "effect": "hold",
      "factor": "Biotech leaders are extended or loose (wide ranges, dilution, going-concern risk), and takeover-pinned names have capped upside",
      "input": "analyst",
      "symbols": [
@@ -1787,70 +1788,69 @@
       "MRNA",
       "SLN",
       "BRZE"
-     ],
-     "effect": "hold"
+     ]
     }
    ],
    "sources": [
     {
-     "url": "https://www.heygotrade.com/en/us-stock/kod/",
-     "title": "Kodiak Sciences Inc (KOD) Stock Price: Nov 6 Close $99.30"
+     "title": "Kodiak Sciences Inc (KOD) Stock Price: Nov 6 Close $99.30",
+     "url": "https://www.heygotrade.com/en/us-stock/kod/"
     },
     {
-     "url": "https://bioequitywatch.substack.com/p/kodiak-sciences-kod-when-the-hype",
-     "title": "Kodiak Sciences ($KOD): When the hype settles, what\u2019ll remain?"
+     "title": "Kodiak Sciences ($KOD): When the hype settles, what\u2019ll remain?",
+     "url": "https://bioequitywatch.substack.com/p/kodiak-sciences-kod-when-the-hype"
     },
     {
-     "url": "https://www.investing.com/news/company-news/kodiak-sciences-stock-hits-52week-high-at-10426-usd-93CH-5012629",
-     "title": "Kodiak Sciences stock hits 52-week high at 104.26 USD By Investing.com"
+     "title": "Kodiak Sciences stock hits 52-week high at 104.26 USD By Investing.com",
+     "url": "https://www.investing.com/news/company-news/kodiak-sciences-stock-hits-52week-high-at-10426-usd-93CH-5012629"
     },
     {
-     "url": "https://www.fool.com/quote/nasdaq/kod/",
-     "title": "Kodiak Sciences - KOD - Stock Price & News"
+     "title": "Kodiak Sciences - KOD - Stock Price & News",
+     "url": "https://www.fool.com/quote/nasdaq/kod/"
     },
     {
-     "url": "https://www.google.com/finance/beta/quote/REPL:NASDAQ?hl=en",
-     "title": "Replimune Group Inc (REPL) Stock Price & News - Google Finance"
+     "title": "Replimune Group Inc (REPL) Stock Price & News - Google Finance",
+     "url": "https://www.google.com/finance/beta/quote/REPL:NASDAQ?hl=en"
     },
     {
-     "url": "https://robinhood.com/us/en/stocks/KOD/",
-     "title": "Kodiak Sciences (KOD) \u2014 Buy and sell stocks commission-free on Robinhood"
+     "title": "Kodiak Sciences (KOD) \u2014 Buy and sell stocks commission-free on Robinhood",
+     "url": "https://robinhood.com/us/en/stocks/KOD/"
     },
     {
-     "url": "https://www.stocktitan.net/rankings/stock-gains-ytd/2026",
-     "title": "2026's Best Performing Stocks So Far, Updated Through November"
+     "title": "2026's Best Performing Stocks So Far, Updated Through November",
+     "url": "https://www.stocktitan.net/rankings/stock-gains-ytd/2026"
     },
     {
-     "url": "https://www.ad-hoc-news.de/boerse/news/corporate-news/kodiak-sciences-stock-q3-earnings-are-expected-november-12-2026/70395542",
-     "title": "Kodiak Sciences stock: Q3 earnings are expected November 12, 2026"
+     "title": "Kodiak Sciences stock: Q3 earnings are expected November 12, 2026",
+     "url": "https://www.ad-hoc-news.de/boerse/news/corporate-news/kodiak-sciences-stock-q3-earnings-are-expected-november-12-2026/70395542"
     },
     {
-     "url": "https://www.ad-hoc-news.de/boerse/news/corporate-news/kodiak-sciences-stock-trades-at-96-26-euros-in-late-session/70488600",
-     "title": "Kodiak Sciences stock trades at 96.26 euros in late session"
+     "title": "Kodiak Sciences stock trades at 96.26 euros in late session",
+     "url": "https://www.ad-hoc-news.de/boerse/news/corporate-news/kodiak-sciences-stock-trades-at-96-26-euros-in-late-session/70488600"
     },
     {
-     "url": "https://stockanalysis.com/stocks/mrna/",
-     "title": "Moderna (MRNA) Stock Price, Chart & News"
+     "title": "Moderna (MRNA) Stock Price, Chart & News",
+     "url": "https://stockanalysis.com/stocks/mrna/"
     },
     {
-     "url": "https://www.cnbc.com/quotes/MRNA",
-     "title": "MRNA: Moderna, Inc. - Stock Price, Quote and News - CNBC"
+     "title": "MRNA: Moderna, Inc. - Stock Price, Quote and News - CNBC",
+     "url": "https://www.cnbc.com/quotes/MRNA"
     },
     {
-     "url": "https://www.trefis.com/stock/mrna/articles/623751/what-is-behind-the-rise-in-moderna-stock/2026-11-07",
-     "title": "What Is Behind The Rise In Moderna Stock?"
+     "title": "What Is Behind The Rise In Moderna Stock?",
+     "url": "https://www.trefis.com/stock/mrna/articles/623751/what-is-behind-the-rise-in-moderna-stock/2026-11-07"
     },
     {
-     "url": "https://www.trefis.com/stock/mrna/articles/623007/what-is-behind-the-move-in-moderna-stock/2026-11-05",
-     "title": "What Is Behind The Move In Moderna Stock?"
+     "title": "What Is Behind The Move In Moderna Stock?",
+     "url": "https://www.trefis.com/stock/mrna/articles/623007/what-is-behind-the-move-in-moderna-stock/2026-11-05"
     },
     {
-     "url": "https://247wallst.com/investing/2026/11/06/moderna-climbs-5-as-surprise-profit-and-raised-outlook-beat-forecasts-pfizer-dips-biontech-edges-higher/",
-     "title": "Moderna Climbs 5% as Surprise Profit and Raised Outlook Beat Forecasts; Pfizer Dips, BioNTech Edges Higher - 24/7 Wall St."
+     "title": "Moderna Climbs 5% as Surprise Profit and Raised Outlook Beat Forecasts; Pfizer Dips, BioNTech Edges Higher - 24/7 Wall St.",
+     "url": "https://247wallst.com/investing/2026/11/06/moderna-climbs-5-as-surprise-profit-and-raised-outlook-beat-forecasts-pfizer-dips-biontech-edges-higher/"
     },
     {
-     "url": "https://www.tradingkey.com/news/market-movers/262303205-market-movers-mrna-20261112",
-     "title": "Moderna Inc Stock (MRNA) Moved Down by 5.50% on Nov 12: Drivers Behind the Movement"
+     "title": "Moderna Inc Stock (MRNA) Moved Down by 5.50% on Nov 12: Drivers Behind the Movement",
+     "url": "https://www.tradingkey.com/news/market-movers/262303205-market-movers-mrna-20261112"
     }
    ],
    "economy": "- US 10-year Treasury yield (%): 4.98 on 2026-11-10 (change: 1 month -0.21, 3 months +0.30)\n- US 2-year Treasury yield (%): 4.73 on 2026-11-10 (change: 1 month -0.09, 3 months +0.56)\n- 10-year minus 2-year yield spread (points): 0.24 on 2026-11-12 (change: 1 month -0.13, 3 months -0.27)\n- Fed funds rate (%): 3.88 on 2026-10-01 (change: 1 month +0.00, 3 months +0.25)\n- US inflation (CPI, 12 months to 2026-10): 4.1%\n- US unemployment rate (%): 4.10 on 2026-10-01 (change: 1 month +0.00, 3 months +0.00)\n- High-yield bond spread (%): 3.20 on 2026-11-12 (change: 1 month -0.05, 3 months +0.53)\n- VIX volatility index: 18.70 on 2026-11-12 (change: 1 month +1.83, 3 months +4.45)",
@@ -1870,9 +1870,9 @@
    },
    "stop_fills": [],
    "screen": {
+    "breadth": 0.54004329004329,
     "liquid": 2772,
-    "passing": 401,
-    "breadth": 0.54004329004329
+    "passing": 401
    },
    "cards_written": 43,
    "briefing": "- [2026-11-05] The Dow fell 1,800 points and the Nasdaq Composite declined 5.52% to close at 24,315.00. The S&P 500 dropped 4.36% to end at 7,353.73. The Nasdaq entered a correction on an \"AI tech wreck\" (CNBC) -> QQQ, SPY, tech leaders\n- [2026-11-06] For the week, the Nasdaq 100 down 4.98%, S&P 500 down 2.70%, Russell 2000 down 2.03% and Dow down 0.95% (Opening Bell Daily) -> SPY, QQQ, breadth\n- [2026-11-04] The Dow jumped more than 1,500 points to notch its best day since April 2025 after a decisive midterm win for Democrats (CNBC) -> broad market\n- [2026-11-11] Bounce: The Nasdaq Composite jumped 1.60% to end at 25,466.19, while the S&P 500 advanced 1.31% to 7,619.38. CNBC credited a CoreWeave spike (CNBC) -> QQQ, SPY, AI trade\n- [2026-11-10] October CPI: core CPI rose 0.3% in each of August, September and October, and headline CPI was up 0.4% on the month after a 0.6% rise in September (MLQ, CM Elite) -> rates, growth multiples\n- [2026-11-10] Before the CPI release, Waller said he was \"leaning toward\" a quarter-point December hike and that 50 bp \"should be considered\" if core CPI came in around 0.3% or higher (MLQ) -> rates, QQQ\n- [2026-11-12] Fed officials signal a December rate hike after October CPI beat forecasts. Traders are pricing a quarter-point move -> SPY, QQQ, EFA\n- [2026-11-10] The federal funds target range is 3.75% to 4.00% (CM Elite) -> rates\n- [2026-11-06] October payrolls rose 165,000 (BLS via Coinpaper) -> rates\n- [2026-11-18] Minutes of the October FOMC meeting come out. They could shed light on why policymakers decided against a hike. Nvidia also reports earnings that week (IG Week Ahead) -> QQQ, AI/semis\n- [2026-12-04 / 2026-12-09] The November jobs report is scheduled for Friday, December 4, five days before the FOMC decision (Market Daily) -> rates\n- [2026-11-12] Biotech is the leading group: TG Therapeutics, Kymera, Kodiak Sciences, Replimune, Xencor, Zymeworks and Septerna hit new one-year highs this week (MarketWise) -> KOD, REPL, XNCR, XBI\n- [2026-11-12] XBI traded at $152.34, down 2.54% intraday, after closing at $156.31 on Nov 11 (Gotrade) -> all biotech candidates\n- [2026-11-06] Moderna posted Q3 earnings per share of $0.38 and raised its 2026 outlook. The stock has climbed 762% year to date (24/7 Wall St.) -> MRNA\n- [2026-11-12] MRNA moved down by 5.50%. The move followed its Analyst Day and came amid investor concerns over cash burn tied to its oncology spending (TradingKey) -> MRNA\n- [2026-11-12] Kodiak's Q3 report showed just $88.7M in cash and cash equivalents, down from $209.9M at the end of 2025. It plans a multi-indication BLA filing by the end of 2026. Low cash means a stock offering is possible (Substack) -> KOD\n- [2026-10] Kodiak had earlier disclosed substantial doubt about the company's ability to continue as a going concern (Motley Fool) -> KOD\n- [2026-11-12] KOD traded at $108.72, near its highs (Robinhood) -> KOD\n- [2026-11-11] REPL closed at $21.78, down 6.44% (Google Finance) -> REPL\n- [YTD] Year-to-date gains: CareDx +328.72%, KOD +286%, XNCR +157% (StockAnalysis) -> CDNA, KOD, XNCR\n\nI used all 5 searches. I found nothing on SLN, ETON, XERS, HNGE or SYRE, and nothing on EFA-specific news (non-US markets).",
@@ -1880,31 +1880,20 @@
    "searches": 5,
    "samples": [
     {
-     "status": "ok",
-     "weights": {
-      "HNGE": 0.12,
-      "ANDG": 0.12,
-      "APPN": 0.11,
-      "HAE": 0.1
-     },
-     "stops": {
-      "HNGE": 112.0,
-      "ANDG": 61.5,
-      "APPN": 50.8,
-      "HAE": 115.0
-     },
-     "rationale": "The market is in a correction with QQQ below its 50-day average and a Fed hike looming, so I am swapping the index ETFs for about 45% in four leaders with tight bases near highs and holding the rest in cash. Each position is sized around 10-12% so costs stay small, and stops sit about 6-8% below the price, just under recent support. I will add exposure if the indexes recover their 50-day averages and these breakouts follow through.",
+     "cost_usd": 0.2681,
+     "detail": "",
      "drivers": [
       {
+       "effect": "lower",
        "factor": "QQQ is 4.2% and SPY 1.0% below their 50-day averages after the Nasdaq correction, so the index ETFs carry weak trends",
        "input": "prices",
        "symbols": [
         "SPY",
         "QQQ"
-       ],
-       "effect": "lower"
+       ]
       },
       {
+       "effect": "lower",
        "factor": "Hot CPI (core +0.3% for three months, headline 4.1%) and Fed signals of a December hike pressure growth multiples, which argues for partial exposure only",
        "input": "economy",
        "symbols": [
@@ -1912,18 +1901,18 @@
         "QQQ",
         "HNGE",
         "APPN"
-       ],
-       "effect": "lower"
+       ]
       },
       {
+       "effect": "lower",
        "factor": "EFA has RS 47 with a negative 3-month return and no catalyst, so it is not a leader",
        "input": "screen",
        "symbols": [
         "EFA"
-       ],
-       "effect": "lower"
+       ]
       },
       {
+       "effect": "raise",
        "factor": "Top-rated cards (8/10 for HNGE, ANDG and APPN, 7/10 for HAE) combine a beat-and-raise with tight ranges near highs",
        "input": "analyst",
        "symbols": [
@@ -1931,10 +1920,10 @@
         "ANDG",
         "APPN",
         "HAE"
-       ],
-       "effect": "raise"
+       ]
       },
       {
+       "effect": "hold",
        "factor": "Biotech leaders are extended or loose (wide ranges, dilution, going-concern risk), and takeover-pinned names have capped upside",
        "input": "analyst",
        "symbols": [
@@ -1942,57 +1931,57 @@
         "MRNA",
         "SLN",
         "BRZE"
-       ],
-       "effect": "hold"
+       ]
       }
      ],
-     "cost_usd": 0.2681,
-     "detail": ""
+     "rationale": "The market is in a correction with QQQ below its 50-day average and a Fed hike looming, so I am swapping the index ETFs for about 45% in four leaders with tight bases near highs and holding the rest in cash. Each position is sized around 10-12% so costs stay small, and stops sit about 6-8% below the price, just under recent support. I will add exposure if the indexes recover their 50-day averages and these breakouts follow through.",
+     "status": "ok",
+     "stops": {
+      "ANDG": 61.5,
+      "APPN": 50.8,
+      "HAE": 115.0,
+      "HNGE": 112.0
+     },
+     "weights": {
+      "ANDG": 0.12,
+      "APPN": 0.11,
+      "HAE": 0.1,
+      "HNGE": 0.12
+     }
     },
     {
-     "status": "ok",
-     "weights": {
-      "HNGE": 0.12,
-      "ANDG": 0.12,
-      "APPN": 0.12,
-      "HAE": 0.1
-     },
-     "stops": {
-      "HNGE": 113.0,
-      "ANDG": 61.0,
-      "APPN": 51.0,
-      "HAE": 115.0
-     },
-     "rationale": "The market is in a tech-led correction with a likely December Fed hike, so I am exiting the index ETFs and running about 46% exposure in four tight-base leaders. Each has a fresh beat-and-raise quarter. Stops sit 6-8% below on recent support, and cash is ready to add as the indexes reclaim their 50-day averages.",
+     "cost_usd": 0.0572,
+     "detail": "",
      "drivers": [
       {
+       "effect": "lower",
        "factor": "QQQ is 4.2% below its 50-day average after an AI tech correction, and SPY is below its 50-day, so a full index allocation does not fit the momentum method in a weak tape.",
        "input": "prices",
        "symbols": [
         "QQQ",
         "SPY"
-       ],
-       "effect": "lower"
+       ]
       },
       {
+       "effect": "lower",
        "factor": "Hot October CPI and Fed officials signaling a December hike pressure growth multiples, which argues for partial exposure and a large cash buffer.",
        "input": "economy",
        "symbols": [
         "SPY",
         "QQQ",
         "EFA"
-       ],
-       "effect": "lower"
+       ]
       },
       {
+       "effect": "lower",
        "factor": "EFA has an RS of 47, a negative 3-month return and no catalyst, so it is not a leader.",
        "input": "analyst",
        "symbols": [
         "EFA"
-       ],
-       "effect": "lower"
+       ]
       },
       {
+       "effect": "raise",
        "factor": "The highest-rated cards (8/10, 7/10) pair tight ranges near highs with beat-and-raise quarters and analyst target raises.",
        "input": "screen",
        "symbols": [
@@ -2000,10 +1989,10 @@
         "ANDG",
         "APPN",
         "HAE"
-       ],
-       "effect": "raise"
+       ]
       },
       {
+       "effect": "hold",
        "factor": "Biotech leaders are on event-driven spikes, have dilution risk and are wide-ranging, so I avoid them despite RS 100.",
        "input": "news",
        "symbols": [
@@ -2011,10 +2000,10 @@
         "MRNA",
         "REPL",
         "XNCR"
-       ],
-       "effect": "hold"
+       ]
       },
       {
+       "effect": "hold",
        "factor": "At $1,000, each order costs about $1 plus 0.10%, so I use four positions of 10-12% rather than many small ones.",
        "input": "costs",
        "symbols": [
@@ -2022,51 +2011,49 @@
         "ANDG",
         "APPN",
         "HAE"
-       ],
-       "effect": "hold"
+       ]
       }
      ],
-     "cost_usd": 0.0572,
-     "detail": ""
+     "rationale": "The market is in a tech-led correction with a likely December Fed hike, so I am exiting the index ETFs and running about 46% exposure in four tight-base leaders. Each has a fresh beat-and-raise quarter. Stops sit 6-8% below on recent support, and cash is ready to add as the indexes reclaim their 50-day averages.",
+     "status": "ok",
+     "stops": {
+      "ANDG": 61.0,
+      "APPN": 51.0,
+      "HAE": 115.0,
+      "HNGE": 113.0
+     },
+     "weights": {
+      "ANDG": 0.12,
+      "APPN": 0.12,
+      "HAE": 0.1,
+      "HNGE": 0.12
+     }
     },
     {
-     "status": "ok",
-     "weights": {
-      "HNGE": 0.12,
-      "ANDG": 0.12,
-      "APPN": 0.1,
-      "HAE": 0.1,
-      "HTFL": 0.1
-     },
-     "stops": {
-      "HNGE": 112.0,
-      "ANDG": 61.0,
-      "APPN": 50.9,
-      "HAE": 114.5,
-      "HTFL": 55.2
-     },
-     "rationale": "The market is in a Nasdaq correction with a Fed hike looming, so I am swapping the index ETFs for a 54% stake in five top-RS leaders with beat-and-raise quarters, each trading near its high. Every stop sits 7-8% below today's price, under recent support, and 46% stays in cash until indexes reclaim their 50-day averages. I will add to winners only if the market confirms.",
+     "cost_usd": 0.055,
+     "detail": "",
      "drivers": [
       {
+       "effect": "lower",
        "factor": "QQQ is 4.2% below its 50-day average after an AI tech wreck, a December Fed hike is being priced and CPI is hot, so exposure is held to about half the portfolio.",
        "input": "prices",
        "symbols": [
         "QQQ",
         "SPY"
-       ],
-       "effect": "lower"
+       ]
       },
       {
+       "effect": "lower",
        "factor": "The index ETFs have middling RS (47-58), sit below their 50-day averages and fit nothing in the momentum method.",
        "input": "screen",
        "symbols": [
         "SPY",
         "QQQ",
         "EFA"
-       ],
-       "effect": "lower"
+       ]
       },
       {
+       "effect": "raise",
        "factor": "The strongest cards (setup 7-8) pair beat-and-raise quarters with tight ranges near highs.",
        "input": "analyst",
        "symbols": [
@@ -2075,10 +2062,10 @@
         "APPN",
         "HAE",
         "HTFL"
-       ],
-       "effect": "raise"
+       ]
       },
       {
+       "effect": "hold",
        "factor": "Healthcare and biotech lead the market while tech lags, but cash-burning biotechs and takeover-pinned names are avoided.",
        "input": "news",
        "symbols": [
@@ -2087,10 +2074,10 @@
         "BRZE",
         "SGRY",
         "BMBL"
-       ],
-       "effect": "hold"
+       ]
       },
       {
+       "effect": "hold",
        "factor": "At $1,000, five positions of $100-120 keep round-trip costs near 2% per trade; more and smaller positions would cost more.",
        "input": "costs",
        "symbols": [
@@ -2099,19 +2086,32 @@
         "APPN",
         "HAE",
         "HTFL"
-       ],
-       "effect": "hold"
+       ]
       }
      ],
-     "cost_usd": 0.055,
-     "detail": ""
+     "rationale": "The market is in a Nasdaq correction with a Fed hike looming, so I am swapping the index ETFs for a 54% stake in five top-RS leaders with beat-and-raise quarters, each trading near its high. Every stop sits 7-8% below today's price, under recent support, and 46% stays in cash until indexes reclaim their 50-day averages. I will add to winners only if the market confirms.",
+     "status": "ok",
+     "stops": {
+      "ANDG": 61.0,
+      "APPN": 50.9,
+      "HAE": 114.5,
+      "HNGE": 112.0,
+      "HTFL": 55.2
+     },
+     "weights": {
+      "ANDG": 0.12,
+      "APPN": 0.1,
+      "HAE": 0.1,
+      "HNGE": 0.12,
+      "HTFL": 0.1
+     }
     }
    ],
    "cost_split": {
     "analyst": 0.028424,
+    "decisions": 0.380296,
     "research": 0.56892,
-    "searches": 0.05,
-    "decisions": 0.380296
+    "searches": 0.05
    }
   }
  ]
