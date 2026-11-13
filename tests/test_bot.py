@@ -10,8 +10,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from bot import accounting, brain, config, run
-from bot.brain import Decision
+from bot import accounting, brain, config, research, run, shadows, triggers
+from bot.brain import Briefing, Decision
 from bot.portfolio import PlannedOrder, clean_weights, fit_buys_to_cash, plan_orders
 
 
@@ -24,6 +24,7 @@ class FakeBroker:
         self.is_open = is_open
         self.orders: list[tuple] = []
         self.closed_all = False
+        self.closes_override = None
 
     def clock(self):
         return {"is_open": self.is_open, "timestamp": f"{self.day}T11:30:00-05:00"}
@@ -37,10 +38,15 @@ class FakeBroker:
     def cash(self):
         return self.cash_
 
+    def latest_prices(self, symbols):
+        return {s: self.prices[s] for s in symbols}
+
     def latest_price(self, symbol):
         return self.prices[symbol]
 
     def daily_closes(self, symbols, start_iso):
+        if self.closes_override:
+            return {s: list(self.closes_override.get(s, self.closes_override["SPY"])) for s in symbols}
         return {s: [(f"2026-{m:02d}-{d:02d}", 100.0 + m + d / 100) for m in range(1, 12) for d in range(1, 21)]
                 + [(self.day, 999.0)] for s in symbols}
 
@@ -72,15 +78,32 @@ class FakeBroker:
         return {"status": "filled", "filled_qty": self.orders[int(order_id) - 1][2] / 100.0, "filled_avg_price": 100.0}
 
 
-def ai_says(weights, cost=0.10, status="ok"):
-    calls = []
+class FakeAI:
+    """research() returns a fixed briefing; decide() returns the given answers in turn (the last repeats)."""
 
-    def decide(system, prompt):
-        calls.append((system, prompt))
-        return Decision(status, weights if status == "ok" else None, "test reason", cost)
+    def __init__(self, answers, research_cost=0.05, searches=2):
+        self.answers = answers
+        self.research_cost = research_cost
+        self.searches = searches
+        self.calls: list[tuple] = []
+        self.research_calls: list[tuple] = []
 
-    decide.calls = calls
-    return decide
+    def research(self, today, holdings):
+        self.research_calls.append((today, holdings))
+        return Briefing("ok", "Fed held rates on 2026-11-05.", self.research_cost, self.searches)
+
+    def decide(self, system, prompt):
+        self.calls.append((system, prompt))
+        return self.answers[min(len(self.calls), len(self.answers)) - 1]
+
+
+def ai_says(weights, cost=0.10, status="ok", review=1, research_cost=0.05):
+    answer = Decision(status, weights if status == "ok" else None, "test reason", cost, next_review_days=review)
+    return FakeAI([answer], research_cost=research_cost)
+
+
+def wake_cost(cost=0.10, research_cost=0.05, samples=config.ENSEMBLE_SIZE):
+    return research_cost + samples * cost
 
 
 class WeightsTest(unittest.TestCase):
@@ -157,7 +180,8 @@ class DailyRunTest(unittest.TestCase):
         broker = FakeBroker()
         state, _ = run.run_once(broker, ai_says({"SPY": 0.5, "GLD": 0.2}), None)
         self.assertEqual(state["days"][0]["decision_status"], "ok")
-        self.assertAlmostEqual(state["api_cost_usd"], 0.10)
+        self.assertAlmostEqual(state["api_cost_usd"], wake_cost())
+        self.assertEqual(len(state["days"][0]["samples"]), config.ENSEMBLE_SIZE)
         self.assertGreater(state["fees_real_usd"], 0)
         self.assertAlmostEqual(broker.positions()["SPY"], 50_000, delta=1)
         run.write_report(state, broker.equity(), 100.0, state["days"][-1]["date"])
@@ -201,11 +225,14 @@ class DailyRunTest(unittest.TestCase):
 
     def test_budget_stops_ai_calls(self):
         broker = FakeBroker()
-        state, _ = run.run_once(broker, ai_says({"SPY": 0.5}, cost=config.API_BUDGET_USD - 0.01), None)
+        state, _ = run.run_once(broker, ai_says({"SPY": 0.5}), None)
+        # Less left than research + three answers could cost at worst: no call at all, not even research.
+        state["api_cost_usd"] = config.API_BUDGET_USD - config.RESEARCH_WORST_CASE_USD
         broker.day = "2026-11-17"
         ai = ai_says({"SPY": 0.0})
         state, _ = run.run_once(broker, ai, state)
         self.assertEqual(ai.calls, [])
+        self.assertEqual(ai.research_calls, [])
         self.assertEqual(state["days"][-1]["decision_status"], "budget_reached")
         self.assertLessEqual(state["api_cost_usd"], config.API_BUDGET_USD)
 
@@ -222,15 +249,189 @@ class DailyRunTest(unittest.TestCase):
 
     def test_failed_ai_answer_holds_but_counts_cost(self):
         broker = FakeBroker()
-        state, _ = run.run_once(broker, ai_says(None, cost=0.05, status="refused"), None)
+        ai = ai_says(None, cost=0.05, status="refused")
+        state, _ = run.run_once(broker, ai, None)
         self.assertEqual(broker.orders, [])
-        self.assertAlmostEqual(state["api_cost_usd"], 0.05)
+        # After two refusals a majority is impossible: the third answer is not paid for.
+        self.assertEqual(len(ai.calls), 2)
+        self.assertAlmostEqual(state["api_cost_usd"], wake_cost(0.05, samples=2))
+        self.assertEqual(state["days"][-1]["decision_status"], "no_consensus")
 
     def test_cost_saved_before_trading(self):
         saved = []
-        run.run_once(FakeBroker(), ai_says({"SPY": 0.5}), None, save=lambda s: saved.append(s["api_cost_usd"]))
-        self.assertEqual(saved, [0.10])
+        broker = FakeBroker()
+        run.run_once(broker, ai_says({"SPY": 0.5}), None,
+                     save=lambda s: saved.append((round(s["api_cost_usd"], 6), len(broker.orders))))
+        self.assertAlmostEqual(saved[-1][0], wake_cost())
+        self.assertTrue(all(n_orders == 0 for _, n_orders in saved))
 
+    # --- v2: when Claude is woken up -------------------------------------------------
+    def _decided(self, review=1, weights=None):
+        broker = FakeBroker()
+        state, _ = run.run_once(broker, ai_says(weights or {"SPY": 0.5, "GLD": 0.2}, review=review), None)
+        return broker, state
+
+    def test_waits_until_its_review_date_at_no_cost(self):
+        broker, state = self._decided(review=3)  # Monday 16th -> review Thursday 19th
+        cost = state["api_cost_usd"]
+        for day, expected in (("2026-11-17", "waiting"), ("2026-11-18", "waiting"), ("2026-11-19", "ok")):
+            broker.day = day
+            ai = ai_says({"SPY": 0.5, "GLD": 0.2}, review=3)
+            state, _ = run.run_once(broker, ai, state)
+            self.assertEqual(state["days"][-1]["decision_status"], expected, day)
+            self.assertEqual(bool(ai.calls), expected == "ok")
+        self.assertAlmostEqual(state["api_cost_usd"], cost + wake_cost())
+        self.assertIn("scheduled review", state["days"][-1]["trigger"])
+        self.assertIn("SPY", state["days"][1]["prices"])  # waiting days still record prices
+
+    def test_big_spy_day_wakes_it_early(self):
+        broker, state = self._decided(review=10)
+        broker.day = "2026-11-18"
+        broker.closes_override = {"SPY": [("2026-11-13", 100.0), ("2026-11-16", 100.0), ("2026-11-17", 97.0)]}
+        state, _ = run.run_once(broker, ai_says({"SPY": 0.5}), state)
+        self.assertIn("SPY moved -3.0%", state["days"][-1]["trigger"])
+
+    def test_held_etf_jump_wakes_it_early(self):
+        broker, state = self._decided(review=10)
+        broker.day = "2026-11-18"
+        broker.closes_override = {
+            "SPY": [("2026-11-13", 100.0), ("2026-11-16", 100.5), ("2026-11-17", 101.0)],
+            "GLD": [("2026-11-13", 100.0), ("2026-11-16", 103.0), ("2026-11-17", 106.0)],
+        }
+        state, _ = run.run_once(broker, ai_says({"SPY": 0.5}), state)
+        self.assertIn("GLD moved +6.0%", state["days"][-1]["trigger"])
+
+    def test_portfolio_fall_wakes_it_early(self):
+        broker, state = self._decided(review=10)
+        broker.prices = {s: 90.0 for s in config.UNIVERSE}  # 70% invested: about -7%
+        broker.day = "2026-11-17"
+        state, _ = run.run_once(broker, ai_says({"SPY": 0.5}), state)
+        self.assertIn("portfolio fell", state["days"][-1]["trigger"])
+        self.assertFalse(state["halted"])
+
+    def test_unusable_answer_is_retried_next_day(self):
+        broker = FakeBroker()
+        state, _ = run.run_once(broker, ai_says(None, status="bad_output"), None)
+        broker.day = "2026-11-17"
+        state, _ = run.run_once(broker, ai_says({"SPY": 0.5}), state)
+        self.assertIn("retry", state["days"][-1]["trigger"])
+        self.assertEqual(state["days"][-1]["decision_status"], "ok")
+
+    def test_review_days_are_kept_between_1_and_10(self):
+        self.assertEqual(triggers.clamp_review_days(0), 1)
+        self.assertEqual(triggers.clamp_review_days(40), 10)
+        self.assertEqual(triggers.clamp_review_days("x"), 1)
+        self.assertEqual(triggers.add_trading_days("2026-11-13", 1), "2026-11-16")  # Friday -> Monday
+
+    # --- v2: inputs -----------------------------------------------------------------------
+    def test_prompt_has_news_economy_and_scorecard(self):
+        broker, state = self._decided(review=1)
+        broker.day = "2026-11-17"
+        broker.prices["SPY"] = 102.0
+        ai = ai_says({"SPY": 0.5, "GLD": 0.2})
+        run.run_once(broker, ai, state, economy=lambda today: "- VIX volatility index: 15.00 on 2026-11-16")
+        prompt = ai.calls[0][1]
+        self.assertIn("Fed held rates", prompt)
+        self.assertIn("VIX volatility index", prompt)
+        self.assertIn("Scorecard", prompt)
+        self.assertIn("2026-11-16 to 2026-11-17", prompt)
+        self.assertNotIn("999.00", prompt)
+
+    def test_all_samples_see_the_same_prompt(self):
+        broker = FakeBroker()
+        ai = ai_says({"SPY": 0.5})
+        run.run_once(broker, ai, None)
+        self.assertEqual(len(ai.calls), config.ENSEMBLE_SIZE)
+        self.assertEqual(len({c for c in ai.calls}), 1)
+        self.assertEqual(len(ai.research_calls), 1)
+
+    def test_shadows_on_dashboard(self):
+        broker, state = self._decided()
+        broker.day = "2026-11-17"
+        broker.prices["SPY"] = 110.0
+        state, _ = run.run_once(broker, ai_says({"SPY": 0.5, "GLD": 0.2}), state)
+        run.write_report(state, broker.equity(), 110.0, "2026-11-17")
+        data = json.loads(Path(config.DASHBOARD_DATA_PATH).read_text())
+        for name in shadows.SHADOWS:
+            self.assertIsNotNone(data["series"][-1][name])
+        self.assertAlmostEqual(sum(data["api_cost_split"].values()), state["api_cost_usd"], places=4)
+        self.assertIn("Simple rules", Path(config.REPORT_PATH).read_text())
+
+
+class EnsembleTest(unittest.TestCase):
+    def test_median_of_three(self):
+        a = Decision("ok", {"SPY": 0.5, "TLT": 0.3}, "a", 0.1, next_review_days=2)
+        b = Decision("ok", {"SPY": 0.4, "TLT": 0.1}, "b", 0.1, next_review_days=5)
+        c = Decision("ok", {"SPY": 0.0, "GLD": 0.5}, "c", 0.1, next_review_days=10)
+        d = brain.combine([a, b, c])
+        self.assertEqual(d.status, "ok")
+        self.assertAlmostEqual(d.weights["SPY"], 0.4)
+        self.assertAlmostEqual(d.weights["TLT"], 0.1)
+        self.assertAlmostEqual(d.weights["GLD"], 0.0)
+        self.assertEqual(d.next_review_days, 5)
+        self.assertEqual(d.rationale, "b")
+        self.assertAlmostEqual(d.cost_usd, 0.3)
+
+    def test_median_total_never_above_one(self):
+        d = brain.combine([Decision("ok", {"SPY": .5, "QQQ": .5}, "", 0), Decision("ok", {"SPY": .5, "GLD": .5}, "", 0),
+                           Decision("ok", {"QQQ": .5, "GLD": .5}, "", 0)])
+        self.assertLessEqual(sum(d.weights.values()), 1.0 + 1e-9)
+
+    def test_one_bad_answer_is_tolerated_two_are_not(self):
+        ok = Decision("ok", {"SPY": 0.5}, "r", 0.1)
+        bad = Decision("api_error", None, "", 0.0, "timeout")
+        self.assertEqual(brain.combine([ok, bad, ok]).status, "ok")
+        self.assertEqual(brain.combine([ok, bad, bad]).status, "no_consensus")
+        self.assertEqual(brain.combine([]).status, "no_consensus")
+
+    def test_search_fees_are_counted(self):
+        usage = {"input_tokens": 0, "output_tokens": 0, "server_tool_use": {"web_search_requests": 4}}
+        self.assertAlmostEqual(brain.cost_of_usage(usage), 4 * config.WEB_SEARCH_USD)
+
+    def test_schema_asks_for_review_days(self):
+        self.assertIn("next_review_days", brain.output_schema()["required"])
+
+
+class ShadowTest(unittest.TestCase):
+    def _day(self, date_, spy=100.0, trend=()):
+        prices = {s: 100.0 for s in config.UNIVERSE}
+        prices["SPY"] = spy
+        return {"date": date_, "prices": prices, "trend_up": list(trend)}
+
+    def test_60_40_by_hand(self):
+        days = [self._day("2026-11-16"), self._day("2026-11-17", spy=110.0)]
+        values = shadows.simulate(days, "s_6040")
+        # Buy IEF 400 (fee 1.40), then SPY 597.00 (fee 1.597) with the cash left: 0.003 cash remains.
+        self.assertAlmostEqual(values[0]["value"], 997.0, places=2)
+        self.assertAlmostEqual(values[1]["value"], 0.003 + 597.0 * 1.1 + 400.0, places=2)
+
+    def test_trend_rule_holds_cash_when_nothing_trends(self):
+        values = shadows.simulate([self._day("2026-11-16"), self._day("2026-11-17", spy=50.0)], "s_trend")
+        self.assertEqual([v["value"] for v in values], [1000.0, 1000.0])
+
+    def test_equal_weight_rebalances_only_in_a_new_month(self):
+        days = [self._day("2026-11-16"), self._day("2026-11-30", spy=200.0), self._day("2026-12-01", spy=200.0)]
+        values = shadows.simulate(days, "s_equal")
+        self.assertGreater(values[1]["value"] - values[2]["value"], 0)  # December rebalance costs fees
+
+
+class EconomyTest(unittest.TestCase):
+    def test_missing_values_skipped_and_inflation_yearly(self):
+        rows = research.parse_fred_csv("observation_date,CPIAUCSL\n2025-09-01,300\n2025-10-01,.\n2026-09-01,309\n")
+        self.assertEqual(rows, [("2025-09-01", 300.0), ("2026-09-01", 309.0)])
+        self.assertIn("3.0%", research.describe("CPIAUCSL", "", rows, "2026-11-13"))
+
+    def test_failing_series_is_left_out(self):
+        def fetch(url):
+            if "VIXCLS" in url:
+                raise OSError("down")
+            return "observation_date,X\n2026-08-01,4.00\n2026-10-14,4.10\n2026-11-12,4.25\n"
+        text = research.economy_snapshot("2026-11-13", fetch)
+        self.assertNotIn("VIX", text)
+        self.assertIn("US 10-year Treasury yield (%): 4.25 on 2026-11-12 (change: 1 month +0.15, 3 months +0.25)", text)
+
+
+class SafetyTest(unittest.TestCase):
     def test_no_live_trading_address_in_code(self):
         source = (Path(run.__file__).parent / "alpaca.py").read_text()
         self.assertNotIn("https://api.alpaca.markets", source)

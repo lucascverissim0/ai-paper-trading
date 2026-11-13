@@ -3,7 +3,9 @@ from __future__ import annotations
 
 from datetime import date
 
-from . import config
+from . import config, shadows, triggers
+
+SHADOW_LABELS = shadows.SHADOWS
 
 
 def fee_real(filled_notional_paper: float, paper_equity: float) -> float:
@@ -21,6 +23,45 @@ def max_drawdown(values: list[float]) -> float:
         if peak > 0:
             worst = max(worst, 1 - v / peak)
     return worst
+
+
+def shadow_gains(state: dict) -> dict[str, float]:
+    """Gain in dollars after fees of each simple-rule portfolio, at real capital."""
+    out = {}
+    for name, points in shadows.all_shadows(state["days"]).items():
+        if points:
+            out[name] = round(points[-1]["value"] - config.REAL_CAPITAL_USD, 2)
+    return out
+
+
+def scorecard(state: dict, equity_now: float, prices_now: dict, bench_now: float, today: str) -> list[dict]:
+    """For each valid decision, until the next one (or now): the AI's result, keeping the previous
+    holdings instead, and SPY. Before costs; the decision's own fees and API cost are listed apart."""
+    decisions = [d for d in state["days"] if d.get("decision_status") == "ok" and d.get("prices")]
+    rows = []
+    for i, d in enumerate(decisions):
+        if i + 1 < len(decisions):
+            nxt = decisions[i + 1]
+            end_date, end_equity, end_prices, end_bench = nxt["date"], nxt["equity"], nxt["prices"], nxt["bench_price"]
+        else:
+            end_date, end_equity, end_prices, end_bench = today, equity_now, prices_now, bench_now
+        if end_date <= d["date"] or not end_prices:
+            continue
+        before = d.get("weights_before") or {}
+        keep = sum(w * (end_prices[s] / d["prices"][s] - 1) for s, w in before.items()
+                   if w > 0 and s in end_prices and s in d["prices"])
+        fees = sum(o.get("fee_real_usd", 0.0) for o in d.get("orders", []))
+        rows.append({
+            "from": d["date"],
+            "to": end_date,
+            "ai": end_equity / d["equity"] - 1,
+            "keep": keep,
+            "spy": end_bench / d["bench_price"] - 1,
+            "cost_usd": round(fees + d.get("api_cost_usd", 0.0), 4),
+            "held": ", ".join(f"{k} {v * 100:.0f}%" for k, v in (d.get("weights") or {}).items() if v > 0) or "all cash",
+            "rationale": d.get("rationale", ""),
+        })
+    return rows
 
 
 def summarize(state: dict, equity_now: float, bench_now: float, today: str) -> dict:
@@ -53,6 +94,8 @@ def summarize(state: dict, equity_now: float, bench_now: float, today: str) -> d
         "edge_usd": strat_net - bench_net,
         "strat_drawdown": max_drawdown(equity_series),
         "bench_drawdown": max_drawdown(bench_series),
+        "shadows": shadow_gains(state),
+        "next_review": triggers.next_review_date(state),
     }
 
 
@@ -76,6 +119,8 @@ def dashboard_payload(state: dict, equity_now: float, bench_now: float, today: s
         fees = sum(o.get("fee_real_usd", 0.0) for o in d.get("orders", []))
         prev = day_costs.get(d["date"], (0.0, 0.0))
         day_costs[d["date"]] = (prev[0] + fees, prev[1] + d.get("api_cost_usd", 0.0))
+    shadow_values = {name: {p["date"]: p["value"] for p in pts}
+                     for name, pts in shadows.all_shadows(state["days"]).items()}
     for day, equity, bench in points:
         fees, api = day_costs.pop(day, (0.0, 0.0))
         fees_cum += fees
@@ -88,6 +133,7 @@ def dashboard_payload(state: dict, equity_now: float, bench_now: float, today: s
             "spy_after_costs": round(real * bench / state["bench_start_price"] - bench_fees, 2),
             "fees_cum": round(fees_cum, 4),
             "api_cum": round(api_cum, 4),
+            **{name: values.get(day) for name, values in shadow_values.items()},
         })
 
     trades, log = [], []
@@ -108,9 +154,20 @@ def dashboard_payload(state: dict, equity_now: float, bench_now: float, today: s
             "api_cost_usd": round(d.get("api_cost_usd", 0.0), 4),
             "weights": d.get("weights"),
             "rationale": d.get("rationale", ""),
+            "trigger": d.get("trigger", ""),
+            "next_review_days": d.get("next_review_days"),
+            "briefing": d.get("briefing", ""),
+            "briefing_status": d.get("briefing_status", ""),
+            "searches": d.get("searches", 0),
+            "samples": d.get("samples", []),
+            "cost_split": d.get("cost_split", {}),
         })
 
     last = next((d for d in reversed(state["days"]) if d.get("decision_status") == "ok"), None)
+    split = {"research": 0.0, "searches": 0.0, "decisions": 0.0}
+    for d in state["days"]:
+        for k, v in d.get("cost_split", {}).items():
+            split[k] = split.get(k, 0.0) + v
     return {
         "updated_at": updated_at,
         "status": "stopped" if state.get("halted") else "running",
@@ -126,6 +183,8 @@ def dashboard_payload(state: dict, equity_now: float, bench_now: float, today: s
             "universe": config.UNIVERSE_DESCRIPTIONS,
         },
         "summary": summarize(state, equity_now, bench_now, today),
+        "shadow_labels": SHADOW_LABELS,
+        "api_cost_split": {k: round(v, 4) for k, v in split.items()},
         "holdings": last["weights"] if last else {},
         "series": series,
         "trades": trades[::-1],
@@ -171,6 +230,12 @@ def render_report(s: dict, state: dict) -> str:
         "",
         "Under 12 months, a result either way can be luck. Dividends are left out on both sides.",
     ]
+    if s["shadows"]:
+        lines += ["", "Simple rules on the same days, prices and fees (no AI cost):", "",
+                  "| Rule | Gain after fees |", "|---|---|"]
+        lines += [f"| {SHADOW_LABELS[k]} | {usd(v)} ({pct(v / real)}) |" for k, v in s["shadows"].items()]
+    if s["next_review"]:
+        lines += ["", f"Next review chosen by the AI: {s['next_review']} (earlier if markets jolt)."]
     if last:
         held = ", ".join(f"{k} {v * 100:.0f}%" for k, v in last["weights"].items() if v > 0) or "all cash"
         lines += ["", f"Last decision ({last['date']}): {held}.", "", f"Reason given: {last['rationale']}"]

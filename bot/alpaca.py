@@ -107,9 +107,12 @@ class AlpacaPaper:
         return order
 
     # -- Market data --------------------------------------------------------------
+    def latest_prices(self, symbols: list[str]) -> dict[str, float]:
+        data = self._data("/v2/stocks/trades/latest", {"symbols": ",".join(symbols), "feed": FEED})
+        return {s: float(data["trades"][s]["p"]) for s in symbols}
+
     def latest_price(self, symbol: str) -> float:
-        data = self._data("/v2/stocks/trades/latest", {"symbols": symbol, "feed": FEED})
-        return float(data["trades"][symbol]["p"])
+        return self.latest_prices([symbol])[symbol]
 
     def daily_closes(self, symbols: list[str], start_iso: str) -> dict[str, list[tuple[str, float]]]:
         """Symbol -> [(YYYY-MM-DD, close)], oldest first, adjusted for splits and dividends."""

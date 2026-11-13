@@ -33,8 +33,36 @@ MAX_DRAWDOWN = 0.15        # sell everything and stop if value falls 15% from it
 
 # --- Claude API ---------------------------------------------------------------
 CLAUDE_MODEL = os.environ.get("CLAUDE_MODEL") or "claude-opus-5-5"
-CLAUDE_EFFORT = os.environ.get("CLAUDE_EFFORT") or "medium"
+CLAUDE_EFFORT = os.environ.get("CLAUDE_EFFORT") or "high"      # for decisions
+RESEARCH_EFFORT = os.environ.get("RESEARCH_EFFORT") or "medium"
 MAX_OUTPUT_TOKENS = 16000
+RESEARCH_MAX_TOKENS = 8000
+ENSEMBLE_SIZE = 3            # independent decisions, combined by median weight
+ENSEMBLE_MIN_VALID = 2       # fewer usable answers than this: hold
+NEWS_SEARCH_MAX_USES = 5     # web searches per research briefing
+WEB_SEARCH_USD = 0.01        # $10 per 1,000 searches
+RESEARCH_MAX_CONTINUATIONS = 2
+# Upper bound used before spending: research can read many pages, so it is priced generously.
+RESEARCH_WORST_CASE_USD = 1.50
+
+# --- When Claude is woken up (no API cost on other days) ----------------------
+MIN_REVIEW_DAYS = 1
+MAX_REVIEW_DAYS = 10         # trading days; Claude picks within this range
+JOLT_SPY_DAY = 0.02          # SPY moved more than 2% on the last completed day
+JOLT_HELD_ETF = 0.05         # a held ETF moved more than 5% since the last decision
+JOLT_PORTFOLIO = 0.05        # portfolio fell more than 5% since the last decision
+
+# --- Free economic data (FRED public CSV downloads) -------------------------------
+FRED_SERIES = {
+    "DGS10": "US 10-year Treasury yield (%)",
+    "DGS2": "US 2-year Treasury yield (%)",
+    "T10Y2Y": "10-year minus 2-year yield spread (points)",
+    "FEDFUNDS": "Fed funds rate (%)",
+    "CPIAUCSL": "US consumer price index",
+    "UNRATE": "US unemployment rate (%)",
+    "BAMLH0A0HYM2": "High-yield bond spread (%)",
+    "VIXCLS": "VIX volatility index",
+}
 # (input, output) US dollars per million tokens, first-party API prices.
 MODEL_PRICES_PER_MTOK = {
     "claude-opus-5-5": (4.00, 20.00),
