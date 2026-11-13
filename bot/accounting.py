@@ -1,6 +1,8 @@
 """Profitability after ALL costs, restated at the real capital Lucas would invest."""
 from __future__ import annotations
 
+import math
+import statistics
 from datetime import date
 
 from . import config, shadows, triggers
@@ -23,6 +25,70 @@ def max_drawdown(values: list[float]) -> float:
         if peak > 0:
             worst = max(worst, 1 - v / peak)
     return worst
+
+
+def daily_returns(values: list[float]) -> list[float]:
+    return [values[i] / values[i - 1] - 1 for i in range(1, len(values)) if values[i - 1]]
+
+
+def risk_metrics(values: list[float], capital: float, rf_annual: float, bench: list[float] | None = None) -> dict:
+    """Return and risk figures from one value per trading day, starting from `capital`.
+
+    Sharpe and Sortino use the excess return over the risk-free rate, annualised with 252 trading days.
+    """
+    vals = [capital] + list(values)
+    r = daily_returns(vals)
+    n = len(r)
+    rf = rf_annual / 252
+    out = {
+        "days": n,
+        "total_return": vals[-1] / capital - 1,
+        "annual_return": None,
+        "volatility": None,
+        "sharpe": None,
+        "sortino": None,
+        "max_drawdown": max_drawdown(vals),
+        "best_day": max(r) if r else None,
+        "worst_day": min(r) if r else None,
+        "up_days": sum(1 for x in r if x > 0) / n if n else None,
+        "beta": None,
+        "correlation": None,
+    }
+    if n >= config.MIN_DAYS_FOR_ANNUAL:
+        out["annual_return"] = (vals[-1] / capital) ** (252 / n) - 1
+    if n < 2:
+        return out
+    sd = statistics.stdev(r)
+    out["volatility"] = sd * math.sqrt(252)
+    if n >= config.MIN_DAYS_FOR_RATIOS and sd > 0:
+        excess = statistics.mean(r) - rf
+        out["sharpe"] = excess / sd * math.sqrt(252)
+        downside = math.sqrt(statistics.mean(min(0.0, x - rf) ** 2 for x in r))
+        out["sortino"] = excess / downside * math.sqrt(252) if downside > 0 else None
+    if bench is not None:
+        b = daily_returns([capital] + list(bench))
+        if len(b) == n and n >= config.MIN_DAYS_FOR_RATIOS:
+            mb, mr = statistics.mean(b), statistics.mean(r)
+            cov = sum((x - mr) * (y - mb) for x, y in zip(r, b)) / (n - 1)
+            var_b = statistics.variance(b)
+            if var_b > 0:
+                out["beta"] = cov / var_b
+                out["correlation"] = cov / (sd * math.sqrt(var_b)) if sd > 0 else None
+    return out
+
+
+def all_metrics(series: list[dict], capital: float, rf_annual: float) -> dict:
+    """Metrics for the AI and every comparison line of the dashboard series (same days for all)."""
+    spy = [p["spy_after_costs"] for p in series]
+    out = {}
+    for key in ["ai_after_costs", "ai_before_costs", "spy_after_costs", *shadows.SHADOWS]:
+        values = [p.get(key) for p in series]
+        if not values or any(v is None for v in values):
+            values = [v for v in values if v is not None]
+            out[key] = risk_metrics(values, capital, rf_annual) if values else None
+        else:
+            out[key] = risk_metrics(values, capital, rf_annual, None if key == "spy_after_costs" else spy)
+    return out
 
 
 def shadow_gains(state: dict) -> dict[str, float]:
@@ -154,6 +220,11 @@ def dashboard_payload(state: dict, equity_now: float, bench_now: float, today: s
             "api_cost_usd": round(d.get("api_cost_usd", 0.0), 4),
             "weights": d.get("weights"),
             "rationale": d.get("rationale", ""),
+            "weights_before": d.get("weights_before"),
+            "drivers": d.get("drivers", []),
+            "sources": d.get("sources", []),
+            "economy": d.get("economy", ""),
+            "equity_real_usd": round(real * d["equity"] / state["start_equity"], 2),
             "trigger": d.get("trigger", ""),
             "next_review_days": d.get("next_review_days"),
             "briefing": d.get("briefing", ""),
@@ -184,6 +255,10 @@ def dashboard_payload(state: dict, equity_now: float, bench_now: float, today: s
         },
         "summary": summarize(state, equity_now, bench_now, today),
         "shadow_labels": SHADOW_LABELS,
+        "risk_free_rate": state.get("risk_free_rate"),
+        "metrics": all_metrics(series, real, state.get("risk_free_rate") or 0.0),
+        "scorecard": [{**row, "added": row["ai"] - row["keep"]} for row in scorecard(
+            state, equity_now, (state["days"][-1].get("prices") if state["days"] else None) or {}, bench_now, today)],
         "api_cost_split": {k: round(v, 4) for k, v in split.items()},
         "holdings": last["weights"] if last else {},
         "series": series,

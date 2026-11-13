@@ -37,6 +37,14 @@ jobs:
           ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
         run: python -m bot.run
 
+      - name: Refresh the live view (positions and trades just placed)
+        if: always()
+        continue-on-error: true
+        env:
+          ALPACA_KEY_ID: ${{ secrets.ALPACA_KEY_ID }}
+          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+        run: python -m bot.live
+
       - name: Save the ledger and report
         if: always()
         run: |
@@ -47,5 +55,10 @@ jobs:
           git add docs/data 2>/dev/null || true
           if ! git diff --cached --quiet; then
             git commit -m "Daily run $(date -u +%F)"
-            git push
+            # The live refresh may push at the same moment: replay on top of it and retry.
+            for i in 1 2 3 4 5; do
+              git pull -q --rebase -X theirs && git push -q && exit 0
+              sleep $((i * 5))
+            done
+            exit 1
           fi

@@ -87,9 +87,21 @@ GitHub emails you if a run fails. GitHub may pause scheduled runs in a project w
 
 ## Reading the results
 
-Live dashboard: https://lucascverissim0.github.io/ai-paper-trading/ (value of $1,000 against SPY and the
-simple rules, trades, costs, holdings, why Claude was woken up, the news it read, its three answers
-and its reasons). It updates after each daily run.
+Live dashboard: https://lucascverissim0.github.io/ai-paper-trading/
+
+- **Overview:** value of $1,000 against SPY and the simple rules, fall from the peak, costs, holdings.
+- **Positions & trades:** open positions with their P&L and today's move, today's value curve, every
+  trade with its price, fee, realised P&L and the reason of that day's decision.
+- **Performance:** return, volatility, Sharpe and Sortino ratios (against the 3-month Treasury bill
+  rate), worst fall, best and worst day, beta and correlation to SPY, for the AI and every comparison;
+  and, for each decision, whether it did better than keeping the previous holdings.
+- **News & decisions:** for each decision, what changed, the news Claude read with its sources, the
+  economic data, the facts that drove it (news, economy, prices, portfolio or costs, and which ETFs it
+  raised or lowered), and its three answers. Plus the latest free headlines on the 8 ETFs.
+
+Decision data updates after the daily run; live positions, P&L and headlines about every 15 minutes
+while the US market is open (a separate free workflow, `live-refresh`, that reads the account and
+never trades). GitHub's timer can run a few minutes late.
 
 Or open `report.md` in the repository. The line that matters: **"the AI is AHEAD of / BEHIND
 buy-and-hold by $X after all costs"**.

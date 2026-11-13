@@ -78,6 +78,35 @@ class AlpacaPaper:
         """Symbol -> market value in dollars (long positions only are ever opened)."""
         return {p["symbol"]: float(p["market_value"]) for p in self._trade("GET", "/v2/positions")}
 
+    # -- Read-only views for the dashboard ---------------------------------------
+    def account(self) -> dict:
+        return self._trade("GET", "/v2/account")
+
+    def positions_detail(self) -> list[dict]:
+        return self._trade("GET", "/v2/positions")
+
+    def filled_orders(self, after_iso: str) -> list[dict]:
+        """Closed orders submitted after `after_iso`, oldest first (callers keep those with a fill)."""
+        out: dict[str, dict] = {}
+        after = after_iso
+        for _ in range(20):  # 500 per page; far more than this test will ever place
+            page = self._trade("GET", "/v2/orders", params={
+                "status": "closed", "after": after, "direction": "asc", "limit": 500})
+            for o in page:
+                out[o["id"]] = o
+            if len(page) < 500:
+                break
+            after = page[-1]["submitted_at"]
+        return sorted(out.values(), key=lambda o: o.get("submitted_at") or "")
+
+    def portfolio_history(self, period: str = "1D", timeframe: str = "15Min") -> dict:
+        return self._trade("GET", "/v2/account/portfolio/history", params={"period": period, "timeframe": timeframe})
+
+    def news(self, symbols: list[str], limit: int = 50) -> list[dict]:
+        """Latest headlines tagged with these symbols (free Alpaca news feed), newest first."""
+        data = self._data("/v1beta1/news", {"symbols": ",".join(symbols), "limit": limit, "sort": "desc"})
+        return data.get("news") or []
+
     # -- Orders ---------------------------------------------------------------------
     def cancel_open_orders(self) -> None:
         self._trade("DELETE", "/v2/orders")

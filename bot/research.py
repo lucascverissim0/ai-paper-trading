@@ -64,3 +64,13 @@ def economy_snapshot(today: str, fetch: Callable[[str], str] = fetch_text) -> st
         if line:
             lines.append(line)
     return "\n".join(lines)
+
+
+def latest_value(series: str, today: str, fetch: Callable[[str], str] = fetch_text) -> Optional[float]:
+    """Most recent value of one FRED series, or None if it cannot be read."""
+    start = (date.fromisoformat(today) - timedelta(days=30)).isoformat()
+    try:
+        rows = parse_fred_csv(fetch(FRED_URL.format(series=series, start=start)))
+    except Exception:
+        return None
+    return rows[-1][1] if rows else None

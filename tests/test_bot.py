@@ -10,7 +10,11 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from bot import accounting, brain, config, research, run, shadows, triggers
+import math
+import statistics
+from types import SimpleNamespace
+
+from bot import accounting, brain, config, live, research, run, shadows, triggers
 from bot.brain import Briefing, Decision
 from bot.portfolio import PlannedOrder, clean_weights, fit_buys_to_cash, plan_orders
 
@@ -429,6 +433,192 @@ class EconomyTest(unittest.TestCase):
         text = research.economy_snapshot("2026-11-13", fetch)
         self.assertNotIn("VIX", text)
         self.assertIn("US 10-year Treasury yield (%): 4.25 on 2026-11-12 (change: 1 month +0.15, 3 months +0.25)", text)
+
+
+class LiveBroker(FakeBroker):
+    """Adds the read-only views the live dashboard uses."""
+
+    def __init__(self, **kw):
+        super().__init__(**kw)
+        self.filled = []
+        self.fail_news = False
+        self.last_equity = None
+
+    def account(self):
+        eq = self.equity()
+        return {"equity": str(eq), "last_equity": str(self.last_equity or eq), "cash": str(self.cash_)}
+
+    def positions_detail(self):
+        return [{"symbol": s, "qty": str(q), "avg_entry_price": "100", "current_price": str(self.prices[s]),
+                 "market_value": str(q * self.prices[s]), "unrealized_pl": str(q * (self.prices[s] - 100)),
+                 "unrealized_plpc": str(self.prices[s] / 100 - 1), "unrealized_intraday_pl": "0", "change_today": "0"}
+                for s, q in self.shares.items() if q]
+
+    def filled_orders(self, after_iso):
+        return self.filled
+
+    def portfolio_history(self):
+        return {"timestamp": [1794580200, 1794581100, 1794582000], "equity": [100000.0, 100500.0, None]}
+
+    def news(self, symbols, limit):
+        if self.fail_news:
+            raise OSError("down")
+        return [{"headline": "Fed holds", "url": "javascript:alert(1)", "symbols": ["SPY", "AAPL"],
+                 "created_at": "2026-11-16T15:00:00Z", "source": "benzinga", "summary": "x"}]
+
+
+def order(oid, symbol, side, qty, price, when):
+    return {"id": oid, "symbol": symbol, "side": side, "filled_qty": str(qty), "filled_avg_price": str(price),
+            "filled_at": when, "submitted_at": when}
+
+
+class LiveTest(unittest.TestCase):
+    def _state(self):
+        return {"start_date": "2026-11-16", "start_equity": 100_000.0, "days": [
+            {"date": "2026-11-16", "equity": 100_000.0, "rationale": "first",
+             "orders": [{"symbol": "SPY", "side": "buy", "fee_real_usd": 1.1, "order_id": "a"}]},
+            {"date": "2026-11-17", "equity": 100_000.0, "rationale": "second",
+             "orders": [{"symbol": "SPY", "side": "buy", "fee_real_usd": 1.2}]},
+            {"date": "2026-11-18", "equity": 100_000.0, "rationale": "third", "orders": []},
+        ]}
+
+    def test_realised_pnl_against_average_price(self):
+        orders = [
+            order("old", "SPY", "buy", 5, 90, "2026-11-13T15:00:00Z"),        # before the test: ignored
+            order("a", "SPY", "buy", 100, 100, "2026-11-16T15:00:00Z"),
+            order("b", "SPY", "buy", 100, 110, "2026-11-17T15:00:00Z"),
+            order("c", "SPY", "sell", 50, 120, "2026-11-18T15:00:00Z"),
+            order("d", "GLD", "buy", 0, 0, "2026-11-18T15:00:00Z"),           # nothing filled: ignored
+        ]
+        rows, stats = live.trades_from_orders(orders, self._state())
+        self.assertEqual([r["side"] for r in rows], ["buy", "buy", "sell"])
+        self.assertEqual([r["fee_real_usd"] for r in rows[:2]], [1.1, 1.2])   # by order id, then by day
+        self.assertAlmostEqual(rows[2]["fee_real_usd"], accounting.fee_real(6000, 100_000), places=4)
+        self.assertAlmostEqual(rows[2]["realized_real_usd"], 50 * (120 - 105) * 0.01)  # $1,000 / $100,000
+        self.assertAlmostEqual(rows[2]["realized_pct"], 120 / 105 - 1)
+        self.assertAlmostEqual(rows[0]["amount_real_usd"], 100.0)
+        self.assertEqual(rows[2]["reason"], "third")
+        self.assertEqual((stats["trades"], stats["closed_sells"], stats["winning_sells"]), (3, 1, 1))
+
+    def test_build_and_refresh(self):
+        broker = LiveBroker()
+        state, _ = run.run_once(broker, ai_says({"SPY": 0.5, "GLD": 0.2}), None)
+        broker.prices["SPY"] = 110.0
+        broker.last_equity = 100_000.0
+        broker.filled = [order("1", "SPY", "buy", 500, 100, "2026-11-16T15:00:00Z")]
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "live.json"
+            self.assertIn("updated", live.refresh(broker, state, path, "2026-11-16T15:30:00Z"))
+            data = json.loads(path.read_text())
+            spy = next(p for p in data["positions"] if p["symbol"] == "SPY")
+            self.assertAlmostEqual(spy["pl_real_usd"], 500 * 10 * 0.01)
+            self.assertAlmostEqual(spy["weight"], 55_000 / 105_000)
+            self.assertAlmostEqual(data["account"]["today_real_usd"], 50.0)
+            self.assertEqual(data["headlines"][0]["url"], "")              # unsafe link removed
+            self.assertEqual(data["headlines"][0]["symbols"], ["SPY"])
+            self.assertEqual(len(data["intraday"]), 2)                     # empty point skipped
+            self.assertEqual(live.refresh(broker, state, path, "2026-11-16T15:45:00Z"), "No change.")
+            broker.fail_news = True
+            broker.prices["SPY"] = 111.0
+            self.assertIn("headlines unavailable", live.refresh(broker, state, path, "2026-11-16T16:00:00Z"))
+            self.assertIn("positions", json.loads(path.read_text()))
+            broker.is_open = False
+            live.refresh(broker, state, path, "2026-11-16T21:10:00Z")
+            self.assertFalse(json.loads(path.read_text())["market_open"])
+            self.assertIn("already saved", live.refresh(broker, state, path, "2026-11-16T21:25:00Z"))
+
+    def test_nothing_before_the_test_starts(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "live.json"
+            self.assertIn("not started", live.refresh(LiveBroker(), None, path, "2026-11-16T15:30:00Z"))
+            self.assertFalse(path.exists())
+
+    def test_orders_keep_their_id(self):
+        broker = FakeBroker()
+        state, _ = run.run_once(broker, ai_says({"SPY": 0.5}), None)
+        self.assertEqual(state["days"][0]["orders"][0]["order_id"], "1")
+
+
+class MetricsTest(unittest.TestCase):
+    def _values(self, returns, start=1000.0):
+        out, v = [], start
+        for r in returns:
+            v *= 1 + r
+            out.append(v)
+        return out
+
+    def test_sharpe_and_sortino_by_hand(self):
+        r = [0.02, -0.01, 0.02, -0.01, 0.02, -0.01]
+        m = accounting.risk_metrics(self._values(r), 1000.0, 0.0504)
+        rf = 0.0504 / 252
+        sd = statistics.stdev(r)
+        self.assertAlmostEqual(m["sharpe"], (statistics.mean(r) - rf) / sd * math.sqrt(252))
+        downside = math.sqrt(sum(min(0, x - rf) ** 2 for x in r) / len(r))
+        self.assertAlmostEqual(m["sortino"], (statistics.mean(r) - rf) / downside * math.sqrt(252))
+        self.assertAlmostEqual(m["volatility"], sd * math.sqrt(252))
+        self.assertAlmostEqual(m["up_days"], 0.5)
+        self.assertAlmostEqual(m["worst_day"], -0.01)
+        self.assertIsNone(m["annual_return"])                   # fewer than 20 days
+
+    def test_too_few_days_shows_nothing_misleading(self):
+        m = accounting.risk_metrics([1010.0, 1005.0], 1000.0, 0.04)
+        self.assertIsNone(m["sharpe"])
+        self.assertAlmostEqual(m["total_return"], 0.005)
+        self.assertAlmostEqual(m["max_drawdown"], 1 - 1005 / 1010)
+
+    def test_beta_of_double_bet_is_two(self):
+        b = [0.01, -0.02, 0.015, 0.005, -0.01, 0.02]
+        m = accounting.risk_metrics(self._values([2 * x for x in b]), 1000.0, 0.0, self._values(b))
+        self.assertAlmostEqual(m["beta"], 2.0)
+        self.assertAlmostEqual(m["correlation"], 1.0)
+
+    def test_dashboard_has_metrics_scorecard_and_drivers(self):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        config.REPORT_PATH = os.path.join(tmp.name, "report.md")
+        config.DASHBOARD_DATA_PATH = os.path.join(tmp.name, "data", "dashboard.json")
+        drivers = [{"factor": "Fed hike odds up", "input": "news", "etfs": ["TLT"], "effect": "lower"}]
+        answer = Decision("ok", {"SPY": 0.5}, "why", 0.1, next_review_days=1, drivers=drivers)
+        broker = FakeBroker()
+        state, _ = run.run_once(broker, FakeAI([answer]), None, economy=lambda t: "- VIX: 15")
+        broker.day, broker.prices["SPY"] = "2026-11-17", 104.0
+        state, _ = run.run_once(broker, FakeAI([answer]), state)
+        state["risk_free_rate"] = 0.04
+        run.write_report(state, broker.equity(), 104.0, "2026-11-17")
+        data = json.loads(Path(config.DASHBOARD_DATA_PATH).read_text())
+        self.assertEqual(data["metrics"]["ai_after_costs"]["days"], 2)
+        self.assertEqual(data["risk_free_rate"], 0.04)
+        first = data["log"][-1]
+        self.assertEqual(first["drivers"], drivers)
+        self.assertEqual(first["economy"], "- VIX: 15")
+        self.assertEqual(first["weights_before"]["SPY"], 0.0)
+        row = data["scorecard"][0]
+        self.assertAlmostEqual(row["added"], row["ai"] - row["keep"])
+
+
+class DriversAndSourcesTest(unittest.TestCase):
+    def test_drivers_are_cleaned(self):
+        raw = [{"factor": " Yields up ", "input": "rumour", "etfs": ["TLT", "AAPL"], "effect": "sell!"},
+               {"factor": "", "input": "news", "etfs": [], "effect": "raise"}, "junk"] + \
+              [{"factor": f"f{i}", "input": "prices", "etfs": [], "effect": "hold"} for i in range(20)]
+        out = brain.clean_drivers(raw)
+        self.assertEqual(out[0], {"factor": "Yields up", "input": "other", "etfs": ["TLT"], "effect": "hold"})
+        self.assertEqual(len(out), brain.MAX_DRIVERS)
+        self.assertEqual(brain.clean_drivers(None), [])
+
+    def test_sources_prefer_citations_and_drop_unsafe_links(self):
+        cite = lambda url, title: SimpleNamespace(url=url, title=title)
+        text = SimpleNamespace(type="text", text="x", citations=[cite("https://a.com/1", "A"), cite("https://a.com/1", "A"),
+                                                                  cite("javascript:alert(1)", "bad")])
+        results = SimpleNamespace(type="web_search_tool_result", content=[cite("https://b.com", "B")])
+        self.assertEqual(brain.sources_from_content([[text, results]]), [{"url": "https://a.com/1", "title": "A"}])
+        plain = SimpleNamespace(type="text", text="x", citations=None)
+        self.assertEqual(brain.sources_from_content([[plain, results]]), [{"url": "https://b.com", "title": "B"}])
+
+    def test_schema_requires_drivers(self):
+        schema = brain.output_schema()
+        self.assertIn("drivers", schema["required"])
+        self.assertEqual(schema["properties"]["drivers"]["items"]["properties"]["input"]["enum"], brain.DRIVER_INPUTS)
 
 
 class SafetyTest(unittest.TestCase):

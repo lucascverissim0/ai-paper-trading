@@ -9,59 +9,80 @@
   :root {
     --bg: #f6f7f9; --card: #ffffff; --text: #16181d; --muted: #5f6673; --line: #e3e6eb;
     --ai: #2f6fde; --spy: #c2662d; --good: #1d8a4e; --bad: #c8343b; --warn: #a66a00;
-    --bar: #e9edf3; --s_6040: #7a5cc2; --s_equal: #2b9a8f; --s_trend: #8a8f98;
+    --bar: #e9edf3; --s_6040: #7a5cc2; --s_equal: #2b9a8f; --s_trend: #8a8f98; --chip: #eef1f6;
   }
   @media (prefers-color-scheme: dark) {
     :root {
       --bg: #101215; --card: #191c21; --text: #eceef2; --muted: #9aa2ae; --line: #2a2f37;
       --ai: #6e9ff5; --spy: #e48b50; --good: #43c07a; --bad: #f0686e; --warn: #e2a93a;
-      --bar: #262b33; --s_6040: #a68cf0; --s_equal: #4cc7b9; --s_trend: #b3b9c3;
+      --bar: #262b33; --s_6040: #a68cf0; --s_equal: #4cc7b9; --s_trend: #b3b9c3; --chip: #232830;
     }
   }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--text);
          font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-  main { max-width: 1100px; margin: 0 auto; padding: 24px 16px 48px; }
+  main { max-width: 1180px; margin: 0 auto; padding: 24px 16px 48px; }
+  a { color: var(--ai); }
   h1 { font-size: 24px; margin: 0 0 4px; }
   h2 { font-size: 16px; margin: 0 0 12px; }
+  h3 { font-size: 14px; margin: 14px 0 6px; color: var(--muted); }
   .sub { color: var(--muted); margin: 0; }
+  .small { font-size: 13px; }
   .badge { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 13px; font-weight: 600;
            border: 1px solid currentColor; margin-left: 8px; vertical-align: middle; }
-  .grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); margin: 20px 0; }
+  .grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin: 16px 0; }
   .two { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); margin: 12px 0; }
   .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; min-width: 0; }
   .kpi .label { color: var(--muted); font-size: 13px; }
-  .kpi .value { font-size: 24px; font-weight: 700; margin-top: 2px; font-variant-numeric: tabular-nums; }
+  .kpi .value { font-size: 22px; font-weight: 700; margin-top: 2px; font-variant-numeric: tabular-nums; }
   .kpi .note { color: var(--muted); font-size: 13px; }
   .good { color: var(--good); } .bad { color: var(--bad); } .warn { color: var(--warn); }
-  .verdict { font-size: 17px; font-weight: 600; margin: 16px 0 0; }
-  .legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--muted); margin-bottom: 8px; }
-  .legend i { display: inline-block; width: 14px; height: 3px; border-radius: 2px; margin-right: 6px; vertical-align: middle; }
+  .verdict { font-size: 17px; font-weight: 600; margin: 14px 0 0; }
+  .tabs { display: flex; gap: 4px; flex-wrap: wrap; border-bottom: 1px solid var(--line); margin: 8px 0 16px; }
+  .tab { background: none; border: 0; border-bottom: 2px solid transparent; color: var(--muted); padding: 10px 14px;
+         font: inherit; font-weight: 600; cursor: pointer; margin: 0; border-radius: 0; }
+  .tab.on { color: var(--text); border-bottom-color: var(--ai); }
+  .legend { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+  .lg { display: inline-flex; align-items: center; gap: 6px; background: transparent; border: 1px solid var(--line);
+        border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 13px; color: var(--text); cursor: pointer; margin: 0; }
+  .lg.off { opacity: .4; text-decoration: line-through; }
+  .lg i { display: inline-block; width: 14px; height: 3px; border-radius: 2px; }
   svg text { fill: var(--muted); font-size: 11px; }
   .row { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-bottom: 1px solid var(--line);
          font-variant-numeric: tabular-nums; }
   .row:last-child { border-bottom: 0; }
+  .row.flat { border: 0; padding: 0; }
   .barwrap { background: var(--bar); border-radius: 6px; height: 8px; overflow: hidden; margin-top: 4px; }
   .barwrap div { height: 100%; background: var(--ai); }
   .table { overflow-x: auto; }
   table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: 14px; }
-  th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; vertical-align: top; }
   th { color: var(--muted); font-weight: 600; font-size: 13px; }
   td.num, th.num { text-align: right; }
-  .log { border-bottom: 1px solid var(--line); padding: 10px 0; }
+  td.wrap { white-space: normal; min-width: 240px; color: var(--muted); font-size: 13px; }
+  tr.total td { font-weight: 700; border-bottom: 0; }
+  td.hl, th.hl { background: var(--chip); }
+  .log { border-bottom: 1px solid var(--line); padding: 14px 0; }
   .log:last-child { border-bottom: 0; }
-  .log .meta { font-size: 13px; color: var(--muted); }
-  button { background: transparent; color: var(--ai); border: 1px solid var(--line); border-radius: 8px;
-           padding: 6px 12px; font: inherit; cursor: pointer; margin-top: 10px; }
-  .foot { color: var(--muted); font-size: 13px; margin-top: 24px; }
-  .rel { position: relative; } .mt { margin-top: 12px; } .mb { margin-bottom: 8px; } .row.flat { border: 0; padding: 0; }
-  .sw-ai { background: var(--ai); } .sw-spy { background: var(--spy); } .light { opacity: .5; }
+  .meta { font-size: 13px; color: var(--muted); }
+  button.more { background: transparent; color: var(--ai); border: 1px solid var(--line); border-radius: 8px;
+                padding: 6px 12px; font: inherit; cursor: pointer; margin-top: 10px; }
+  details { margin-top: 8px; font-size: 14px; } summary { cursor: pointer; color: var(--ai); }
+  .pre { white-space: pre-wrap; color: var(--muted); margin: 6px 0 0; font-size: 14px; }
+  .chip { display: inline-block; background: var(--chip); border-radius: 6px; padding: 0 6px; font-size: 12px;
+          font-weight: 600; margin-right: 4px; color: var(--muted); }
+  .drv { padding: 5px 0; font-size: 14px; }
+  .src { font-size: 13px; padding: 2px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .news { padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .news:last-child { border-bottom: 0; }
   .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 8px; }
-  .sw-s_6040 { background: var(--s_6040); } .sw-s_equal { background: var(--s_equal); } .sw-s_trend { background: var(--s_trend); }
-  details { margin-top: 6px; font-size: 14px; } summary { cursor: pointer; color: var(--ai); }
-  .pre { white-space: pre-wrap; color: var(--muted); margin: 6px 0 0; }
-  .tip { position: absolute; pointer-events: none; background: var(--card); border: 1px solid var(--line);
+  .rel { position: relative; } .mt { margin-top: 12px; } .mb { margin-bottom: 8px; }
+  .foot { color: var(--muted); font-size: 13px; margin-top: 24px; }
+  .tip { position: absolute; pointer-events: none; background: var(--card); border: 1px solid var(--line); z-index: 2;
          border-radius: 8px; padding: 6px 10px; font-size: 13px; white-space: nowrap; box-shadow: 0 4px 14px rgba(0,0,0,.12); }
+  .cols { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .newsgrid { display: grid; gap: 12px; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+  @media (max-width: 900px) { .newsgrid { grid-template-columns: minmax(0, 1fr); } }
 </style>
 </head>
 <body>
@@ -74,16 +95,32 @@
 const { useState, useEffect, useRef } = React;
 const html = htm.bind(React.createElement);
 const REFRESH_MS = 5 * 60 * 1000;
+const SHADOW_KEYS = ["s_6040", "s_equal", "s_trend"];
+const TABS = [["overview", "Overview"], ["positions", "Positions & trades"], ["performance", "Performance"], ["news", "News & decisions"]];
 
+// --- formatting -------------------------------------------------------------------
+const NA = "n/a";
+const isNum = (v) => typeof v === "number" && isFinite(v);
 const usd = (x, sign = false) => {
+  if (!isNum(x)) return NA;
   const s = Math.abs(x).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   return (x < 0 ? "-" : sign && x > 0 ? "+" : "") + "$" + s;
 };
-const pct = (x, digits = 2) => (x > 0 ? "+" : "") + (x * 100).toFixed(digits) + "%";
-const tone = (x) => (x > 0 ? "good" : x < 0 ? "bad" : "");
+const pct = (x, digits = 2, sign = true) => (!isNum(x) ? NA : (sign && x > 0 ? "+" : "") + (x * 100).toFixed(digits) + "%");
+const num = (x, d = 2) => (isNum(x) ? x.toFixed(d) : NA);
+const tone = (x) => (!isNum(x) ? "" : x > 0 ? "good" : x < 0 ? "bad" : "");
+const when = (iso) => {
+  if (!iso) return "";
+  const t = new Date(iso);
+  return isNaN(t) ? iso : t.toLocaleString(undefined, { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+};
+const hhmm = (iso) => new Date(iso).toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" });
+const minutesAgo = (iso) => Math.max(0, Math.round((Date.now() - Date.parse(iso)) / 60000));
+const weightsText = (w) => Object.entries(w || {}).filter(([, v]) => v > 0.0005)
+  .map(([k, v]) => k + " " + Math.round(v * 100) + "%").join(", ") || "all cash";
 
 const STATUS = {
-  ok: ["Decided", ""],
+  ok: ["Decided", "good"],
   halted: ["Test stopped", "bad"],
   budget_reached: ["API budget reached, held", "warn"],
   api_error: ["Claude unreachable, held", "warn"],
@@ -91,10 +128,11 @@ const STATUS = {
   truncated: ["Answer cut off, held", "warn"],
   bad_output: ["Unreadable answer, held", "warn"],
   no_data: ["No price data, held", "warn"],
-  waiting: ["Waiting for its review date (no cost)", "sub"],
+  waiting: ["Waiting for its review date (no cost)", ""],
   no_consensus: ["Too few usable answers, held", "warn"],
 };
-const SHADOW_KEYS = ["s_6040", "s_equal", "s_trend"];
+const INPUT_LABEL = { news: "News", economy: "Economy", prices: "Prices", portfolio: "Portfolio", costs: "Costs", other: "Other" };
+const EFFECT = { raise: ["▲ raise", "good"], lower: ["▼ lower", "bad"], hold: ["= hold", ""] };
 
 function Kpi({ label, value, note, cls }) {
   return html`<div class="card kpi">
@@ -104,19 +142,29 @@ function Kpi({ label, value, note, cls }) {
   </div>`;
 }
 
-function Chart({ series, capital, labels }) {
+function More({ total, shown, open, setOpen, what }) {
+  if (total <= shown) return null;
+  return html`<button class="more" onClick=${() => setOpen(!open)}>${open ? "Show fewer" : "Show all " + total + " " + what}</button>`;
+}
+
+function Link({ url, children }) {
+  return url ? html`<a href=${url} target="_blank" rel="noopener noreferrer nofollow">${children}</a>` : html`<span>${children}</span>`;
+}
+
+// --- line chart with toggles and hover --------------------------------------------------
+function LineChart({ points, lines, format, baseline, height = 260, aria }) {
   const [hover, setHover] = useState(null);
+  const [hidden, setHidden] = useState({});
   const ref = useRef(null);
-  const W = 720, H = 260, L = 64, R = 12, T = 10, B = 28;
-  const keys = [["ai_after_costs", "var(--ai)", false], ["spy_after_costs", "var(--spy)", false],
-                ["ai_before_costs", "var(--ai)", true]]
-    .concat(SHADOW_KEYS.map((k) => [k, "var(--" + k + ")", false, true]));
-  const has = (v) => typeof v === "number";
-  const values = series.flatMap((p) => keys.map(([k]) => p[k])).filter(has).concat([capital]);
-  let lo = Math.min(...values), hi = Math.max(...values);
-  const pad = Math.max((hi - lo) * 0.1, capital * 0.01);
+  const W = 720, H = height, L = 72, R = 12, T = 10, B = 28;
+  const shown = lines.filter((l) => !hidden[l.key]);
+  const vals = points.flatMap((p) => shown.map((l) => p[l.key])).filter(isNum);
+  if (isNum(baseline)) vals.push(baseline);
+  let lo = vals.length ? Math.min(...vals) : 0, hi = vals.length ? Math.max(...vals) : 1;
+  const span = hi - lo;
+  const pad = span > 0 ? span * 0.1 : Math.max(Math.abs(hi) * 0.01, 0.001);
   lo -= pad; hi += pad;
-  const n = series.length;
+  const n = points.length;
   const x = (i) => (n === 1 ? (L + W - R) / 2 : L + (i * (W - L - R)) / (n - 1));
   const y = (v) => T + ((hi - v) * (H - T - B)) / (hi - lo);
   const ticks = [0, 1, 2, 3].map((i) => lo + ((hi - lo) * i) / 3);
@@ -125,144 +173,331 @@ function Chart({ series, capital, labels }) {
     const box = ref.current.getBoundingClientRect();
     const px = ((e.clientX - box.left) / box.width) * W;
     let best = 0;
-    series.forEach((_, i) => { if (Math.abs(x(i) - px) < Math.abs(x(best) - px)) best = i; });
-    setHover({ i: best, left: e.clientX - box.left, top: e.clientY - box.top });
+    points.forEach((_, i) => { if (Math.abs(x(i) - px) < Math.abs(x(best) - px)) best = i; });
+    setHover({ i: best, left: e.clientX - box.left, top: e.clientY - box.top, width: box.width });
   };
+  const p = hover && points[hover.i];
 
-  const p = hover && series[hover.i];
-  return html`<div class="rel">
-    <svg ref=${ref} viewBox=${`0 0 ${W} ${H}`} width="100%" role="img"
-         aria-label="Value of the AI portfolio and of buy-and-hold SPY over time"
-         onMouseMove=${onMove} onMouseLeave=${() => setHover(null)}>
-      ${ticks.map((t) => html`<g key=${t}>
-        <line x1=${L} x2=${W - R} y1=${y(t)} y2=${y(t)} stroke="var(--line)" />
-        <text x=${L - 8} y=${y(t) + 4} text-anchor="end">${usd(t).replace(".00", "")}</text></g>`)}
-      <line x1=${L} x2=${W - R} y1=${y(capital)} y2=${y(capital)} stroke="var(--muted)" stroke-dasharray="2 4" />
-      ${keys.map(([k, color, dashed, thin]) => n === 1
-        ? has(series[0][k]) && html`<circle key=${k} cx=${x(0)} cy=${y(series[0][k])} r=${thin ? 3 : 4} fill=${color} opacity=${dashed ? 0.5 : 1} />`
-        : html`<polyline key=${k} fill="none" stroke=${color} stroke-width=${dashed || thin ? 1.5 : 2.5}
-                stroke-dasharray=${dashed ? "5 5" : ""} opacity=${dashed ? 0.6 : thin ? 0.8 : 1}
-                points=${series.map((pt, i) => has(pt[k]) ? `${x(i)},${y(pt[k])}` : "").filter(Boolean).join(" ")} />`)}
-      <text x=${L} y=${H - 6}>${series[0].date}</text>
-      ${n > 1 && html`<text x=${W - R} y=${H - 6} text-anchor="end">${series[n - 1].date}</text>`}
-      ${hover && html`<line x1=${x(hover.i)} x2=${x(hover.i)} y1=${T} y2=${H - B} stroke="var(--muted)" />`}
-    </svg>
-    ${p && html`<div class="tip" style=${{ left: Math.min(hover.left + 12, 520) + "px", top: hover.top + 12 + "px" }}>
-      <b>${p.date}</b><br/>
-      AI after costs: ${usd(p.ai_after_costs)}<br/>
-      SPY buy-and-hold: ${usd(p.spy_after_costs)}<br/>
-      <span class="sub">AI before costs: ${usd(p.ai_before_costs)}</span>
-      ${SHADOW_KEYS.filter((k) => has(p[k])).map((k) => html`<br key=${k + "b"}/><span key=${k} class="sub">${labels[k]}: ${usd(p[k])}</span>`)}
+  return html`<div>
+    ${lines.length > 1 && html`<div class="legend">${lines.map((l) => html`<button key=${l.key}
+        class=${"lg" + (hidden[l.key] ? " off" : "")} aria-pressed=${!hidden[l.key]}
+        onClick=${() => setHidden({ ...hidden, [l.key]: !hidden[l.key] })}>
+        <i style=${{ background: l.color, opacity: l.dashed ? 0.6 : 1 }}></i>${l.label}</button>`)}</div>`}
+    ${n === 0 ? html`<p class="sub">No data yet.</p>` : html`<div class="rel">
+      <svg ref=${ref} viewBox=${`0 0 ${W} ${H}`} width="100%" role="img" aria-label=${aria}
+           onMouseMove=${onMove} onMouseLeave=${() => setHover(null)}>
+        ${ticks.map((t, i) => html`<g key=${i}>
+          <line x1=${L} x2=${W - R} y1=${y(t)} y2=${y(t)} stroke="var(--line)" />
+          <text x=${L - 8} y=${y(t) + 4} text-anchor="end">${format(t)}</text></g>`)}
+        ${isNum(baseline) && html`<line x1=${L} x2=${W - R} y1=${y(baseline)} y2=${y(baseline)} stroke="var(--muted)" stroke-dasharray="2 4" />`}
+        ${shown.map((l) => n === 1
+          ? isNum(points[0][l.key]) && html`<circle key=${l.key} cx=${x(0)} cy=${y(points[0][l.key])} r="4" fill=${l.color} />`
+          : html`<polyline key=${l.key} fill="none" stroke=${l.color} stroke-width=${l.dashed || l.thin ? 1.5 : 2.5}
+                  stroke-dasharray=${l.dashed ? "5 5" : ""} opacity=${l.dashed ? 0.6 : l.thin ? 0.85 : 1}
+                  points=${points.map((pt, i) => (isNum(pt[l.key]) ? `${x(i)},${y(pt[l.key])}` : "")).filter(Boolean).join(" ")} />`)}
+        <text x=${L} y=${H - 6}>${points[0].label}</text>
+        ${n > 1 && html`<text x=${W - R} y=${H - 6} text-anchor="end">${points[n - 1].label}</text>`}
+        ${hover && html`<line x1=${x(hover.i)} x2=${x(hover.i)} y1=${T} y2=${H - B} stroke="var(--muted)" />`}
+      </svg>
+      ${p && html`<div class="tip" style=${{ left: Math.max(0, Math.min(hover.left + 12, hover.width - 230)) + "px", top: hover.top + 12 + "px" }}>
+        <b>${p.label}</b>
+        ${shown.filter((l) => isNum(p[l.key])).map((l) => html`<div key=${l.key}><span class="swatch" style=${{ background: l.color }}></span>${l.label}: ${format(p[l.key])}</div>`)}
+      </div>`}
     </div>`}
   </div>`;
 }
 
-function Dashboard({ d }) {
-  const s = d.summary, cfg = d.settings, cap = cfg.real_capital_usd;
-  const [allTrades, setAllTrades] = useState(false);
-  const [allLog, setAllLog] = useState(false);
+// --- tabs --------------------------------------------------------------------------------
+function Overview({ d, live, cap }) {
+  const s = d.summary, cfg = d.settings, labels = d.shadow_labels || {}, split = d.api_cost_split || {};
+  const points = d.series.map((p) => ({ ...p, label: p.date }));
+  const lines = [
+    { key: "ai_after_costs", label: "AI after costs", color: "var(--ai)" },
+    { key: "spy_after_costs", label: "SPY buy-and-hold", color: "var(--spy)" },
+    { key: "ai_before_costs", label: "AI before costs", color: "var(--ai)", dashed: true },
+  ].concat(SHADOW_KEYS.map((k) => ({ key: k, label: labels[k] || k, color: "var(--" + k + ")", thin: true })));
+
+  const dd = (key) => { let peak = cap; return d.series.map((p) => { const v = p[key]; if (!isNum(v)) return null; peak = Math.max(peak, v); return v / peak - 1; }); };
+  const ddAi = dd("ai_after_costs"), ddSpy = dd("spy_after_costs");
+  const ddPoints = d.series.map((p, i) => ({ label: p.date, ai: ddAi[i], spy: ddSpy[i] }));
+
+  const pos = live && live.positions;
+  const holdings = pos ? pos.map((p) => [p.symbol, p.weight]) : Object.entries(d.holdings || {}).filter(([, w]) => w > 0).sort((a, b) => b[1] - a[1]);
+  const cash = pos && live.account && isNum(live.account.cash_weight) ? Math.max(0, live.account.cash_weight)
+    : Math.max(0, 1 - holdings.reduce((t, [, w]) => t + w, 0));
   const budgetUsed = Math.min(1, s.api_cost / cfg.api_budget_usd);
-  const trades = allTrades ? d.trades : d.trades.slice(0, 15);
-  const log = allLog ? d.log : d.log.slice(0, 10);
-  const holdings = Object.entries(d.holdings || {}).filter(([, w]) => w > 0).sort((a, b) => b[1] - a[1]);
-  const cash = Math.max(0, 1 - holdings.reduce((t, [, w]) => t + w, 0));
-  const labels = d.shadow_labels || {};
-  const split = d.api_cost_split || {};
-  const compare = [["AI (Claude), after fees and API", s.strat_net_usd, "sw-ai"], ["Buy and hold SPY", s.bench_net_usd, "sw-spy"]]
-    .concat(SHADOW_KEYS.filter((k) => s.shadows && k in s.shadows).map((k) => [labels[k], s.shadows[k], "sw-" + k]))
-    .sort((a, b) => b[1] - a[1]);
 
   return html`<div>
-    <h1>AI trading test
-      <span class=${"badge " + (d.status === "running" ? "good" : "bad")}>${d.status === "running" ? "Running" : "Stopped"}</span></h1>
-    <p class="sub">Fake money only. Claude (${cfg.model}) reads prices, economic data and the news, then chooses its own next review (1 to 10 trading days, sooner if markets jolt); each decision is the median of 3 independent answers. Results restated as if ${usd(cap).replace(".00", "")} were invested, after every cost. Started ${d.start_date}; last update ${d.updated_at}.</p>
-    ${d.halt_reason && html`<p class="bad">Stopped: ${d.halt_reason}</p>`}
-    <p class=${"verdict " + tone(s.edge_usd)}>
-      The AI is ${s.edge_usd >= 0 ? "ahead of" : "behind"} simply holding SPY by ${usd(Math.abs(s.edge_usd))} after all costs.</p>
-
-    <div class="grid">
-      <${Kpi} label="AI result after all costs" value=${usd(s.strat_net_usd, true)} cls=${tone(s.strat_net_usd)}
-              note=${pct(s.strat_net_usd / cap) + " on " + usd(cap).replace(".00", "")} />
-      <${Kpi} label="SPY buy-and-hold" value=${usd(s.bench_net_usd, true)} cls=${tone(s.bench_net_usd)}
-              note=${pct(s.bench_net_usd / cap) + " after its one purchase fee"} />
-      <${Kpi} label="AI before costs" value=${pct(s.gross_return)} note=${"SPY " + pct(s.bench_return)} />
-      <${Kpi} label="Worst fall from a peak" value=${pct(-s.strat_drawdown)}
-              note=${"SPY " + pct(-s.bench_drawdown) + "; stops at -" + (cfg.max_drawdown * 100) + "%"} />
-      <${Kpi} label="Days / AI decisions" value=${s.days_elapsed + " / " + s.decisions} note="calendar days since start" />
-      <${Kpi} label="Next review chosen by the AI" value=${s.next_review || "-"} note="earlier if markets jolt" />
-    </div>
-
     <div class="card">
-      <h2>Value of ${usd(cap).replace(".00", "")} over time</h2>
-      <div class="legend">
-        <span><i class="sw-ai"></i>AI after costs</span>
-        <span><i class="sw-spy"></i>SPY buy-and-hold</span>
-        <span><i class="sw-ai light"></i>AI before costs (dashed)</span>
-        ${SHADOW_KEYS.map((k) => html`<span key=${k}><i class=${"sw-" + k}></i>${labels[k] || k}</span>`)}
-      </div>
-      <${Chart} series=${d.series} capital=${cap} labels=${labels} />
+      <h2>Value of ${usd(cap).replace(".00", "")} over time (click a label to hide or show it)</h2>
+      <${LineChart} points=${points} lines=${lines} baseline=${cap} format=${(v) => usd(v)} aria="Value over time of the AI, SPY and the simple rules" />
     </div>
-
     <div class="card mt">
-      <h2>Ranking: AI against simple rules (same days, prices and fees)</h2>
-      ${compare.map(([name, v, sw]) => html`<div class="row" key=${name}>
-        <span><i class=${sw + " swatch"}></i>${name}</span><b class=${tone(v)}>${usd(v, true)} (${pct(v / cap)})</b></div>`)}
-      <p class="sub mt">The rules cost nothing to run. If the AI cannot beat them, it adds nothing.</p>
+      <h2>Fall from the previous peak (after costs)</h2>
+      <${LineChart} points=${ddPoints} height=${180} baseline=${0} format=${(v) => pct(v, 1)} aria="Drawdown of the AI and of SPY"
+        lines=${[{ key: "ai", label: "AI after costs", color: "var(--ai)" }, { key: "spy", label: "SPY buy-and-hold", color: "var(--spy)" }]} />
+      <p class="sub small mt">The test sells everything and stops if the AI falls ${Math.round(cfg.max_drawdown * 100)}% from its peak.</p>
     </div>
-
     <div class="two">
       <div class="card">
         <h2>Costs so far</h2>
         <div class="row"><span>Trading fees (modelled: $${cfg.fee_per_order_usd.toFixed(2)} + ${(cfg.fee_rate * 100).toFixed(1)}% per order)</span><b>${usd(s.fees_real)}</b></div>
         <div class="row"><span>Claude API (measured)</span><b>${usd(s.api_cost)}</b></div>
-        <div class="row"><span class="sub">of which: news research ${usd(split.research || 0)}, web searches ${usd(split.searches || 0)}, decisions ${usd(split.decisions || 0)}</span><span></span></div>
+        <div class="row"><span class="sub small">news research ${usd(split.research || 0)}, web searches ${usd(split.searches || 0)}, decisions ${usd(split.decisions || 0)}</span><span></span></div>
         <div class="row"><span>Other costs</span><b>${usd(s.other_costs)}</b></div>
         <div class="row"><span>Total</span><b>${usd(s.fees_real + s.api_cost + s.other_costs)}</b></div>
         <div class="sub mt">API budget: ${usd(s.api_cost)} of ${usd(cfg.api_budget_usd)}</div>
         <div class="barwrap"><div style=${{ width: budgetUsed * 100 + "%" }}></div></div>
       </div>
       <div class="card">
-        <h2>Current holdings</h2>
+        <h2>Current holdings ${pos ? "(live)" : "(last target)"}</h2>
         ${holdings.map(([sym, w]) => html`<div key=${sym} class="mb">
           <div class="row flat"><span><b>${sym}</b> <span class="sub">${cfg.universe[sym] || ""}</span></span><span>${(w * 100).toFixed(1)}%</span></div>
-          <div class="barwrap"><div style=${{ width: w * 100 + "%" }}></div></div></div>`)}
+          <div class="barwrap"><div style=${{ width: Math.min(100, w * 100) + "%" }}></div></div></div>`)}
         <div class="row flat"><span><b>Cash</b></span><span>${(cash * 100).toFixed(1)}%</span></div>
-        <div class="barwrap"><div style=${{ width: cash * 100 + "%", background: "var(--muted)" }}></div></div>
+        <div class="barwrap"><div style=${{ width: Math.min(100, cash * 100) + "%", background: "var(--muted)" }}></div></div>
       </div>
     </div>
+  </div>`;
+}
 
-    <div class="card mt">
-      <h2>Trades (${d.trades.length})</h2>
-      ${d.trades.length === 0 ? html`<p class="sub">No trades yet.</p>` : html`<div class="table"><table>
-        <thead><tr><th>Date</th><th>ETF</th><th>Side</th><th class="num">Amount (at ${usd(cap).replace(".00", "")})</th><th class="num">Fee</th><th>Status</th></tr></thead>
-        <tbody>${trades.map((t, i) => html`<tr key=${i}>
-          <td>${t.date}</td><td><b>${t.symbol}</b></td><td class=${t.side === "buy" ? "good" : "bad"}>${t.side}</td>
-          <td class="num">${usd(t.amount_real_usd)}</td><td class="num">${usd(t.fee_real_usd)}</td><td>${t.status}</td></tr>`)}
+function Positions({ d, live, cap }) {
+  const [allTrades, setAllTrades] = useState(false);
+  if (!live) return html`<div class="card"><p class="sub">Live data is not available yet. It appears after the next refresh during US market hours.</p></div>`;
+  const pos = live.positions || [];
+  const a = live.account || {};
+  const totals = pos.reduce((t, p) => ({ value: t.value + p.value_real_usd, pl: t.pl + p.pl_real_usd, today: t.today + p.today_real_usd }), { value: 0, pl: 0, today: 0 });
+  const st = live.trade_stats;
+  const trades = live.trades || null;
+  const shownTrades = trades ? (allTrades ? trades : trades.slice(0, 20)) : [];
+  const intraday = (live.intraday || []).map((p) => ({ label: hhmm(p.time), value: p.value_real_usd }));
+  const prevClose = isNum(a.value_real_usd) && isNum(a.today_real_usd) ? a.value_real_usd - a.today_real_usd : null;
+
+  return html`<div>
+    <div class="card">
+      <h2>Open positions (live, at ${usd(cap).replace(".00", "")})</h2>
+      ${pos.length === 0 ? html`<p class="sub">No open position: everything is in cash.</p>` : html`<div class="table"><table>
+        <thead><tr><th>ETF</th><th class="num">Shares (paper)</th><th class="num">Average buy price</th><th class="num">Last price</th><th class="num">Value</th><th class="num">Weight</th><th class="num">P&L since bought</th><th class="num">Today</th></tr></thead>
+        <tbody>
+          ${pos.map((p) => html`<tr key=${p.symbol}>
+            <td><b>${p.symbol}</b> <span class="sub small">${p.name}</span></td>
+            <td class="num">${num(p.qty, 4)}</td><td class="num">${usd(p.avg_entry_price)}</td><td class="num">${usd(p.price)}</td>
+            <td class="num">${usd(p.value_real_usd)}</td><td class="num">${pct(p.weight, 1, false)}</td>
+            <td class=${"num " + tone(p.pl_real_usd)}>${usd(p.pl_real_usd, true)} (${pct(p.pl_pct)})</td>
+            <td class=${"num " + tone(p.today_pct)}>${pct(p.today_pct)}</td></tr>`)}
+          <tr class="total"><td>Total</td><td></td><td></td><td></td><td class="num">${usd(totals.value)}</td><td></td>
+            <td class=${"num " + tone(totals.pl)}>${usd(totals.pl, true)}</td><td class=${"num " + tone(totals.today)}>${usd(totals.today, true)}</td></tr>
         </tbody></table></div>`}
-      ${d.trades.length > 15 && html`<button onClick=${() => setAllTrades(!allTrades)}>${allTrades ? "Show fewer" : "Show all trades"}</button>`}
+      <p class="sub small mt">P&L is before fees (fees are counted in the results). Shares and prices are those of the paper account; values are restated as if ${usd(cap).replace(".00", "")} had been invested. Refreshed ${when(live.refreshed_at)}.</p>
+    </div>
+
+    ${intraday.length > 1 && html`<div class="card mt">
+      <h2>Today, before costs (dotted line: yesterday's close)</h2>
+      <${LineChart} points=${intraday} height=${180} baseline=${prevClose} format=${(v) => usd(v)} aria="Value of the portfolio during today"
+        lines=${[{ key: "value", label: "Portfolio", color: "var(--ai)" }]} />
+    </div>`}
+
+    ${st && html`<div class="grid">
+      <${Kpi} label="Trades" value=${st.trades} note=${st.buys + " buys, " + st.sells + " sells"} />
+      <${Kpi} label="Realised P&L on sales" value=${usd(st.realized_real_usd, true)} cls=${tone(st.realized_real_usd)} note="before fees" />
+      <${Kpi} label="Sales at a gain" value=${st.closed_sells ? st.winning_sells + " of " + st.closed_sells : NA} />
+      <${Kpi} label="Fees paid (modelled)" value=${usd(st.fees_real_usd)} />
+      <${Kpi} label="Turnover" value=${pct(st.turnover, 0, false)} note="amount traded / average value" />
+    </div>`}
+
+    <div class="card">
+      <h2>Trade history ${trades ? "(" + trades.length + ")" : ""}</h2>
+      ${trades ? (trades.length === 0 ? html`<p class="sub">No trades yet.</p>` : html`<div class="table"><table>
+        <thead><tr><th>When</th><th>ETF</th><th>Side</th><th class="num">Shares</th><th class="num">Price</th><th class="num">Amount</th><th class="num">Fee</th><th class="num">Realised P&L</th><th>Why (decision of that day)</th></tr></thead>
+        <tbody>${shownTrades.map((t, i) => html`<tr key=${i}>
+          <td>${when(t.time)}</td><td><b>${t.symbol}</b></td><td class=${t.side === "buy" ? "good" : "bad"}>${t.side}</td>
+          <td class="num">${num(t.qty, 4)}</td><td class="num">${usd(t.price)}</td><td class="num">${usd(t.amount_real_usd)}</td>
+          <td class="num">${usd(t.fee_real_usd)}</td>
+          <td class=${"num " + tone(t.realized_real_usd)}>${isNum(t.realized_real_usd) ? usd(t.realized_real_usd, true) + " (" + pct(t.realized_pct) + ")" : "-"}</td>
+          <td class="wrap" title=${t.reason}>${t.reason.length > 160 ? t.reason.slice(0, 160) + "..." : t.reason}</td></tr>`)}
+        </tbody></table></div>`)
+      : html`<div class="table"><table>
+        <thead><tr><th>Date</th><th>ETF</th><th>Side</th><th class="num">Amount</th><th class="num">Fee</th><th>Status</th></tr></thead>
+        <tbody>${d.trades.map((t, i) => html`<tr key=${i}><td>${t.date}</td><td><b>${t.symbol}</b></td><td>${t.side}</td>
+          <td class="num">${usd(t.amount_real_usd)}</td><td class="num">${usd(t.fee_real_usd)}</td><td>${t.status}</td></tr>`)}</tbody></table></div>`}
+      ${trades && html`<${More} total=${trades.length} shown=${20} open=${allTrades} setOpen=${setAllTrades} what="trades" />`}
+      <p class="sub small mt">Realised P&L compares the sale price with the average purchase price of the shares held.</p>
+    </div>
+  </div>`;
+}
+
+const METRIC_ROWS = [
+  ["total_return", "Return", (v) => pct(v)],
+  ["annual_return", "Annualised return", (v) => pct(v)],
+  ["volatility", "Volatility (annualised)", (v) => pct(v, 1, false)],
+  ["sharpe", "Sharpe ratio", (v) => num(v)],
+  ["sortino", "Sortino ratio", (v) => num(v)],
+  ["max_drawdown", "Worst fall from a peak", (v) => pct(isNum(v) ? -v : v)],
+  ["best_day", "Best day", (v) => pct(v)],
+  ["worst_day", "Worst day", (v) => pct(v)],
+  ["up_days", "Days up", (v) => pct(v, 0, false)],
+  ["beta", "Beta to SPY", (v) => num(v)],
+  ["correlation", "Correlation with SPY", (v) => num(v)],
+];
+
+function Performance({ d, cap }) {
+  const s = d.summary, m = d.metrics || {}, labels = d.shadow_labels || {};
+  const cols = [["ai_after_costs", "AI after costs"], ["ai_before_costs", "AI before costs"], ["spy_after_costs", "SPY buy-and-hold"]]
+    .concat(SHADOW_KEYS.map((k) => [k, labels[k] || k])).filter(([k]) => m[k]);
+  const days = m.ai_after_costs ? m.ai_after_costs.days : 0;
+  const compare = [["AI (Claude), after fees and API", s.strat_net_usd, "var(--ai)"], ["Buy and hold SPY", s.bench_net_usd, "var(--spy)"]]
+    .concat(SHADOW_KEYS.filter((k) => s.shadows && k in s.shadows).map((k) => [labels[k], s.shadows[k], "var(--" + k + ")"]))
+    .sort((a, b) => b[1] - a[1]);
+  const sc = d.scorecard || [];
+
+  return html`<div>
+    <div class="card">
+      <h2>Risk and return</h2>
+      <div class="table"><table>
+        <thead><tr><th></th>${cols.map(([k, label]) => html`<th key=${k} class=${"num" + (k === "ai_after_costs" ? " hl" : "")}>${label}</th>`)}</tr></thead>
+        <tbody>${METRIC_ROWS.map(([key, label, fmt]) => html`<tr key=${key}><td>${label}</td>
+          ${cols.map(([k]) => html`<td key=${k} class=${"num" + (k === "ai_after_costs" ? " hl" : "")}>${fmt(m[k][key])}</td>`)}</tr>`)}
+        </tbody></table></div>
+      <p class="sub small mt">Based on ${days} trading day(s) of daily values; costs are included except in "AI before costs". Sharpe and Sortino use the 3-month US Treasury bill rate (${isNum(d.risk_free_rate) ? pct(d.risk_free_rate, 2, false) : "not available, 0% used"}) and appear after ${5} trading days; the annualised return after 20. Under about 60 trading days these ratios are mostly noise.</p>
     </div>
 
     <div class="card mt">
-      <h2>Daily log</h2>
-      ${log.map((e) => {
-        const [label, cls] = STATUS[e.status] || [e.status, ""];
-        const w = e.weights ? Object.entries(e.weights).filter(([, v]) => v > 0).map(([k, v]) => k + " " + Math.round(v * 100) + "%").join(", ") || "all cash" : "";
-        return html`<div class="log" key=${e.date}>
-          <div><b>${e.date}</b> <span class=${cls}>${label}</span></div>
-          ${e.trigger && html`<div class="meta">Woken up because: ${e.trigger}</div>`}
-          <div class="meta">API cost ${usd(e.api_cost_usd)}${w ? " - target: " + w : ""}${e.next_review_days ? " - next review in " + e.next_review_days + " trading day(s)" : ""}</div>
-          ${e.rationale && html`<div>${e.rationale}</div>`}
-          ${e.briefing && html`<details><summary>News briefing (${e.searches} web searches)</summary><p class="pre">${e.briefing}</p></details>`}
-          ${e.samples && e.samples.length > 0 && html`<details><summary>The ${e.samples.length} independent answers</summary>
-            ${e.samples.map((a, i) => html`<div class="pre" key=${i}>${i + 1}. ${a.status === "ok"
-              ? Object.entries(a.weights).filter(([, v]) => v > 0).map(([k, v]) => k + " " + Math.round(v * 100) + "%").join(", ") + " - review in " + a.next_review_days + " - " + a.rationale
-              : a.status + " " + (a.detail || "")} (${usd(a.cost_usd)})</div>`)}</details>`}
-        </div>`;
-      })}
-      ${d.log.length > 10 && html`<button onClick=${() => setAllLog(!allLog)}>${allLog ? "Show fewer" : "Show all days"}</button>`}
+      <h2>Ranking: AI against simple rules (same days, prices and fees)</h2>
+      ${compare.map(([name, v, color]) => html`<div class="row" key=${name}>
+        <span><i class="swatch" style=${{ background: color }}></i>${name}</span><b class=${tone(v)}>${usd(v, true)} (${pct(v / cap)})</b></div>`)}
+      <p class="sub small mt">The rules cost nothing to run. If the AI cannot beat them, it adds nothing.</p>
     </div>
 
-    <p class="foot">Dividends are left out on both sides. Under 12 months, a result either way can be luck. Simple rules: values after modelled fees, no API cost. The page refreshes every 5 minutes; the numbers change once per trading day, after the run at 16:30 UTC.</p>
+    <div class="card mt">
+      <h2>Did each decision help?</h2>
+      ${sc.length === 0 ? html`<p class="sub">Shown once a decision has been in place for at least one day.</p>` : html`<div class="table"><table>
+        <thead><tr><th>Decision</th><th>Until</th><th>Held</th><th class="num">AI</th><th class="num">Keeping the previous holdings</th><th class="num">Value added</th><th class="num">SPY</th><th class="num">Cost of the decision</th></tr></thead>
+        <tbody>${sc.slice().reverse().map((r) => html`<tr key=${r.from}><td>${r.from}</td><td>${r.to}</td><td>${r.held}</td>
+          <td class=${"num " + tone(r.ai)}>${pct(r.ai)}</td><td class="num">${pct(r.keep)}</td>
+          <td class=${"num " + tone(r.added)}><b>${pct(r.added)}</b></td><td class="num">${pct(r.spy)}</td><td class="num">${usd(r.cost_usd)}</td></tr>`)}
+        </tbody></table></div>`}
+      <p class="sub small mt">Value added = what the portfolio did after the decision minus what the previous holdings would have done over the same days, before costs. The cost column (fees and API at ${usd(cap).replace(".00", "")}) shows what the decision had to beat.</p>
+    </div>
+  </div>`;
+}
+
+function Decision({ e, score, universe }) {
+  const [label, cls] = STATUS[e.status] || [e.status, ""];
+  const before = e.weights_before || null, after = e.weights || null;
+  const etfs = Object.keys(universe).filter((k) => (before && before[k] > 0.0005) || (after && after[k] > 0.0005));
+  const drivers = e.drivers || [], sources = e.sources || [];
+  return html`<div class="log">
+    <div><b>${e.date}</b> <span class=${cls}>${label}</span> <span class="meta">API cost ${usd(e.api_cost_usd)}${e.next_review_days ? ", next review in " + e.next_review_days + " trading day(s)" : ""}</span></div>
+    ${e.trigger && html`<div class="meta">Woken up because: ${e.trigger}</div>`}
+    ${score && html`<div class="meta">Since this decision: portfolio ${pct(score.ai)}, previous holdings would have done ${pct(score.keep)}, value added <b class=${tone(score.added)}>${pct(score.added)}</b>, SPY ${pct(score.spy)}.</div>`}
+    <div class="cols mt">
+      <div>
+        ${after && html`<div>
+          <h3>What changed</h3>
+          <div class="table"><table>
+            <thead><tr><th>ETF</th><th class="num">Before</th><th class="num">After</th><th class="num">Change</th></tr></thead>
+            <tbody>${etfs.map((k) => { const b = before ? before[k] || 0 : null, a = after[k] || 0;
+              const ch = b === null ? null : Math.abs(a - b) < 0.005 ? 0 : a - b; return html`<tr key=${k}>
+              <td><b>${k}</b></td><td class="num">${b === null ? NA : pct(b, 0, false)}</td><td class="num">${pct(a, 0, false)}</td>
+              <td class=${"num " + tone(ch)}>${ch === null ? NA : ch === 0 ? "no change" : pct(ch, 0)}</td></tr>`; })}
+            </tbody></table></div></div>`}
+        ${e.rationale && html`<div><h3>Claude's reason</h3><div>${e.rationale}</div></div>`}
+        ${drivers.length > 0 && html`<div>
+          <h3>What drove it</h3>
+          ${drivers.map((dr, i) => { const [eff, ecls] = EFFECT[dr.effect] || [dr.effect, ""]; return html`<div class="drv" key=${i}>
+            <span class="chip">${INPUT_LABEL[dr.input] || dr.input}</span> <b class=${ecls}>${eff}</b> <b>${dr.etfs.join(", ")}</b> ${dr.factor}</div>`; })}
+        </div>`}
+        ${after && drivers.length === 0 && html`<p class="sub small mt">The list of what drove each decision starts with decisions made after 13 Nov 2026.</p>`}
+      </div>
+      <div>
+        ${e.briefing && html`<div><h3>News Claude read (${e.searches} web searches)</h3><div class="pre">${e.briefing}</div>
+          ${sources.length > 0 && html`<details><summary>Sources (${sources.length})</summary>
+            ${sources.map((src, i) => html`<div class="src" key=${i}><${Link} url=${src.url}>${src.title}</${Link}></div>`)}</details>`}</div>`}
+        ${e.economy && html`<details><summary>Economic data it saw</summary><div class="pre">${e.economy}</div></details>`}
+        ${e.samples && e.samples.length > 0 && html`<details><summary>The ${e.samples.length} independent answers (the median was used)</summary>
+          ${e.samples.map((a, i) => html`<div class="pre" key=${i}>${i + 1}. ${a.status === "ok" ? weightsText(a.weights) + " - review in " + a.next_review_days + " - " + a.rationale : a.status + " " + (a.detail || "")} (${usd(a.cost_usd)})</div>`)}</details>`}
+      </div>
+    </div>
+  </div>`;
+}
+
+function News({ d, live }) {
+  const [allNews, setAllNews] = useState(false);
+  const [allLog, setAllLog] = useState(false);
+  const heads = (live && live.headlines) || [];
+  const shownHeads = allNews ? heads : heads.slice(0, 12);
+  const decisions = d.log.filter((e) => e.status !== "waiting");
+  const waiting = d.log.filter((e) => e.status === "waiting").map((e) => e.date);
+  const shownLog = allLog ? decisions : decisions.slice(0, 8);
+  const scores = Object.fromEntries((d.scorecard || []).map((r) => [r.from, r]));
+
+  return html`<div class="newsgrid">
+    <div class="card">
+      <h2>Decisions and the news behind them</h2>
+      ${waiting.length > 0 && html`<p class="sub small">Days Claude chose not to look (no cost): ${waiting.join(", ")}.</p>`}
+      ${shownLog.map((e) => html`<${Decision} key=${e.date} e=${e} score=${scores[e.date]} universe=${d.settings.universe} />`)}
+      <${More} total=${decisions.length} shown=${8} open=${allLog} setOpen=${setAllLog} what="days" />
+    </div>
+    <div class="card">
+      <h2>Latest headlines on these ETFs</h2>
+      <p class="sub small">Free news feed, refreshed with the live data. Claude does not see these between decisions; when it wakes up it does its own web research (left).</p>
+      ${heads.length === 0 ? html`<p class="sub mt">${live ? "No headline available right now." : "Appears after the next live refresh."}</p>`
+        : shownHeads.map((h, i) => html`<div class="news" key=${i}>
+          <div class="meta">${when(h.time)}${h.source ? " - " + h.source : ""} ${h.symbols.map((s) => html`<span class="chip" key=${s}>${s}</span>`)}</div>
+          <${Link} url=${h.url}>${h.headline}</${Link}>
+          ${h.summary && html`<div class="sub small">${h.summary}</div>`}</div>`)}
+      <${More} total=${heads.length} shown=${12} open=${allNews} setOpen=${setAllNews} what="headlines" />
+    </div>
+  </div>`;
+}
+
+function LiveBadge({ live }) {
+  if (!live) return html`<span class="badge sub">Live data: not yet</span>`;
+  const age = minutesAgo(live.refreshed_at);
+  if (!live.market_open) return html`<span class="badge sub">Market closed${live.next_open ? ", opens " + when(live.next_open) : ""}</span>`;
+  return age > 45 ? html`<span class="badge warn">Live data delayed (${age} min old)</span>`
+    : html`<span class="badge good">Market open, data ${age} min old</span>`;
+}
+
+function Dashboard({ d, live }) {
+  const s = d.summary, cfg = d.settings, cap = cfg.real_capital_usd;
+  const [tab, setTab] = useState(() => { const h = location.hash.slice(1); return TABS.some((t) => t[0] === h) ? h : "overview"; });
+  useEffect(() => {
+    const f = () => { const h = location.hash.slice(1); if (TABS.some((t) => t[0] === h)) setTab(h); };
+    window.addEventListener("hashchange", f);
+    return () => window.removeEventListener("hashchange", f);
+  }, []);
+  const go = (k) => { history.replaceState(null, "", "#" + k); setTab(k); };
+  const a = (live && live.account) || {};
+  const m = (d.metrics && d.metrics.ai_after_costs) || {}, mSpy = (d.metrics && d.metrics.spy_after_costs) || {};
+
+  return html`<div>
+    <h1>AI trading test
+      <span class=${"badge " + (d.status === "running" ? "good" : "bad")}>${d.status === "running" ? "Running" : "Stopped"}</span>
+      <${LiveBadge} live=${live} /></h1>
+    <p class="sub">Fake money only. Claude (${cfg.model}) reads prices, economic data and the news, then picks its own next review (1 to 10 trading days, sooner if markets jolt); each decision is the median of 3 independent answers. Results restated as if ${usd(cap).replace(".00", "")} were invested, after every cost. Started ${d.start_date}; decision data updated ${d.updated_at}.</p>
+    ${d.halt_reason && html`<p class="bad">Stopped: ${d.halt_reason}</p>`}
+    ${live && live.errors && live.errors.length > 0 && html`<p class="warn small">Live data partly missing: ${live.errors.join("; ")}.</p>`}
+    <p class=${"verdict " + tone(s.edge_usd)}>The AI is ${s.edge_usd >= 0 ? "ahead of" : "behind"} simply holding SPY by ${usd(Math.abs(s.edge_usd))} after all costs.</p>
+
+    <div class="grid">
+      <${Kpi} label="AI result after all costs" value=${usd(s.strat_net_usd, true)} cls=${tone(s.strat_net_usd)} note=${pct(s.strat_net_usd / cap) + " on " + usd(cap).replace(".00", "")} />
+      <${Kpi} label="SPY buy-and-hold" value=${usd(s.bench_net_usd, true)} cls=${tone(s.bench_net_usd)} note=${pct(s.bench_net_usd / cap) + " after its one purchase fee"} />
+      <${Kpi} label="Today (live)" value=${usd(a.today_real_usd, true)} cls=${tone(a.today_real_usd)} note=${isNum(a.today_pct) ? pct(a.today_pct) + " since yesterday's close, before costs" : "appears with live data"} />
+      <${Kpi} label="Open positions P&L (live)" value=${usd(a.open_pl_real_usd, true)} cls=${tone(a.open_pl_real_usd)} note="unrealised, before fees" />
+      <${Kpi} label="Sharpe ratio, AI after costs" value=${num(m.sharpe)} note=${"SPY " + num(mSpy.sharpe) + (isNum(m.sharpe) ? "; " + m.days + " trading days, noisy under 60" : "; shown after 5 trading days")} />
+      <${Kpi} label="Worst fall from a peak" value=${pct(isNum(m.max_drawdown) ? -m.max_drawdown : -s.strat_drawdown)} note=${"SPY " + pct(isNum(mSpy.max_drawdown) ? -mSpy.max_drawdown : -s.bench_drawdown) + "; stops at -" + Math.round(cfg.max_drawdown * 100) + "%"} />
+      <${Kpi} label="AI decisions / next review" value=${s.decisions + " / " + (s.next_review || "-")} note=${s.days_elapsed + " calendar days since start; earlier if markets jolt"} />
+      <${Kpi} label="API budget used" value=${usd(s.api_cost)} note=${"of " + usd(cfg.api_budget_usd)} />
+    </div>
+
+    <nav class="tabs" role="tablist">${TABS.map(([k, label]) => html`<button key=${k} role="tab" aria-selected=${tab === k} class=${"tab" + (tab === k ? " on" : "")} onClick=${() => go(k)}>${label}</button>`)}</nav>
+    ${tab === "overview" && html`<${Overview} d=${d} live=${live} cap=${cap} />`}
+    ${tab === "positions" && html`<${Positions} d=${d} live=${live} cap=${cap} />`}
+    ${tab === "performance" && html`<${Performance} d=${d} cap=${cap} />`}
+    ${tab === "news" && html`<${News} d=${d} live=${live} />`}
+
+    <p class="foot">Dividends are left out on all lines. Under 12 months, a result either way can be luck. Decision data changes after the daily run (16:30 UTC); live data about every 15 minutes while the US market is open. This page reloads its data every 5 minutes.</p>
   </div>`;
 }
 
@@ -270,20 +505,20 @@ function App() {
   const [state, setState] = useState({ loading: true });
   useEffect(() => {
     let alive = true;
-    const load = () => fetch("data/dashboard.json?t=" + Date.now(), { cache: "no-store" })
-      .then((r) => { if (r.status === 404) return null; if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
-      .then((d) => alive && setState({ data: d }))
+    const getJson = (url) => fetch(url + "?t=" + Date.now(), { cache: "no-store" })
+      .then((r) => (r.status === 404 ? null : r.ok ? r.json() : Promise.reject(new Error("HTTP " + r.status))));
+    const load = () => Promise.all([getJson("data/dashboard.json"), getJson("data/live.json").catch(() => null)])
+      .then(([data, live]) => alive && setState({ data, live }))
       .catch((e) => alive && setState((prev) => ({ ...prev, loading: false, error: e.message })));
     load();
     const id = setInterval(load, REFRESH_MS);
     return () => { alive = false; clearInterval(id); };
   }, []);
 
+  if (state.data) return html`<${Dashboard} d=${state.data} live=${state.live} />`;
   if (state.loading) return html`<p class="sub">Loading...</p>`;
-  if (state.data) return html`<${Dashboard} d=${state.data} />`;
   if (state.error) return html`<div><h1>AI trading test</h1><p class="bad">Could not load the data (${state.error}). It will retry in 5 minutes.</p></div>`;
-  return html`<div><h1>AI trading test</h1>
-    <p class="sub">No results yet. The first decision happens at the next run during US market hours (16:30 UTC on trading days).</p></div>`;
+  return html`<div><h1>AI trading test</h1><p class="sub">No results yet. The first decision happens at the next run during US market hours (16:30 UTC on trading days).</p></div>`;
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(html`<${App} />`);

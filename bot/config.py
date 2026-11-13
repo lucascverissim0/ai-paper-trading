@@ -89,6 +89,13 @@ RECENT_DECISIONS = 10         # past decisions shown to the AI
 STATE_PATH = os.environ.get("STATE_PATH") or "state/ledger.json"
 REPORT_PATH = os.environ.get("REPORT_PATH") or "report.md"
 DASHBOARD_DATA_PATH = os.environ.get("DASHBOARD_DATA_PATH") or "docs/data/dashboard.json"
+LIVE_DATA_PATH = os.environ.get("LIVE_DATA_PATH") or "docs/data/live.json"
+
+# --- Dashboard ------------------------------------------------------------------
+HEADLINES_LIMIT = 40          # free headlines shown between decisions
+MIN_DAYS_FOR_RATIOS = 5       # daily returns needed before Sharpe / Sortino / beta are shown
+MIN_DAYS_FOR_ANNUAL = 20      # daily returns needed before an annualised return is shown
+RISK_FREE_SERIES = "DTB3"     # 3-month US Treasury bill rate (FRED), used for Sharpe and Sortino
 
 
 def check() -> None:
