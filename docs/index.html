@@ -12,7 +12,7 @@
     color-scheme: light;
     --bg: #f4f3ef; --card: #fcfcfb; --text: #0b0b0b; --muted: #52514e; --faint: #8a8984; --line: #e6e4de;
     --ai: #2a78d6; --ai-soft: rgba(42,120,214,.10); --spy: #eb6834; --good: #0a7d0a; --bad: #c22f2f; --warn: #9a6400;
-    --bar: #ecebe6; --s_6040: #1baf7a; --s_equal: #c98500; --s_trend: #e87ba4; --chip: #efeee9;
+    --bar: #ecebe6; --s_6040: #1baf7a; --s_equal: #c98500; --s_trend: #e87ba4; --s_qqq: #7a5af5; --chip: #efeee9;
     --shadow: 0 1px 2px rgba(20,20,15,.04), 0 4px 16px rgba(20,20,15,.05);
   }
   @media (prefers-color-scheme: dark) {
@@ -20,7 +20,7 @@
       color-scheme: dark;
       --bg: #121211; --card: #1a1a19; --text: #f0efec; --muted: #c3c2b7; --faint: #8f8e86; --line: #2c2c2a;
       --ai: #3987e5; --ai-soft: rgba(57,135,229,.14); --spy: #d95926; --good: #3fbf3f; --bad: #e66767; --warn: #e0a82e;
-      --bar: #2a2a28; --s_6040: #199e70; --s_equal: #c98500; --s_trend: #d55181; --chip: #262624;
+      --bar: #2a2a28; --s_6040: #199e70; --s_equal: #c98500; --s_trend: #d55181; --s_qqq: #9a85ff; --chip: #262624;
       --shadow: none;
     }
   }
@@ -28,7 +28,7 @@
     color-scheme: dark;
     --bg: #121211; --card: #1a1a19; --text: #f0efec; --muted: #c3c2b7; --faint: #8f8e86; --line: #2c2c2a;
     --ai: #3987e5; --ai-soft: rgba(57,135,229,.14); --spy: #d95926; --good: #3fbf3f; --bad: #e66767; --warn: #e0a82e;
-    --bar: #2a2a28; --s_6040: #199e70; --s_equal: #c98500; --s_trend: #d55181; --chip: #262624; --shadow: none;
+    --bar: #2a2a28; --s_6040: #199e70; --s_equal: #c98500; --s_trend: #d55181; --s_qqq: #9a85ff; --chip: #262624; --shadow: none;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; scroll-padding-top: 64px; }
@@ -141,7 +141,7 @@
 const { useState, useEffect, useRef } = React;
 const html = htm.bind(React.createElement);
 const REFRESH_MS = 5 * 60 * 1000;
-const SHADOW_KEYS = ["s_6040", "s_equal", "s_trend"];
+const SHADOW_KEYS = ["s_qqq", "s_6040", "s_equal", "s_trend"];
 
 // --- formatting -------------------------------------------------------------------
 const NA = "n/a";
@@ -176,7 +176,7 @@ const STATUS = {
   waiting: ["Waiting for its review date (no cost)", ""],
   no_consensus: ["Too few usable answers, held", "warn"],
 };
-const INPUT_LABEL = { news: "News", economy: "Economy", prices: "Prices", portfolio: "Portfolio", costs: "Costs", other: "Other" };
+const INPUT_LABEL = { news: "News", economy: "Economy", prices: "Prices", screen: "Screen", analyst: "Analyst", portfolio: "Portfolio", costs: "Costs", other: "Other" };
 const EFFECT = { raise: ["▲ raise", "good"], lower: ["▼ lower", "bad"], hold: ["= hold", ""] };
 
 function Kpi({ label, value, note, cls }) {
@@ -281,14 +281,14 @@ function Overview({ d, live, cap }) {
       <h2>Fall from the previous peak (after costs)</h2>
       <${LineChart} points=${ddPoints} height=${180} baseline=${0} format=${(v) => pct(v, 1)} aria="Drawdown of the AI and of SPY"
         lines=${[{ key: "ai", label: "AI after costs", color: "var(--ai)" }, { key: "spy", label: "SPY buy-and-hold", color: "var(--spy)" }]} />
-      <p class="sub small mt">The test sells everything and stops if the AI falls ${Math.round(cfg.max_drawdown * 100)}% from its peak.</p>
+      <p class="sub small mt">No loss limit on the whole test (owner's choice). Each stock has its own stop-loss, ${Math.round(cfg.default_stop * 100)}% below the price unless Claude sets another, never lowered.</p>
     </div>
     <div class="two">
       <div class="card">
         <h2>Costs so far</h2>
         <div class="row"><span>Trading fees (modelled: $${cfg.fee_per_order_usd.toFixed(2)} + ${(cfg.fee_rate * 100).toFixed(1)}% per order)</span><b>${usd(s.fees_real)}</b></div>
         <div class="row"><span>Claude API (measured)</span><b>${usd(s.api_cost)}</b></div>
-        <div class="row"><span class="sub small">news research ${usd(split.research || 0)}, web searches ${usd(split.searches || 0)}, decisions ${usd(split.decisions || 0)}</span><span></span></div>
+        <div class="row"><span class="sub small">analyst cards ${usd(split.analyst || 0)}, news research ${usd(split.research || 0)}, web searches ${usd(split.searches || 0)}, decisions ${usd(split.decisions || 0)}</span><span></span></div>
         <div class="row"><span>Other costs</span><b>${usd(s.other_costs)}</b></div>
         <div class="row"><span>Total</span><b>${usd(s.fees_real + s.api_cost + s.other_costs)}</b></div>
         <div class="sub mt">API budget: ${usd(s.api_cost)} of ${usd(cfg.api_budget_usd)}</div>
@@ -297,12 +297,32 @@ function Overview({ d, live, cap }) {
       <div class="card">
         <h2>Current holdings ${pos ? "(live)" : "(last target)"}</h2>
         ${holdings.map(([sym, w]) => html`<div key=${sym} class="hold">
-          <div class="row flat"><span><b>${sym}</b> <span class="sub">${cfg.universe[sym] || ""}</span></span><span>${(w * 100).toFixed(1)}%</span></div>
+          <div class="row flat"><span><b>${sym}</b> <span class="sub">${(d.names || {})[sym] || ""}</span>${isNum((d.stops || {})[sym]) ? html` <span class="sub small">· stop ${usd(d.stops[sym])}</span>` : ""}</span><span>${(w * 100).toFixed(1)}%</span></div>
           <div class="barwrap"><div style=${{ width: Math.min(100, w * 100) + "%" }}></div></div></div>`)}
         <div class="row flat"><span><b>Cash</b></span><span>${(cash * 100).toFixed(1)}%</span></div>
         <div class="barwrap"><div style=${{ width: Math.min(100, cash * 100) + "%", background: "var(--muted)" }}></div></div>
       </div>
     </div>
+  </div>`;
+}
+
+function Candidates({ d }) {
+  const [all, setAll] = useState(false);
+  const rows = d.candidates || [];
+  const shown = all ? rows : rows.slice(0, 15);
+  return html`<div class="card mt">
+    <h2>Today's candidates (${rows.length}), strongest first</h2>
+    ${rows.length === 0 ? html`<p class="sub">Appears after the first daily run of the stock version.</p>` : html`<div class="table"><table>
+      <thead><tr><th>Stock</th><th class="num">Strength rank</th><th class="num">Price</th><th class="num">From 52-week high</th><th class="num">3 months</th><th class="num">12 months</th><th class="num">Analyst setup</th><th>Analyst summary</th></tr></thead>
+      <tbody>${shown.map((c) => html`<tr key=${c.symbol}>
+        <td><b>${c.symbol}</b>${c.held ? html` <span class="chip">held</span>` : ""} <span class="sub small">${c.name}</span></td>
+        <td class="num">${c.rs}</td><td class="num">${usd(c.price)}</td><td class="num">${pct(c.from_high, 1)}</td>
+        <td class=${"num " + tone(c.r3m)}>${pct(c.r3m, 0)}</td><td class=${"num " + tone(c.r12m)}>${pct(c.r12m, 0)}</td>
+        <td class="num">${c.card ? c.card.setup_quality + "/10" : "-"}</td>
+        <td class="wrap small" title=${c.card ? [c.card.business].concat(c.card.growth_facts, c.card.catalysts, c.card.risks).join(" · ") : ""}>${c.card ? c.card.summary : ""}</td></tr>`)}
+      </tbody></table></div>`}
+    <${More} total=${rows.length} shown=${15} open=${all} setOpen=${setAll} what="candidates" />
+    <p class="sub small mt">Screen: price above rising 50, 150 and 200-day averages, within 25% of the 52-week high, at least 30% above the 52-week low, stronger than 70% of liquid US stocks, over $20M traded a day; leveraged funds left out. Strength rank 100 = strongest. Hover a summary to read the whole card.</p>
   </div>`;
 }
 
@@ -322,19 +342,22 @@ function Positions({ d, live, cap }) {
     <div class="card">
       <h2>Open positions (live, at ${usd(cap).replace(".00", "")})</h2>
       ${pos.length === 0 ? html`<p class="sub">No open position: everything is in cash.</p>` : html`<div class="table"><table>
-        <thead><tr><th>ETF</th><th class="num">Shares (paper)</th><th class="num">Average buy price</th><th class="num">Last price</th><th class="num">Value</th><th class="num">Weight</th><th class="num">P&L since bought</th><th class="num">Today</th></tr></thead>
+        <thead><tr><th>Stock</th><th class="num">Shares (paper)</th><th class="num">Average buy price</th><th class="num">Last price</th><th class="num">Stop-loss</th><th class="num">Value</th><th class="num">Weight</th><th class="num">P&L since bought</th><th class="num">Today</th></tr></thead>
         <tbody>
           ${pos.map((p) => html`<tr key=${p.symbol}>
             <td><b>${p.symbol}</b> <span class="sub small">${p.name}</span></td>
             <td class="num">${num(p.qty, 4)}</td><td class="num">${usd(p.avg_entry_price)}</td><td class="num">${usd(p.price)}</td>
+            <td class="num">${isNum(p.stop) ? usd(p.stop) + " (" + pct(p.stop / p.price - 1, 1) + ")" : "-"}</td>
             <td class="num">${usd(p.value_real_usd)}</td><td class="num">${pct(p.weight, 1, false)}</td>
             <td class=${"num " + tone(p.pl_real_usd)}>${usd(p.pl_real_usd, true)} (${pct(p.pl_pct)})</td>
             <td class=${"num " + tone(p.today_pct)}>${pct(p.today_pct)}</td></tr>`)}
-          <tr class="total"><td>Total</td><td></td><td></td><td></td><td class="num">${usd(totals.value)}</td><td></td>
+          <tr class="total"><td>Total</td><td></td><td></td><td></td><td></td><td class="num">${usd(totals.value)}</td><td></td>
             <td class=${"num " + tone(totals.pl)}>${usd(totals.pl, true)}</td><td class=${"num " + tone(totals.today)}>${usd(totals.today, true)}</td></tr>
         </tbody></table></div>`}
       <p class="sub small mt">P&L is before fees (fees are counted in the results). Shares and prices are those of the paper account; values are restated as if ${usd(cap).replace(".00", "")} had been invested. Refreshed ${when(live.refreshed_at)}.</p>
     </div>
+
+    <${Candidates} d=${d} />
 
     ${intraday.length > 1 && html`<div class="card mt">
       <h2>Today, before costs (dotted line: yesterday's close)</h2>
@@ -353,7 +376,7 @@ function Positions({ d, live, cap }) {
     <div class="card">
       <h2>Trade history ${trades ? "(" + trades.length + ")" : ""}</h2>
       ${trades ? (trades.length === 0 ? html`<p class="sub">No trades yet.</p>` : html`<div class="table"><table>
-        <thead><tr><th>When</th><th>ETF</th><th>Side</th><th class="num">Shares</th><th class="num">Price</th><th class="num">Amount</th><th class="num">Fee</th><th class="num">Realised P&L</th><th>Why (decision of that day)</th></tr></thead>
+        <thead><tr><th>When</th><th>Stock</th><th>Side</th><th class="num">Shares</th><th class="num">Price</th><th class="num">Amount</th><th class="num">Fee</th><th class="num">Realised P&L</th><th>Why (decision of that day)</th></tr></thead>
         <tbody>${shownTrades.map((t, i) => html`<tr key=${i}>
           <td>${when(t.time)}</td><td><b>${t.symbol}</b></td><td><span class=${"side " + (t.side === "buy" ? "good" : "bad")}>${t.side}</span></td>
           <td class="num">${num(t.qty, 4)}</td><td class="num">${usd(t.price)}</td><td class="num">${usd(t.amount_real_usd)}</td>
@@ -362,7 +385,7 @@ function Positions({ d, live, cap }) {
           <td class="wrap" title=${t.reason}>${t.reason.length > 160 ? t.reason.slice(0, 160) + "..." : t.reason}</td></tr>`)}
         </tbody></table></div>`)
       : html`<div class="table"><table>
-        <thead><tr><th>Date</th><th>ETF</th><th>Side</th><th class="num">Amount</th><th class="num">Fee</th><th>Status</th></tr></thead>
+        <thead><tr><th>Date</th><th>Stock</th><th>Side</th><th class="num">Amount</th><th class="num">Fee</th><th>Status</th></tr></thead>
         <tbody>${d.trades.map((t, i) => html`<tr key=${i}><td>${t.date}</td><td><b>${t.symbol}</b></td><td>${t.side}</td>
           <td class="num">${usd(t.amount_real_usd)}</td><td class="num">${usd(t.fee_real_usd)}</td><td>${t.status}</td></tr>`)}</tbody></table></div>`}
       ${trades && html`<${More} total=${trades.length} shown=${20} open=${allTrades} setOpen=${setAllTrades} what="trades" />`}
@@ -426,41 +449,44 @@ function Performance({ d, cap }) {
   </div>`;
 }
 
-function Decision({ e, score, universe }) {
+function Decision({ e, score }) {
   const [label, cls] = STATUS[e.status] || [e.status, ""];
   const before = e.weights_before || null, after = e.weights || null;
-  const etfs = Object.keys(universe).filter((k) => (before && before[k] > 0.0005) || (after && after[k] > 0.0005));
+  const etfs = [...new Set(Object.keys(before || {}).concat(Object.keys(after || {})))]
+    .filter((k) => (before && before[k] > 0.0005) || (after && after[k] > 0.0005)).sort();
+  const reasons = e.reasons || {}, stopsSet = e.stops_set || {}, fills = e.stop_fills || [];
   const drivers = e.drivers || [], sources = e.sources || [];
   return html`<div class="log">
-    <div><b>${e.date}</b> <span class=${"pill " + cls}><i></i>${label}</span> <span class="meta">API cost ${usd(e.api_cost_usd)}${e.next_review_days ? ", next review in " + e.next_review_days + " trading day(s)" : ""}</span></div>
-    ${e.trigger && html`<div class="meta">Woken up because: ${e.trigger}</div>`}
+    <div><b>${e.date}</b> <span class=${"pill " + cls}><i></i>${label}</span> <span class="meta">API cost ${usd(e.api_cost_usd)}${e.screen && isNum(e.screen.liquid) ? " · screened " + e.screen.liquid + " liquid stocks, " + e.screen.passing + " passed" : ""}</span></div>
+    ${e.trigger && html`<div class="meta">Asked because: ${e.trigger}</div>`}
+    ${fills.length > 0 && html`<div class="meta">Stop-losses that sold before this run: ${fills.map((f) => f.symbol + " at " + usd(f.price)).join(", ")}</div>`}
     ${score && html`<div class="meta">Since this decision: portfolio ${pct(score.ai)}, previous holdings would have done ${pct(score.keep)}, value added <b class=${tone(score.added)}>${pct(score.added)}</b>, SPY ${pct(score.spy)}.</div>`}
     <div class="cols mt">
       <div>
         ${after && html`<div>
           <h3>What changed</h3>
           <div class="table"><table>
-            <thead><tr><th>ETF</th><th class="num">Before</th><th class="num">After</th><th class="num">Change</th></tr></thead>
+            <thead><tr><th>Stock</th><th class="num">Before</th><th class="num">After</th><th class="num">Change</th><th class="num">Stop</th><th>Why</th></tr></thead>
             <tbody>${etfs.map((k) => { const b = before ? before[k] || 0 : null, a = after[k] || 0;
               const ch = b === null ? null : Math.abs(a - b) < 0.005 ? 0 : a - b; return html`<tr key=${k}>
               <td><b>${k}</b></td><td class="num">${b === null ? NA : pct(b, 0, false)}</td><td class="num">${pct(a, 0, false)}</td>
-              <td class=${"num " + tone(ch)}>${ch === null ? NA : ch === 0 ? "no change" : pct(ch, 0)}</td></tr>`; })}
+              <td class=${"num " + tone(ch)}>${ch === null ? NA : ch === 0 ? "no change" : pct(ch, 0)}</td>
+              <td class="num">${isNum(stopsSet[k]) ? usd(stopsSet[k]) : "-"}</td><td class="wrap small">${reasons[k] || ""}</td></tr>`; })}
             </tbody></table></div></div>`}
         ${e.rationale && html`<div><h3>Claude's reason</h3><div class="quote">${e.rationale}</div></div>`}
         ${drivers.length > 0 && html`<div>
           <h3>What drove it</h3>
           ${drivers.map((dr, i) => { const [eff, ecls] = EFFECT[dr.effect] || [dr.effect, ""]; return html`<div class="drv" key=${i}>
-            <span class="chip">${INPUT_LABEL[dr.input] || dr.input}</span> <b class=${ecls}>${eff}</b> <b>${dr.etfs.join(", ")}</b> ${dr.factor}</div>`; })}
+            <span class="chip">${INPUT_LABEL[dr.input] || dr.input}</span> <b class=${ecls}>${eff}</b> <b>${(dr.symbols || dr.etfs || []).join(", ")}</b> ${dr.factor}</div>`; })}
         </div>`}
-        ${after && drivers.length === 0 && html`<p class="sub small mt">The list of what drove each decision starts with decisions made after 13 Nov 2026.</p>`}
       </div>
       <div>
         ${e.briefing && html`<div><h3>News Claude read (${e.searches} web searches)</h3><div class="pre">${e.briefing}</div>
           ${sources.length > 0 && html`<details><summary>Sources (${sources.length})</summary>
             ${sources.map((src, i) => html`<div class="src" key=${i}><${Link} url=${src.url}>${src.title}</${Link}></div>`)}</details>`}</div>`}
         ${e.economy && html`<details><summary>Economic data it saw</summary><div class="pre">${e.economy}</div></details>`}
-        ${e.samples && e.samples.length > 0 && html`<details><summary>The ${e.samples.length} independent answers (the median was used)</summary>
-          ${e.samples.map((a, i) => html`<div class="pre" key=${i}>${i + 1}. ${a.status === "ok" ? weightsText(a.weights) + " - review in " + a.next_review_days + " - " + a.rationale : a.status + " " + (a.detail || "")} (${usd(a.cost_usd)})</div>`)}</details>`}
+        ${e.samples && e.samples.length > 0 && html`<details><summary>The ${e.samples.length} independent answers (a stock is held only if most hold it)</summary>
+          ${e.samples.map((a, i) => html`<div class="pre" key=${i}>${i + 1}. ${a.status === "ok" ? weightsText(a.weights) + (a.next_review_days ? " - review in " + a.next_review_days : "") + " - " + a.rationale : a.status + " " + (a.detail || "")} (${usd(a.cost_usd)})</div>`)}</details>`}
       </div>
     </div>
   </div>`;
@@ -480,12 +506,12 @@ function News({ d, live }) {
     <div class="card">
       <h2>Decisions and the news behind them</h2>
       ${waiting.length > 0 && html`<p class="sub small">Days Claude chose not to look (no cost): ${waiting.join(", ")}.</p>`}
-      ${shownLog.map((e) => html`<${Decision} key=${e.date} e=${e} score=${scores[e.date]} universe=${d.settings.universe} />`)}
+      ${shownLog.map((e) => html`<${Decision} key=${e.date} e=${e} score=${scores[e.date]} />`)}
       <${More} total=${decisions.length} shown=${8} open=${allLog} setOpen=${setAllLog} what="days" />
     </div>
     <div class="card">
-      <h2>Latest headlines on these ETFs</h2>
-      <p class="sub small">Free news feed, refreshed with the live data. Claude does not see these between decisions; when it wakes up it does its own web research (left).</p>
+      <h2>Latest headlines on the stocks held</h2>
+      <p class="sub small">Free news feed, refreshed with the live data. Each day the analyst reads the headlines of every candidate and Claude does its own web research (left).</p>
       ${heads.length === 0 ? html`<p class="sub mt">${live ? "No headline available right now." : "Appears after the next live refresh."}</p>`
         : shownHeads.map((h, i) => html`<div class="news" key=${i}>
           <div class="meta">${when(h.time)}${h.source ? " - " + h.source : ""} ${h.symbols.map((s) => html`<span class="chip" key=${s}>${s}</span>`)}</div>
@@ -542,9 +568,9 @@ function Dashboard({ d, live }) {
       <div class="kpis">
         <${Kpi} label="Portfolio value" value=${usd(value)} note=${"started at " + capTxt} />
         <${Kpi} label="Today" value=${usd(a.today_real_usd, true)} cls=${tone(a.today_real_usd)} note=${isNum(a.today_pct) ? pct(a.today_pct) + " before costs" : "appears with live data"} />
-        <${Kpi} label="Next review" value=${s.next_review ? new Date(s.next_review + "T12:00:00Z").toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" }) : "-"} note=${s.decisions + " decision" + (s.decisions === 1 ? "" : "s") + " so far; sooner if markets jolt"} />
+        <${Kpi} label="Today's candidates" value=${(d.candidates || []).length} note=${s.decisions + " decision" + (s.decisions === 1 ? "" : "s") + " so far · " + (s.stop_fills || 0) + " stop-loss sale" + (s.stop_fills === 1 ? "" : "s")} />
         <${Kpi} label="API spent" value=${usd(s.api_cost)} note=${"of " + usd(cfg.api_budget_usd) + " budget"} />
-        <${Kpi} label="Worst fall from peak" value=${pct(isNum(m.max_drawdown) ? -m.max_drawdown : -s.strat_drawdown)} note=${"stops at -" + Math.round(cfg.max_drawdown * 100) + "% · SPY " + pct(isNum(mSpy.max_drawdown) ? -mSpy.max_drawdown : -s.bench_drawdown)} />
+        <${Kpi} label="Worst fall from peak" value=${pct(isNum(m.max_drawdown) ? -m.max_drawdown : -s.strat_drawdown)} note=${"no loss limit · SPY " + pct(isNum(mSpy.max_drawdown) ? -mSpy.max_drawdown : -s.bench_drawdown)} />
         <${Kpi} label="Sharpe ratio" value=${num(m.sharpe)} note=${isNum(m.sharpe) ? "SPY " + num(mSpy.sharpe) + " · noisy under 60 days" : "shown after 5 trading days"} />
       </div>
     </section>
@@ -557,7 +583,7 @@ function Dashboard({ d, live }) {
     <h2 class="sect" id="news">Decisions & news</h2>
     <${News} d=${d} live=${live} />
 
-    <p class="foot">Fake money only. Claude reads prices, economic data and the news, then picks its own next review (1 to 10 trading days, sooner if markets jolt); each decision is the median of 3 independent answers. Results are restated as if ${capTxt} were invested. Dividends are left out on all lines. Under 12 months, a result either way can be luck. Decision data updates after the daily run (16:30 UTC, last ${d.updated_at}); live data about every 15 minutes while the US market is open. This page reloads its data every 5 minutes.</p>
+    <p class="foot">Fake money only. Every trading day, code screens all US-listed stocks for strong, orderly uptrends; a smaller Claude model reads the headlines of the best ${(d.candidates || []).length || 40}; Claude Opus reads them with the market news and economic data and picks the stocks to hold, each with a stop-loss. A stock is held only if most of 3 independent answers hold it. Results are restated as if ${capTxt} were invested. Dividends are left out on all lines. Under 12 months, a result either way can be luck. Decision data updates after the daily run (16:30 UTC, last ${d.updated_at}); live data about every 15 minutes while the US market is open. This page reloads its data every 5 minutes.</p>
   </div>`;
 }
 

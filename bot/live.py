@@ -38,7 +38,7 @@ def trades_from_orders(orders: list[dict], state: dict) -> tuple[list[dict], dic
     for d in state["days"]:
         reason_by_date[d["date"]] = d.get("rationale", "")
         equity_by_date[d["date"]] = d.get("equity") or state["start_equity"]
-        for o in d.get("orders", []):
+        for o in d.get("orders", []) + d.get("stop_fills", []):
             if o.get("order_id"):
                 fee_by_id[o["order_id"]] = o.get("fee_real_usd", 0.0)
             fee_by_key.setdefault((d["date"], o["symbol"], o["side"]), []).append(o.get("fee_real_usd", 0.0))
@@ -109,7 +109,8 @@ def positions_view(raw: list[dict], equity: float, state: dict) -> list[dict]:
         value = _f(p.get("market_value"))
         rows.append({
             "symbol": p.get("symbol", ""),
-            "name": config.UNIVERSE_DESCRIPTIONS.get(p.get("symbol", ""), ""),
+            "name": state.get("names", {}).get(p.get("symbol", ""), ""),
+            "stop": state.get("stops", {}).get(p.get("symbol", "")),
             "qty": _f(p.get("qty")),
             "avg_entry_price": _f(p.get("avg_entry_price")),
             "price": _f(p.get("current_price")),
@@ -133,7 +134,7 @@ def intraday_view(history: dict, state: dict) -> list[dict]:
     return points
 
 
-def headlines_view(news: list[dict]) -> list[dict]:
+def headlines_view(news: list[dict], symbols: set[str]) -> list[dict]:
     rows = []
     for n in news[: config.HEADLINES_LIMIT]:
         rows.append({
@@ -142,7 +143,7 @@ def headlines_view(news: list[dict]) -> list[dict]:
             "summary": str(n.get("summary", ""))[:400],
             "source": str(n.get("source", ""))[:60],
             "url": safe_url(n.get("url")),
-            "symbols": [s for s in (n.get("symbols") or []) if s in config.UNIVERSE],
+            "symbols": [s for s in (n.get("symbols") or []) if s in symbols],
         })
     return rows
 
@@ -185,7 +186,9 @@ def build_live(broker, state: dict, clock: dict, now: str) -> dict:
     intraday = part("today's curve", lambda: intraday_view(broker.portfolio_history(), state))
     if intraday is not None:
         payload["intraday"] = intraday
-    news = part("headlines", lambda: headlines_view(broker.news(config.UNIVERSE, config.HEADLINES_LIMIT)))
+    watched = sorted(set(state.get("stops", {})) | {p["symbol"] for p in payload.get("positions", [])}
+                     | {config.BENCHMARK})
+    news = part("headlines", lambda: headlines_view(broker.news(watched, config.HEADLINES_LIMIT), set(watched)))
     if news is not None:
         payload["headlines"] = news
     return payload

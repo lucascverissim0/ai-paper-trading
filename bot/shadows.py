@@ -1,6 +1,6 @@
 """Simple rule-based portfolios run on the same prices, dates and fees as the AI, at no API cost.
 
-They answer: does Claude add anything beyond rules anyone could follow?
+They answer: does Claude add anything beyond rules anyone could follow, or beyond simply holding tech?
 Prices are the ones recorded at each run (no dividends, like the AI and the SPY benchmark).
 """
 from __future__ import annotations
@@ -8,6 +8,7 @@ from __future__ import annotations
 from . import config
 
 SHADOWS = {
+    "s_qqq": "Buy and hold QQQ (Nasdaq-100)",
     "s_6040": "60% SPY / 40% IEF",
     "s_equal": "Equal weight, 8 ETFs",
     "s_trend": "Trend rule (above 200-day average)",
@@ -19,11 +20,13 @@ def _fee(amount: float) -> float:
 
 
 def _targets(name: str, day: dict) -> dict[str, float]:
+    if name == "s_qqq":
+        return {"QQQ": 1.0}
     if name == "s_6040":
         return {"SPY": 0.6, "IEF": 0.4}
     if name == "s_equal":
-        return {s: 1 / len(config.UNIVERSE) for s in config.UNIVERSE}
-    up = [s for s in day.get("trend_up", []) if s in config.UNIVERSE]
+        return {s: 1 / len(config.SHADOW_ETFS) for s in config.SHADOW_ETFS}
+    up = [s for s in day.get("trend_up", []) if s in config.SHADOW_ETFS]
     return {s: 1 / len(up) for s in up}
 
 
@@ -32,6 +35,8 @@ def _rebalance_due(name: str, day: dict, prev_day: dict | None, prev_targets: di
         return True
     if name == "s_trend":
         return set(_targets(name, day)) != set(prev_targets or {})
+    if name == "s_qqq":
+        return False  # bought once, held
     return day["date"][:7] != prev_day["date"][:7]  # first run of a new month
 
 
@@ -43,7 +48,7 @@ def simulate(days: list[dict], name: str) -> list[dict]:
     prev_day, prev_targets = None, None
     for day in days:
         prices = day.get("prices")
-        if not prices or any(s not in prices for s in config.UNIVERSE):
+        if not prices or any(s not in prices for s in config.SHADOW_ETFS):
             continue
         value = cash + sum(q * prices[s] for s, q in shares.items())
         if _rebalance_due(name, day, prev_day, prev_targets):

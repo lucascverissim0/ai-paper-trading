@@ -108,24 +108,26 @@ class AlpacaPaper:
         return data.get("news") or []
 
     # -- Orders ---------------------------------------------------------------------
-    def cancel_open_orders(self) -> None:
+    def cancel_open_orders(self, timeout_s: float = 30.0) -> None:
+        """Cancel every open order (stop-losses included) and wait until none is left, so the shares
+        they reserved can be sold or covered by a new stop."""
         self._trade("DELETE", "/v2/orders")
+        deadline = time.monotonic() + timeout_s
+        while self._trade("GET", "/v2/orders", params={"status": "open", "limit": 500}) and time.monotonic() < deadline:
+            time.sleep(1)
 
-    def market_order(self, symbol: str, side: str, notional: float) -> dict:
-        body = {
-            "symbol": symbol,
-            "notional": f"{notional:.2f}",
-            "side": side,
-            "type": "market",
-            "time_in_force": "day",
-        }
+    def market_order(self, symbol: str, side: str, qty: int) -> dict:
+        body = {"symbol": symbol, "qty": str(int(qty)), "side": side, "type": "market", "time_in_force": "day"}
+        return self._trade("POST", "/v2/orders", body=body)
+
+    def stop_order(self, symbol: str, qty: int, stop_price: float) -> dict:
+        """Sell `qty` shares if the price trades at or below `stop_price`; stays open until cancelled."""
+        body = {"symbol": symbol, "qty": str(int(qty)), "side": "sell", "type": "stop",
+                "stop_price": f"{stop_price:.2f}", "time_in_force": "gtc"}
         return self._trade("POST", "/v2/orders", body=body)
 
     def close_position(self, symbol: str) -> dict:
         return self._trade("DELETE", f"/v2/positions/{symbol}")
-
-    def close_all(self) -> None:
-        self._trade("DELETE", "/v2/positions", params={"cancel_orders": "true"})
 
     def wait_final(self, order_id: str, timeout_s: float = 60.0) -> dict:
         deadline = time.monotonic() + timeout_s
@@ -136,29 +138,42 @@ class AlpacaPaper:
         return order
 
     # -- Market data --------------------------------------------------------------
+    def assets(self) -> list[dict]:
+        """Every active US equity Alpaca lists (stocks, ETFs, ADRs), tradable or not."""
+        return self._trade("GET", "/v2/assets", params={"status": "active", "asset_class": "us_equity"})
+
     def latest_prices(self, symbols: list[str]) -> dict[str, float]:
-        data = self._data("/v2/stocks/trades/latest", {"symbols": ",".join(symbols), "feed": FEED})
-        return {s: float(data["trades"][s]["p"]) for s in symbols}
+        """Last trade price per symbol (symbols without a recent trade are left out)."""
+        out: dict[str, float] = {}
+        symbols = sorted(set(symbols))
+        for i in range(0, len(symbols), 100):
+            data = self._data("/v2/stocks/trades/latest", {"symbols": ",".join(symbols[i:i + 100]), "feed": FEED})
+            for s, t in (data.get("trades") or {}).items():
+                if t and t.get("p"):
+                    out[s] = float(t["p"])
+        return out
 
     def latest_price(self, symbol: str) -> float:
         return self.latest_prices([symbol])[symbol]
 
-    def daily_closes(self, symbols: list[str], start_iso: str) -> dict[str, list[tuple[str, float]]]:
-        """Symbol -> [(YYYY-MM-DD, close)], oldest first, adjusted for splits and dividends."""
-        out: dict[str, list[tuple[str, float]]] = {s: [] for s in symbols}
+    def daily_bars(self, symbols: list[str], start_iso: str, end_iso: str, feed: str) -> dict[str, list]:
+        """Symbol -> [(YYYY-MM-DD, close, volume)], oldest first, adjusted for splits and dividends."""
+        out: dict[str, list] = {}
         params = {
             "symbols": ",".join(symbols),
             "timeframe": "1Day",
             "start": start_iso,
+            "end": end_iso,
             "adjustment": "all",
-            "feed": FEED,
+            "feed": feed,
             "limit": 10000,
         }
         while True:
             data = self._data("/v2/stocks/bars", params)
             for sym, bars in (data.get("bars") or {}).items():
-                out.setdefault(sym, []).extend((b["t"][:10], float(b["c"])) for b in bars)
+                out.setdefault(sym, []).extend((b["t"][:10], float(b["c"]), float(b.get("v") or 0)) for b in bars)
             token = data.get("next_page_token")
+            time.sleep(0.35)  # stay under the free plan's 200 requests a minute
             if not token:
                 break
             params["page_token"] = token

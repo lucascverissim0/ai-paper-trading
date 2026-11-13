@@ -5,7 +5,7 @@ import math
 import statistics
 from datetime import date
 
-from . import config, shadows, triggers
+from . import config, shadows
 
 SHADOW_LABELS = shadows.SHADOWS
 
@@ -161,7 +161,7 @@ def summarize(state: dict, equity_now: float, bench_now: float, today: str) -> d
         "strat_drawdown": max_drawdown(equity_series),
         "bench_drawdown": max_drawdown(bench_series),
         "shadows": shadow_gains(state),
-        "next_review": triggers.next_review_date(state),
+        "stop_fills": sum(len(d.get("stop_fills", [])) for d in state["days"]),
     }
 
 
@@ -182,7 +182,7 @@ def dashboard_payload(state: dict, equity_now: float, bench_now: float, today: s
     fees_cum = api_cum = 0.0
     day_costs = {}
     for d in state["days"]:
-        fees = sum(o.get("fee_real_usd", 0.0) for o in d.get("orders", []))
+        fees = sum(o.get("fee_real_usd", 0.0) for o in d.get("orders", []) + d.get("stop_fills", []))
         prev = day_costs.get(d["date"], (0.0, 0.0))
         day_costs[d["date"]] = (prev[0] + fees, prev[1] + d.get("api_cost_usd", 0.0))
     shadow_values = {name: {p["date"]: p["value"] for p in pts}
@@ -205,7 +205,7 @@ def dashboard_payload(state: dict, equity_now: float, bench_now: float, today: s
     trades, log = [], []
     for d in state["days"]:
         scale = real / d["equity"] if d["equity"] else 0.0
-        for o in d.get("orders", []):
+        for o in d.get("orders", []) + d.get("stop_fills", []):
             trades.append({
                 "date": d["date"],
                 "symbol": o["symbol"],
@@ -226,7 +226,11 @@ def dashboard_payload(state: dict, equity_now: float, bench_now: float, today: s
             "economy": d.get("economy", ""),
             "equity_real_usd": round(real * d["equity"] / state["start_equity"], 2),
             "trigger": d.get("trigger", ""),
-            "next_review_days": d.get("next_review_days"),
+            "reasons": d.get("reasons", {}),
+            "stops_set": {o["symbol"]: o["stop_price"] for o in d.get("stop_orders", [])},
+            "stop_fills": d.get("stop_fills", []),
+            "screen": {k: v for k, v in (d.get("screen") or {}).items() if k != "candidates"},
+            "cards_written": d.get("cards_written", 0),
             "briefing": d.get("briefing", ""),
             "briefing_status": d.get("briefing_status", ""),
             "searches": d.get("searches", 0),
@@ -235,7 +239,7 @@ def dashboard_payload(state: dict, equity_now: float, bench_now: float, today: s
         })
 
     last = next((d for d in reversed(state["days"]) if d.get("decision_status") == "ok"), None)
-    split = {"research": 0.0, "searches": 0.0, "decisions": 0.0}
+    split = {"analyst": 0.0, "research": 0.0, "searches": 0.0, "decisions": 0.0}
     for d in state["days"]:
         for k, v in d.get("cost_split", {}).items():
             split[k] = split.get(k, 0.0) + v
@@ -250,8 +254,9 @@ def dashboard_payload(state: dict, equity_now: float, bench_now: float, today: s
             "fee_per_order_usd": config.FEE_PER_ORDER_USD,
             "fee_rate": config.FEE_RATE,
             "model": config.CLAUDE_MODEL,
-            "max_drawdown": config.MAX_DRAWDOWN,
-            "universe": config.UNIVERSE_DESCRIPTIONS,
+            "analyst_model": config.ANALYST_MODEL,
+            "default_stop": config.DEFAULT_STOP,
+            "universe": "Every tradable US-listed stock, ETF and ADR on NYSE, Nasdaq, NYSE Arca, NYSE American and Cboe",
         },
         "summary": summarize(state, equity_now, bench_now, today),
         "shadow_labels": SHADOW_LABELS,
@@ -261,10 +266,28 @@ def dashboard_payload(state: dict, equity_now: float, bench_now: float, today: s
             state, equity_now, (state["days"][-1].get("prices") if state["days"] else None) or {}, bench_now, today)],
         "api_cost_split": {k: round(v, 4) for k, v in split.items()},
         "holdings": last["weights"] if last else {},
+        "names": state.get("names", {}),
+        "stops": state.get("stops", {}),
+        "candidates": candidates_view(state),
         "series": series,
         "trades": trades[::-1],
         "log": log[::-1],
     }
+
+
+def candidates_view(state: dict) -> list[dict]:
+    """Today's screened stocks with their figures and analyst card, strongest first."""
+    day = next((d for d in reversed(state["days"]) if d.get("screen")), None)
+    if not day:
+        return []
+    cards, names = state.get("cards", {}), state.get("names", {})
+    held = set((day.get("weights") or {}))
+    out = []
+    for c in day["screen"].get("candidates", []):
+        entry = cards.get(c["symbol"])
+        out.append({**c, "name": names.get(c["symbol"], ""), "held": c["symbol"] in held,
+                    "card": entry["card"] if entry else None, "card_date": entry["date"] if entry else None})
+    return out
 
 
 def render_report(s: dict, state: dict) -> str:
@@ -280,7 +303,7 @@ def render_report(s: dict, state: dict) -> str:
         return f"{'-' if x < 0 else ''}${abs(x):,.2f}"
 
     lines = [
-        "# AI paper-trading test - results",
+        "# AI paper-trading test - results (version 3: stock picking)",
         "",
         f"Last update: {s['today']} - status: {status}",
         "",
@@ -303,15 +326,19 @@ def render_report(s: dict, state: dict) -> str:
         f"Days since start: {s['days_elapsed']} - AI decisions made: {s['decisions']} - "
         f"API budget used: {usd(s['api_cost'])} of {usd(config.API_BUDGET_USD)}.",
         "",
+        f"Stop-losses that sold a position between runs: {s['stop_fills']}.",
+        "",
         "Under 12 months, a result either way can be luck. Dividends are left out on both sides.",
     ]
     if s["shadows"]:
         lines += ["", "Simple rules on the same days, prices and fees (no AI cost):", "",
                   "| Rule | Gain after fees |", "|---|---|"]
         lines += [f"| {SHADOW_LABELS[k]} | {usd(v)} ({pct(v / real)}) |" for k, v in s["shadows"].items()]
-    if s["next_review"]:
-        lines += ["", f"Next review chosen by the AI: {s['next_review']} (earlier if markets jolt)."]
     if last:
-        held = ", ".join(f"{k} {v * 100:.0f}%" for k, v in last["weights"].items() if v > 0) or "all cash"
+        held = ", ".join(f"{k} {v * 100:.0f}%" for k, v in sorted(last["weights"].items(), key=lambda x: -x[1])
+                         if v > 0) or "all cash"
         lines += ["", f"Last decision ({last['date']}): {held}.", "", f"Reason given: {last['rationale']}"]
+        stops = state.get("stops", {})
+        if stops:
+            lines += ["", "Stop-losses in place: " + ", ".join(f"{k} at {v:.2f}" for k, v in sorted(stops.items())) + "."]
     return "\n".join(lines) + "\n"
