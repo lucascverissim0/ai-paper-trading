@@ -1,15 +1,15 @@
 {
- "refreshed_at": "2026-11-13T21:24:19Z",
- "market_open": false,
- "next_open": "2026-11-16T09:30:00-05:00",
- "next_close": "2026-11-16T16:00:00-05:00",
+ "refreshed_at": "2026-11-18T20:57:56Z",
+ "market_open": true,
+ "next_open": "2026-11-19T09:30:00-05:00",
+ "next_close": "2026-11-18T16:00:00-05:00",
  "errors": [],
  "account": {
-  "value_real_usd": 998.14,
-  "today_real_usd": -11.05,
-  "today_pct": -0.010951199999999939,
-  "cash_weight": 0.6690738616739639,
-  "open_pl_real_usd": 0.76
+  "value_real_usd": 995.9,
+  "today_real_usd": 2.53,
+  "today_pct": 0.0025442891102414045,
+  "cash_weight": 0.6705584010968494,
+  "open_pl_real_usd": -1.46
  },
  "positions": [
   {
@@ -18,13 +18,13 @@
    "stop": 112.0,
    "qty": 105.0,
    "avg_entry_price": 113.5,
-   "price": 115.39,
-   "weight": 0.12250103331605074,
-   "value_real_usd": 122.27,
-   "pl_real_usd": 2.0,
-   "pl_pct": 0.01665,
-   "today_real_usd": 2.0,
-   "today_pct": -0.04628
+   "price": 114.56,
+   "weight": 0.12189376754677747,
+   "value_real_usd": 121.39,
+   "pl_real_usd": 1.12,
+   "pl_pct": 0.00934,
+   "today_real_usd": 0.16,
+   "today_pct": 0.00131
   },
   {
    "symbol": "APPN",
@@ -32,13 +32,13 @@
    "stop": 50.9,
    "qty": 200.0,
    "avg_entry_price": 54.58,
-   "price": 54.51,
-   "weight": 0.11022711922809066,
-   "value_real_usd": 110.02,
-   "pl_real_usd": -0.14,
-   "pl_pct": -0.00128,
-   "today_real_usd": -0.14,
-   "today_pct": -0.0116
+   "price": 54.045,
+   "weight": 0.10953293208076598,
+   "value_real_usd": 109.08,
+   "pl_real_usd": -1.08,
+   "pl_pct": -0.0098,
+   "today_real_usd": 1.16,
+   "today_pct": 0.01075
   },
   {
    "symbol": "HAE",
@@ -46,13 +46,13 @@
    "stop": 115.0,
    "qty": 79.0,
    "avg_entry_price": 124.32,
-   "price": 122.94,
-   "weight": 0.09819798578189469,
-   "value_real_usd": 98.02,
-   "pl_real_usd": -1.1,
-   "pl_pct": -0.0111,
-   "today_real_usd": -1.1,
-   "today_pct": 0.00187
+   "price": 122.435,
+   "weight": 0.09801484860813933,
+   "value_real_usd": 97.61,
+   "pl_real_usd": -1.5,
+   "pl_pct": -0.01516,
+   "today_real_usd": 1.21,
+   "today_pct": 0.01253
   }
  ],
  "trades": [
@@ -212,503 +212,139 @@
  },
  "intraday": [
   {
-   "time": "2026-11-13T14:30:00Z",
-   "value_real_usd": 1009.2
+   "time": "2026-11-18T14:30:00Z",
+   "value_real_usd": 996.04
   },
   {
-   "time": "2026-11-13T14:45:00Z",
-   "value_real_usd": 1009.2
+   "time": "2026-11-18T14:45:00Z",
+   "value_real_usd": 997.47
   },
   {
-   "time": "2026-11-13T15:00:00Z",
-   "value_real_usd": 1006.45
+   "time": "2026-11-18T15:00:00Z",
+   "value_real_usd": 993.93
   },
   {
-   "time": "2026-11-13T15:15:00Z",
-   "value_real_usd": 1000.26
+   "time": "2026-11-18T15:15:00Z",
+   "value_real_usd": 996.36
   },
   {
-   "time": "2026-11-13T15:30:00Z",
-   "value_real_usd": 1001.16
+   "time": "2026-11-18T15:30:00Z",
+   "value_real_usd": 996.17
   },
   {
-   "time": "2026-11-13T15:45:00Z",
-   "value_real_usd": 1000.66
+   "time": "2026-11-18T15:45:00Z",
+   "value_real_usd": 996.62
   },
   {
-   "time": "2026-11-13T16:00:00Z",
-   "value_real_usd": 1001.31
+   "time": "2026-11-18T16:00:00Z",
+   "value_real_usd": 998.28
   },
   {
-   "time": "2026-11-13T16:15:00Z",
-   "value_real_usd": 1000.1
+   "time": "2026-11-18T16:15:00Z",
+   "value_real_usd": 996.37
   },
   {
-   "time": "2026-11-13T16:30:00Z",
-   "value_real_usd": 1000.59
+   "time": "2026-11-18T16:30:00Z",
+   "value_real_usd": 996.15
   },
   {
-   "time": "2026-11-13T16:45:00Z",
-   "value_real_usd": 999.57
+   "time": "2026-11-18T16:45:00Z",
+   "value_real_usd": 995.29
   },
   {
-   "time": "2026-11-13T17:00:00Z",
-   "value_real_usd": 997.2
+   "time": "2026-11-18T17:00:00Z",
+   "value_real_usd": 997.75
   },
   {
-   "time": "2026-11-13T17:15:00Z",
-   "value_real_usd": 997.57
+   "time": "2026-11-18T17:15:00Z",
+   "value_real_usd": 997.59
   },
   {
-   "time": "2026-11-13T17:30:00Z",
-   "value_real_usd": 997.97
+   "time": "2026-11-18T17:30:00Z",
+   "value_real_usd": 1000.33
   },
   {
-   "time": "2026-11-13T17:45:00Z",
-   "value_real_usd": 996.63
+   "time": "2026-11-18T17:45:00Z",
+   "value_real_usd": 999.17
   },
   {
-   "time": "2026-11-13T18:00:00Z",
-   "value_real_usd": 997.43
+   "time": "2026-11-18T18:00:00Z",
+   "value_real_usd": 998.14
   },
   {
-   "time": "2026-11-13T18:15:00Z",
-   "value_real_usd": 997.19
+   "time": "2026-11-18T18:15:00Z",
+   "value_real_usd": 997.83
   },
   {
-   "time": "2026-11-13T18:30:00Z",
-   "value_real_usd": 998.23
+   "time": "2026-11-18T18:30:00Z",
+   "value_real_usd": 998.36
   },
   {
-   "time": "2026-11-13T18:45:00Z",
-   "value_real_usd": 997.77
+   "time": "2026-11-18T18:45:00Z",
+   "value_real_usd": 999.69
   },
   {
-   "time": "2026-11-13T19:00:00Z",
-   "value_real_usd": 998.2
+   "time": "2026-11-18T19:00:00Z",
+   "value_real_usd": 999.45
   },
   {
-   "time": "2026-11-13T19:15:00Z",
-   "value_real_usd": 998.07
+   "time": "2026-11-18T19:15:00Z",
+   "value_real_usd": 997.65
   },
   {
-   "time": "2026-11-13T19:30:00Z",
-   "value_real_usd": 998.49
+   "time": "2026-11-18T19:30:00Z",
+   "value_real_usd": 998.31
   },
   {
-   "time": "2026-11-13T19:45:00Z",
-   "value_real_usd": 999.12
+   "time": "2026-11-18T19:45:00Z",
+   "value_real_usd": 996.93
   },
   {
-   "time": "2026-11-13T20:00:00Z",
-   "value_real_usd": 999.3
+   "time": "2026-11-18T20:00:00Z",
+   "value_real_usd": 998.03
   },
   {
-   "time": "2026-11-13T20:15:00Z",
-   "value_real_usd": 999.72
+   "time": "2026-11-18T20:15:00Z",
+   "value_real_usd": 998.71
   },
   {
-   "time": "2026-11-13T20:30:00Z",
-   "value_real_usd": 999.1
+   "time": "2026-11-18T20:30:00Z",
+   "value_real_usd": 998.37
   },
   {
-   "time": "2026-11-13T20:45:00Z",
-   "value_real_usd": 997.78
-  },
-  {
-   "time": "2026-11-13T21:00:00Z",
-   "value_real_usd": 998.07
+   "time": "2026-11-18T20:45:00Z",
+   "value_real_usd": 996.26
   }
  ],
  "headlines": [
   {
-   "time": "2026-11-13T21:19:20Z",
-   "headline": "'FAA confirms nationwide ground stop due to widespread ATC frequency issues' - The Air Current",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/economics/macro-economic-events/26/11/63269765/faa-confirms-nationwide-ground-stop-due-widespread-atc-frequency-issues-air-current",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T21:01:37Z",
-   "headline": "Federal Aviation Administration Issues National Ground Stop, Citing 'Extraordinary Circumstances'",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/content/63268257/federal-aviation-administration-issues-national-ground-stop-citing-extraordinary-circumstances",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T19:46:27Z",
-   "headline": "'Hassett Denies Report He\u2019s Leaving White House: \u2018Not True'- CNBC",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/news/26/11/63263618/hassett-denies-report-he-s-leaving-white-house-not-true-cnbc",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T19:13:01Z",
-   "headline": "'Hassett expected to depart White House'- Semafor",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/news/26/11/63261679/hassett-expected-depart-white-house-semafor",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T18:20:03Z",
-   "headline": "U.S. Trade Representative, Alongside Treasury, Held First Official U.S.-China Board Of Trade Meeting",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/news/26/11/63258802/u-s-trade-representative-alongside-treasury-held-first-official-u-s-china-board-trade-meeting",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T18:19:49Z",
-   "headline": "Why Is IREN Stock Falling on Friday?",
-   "summary": "IREN Limited (NASDAQ: IREN) stock falls Friday amid Bitcoin sliding under $70,000, rising Treasury yields, and NVIDIA Corp. (NASDAQ: NVDA) CEO Jensen Huang&#39;s resignation.",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/trading-ideas/movers/26/11/63258769/why-is-iren-stock-falling-on-friday-3",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T18:10:59Z",
-   "headline": "BZ Analysis: Long Non-Dealer Positioning In US Equity Futures Is Up To +$330B, Its 2nd-highest On Record",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/economics/26/11/63258274/bz-analysis-long-non-dealer-positioning-us-equity-futures-330b-its-2nd-highest-record",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T17:57:54Z",
-   "headline": "'Trump to Extend Shipping Waiver for Oil, Fertilizer for 90 Days'- Bloomberg",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/news/26/11/63257546/trump-extend-shipping-waiver-oil-fertilizer-90-days-bloomberg",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T17:50:00Z",
-   "headline": "Fed\u2019s Daly Says Just Starting To Hear That The Consumer May Be Running Out Of Gas",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/news/26/11/63257127/fed-s-daly-says-just-starting-hear-consumer-may-be-running-out-gas",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T17:35:15Z",
-   "headline": "Fed\u2019s Daly: Looking At How The Gap Between Consumer Sentiment And Behavior Gets Closed; Watch Services Ex-Housing Inflation Carefully, It\u2019s Not Moving In The Correct Direction",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/news/26/11/63256181/fed-s-daly-looking-how-gap-between-consumer-sentiment-and-behavior-gets-closed-watch-services-ex-hou",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T17:29:23Z",
-   "headline": "Fed\u2019s Daly Says A Myriad Of Things Are Pushing Up Inflation, Which Makes It Concerning; Consumer Spending Surprisingly Resilient",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/news/26/11/63255728/fed-s-daly-says-myriad-things-are-pushing-inflation-which-makes-it-concerning-consumer-spending-surp",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T17:22:42Z",
-   "headline": "Fed's Daly Says Bias Is That Rates Need To Go Up; Markets Understand Fed's Reaction Function; In All Likelihood We Will Need To Raise Rates",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/news/26/11/63255354/fed-s-daly-says-bias-rates-need-go-markets-understand-fed-s-reaction-function-all-likelihood-we-will",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T17:17:43Z",
-   "headline": "Fed\u2019s Daly Says Key Problem We Have Is Inflation; A Good Economy With One Problem, Inflation; Not Much Evidence That AI Is Driving Labor Productivity Up",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/news/26/11/63255026/fed-s-daly-says-key-problem-we-have-inflation-good-economy-one-problem-inflation-not-much-evidence-a",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T16:38:56Z",
-   "headline": "'Bessent Blames Lutnick\u2019s Commerce As He slams Nvidia Chip \u2018Leakage\u2019 To China'- CNBC",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/news/26/11/63251937/bessent-blames-lutnick-s-commerce-he-slams-nvidia-chip-leakage-china-cnbc",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T16:28:33Z",
-   "headline": "AMD Benefits From Nvidia's Troubles, Smart Money Sells Nvidia; Cooler PPI; Bitcoin Below $70K",
-   "summary": "\n\n\n\nAMD To Benefit\n\n\n\nPlease click here for an enlarged chart of Advanced Micro Devices Inc (NASDAQ:AMD).\n\n\n\nNote the following:\n\n\n\n\nThis article is about the big picture, not an individual stock.\u00a0 The chart of AMD",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/opinion/26/11/63250990/amd-benefits-from-nvidias-troubles-smart-money-sells-nvidia-cooler-ppi-bitcoin-below-70k",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T16:31:45Z",
-   "headline": "Wells Fargo Maintains Equal-Weight on Andersen Group, Raises Price Target to $61",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/news/26/11/63251278/wells-fargo-maintains-equal-weight-andersen-group-raises-price-target-61",
-   "symbols": [
-    "ANDG"
-   ]
-  },
-  {
-   "time": "2026-11-13T16:13:55Z",
-   "headline": "'US wants Japan to nearly triple budget for hosting American troops'- Nikkei Asia",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/news/26/11/63249620/us-wants-japan-nearly-triple-budget-hosting-american-troops-nikkei-asia",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T16:00:18Z",
-   "headline": "Consumer Staples Leads Sectors As Technology Trails",
-   "summary": "Six sectors are higher and five are lower in Friday&#39;s regular session, with the top three split across defensive, growth and cyclical groups. Consumer Staples sits well clear of the rest, separated by a margin several times wider than any other gap in the table.",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/etfs/sector-etfs/26/11/63248349/consumer-staples-leads-sectors-as-technology-trails",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T15:49:57Z",
-   "headline": "Live On Bloomberg TV, Fed\u2019s Collins Says Possible Fed May Have To Raise More Than Expected; Best Case Scenario Is \u2018careful Adjustment\u2019 Of Monetary Policy; Energy Is An Inflation Driver, But I See It As Broader; Many Firms Expect To Pass On Higher Costs To Consumers",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/quote/SPY",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T15:49:36Z",
-   "headline": "Bitcoin Could Crash Below $10,000, Peter Schiff Warns: \u2018Get the Hell Out\u2019",
-   "summary": "Peter Schiff tells Bitcoin holders to \u201cget the hell out,\u201d predicting a crash below $10,000 as its historic streak breaks.",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/crypto/cryptocurrency/26/11/63247338/bitcoin-could-crash-below-10000-peter-schiff-warns-get-the-hell-out",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T15:47:34Z",
-   "headline": "Live On Bloomberg TV, Fed\u2019s Collins Says Inflation Is Too High And Appears To Be Broadening; Recent Inflation Data Less Promising Than I Hope; I Would Think Some Additional Policy Tightening Warranted Soon",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/quote/SPY",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T15:46:37Z",
-   "headline": "'Senate Republicans eye defense-only spending bill' - Semafor",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/news/26/11/63247055/senate-republicans-eye-defense-only-spending-bill-semafor",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T15:21:28Z",
-   "headline": "'Israeli spy chief in D.C. as Netanyahu presses Trump to resume war'- Axios",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/news/26/11/63244259/israeli-spy-chief-d-c-netanyahu-presses-trump-resume-war-axios",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T14:44:56Z",
-   "headline": "Fed\u2019s Logan Does Not Comment On Monetary Policy Or Economic Outlook In Remarks To Dallas Fed Conference On Bank Funding; Says Fed Should Further Develop Its Operational Readiness To Lend To Designated Financial Market Utilities; Treasury Market Currently Functioning Very Well, Trading Proceeding Smo",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/economics/macro-economic-events/26/11/63239820/fed-s-logan-does-not-comment-monetary-policy-or-economic-outlook-remarks-dallas-fed-conference-bank-",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T14:29:24Z",
-   "headline": "Fed\u2019s Collins Does Not Comment On Economic Outlook Or Monetary Policy; Says Ensuring Price Stability Is A Long-Run Benefit For Housing Market; Notes Persistent Housing Shortage; Higher Productivity Has Helped Limit Some Inflationary Pressures",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/economics/macro-economic-events/26/11/63238225/fed-s-collins-does-not-comment-economic-outlook-or-monetary-policy-says-ensuring-price-stability-lon",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T14:07:17Z",
-   "headline": "11 AI Stocks to Buy on Dips: 'Don't Waste a Good Sell-Off,' Analyst Says",
-   "summary": "HSBC argues that the correction in equity markets is &#34;overdone,&#34; and names 11 Buy-rated AI stocks to buy on the dip.",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/analyst-stock-ratings/analyst-color/26/11/63237574/hsbc-ai-stocks-buy-dip-oracle-alphabet-vertiv-ge-vernova",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T13:59:39Z",
-   "headline": "Fed's Goolsbee Says Even If The Price Of Oil Drops Rapidly, Refining Capacity Remains 'Problematic' And Will Keep Diesel And Jet Fuel Prices Elevated",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/economics/macro-economic-events/26/11/63237248/fed-s-goolsbee-says-even-if-price-oil-drops-rapidly-refining-capacity-remains-problematic-and-will-k",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T13:54:47Z",
-   "headline": "Fed's Goolsbee Says Services Inflation And Rising Health Care Costs Don't Feel Like They Will Change Quickly; FOMC Trying To Figure Out The Same Thing As Bessent, Which Is Persistence Of Inflation; To The Extent Data Suggest Inflation Is Getting Worse It Would Make The Fed More Aggressive",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/quote/SPY",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T13:52:03Z",
-   "headline": "'UN watchdog calls on Iran to reopen nuclear facilities to inspection; Tehran has told the IAEA that it is not possible to resume inspections in the current security situation' - Al Jazeera",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/news/26/11/63236935/un-watchdog-calls-iran-reopen-nuclear-facilities-inspection-tehran-has-told-iaea-it-not-possible-res",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T13:49:37Z",
-   "headline": "Fed's Goolsbee Says Inflation Has Spread Into Categories Where Prices Are Not Being Driven By Energy; The Fed 'Definitely Has Work To Do' To Maintain Its Credibility; Need To Be Careful About Assessing Labor Market Impact On Inflation, Because Wages Are A Lagging Indicator Of Price Pressures",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/economics/macro-economic-events/26/11/63236878/fed-s-goolsbee-says-inflation-has-spread-categories-where-prices-are-not-being-driven-energy-fed-def",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T13:48:29Z",
-   "headline": "Fed's Goolsbee Says Can't Look Through Inflation If Demand Is Overheating; Data Center Buildout Is Pushing Up Prices; Inflation Is Rising And Proving Far More Persistent Than Expected When It Was Just A Matter Of Supply Shocks",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/economics/macro-economic-events/26/11/63236837/fed-s-goolsbee-says-can-t-look-through-inflation-if-demand-overheating-data-center-buildout-pushing-",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T13:40:44Z",
-   "headline": "Stock Market Today: Dow Jones, S&P 500, Nasdaq 100  Futures Rise as Nvidia CEO Exit Remains in Focus\u2014 CSCO, AMAT, NU in Focus(UPDATED)",
-   "summary": "U.S. stock futures were mixed on Friday, as the Dow Jones, S&amp;P 500, and Nasdaq 100 indices were mixed, after Thursday&#39;s close lower.",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/markets/equities/26/11/63231225/stock-market-today-dow-jones-sp-500-futures-rise-nvidia-ceo-exit-remains-in-focus-csco-amat-nu-in-focus",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T13:30:24Z",
-   "headline": "USA PPI (MoM) For Oct. Revises Prior From 1.3% To 1.4%",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/quote/SPY",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T13:30:18Z",
-   "headline": "USA PPI (YoY) For October 6.5% Vs 6.6% Est.",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/quote/SPY",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T13:30:11Z",
-   "headline": "USA PPI (MoM) For Oct. 0.3% Vs 0.4% Est.",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/quote/SPY",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T13:30:11Z",
-   "headline": "USA Core PPI (YoY) For October 5.0% Vs 5.0% Est.; 5.0% Prior",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/quote/SPY",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T13:30:07Z",
-   "headline": "USA Core PPI (MoM) For October 0.3% Vs 0.3% Est. 0.7% Prior",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/quote/SPY",
-   "symbols": [
-    "SPY"
-   ]
-  },
-  {
-   "time": "2026-11-13T13:15:41Z",
-   "headline": "Jefferies Initiates Coverage On Haemonetics with Buy Rating, Announces Price Target of $150",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/news/26/11/63235574/jefferies-initiates-coverage-haemonetics-buy-rating-announces-price-target-150",
+   "time": "2026-11-18T12:32:28Z",
+   "headline": "Haemonetics Announces CE Mark Certification for the VASCADE MVP XL Venous Vascular Closure System",
+   "summary": "Haemonetics Corporation has received CE Mark certification for its VASCADE MVP XL venous vascular closure system, marking a regulatory milestone for the medical technology company.",
+   "source": "fiscal.ai",
+   "url": "https://www.prnewswire.com/news-releases/general-business-latest-news/licensing-list/",
    "symbols": [
     "HAE"
    ]
   },
   {
-   "time": "2026-11-13T12:40:21Z",
-   "headline": "Baird Maintains Outperform on Andersen Group, Raises Price Target to $71",
-   "summary": "",
-   "source": "benzinga",
-   "url": "https://www.benzinga.com/news/26/11/63234245/baird-maintains-outperform-andersen-group-raises-price-target-71",
+   "time": "2026-11-17T12:32:30Z",
+   "headline": "Appian Announces 2026 Partner Award Winners at Appian Europe",
+   "summary": "Appian recognized several leading partners across Europe, the Middle East, and Africa (EMEA) for their contributions to delivering AI-powered automation solutions during the Appian Europe conference.",
+   "source": "fiscal.ai",
+   "url": "https://www.prnewswire.com/news-releases/appian-announces-2026-partner-award-winners-at-appian-europe-302941915.html",
    "symbols": [
-    "ANDG"
+    "APPN"
+   ]
+  },
+  {
+   "time": "2026-11-17T12:32:30Z",
+   "headline": "Appian Advances Control Plane Capabilities for AI Agents",
+   "summary": "Appian announced new agent management and orchestration capabilities at its annual Appian Europe conference to help organizations ensure AI agents deliver reliable business value.",
+   "source": "fiscal.ai",
+   "url": "https://www.prnewswire.com/news-releases/appian-advances-control-plane-capabilities-to-drive-safety-and-business-value-from-ai-agents-302941446.html",
+   "symbols": [
+    "APPN"
    ]
   },
   {
@@ -719,6 +355,366 @@
    "url": "https://www.moomoo.com/news/post/1004564338?futusource=nnq_personal_guest",
    "symbols": [
     "HNGE"
+   ]
+  },
+  {
+   "time": "2026-11-13T12:32:28Z",
+   "headline": "Jefferies Initiates Coverage on Haemonetics With Buy Rating",
+   "summary": "Jefferies has initiated coverage on Haemonetics Corporation with a Buy rating and a price target of $150.",
+   "source": "fiscal.ai",
+   "url": "https://www.marketscreener.com/news/jefferies-initiates-coverage-on-haemonetics-with-buy-rating-150-price-target-ce785ed9df80f622",
+   "symbols": [
+    "HAE"
+   ]
+  },
+  {
+   "time": "2026-11-10T22:31:55Z",
+   "headline": "Andersen Group Inc. Announces Five New Acquisition Agreements",
+   "summary": "Andersen Group Inc. has entered into five new acquisition agreements aimed at expanding the technology and strategic advisory capabilities of its Andersen Consulting division.",
+   "source": "fiscal.ai",
+   "url": "https://www.businesswire.com/newsroom/subject/merger-acquisition",
+   "symbols": [
+    "ANDG"
+   ]
+  },
+  {
+   "time": "2026-11-10T19:02:46Z",
+   "headline": "Stifel Maintains Bullish Rating on Hinge Health",
+   "summary": "Analyst David Grossman of Stifel Financial has reaffirmed a bullish rating on Hinge Health (HNGE) and maintained a price target of $135.",
+   "source": "fiscal.ai",
+   "url": "https://www.moomoo.com/ja/news/post/1004150796/stifel-maintains-hinge-health-hngeus-with-buy-rating-maintains-target",
+   "symbols": [
+    "HNGE"
+   ]
+  },
+  {
+   "time": "2026-11-06T23:01:58Z",
+   "headline": "Citigroup and Barrington Research Update Analyst Ratings for Haemonetics",
+   "summary": "Financial analysts at Citigroup and Barrington Research issued updated price targets and maintained positive ratings for Haemonetics Corporation on November 6, 2026.",
+   "source": "fiscal.ai",
+   "url": "https://www.tradingview.com/news/tradingview:011e2ae0fd73c:0-citigroup-maintains-haemonetics-at-buy-raises-price-target-to-149-from-123/",
+   "symbols": [
+    "HAE"
+   ]
+  },
+  {
+   "time": "2026-11-06T19:02:38Z",
+   "headline": "Barrington Research Adjusts Haemonetics Price Target to $145",
+   "summary": "Barrington Research has increased its price target for Haemonetics Corporation from $140 to $145 while maintaining an Outperform rating.",
+   "source": "fiscal.ai",
+   "url": "https://www.marketscreener.com/news/barrington-research-adjusts-haemonetics-pt-to-145-from-140-maintains-outperform-rating-ce785fd2db8cff21",
+   "symbols": [
+    "HAE"
+   ]
+  },
+  {
+   "time": "2026-11-06T14:32:46Z",
+   "headline": "Morgan Stanley Adjusts Appian Price Target to $57",
+   "summary": "Morgan Stanley has increased its price target for Appian Corporation to $57 from $32 while maintaining an Equalweight rating.",
+   "source": "fiscal.ai",
+   "url": "https://www.marketscreener.com/news/morgan-stanley-adjusts-price-target-on-appian-to-57-from-32-keeps-equalweight-rating-ce785fd2d88df42c",
+   "symbols": [
+    "APPN"
+   ]
+  },
+  {
+   "time": "2026-11-06T14:32:46Z",
+   "headline": "William Blair Upgrades Appian to Outperform",
+   "summary": "William Blair has upgraded Appian Corporation's stock rating from Market Perform to Outperform.",
+   "source": "fiscal.ai",
+   "url": "https://www.marketscreener.com/news/william-blair-upgrades-appian-to-outperform-from-market-perform-ce785fd2d981f421",
+   "symbols": [
+    "APPN"
+   ]
+  },
+  {
+   "time": "2026-11-05T12:32:52Z",
+   "headline": "Appian Announces Third Quarter 2026 Financial Results",
+   "summary": "Appian Corporation reported its financial results for the third quarter ended September 30, 2026, highlighting growth in cloud and total subscription revenues.",
+   "source": "fiscal.ai",
+   "url": "https://www.globenewswire.com/news-release/2026/11/05/3396285/0/en/appian-announces-third-quarter-2026-financial-results.html",
+   "symbols": [
+    "APPN"
+   ]
+  },
+  {
+   "time": "2026-11-05T12:32:26Z",
+   "headline": "Haemonetics Corporation Announces Second Quarter Fiscal 2027 Financial Results",
+   "summary": "Haemonetics Corporation released its financial results for the second quarter of fiscal year 2027, covering the period ended September 26, 2026.",
+   "source": "fiscal.ai",
+   "url": "https://www.prnewswire.com/news-releases/haemonetics-corporation-announces-second-quarter-fiscal-2027-financial-results-available-on-investor-relations-website-302930182.html",
+   "symbols": [
+    "HAE"
+   ]
+  },
+  {
+   "time": "2026-11-03T22:32:08Z",
+   "headline": "Andersen Consulting Enters Collaboration with Bakia Consulting",
+   "summary": "Andersen Consulting has formed a strategic collaboration with Paris-based Bakia Consulting to enhance its business transformation and financial management advisory services.",
+   "source": "fiscal.ai",
+   "url": "https://www.businesswire.com/newsroom",
+   "symbols": [
+    "ANDG"
+   ]
+  },
+  {
+   "time": "2026-11-03T19:02:59Z",
+   "headline": "TD Cowen Maintains Appian at Hold, Raises Price Target to $50",
+   "summary": "TD Cowen has maintained its 'Hold' rating on Appian Corporation while increasing its price target from $30 to $50.",
+   "source": "fiscal.ai",
+   "url": "https://www.tradingview.com/news/tradingview:4f22343fe10d0:0-td-cowen-maintains-appian-at-hold-raises-price-target-to-50-from-30",
+   "symbols": [
+    "APPN"
+   ]
+  },
+  {
+   "time": "2026-11-03T19:02:42Z",
+   "headline": "Analysts Adjust Price Targets for Hinge Health Following Q3 Earnings",
+   "summary": "Multiple financial institutions, including RBC, Truist, and Morgan Stanley, updated their price targets for Hinge Health following the company's Q3 2026 earnings report.",
+   "source": "fiscal.ai",
+   "url": "https://www.marketscreener.com/news/rbc-raises-price-target-on-hinge-health-to-135-from-110-keeps-outperform-rating-ce785fded98fff22",
+   "symbols": [
+    "HNGE"
+   ]
+  },
+  {
+   "time": "2026-11-03T12:32:19Z",
+   "headline": "Hinge Health Reports Q3 2026 Financial Results and Executive Leadership Changes",
+   "summary": "Hinge Health announced strong Q3 2026 financial results, including a 52% year-over-year revenue increase, and disclosed upcoming changes to its executive leadership team.",
+   "source": "fiscal.ai",
+   "url": "https://www.tradingview.com/news/tradingview:1011f04aff107:0-key-facts-revenue-up-52-guidance-raised-president-to-join-board/",
+   "symbols": [
+    "HNGE"
+   ]
+  },
+  {
+   "time": "2026-11-02T23:02:23Z",
+   "headline": "Hinge Health Reports Q3 2026 Financial Results and Updates Full-Year Guidance",
+   "summary": "Hinge Health, Inc. reported third-quarter 2026 revenue of $235.0 million and adjusted earnings per share of $0.71, both exceeding analyst expectations.",
+   "source": "fiscal.ai",
+   "url": "https://www.marketscreener.com/news/hnge-hinge-health-now-expects-2026-revenue-range-879m-881m-vs-factset-est-of-860-6m-ce785fd9da8ff127",
+   "symbols": [
+    "HNGE"
+   ]
+  },
+  {
+   "time": "2026-11-02T22:32:19Z",
+   "headline": "Andersen Group Inc. Announces Closing of Three Strategic Acquisitions",
+   "summary": "Andersen Group Inc. has finalized the acquisition of Andersen in the Netherlands, Clareo Partners, and Endeavor Management as part of its ongoing global expansion strategy.",
+   "source": "fiscal.ai",
+   "url": "https://natlawreview.com/press-releases/andersen-group-closes-three-strategic-acquisitions-further-accelerating",
+   "symbols": [
+    "ANDG"
+   ]
+  },
+  {
+   "time": "2026-10-29T18:02:38Z",
+   "headline": "Appian Announces 2026 US Public Sector Partner Award Winners",
+   "summary": "Appian recognized GovCIO, Groundswell, and Ignyte as winners of its 2026 US Public Sector Partner Awards.",
+   "source": "fiscal.ai",
+   "url": "https://www.prnewswire.com/news-releases/appian-announces-2026-us-public-sector-partner-award-winners-302923692.html",
+   "symbols": [
+    "APPN"
+   ]
+  },
+  {
+   "time": "2026-10-29T18:02:38Z",
+   "headline": "Appian Announces US Army Fielded TACTMIS System",
+   "summary": "Appian announced that the US Army has fielded the Total Army Combat and Training Munitions Information System (TACTMIS), built on the Appian Defense Cloud.",
+   "source": "fiscal.ai",
+   "url": "https://www.prnewswire.com/news-releases/appian-marks-major-milestone-in-supporting-us-army-ammunition-modernization-302923147.html",
+   "symbols": [
+    "APPN"
+   ]
+  },
+  {
+   "time": "2026-10-29T18:02:38Z",
+   "headline": "Appian Defense Cloud Achieves IL5 Provisional Authorization",
+   "summary": "Appian announced that its Appian Defense Cloud (ADC) has received Impact Level 5 (IL5) Provisional Authorization to Operate from the US Department of War.",
+   "source": "fiscal.ai",
+   "url": "https://www.prnewswire.com/news-releases/appian-defense-cloud-achieves-il5-authorization-across-department-of-war-operations-302923821.html",
+   "symbols": [
+    "APPN"
+   ]
+  },
+  {
+   "time": "2026-10-28T18:02:13Z",
+   "headline": "Harvard Pilgrim Health Care Expands Partnership with Hinge Health",
+   "summary": "Harvard Pilgrim Health Care has expanded its relationship with Hinge Health to provide members with increased access to digital musculoskeletal care and pain management programs.",
+   "source": "fiscal.ai",
+   "url": "https://www.prnewswire.com/news-releases/harvard-pilgrim-adds-well-being-solutions-to-its-suite-of-products-302921860.html",
+   "symbols": [
+    "HNGE"
+   ]
+  },
+  {
+   "time": "2026-10-28T13:02:57Z",
+   "headline": "Andersen Consulting Enters Collaboration Agreement with John Keells IT",
+   "summary": "Andersen Consulting has announced a new collaboration with Sri Lanka-based technology solutions provider John Keells IT to expand its digital and business transformation capabilities.",
+   "source": "fiscal.ai",
+   "url": "https://www.newswire.co.kr/newsRead.php?no=1045711",
+   "symbols": [
+    "ANDG"
+   ]
+  },
+  {
+   "time": "2026-10-28T11:32:42Z",
+   "headline": "Appian and PSI CRO Form Strategic Partnership to Advance AI-driven Clinical Trial Operations",
+   "summary": "Appian and PSI CRO have launched a joint AI-powered process orchestration solution designed to automate clinical trial site identification and selection.",
+   "source": "fiscal.ai",
+   "url": "https://www.prnewswire.com/news-releases/appian-and-psi-cro-form-strategic-partnership-to-advance-ai-driven-clinical-trial-operations-302921701.html",
+   "symbols": [
+    "APPN"
+   ]
+  },
+  {
+   "time": "2026-10-26T18:02:20Z",
+   "headline": "Stifel Raises Hinge Health Price Target to $130 from $115",
+   "summary": "Stifel analyst David Grossman maintained a 'Buy' rating on Hinge Health, Inc. and increased the price target from $115 to $130.",
+   "source": "fiscal.ai",
+   "url": "https://www.moomoo.com/ja/news/post/1002349490/stifel-maintains-hinge-health-hngeus-with-buy-rating-raises-target",
+   "symbols": [
+    "HNGE"
+   ]
+  },
+  {
+   "time": "2026-10-23T13:32:29Z",
+   "headline": "BofA Securities Adjusts Hinge Health Price Target to $130 From $110",
+   "summary": "BofA Securities has updated its price target for Hinge Health, raising it from $110 to $130.",
+   "source": "fiscal.ai",
+   "url": "https://www.marketscreener.com/news/bofa-securities-adjusts-hinge-health-price-target-to-130-from-110-ce785cdfdb8afe25",
+   "symbols": [
+    "HNGE"
+   ]
+  },
+  {
+   "time": "2026-10-22T21:32:29Z",
+   "headline": "Andersen Consulting Broadens Technology and AI Services Through TechSparq Collaboration",
+   "summary": "Andersen Consulting has formed a collaboration agreement with U.S.-based digital consulting firm TechSparq to enhance its technology and business transformation offerings.",
+   "source": "fiscal.ai",
+   "url": "https://natlawreview.com/press-releases/andersen-consulting-adds-collaborating-firm-techsparq",
+   "symbols": [
+    "ANDG"
+   ]
+  },
+  {
+   "time": "2026-10-22T21:32:29Z",
+   "headline": "Andersen Global Strengthens Legal Capabilities in Argentina Through Collaboration with MHR",
+   "summary": "Andersen Global has entered into a collaboration agreement with the Argentine law firm Mart\u00ednez de Hoz & Rueda (MHR) to enhance its legal service offerings in the region.",
+   "source": "fiscal.ai",
+   "url": "https://www.fidelity.com/news/article/default/202610210930BIZWIRE_USPR_____20261021_BW793760",
+   "symbols": [
+    "ANDG"
+   ]
+  },
+  {
+   "time": "2026-10-21T13:02:30Z",
+   "headline": "Andersen Consulting Expands Capabilities Through Collaboration with Algoruni",
+   "summary": "Andersen Consulting has entered into a collaboration agreement with Uzbekistan-based firm Algoruni to enhance its cybersecurity and business transformation service offerings.",
+   "source": "fiscal.ai",
+   "url": "https://www.newswire.co.kr/newsRead.php?no=1045140",
+   "symbols": [
+    "ANDG"
+   ]
+  },
+  {
+   "time": "2026-10-19T22:02:01Z",
+   "headline": "Haemonetics Announces FDA Approval of PerQseal\u00ae Elite Vascular Closure System",
+   "summary": "Haemonetics Corporation has received FDA approval for its PerQseal\u00ae Elite vascular closure system, designed for large-bore arterial procedures.",
+   "source": "fiscal.ai",
+   "url": "https://www.prnewswire.com/news-releases/haemonetics-announces-fda-approval-of-perqseal-elite-vascular-closure-system-302913028.html",
+   "symbols": [
+    "HAE"
+   ]
+  },
+  {
+   "time": "2026-10-18T13:02:36Z",
+   "headline": "Andersen Global Expands Private Client Tax Capabilities Through Collaboration with KTA Tax",
+   "summary": "Andersen Global has entered into a collaboration agreement with Dublin-based tax practice KTA Tax to enhance its private client tax services in Ireland.",
+   "source": "fiscal.ai",
+   "url": "https://www.newswire.co.kr/newsRead.php?no=1044908",
+   "symbols": [
+    "ANDG"
+   ]
+  },
+  {
+   "time": "2026-10-15T22:02:24Z",
+   "headline": "Appian to Announce Third Quarter 2026 Financial Results on November 5, 2026",
+   "summary": "Appian Corporation has scheduled the release of its financial results for the third quarter ended September 30, 2026, for November 5, 2026.",
+   "source": "fiscal.ai",
+   "url": "https://www.globenewswire.com/news-release/2026/10/15/3382121/0/en/appian-to-announce-third-quarter-2026-financial-results-on-november-5-2026.html",
+   "symbols": [
+    "APPN"
+   ]
+  },
+  {
+   "time": "2026-10-15T21:32:30Z",
+   "headline": "Andersen Group Inc. Closes Four Consulting Acquisitions",
+   "summary": "Andersen Group Inc. announced the closing of four consulting acquisitions\u2014SPR, BD Emerson, Daniels Consulting Group, and Zenger Folkman\u2014to accelerate its global expansion.",
+   "source": "fiscal.ai",
+   "url": "https://www.businesswire.com/newsroom/subject/merger-acquisition",
+   "symbols": [
+    "ANDG"
+   ]
+  },
+  {
+   "time": "2026-10-13T21:33:04Z",
+   "headline": "Andersen Group Inc. Appoints Two Senior Executives to Board of Directors",
+   "summary": "Andersen Group Inc. has appointed longtime senior executives Daniel DePaoli and Peter Coscia to its Board of Directors to strengthen operational expertise.",
+   "source": "fiscal.ai",
+   "url": "https://natlawreview.com/press-releases/andersen-group-appoints-daniel-depaoli-and-peter-coscia-board-directors",
+   "symbols": [
+    "ANDG"
+   ]
+  },
+  {
+   "time": "2026-10-13T18:03:24Z",
+   "headline": "Barclays Maintains Underweight Rating on Appian Corporation",
+   "summary": "Barclays has reaffirmed its Underweight rating on Appian Corporation, reflecting the firm's current stance on the enterprise software company.",
+   "source": "fiscal.ai",
+   "url": "https://www.moomoo.com/news/post/1001060515/what-s-moving-markets-today-wsj",
+   "symbols": [
+    "APPN"
+   ]
+  },
+  {
+   "time": "2026-10-11T13:02:13Z",
+   "headline": "Andersen Consulting Enters Collaboration Agreement with TalentSmartEQ",
+   "summary": "Andersen Consulting has partnered with TalentSmartEQ to enhance its human capital and leadership development services through emotional intelligence-based training.",
+   "source": "fiscal.ai",
+   "url": "https://www.newswire.co.kr/newsRead.php?no=1044348",
+   "symbols": [
+    "ANDG"
+   ]
+  },
+  {
+   "time": "2026-10-09T18:02:48Z",
+   "headline": "BofA Securities Maintains Haemonetics Buy Rating and Raises Price Target to $140",
+   "summary": "BofA Securities analyst Travis Steed maintained a Buy rating on Haemonetics and increased the price target from $120 to $140.",
+   "source": "fiscal.ai",
+   "url": "https://www.moomoo.com/news/post/1000831026/bofa-securities-maintains-haemonetics-haeus-with-buy-rating-raises-target",
+   "symbols": [
+    "HAE"
+   ]
+  },
+  {
+   "time": "2026-10-09T13:32:35Z",
+   "headline": "Barrington Research Adjusts Price Target on Haemonetics to $140",
+   "summary": "Barrington Research has increased its price target for Haemonetics Corporation from $118 to $140 while maintaining an Outperform rating.",
+   "source": "fiscal.ai",
+   "url": "https://www.marketscreener.com/news/barrington-adjusts-price-target-on-haemonetics-to-140-from-118-keeps-outperform-rating-ce785ddfd080fe22",
+   "symbols": [
+    "HAE"
+   ]
+  },
+  {
+   "time": "2026-10-08T13:32:52Z",
+   "headline": "Haemonetics Announces CSL Plasma Rollout Timeline for NexSys PCS Devices",
+   "summary": "Haemonetics Corporation disclosed that CSL Plasma expects to complete the transition to its NexSys PCS devices and disposables across all current U.S. locations by the end of 2027.",
+   "source": "fiscal.ai",
+   "url": "https://www.morningstar.com/news/dow-jones/202610085085/haemonetics-shares-gain-as-csl-targets-rollout-of-companys-devices-by-end-of-2027",
+   "symbols": [
+    "HAE"
    ]
   }
  ]
