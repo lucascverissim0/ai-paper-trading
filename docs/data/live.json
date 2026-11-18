@@ -1,15 +1,15 @@
 {
- "refreshed_at": "2026-11-18T20:57:56Z",
- "market_open": true,
+ "refreshed_at": "2026-11-18T23:00:35Z",
+ "market_open": false,
  "next_open": "2026-11-19T09:30:00-05:00",
- "next_close": "2026-11-18T16:00:00-05:00",
+ "next_close": "2026-11-19T16:00:00-05:00",
  "errors": [],
  "account": {
-  "value_real_usd": 995.9,
-  "today_real_usd": 2.53,
-  "today_pct": 0.0025442891102414045,
-  "cash_weight": 0.6705584010968494,
-  "open_pl_real_usd": -1.46
+  "value_real_usd": 996.3,
+  "today_real_usd": 2.92,
+  "today_pct": 0.002943243883277491,
+  "cash_weight": 0.6702916636953576,
+  "open_pl_real_usd": -1.06
  },
  "positions": [
   {
@@ -18,13 +18,13 @@
    "stop": 112.0,
    "qty": 105.0,
    "avg_entry_price": 113.5,
-   "price": 114.56,
-   "weight": 0.12189376754677747,
-   "value_real_usd": 121.39,
-   "pl_real_usd": 1.12,
-   "pl_pct": 0.00934,
-   "today_real_usd": 0.16,
-   "today_pct": 0.00131
+   "price": 114.7,
+   "weight": 0.12199418325737588,
+   "value_real_usd": 121.54,
+   "pl_real_usd": 1.27,
+   "pl_pct": 0.01057,
+   "today_real_usd": 0.31,
+   "today_pct": 0.00253
   },
   {
    "symbol": "APPN",
@@ -32,13 +32,13 @@
    "stop": 50.9,
    "qty": 200.0,
    "avg_entry_price": 54.58,
-   "price": 54.045,
-   "weight": 0.10953293208076598,
-   "value_real_usd": 109.08,
-   "pl_real_usd": -1.08,
-   "pl_pct": -0.0098,
-   "today_real_usd": 1.16,
-   "today_pct": 0.01075
+   "price": 54.0,
+   "weight": 0.10939819646943658,
+   "value_real_usd": 108.99,
+   "pl_real_usd": -1.17,
+   "pl_pct": -0.01063,
+   "today_real_usd": 1.07,
+   "today_pct": 0.00991
   },
   {
    "symbol": "HAE",
@@ -46,13 +46,13 @@
    "stop": 115.0,
    "qty": 79.0,
    "avg_entry_price": 124.32,
-   "price": 122.435,
-   "weight": 0.09801484860813933,
-   "value_real_usd": 97.61,
-   "pl_real_usd": -1.5,
-   "pl_pct": -0.01516,
-   "today_real_usd": 1.21,
-   "today_pct": 0.01253
+   "price": 122.86,
+   "weight": 0.09831595657782993,
+   "value_real_usd": 97.95,
+   "pl_real_usd": -1.16,
+   "pl_pct": -0.01174,
+   "today_real_usd": 1.55,
+   "today_pct": 0.01604
   }
  ],
  "trades": [
@@ -314,6 +314,10 @@
   {
    "time": "2026-11-18T20:45:00Z",
    "value_real_usd": 996.26
+  },
+  {
+   "time": "2026-11-18T21:00:00Z",
+   "value_real_usd": 996.23
   }
  ],
  "headlines": [

@@ -8,14 +8,14 @@ Results restated as if $1,000 had been invested.
 
 | | AI strategy | Buy and hold SPY |
 |---|---|---|
-| Return before costs | -0.87% | -2.19% |
+| Return before costs | -0.37% | -2.47% |
 | Trading fees (modelled) | $8.40 | $2.00 |
 | Claude API cost (measured) | $1.03 | $0.00 |
 | Other costs | $0.00 | $0.00 |
-| Gain after all costs | -$18.15 (-1.82%) | -$23.86 (-2.39%) |
-| Worst fall from a peak | -0.87% | -2.19% |
+| Gain after all costs | -$13.13 (-1.31%) | -$26.72 (-2.67%) |
+| Worst fall from a peak | -0.37% | -2.47% |
 
-**Verdict so far: the AI is AHEAD of buy-and-hold by $5.71 after all costs.**
+**Verdict so far: the AI is AHEAD of buy-and-hold by $13.59 after all costs.**
 
 Days since start: 0 - AI decisions made: 1 - API budget used: $1.03 of $60.00.
 
