@@ -1,15 +1,15 @@
 {
- "refreshed_at": "2026-11-19T13:24:34Z",
- "market_open": false,
- "next_open": "2026-11-19T09:30:00-05:00",
+ "refreshed_at": "2026-11-19T14:41:53Z",
+ "market_open": true,
+ "next_open": "2026-11-20T09:30:00-05:00",
  "next_close": "2026-11-19T16:00:00-05:00",
  "errors": [],
  "account": {
-  "value_real_usd": 997.75,
-  "today_real_usd": 1.51,
-  "today_pct": 0.001519509437521105,
-  "cash_weight": 0.6693143562801677,
-  "open_pl_real_usd": 0.39
+  "value_real_usd": 997.13,
+  "today_real_usd": 0.89,
+  "today_pct": 0.0008939780524082064,
+  "cash_weight": 0.669732659462663,
+  "open_pl_real_usd": -0.24
  },
  "positions": [
   {
@@ -18,13 +18,13 @@
    "stop": 112.0,
    "qty": 105.0,
    "avg_entry_price": 113.5,
-   "price": 114.53,
-   "weight": 0.12163576442352769,
-   "value_real_usd": 121.36,
-   "pl_real_usd": 1.09,
-   "pl_pct": 0.00907,
-   "today_real_usd": 0.0,
-   "today_pct": 0.0
+   "price": 114.05,
+   "weight": 0.12120168429882418,
+   "value_real_usd": 120.85,
+   "pl_real_usd": 0.58,
+   "pl_pct": 0.00485,
+   "today_real_usd": -0.51,
+   "today_pct": -0.00419
   },
   {
    "symbol": "APPN",
@@ -32,13 +32,13 @@
    "stop": 50.9,
    "qty": 200.0,
    "avg_entry_price": 54.58,
-   "price": 54.81,
-   "weight": 0.11087727063491043,
-   "value_real_usd": 110.63,
-   "pl_real_usd": 0.46,
-   "pl_pct": 0.00421,
-   "today_real_usd": 1.51,
-   "today_pct": 0.01387
+   "price": 54.85,
+   "weight": 0.11102753401875545,
+   "value_real_usd": 110.71,
+   "pl_real_usd": 0.54,
+   "pl_pct": 0.00495,
+   "today_real_usd": 1.59,
+   "today_pct": 0.01461
   },
   {
    "symbol": "HAE",
@@ -46,13 +46,13 @@
    "stop": 115.0,
    "qty": 79.0,
    "avg_entry_price": 124.32,
-   "price": 122.86,
-   "weight": 0.09817260866139414,
-   "value_real_usd": 97.95,
-   "pl_real_usd": -1.16,
-   "pl_pct": -0.01174,
-   "today_real_usd": 0.0,
-   "today_pct": 0.0
+   "price": 122.615,
+   "weight": 0.09803807161468242,
+   "value_real_usd": 97.76,
+   "pl_real_usd": -1.36,
+   "pl_pct": -0.01371,
+   "today_real_usd": -0.2,
+   "today_pct": -0.00199
   }
  ],
  "trades": [
@@ -173,112 +173,8 @@
  },
  "intraday": [
   {
-   "time": "2026-11-18T14:30:00Z",
-   "value_real_usd": 996.04
-  },
-  {
-   "time": "2026-11-18T14:45:00Z",
-   "value_real_usd": 997.47
-  },
-  {
-   "time": "2026-11-18T15:00:00Z",
-   "value_real_usd": 993.93
-  },
-  {
-   "time": "2026-11-18T15:15:00Z",
-   "value_real_usd": 996.36
-  },
-  {
-   "time": "2026-11-18T15:30:00Z",
-   "value_real_usd": 996.17
-  },
-  {
-   "time": "2026-11-18T15:45:00Z",
-   "value_real_usd": 996.62
-  },
-  {
-   "time": "2026-11-18T16:00:00Z",
-   "value_real_usd": 998.28
-  },
-  {
-   "time": "2026-11-18T16:15:00Z",
-   "value_real_usd": 996.37
-  },
-  {
-   "time": "2026-11-18T16:30:00Z",
-   "value_real_usd": 996.15
-  },
-  {
-   "time": "2026-11-18T16:45:00Z",
-   "value_real_usd": 995.29
-  },
-  {
-   "time": "2026-11-18T17:00:00Z",
-   "value_real_usd": 997.75
-  },
-  {
-   "time": "2026-11-18T17:15:00Z",
-   "value_real_usd": 997.59
-  },
-  {
-   "time": "2026-11-18T17:30:00Z",
-   "value_real_usd": 1000.33
-  },
-  {
-   "time": "2026-11-18T17:45:00Z",
-   "value_real_usd": 999.17
-  },
-  {
-   "time": "2026-11-18T18:00:00Z",
-   "value_real_usd": 998.14
-  },
-  {
-   "time": "2026-11-18T18:15:00Z",
-   "value_real_usd": 997.83
-  },
-  {
-   "time": "2026-11-18T18:30:00Z",
-   "value_real_usd": 998.36
-  },
-  {
-   "time": "2026-11-18T18:45:00Z",
-   "value_real_usd": 999.69
-  },
-  {
-   "time": "2026-11-18T19:00:00Z",
-   "value_real_usd": 999.45
-  },
-  {
-   "time": "2026-11-18T19:15:00Z",
-   "value_real_usd": 997.65
-  },
-  {
-   "time": "2026-11-18T19:30:00Z",
-   "value_real_usd": 998.31
-  },
-  {
-   "time": "2026-11-18T19:45:00Z",
-   "value_real_usd": 996.93
-  },
-  {
-   "time": "2026-11-18T20:00:00Z",
-   "value_real_usd": 998.03
-  },
-  {
-   "time": "2026-11-18T20:15:00Z",
-   "value_real_usd": 998.71
-  },
-  {
-   "time": "2026-11-18T20:30:00Z",
-   "value_real_usd": 998.37
-  },
-  {
-   "time": "2026-11-18T20:45:00Z",
-   "value_real_usd": 996.26
-  },
-  {
-   "time": "2026-11-18T21:00:00Z",
-   "value_real_usd": 996.23
+   "time": "2026-11-19T14:30:00Z",
+   "value_real_usd": 995.12
   }
  ],
  "daily": [
@@ -313,48 +209,56 @@
    "spy_after_costs": 972.05,
    "fees_cum": 9.513,
    "api_cum": 1.0276
+  },
+  {
+   "date": "2026-11-19",
+   "ai_before_costs": 997.13,
+   "ai_after_costs": 986.59,
+   "spy_after_costs": 981.98,
+   "fees_cum": 9.513,
+   "api_cum": 1.0276
   }
  ],
  "daily_metrics": {
   "ai_after_costs": {
-   "days": 4,
-   "total_return": -0.01429999999999998,
+   "days": 5,
+   "total_return": -0.013409999999999922,
    "annual_return": null,
-   "volatility": 0.16067943382831137,
-   "sharpe": null,
-   "sortino": null,
+   "volatility": 0.14270727229892946,
+   "sharpe": -4.993028696628845,
+   "sortino": -5.745577326469809,
    "max_drawdown": 0.017169999999999908,
    "best_day": 0.007229794042001636,
    "worst_day": -0.012419999999999987,
-   "up_days": 0.5,
-   "beta": null,
-   "correlation": null
+   "up_days": 0.6,
+   "beta": -0.2184352000253198,
+   "correlation": -0.28200505080477173
   },
   "ai_before_costs": {
-   "days": 4,
-   "total_return": -0.0037599999999999856,
+   "days": 5,
+   "total_return": -0.002870000000000039,
    "annual_return": null,
-   "volatility": 0.12948239993490904,
-   "sharpe": null,
-   "sortino": null,
+   "volatility": 0.11286860213300506,
+   "sharpe": -1.6027476873780537,
+   "sortino": -2.0947933249094555,
    "max_drawdown": 0.011827785846447725,
    "best_day": 0.007153448483148361,
    "worst_day": -0.011827785846447725,
-   "up_days": 0.5,
-   "beta": null,
-   "correlation": null
+   "up_days": 0.6,
+   "beta": -0.06396016376207135,
+   "correlation": -0.10440391584235234
   },
   "spy_after_costs": {
-   "days": 4,
-   "total_return": -0.02795000000000003,
+   "days": 5,
+   "total_return": -0.018020000000000036,
    "annual_return": null,
-   "volatility": 0.15901708215275004,
-   "sharpe": null,
-   "sortino": null,
+   "volatility": 0.18423849072953954,
+   "sharpe": -5.115015110117112,
+   "sortino": -5.993297103874841,
    "max_drawdown": 0.03211191874937769,
-   "best_day": 0.0042999999999999705,
+   "best_day": 0.01021552389280389,
    "worst_day": -0.019157622224434956,
-   "up_days": 0.25,
+   "up_days": 0.4,
    "beta": null,
    "correlation": null
   }
