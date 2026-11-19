@@ -1,9 +1,10 @@
 name: day-trade
 
-# Day trading on its own paper account (bot/daytrade.py): no AI, no cost.
-# Started every 15 minutes during US market hours by an outside timer (cron-job.org, see README),
-# because GitHub's own timer starts this project's runs hours late or not at all. The schedule
-# below is only a backup. Each run does what is due at that moment and never trades twice.
+# Day trading on its own paper account (bot/daytrade.py): Claude picks among the morning's candidates,
+# fixed rules buy, protect and sell. Started before the open by an outside timer (cron-job.org, see README),
+# because GitHub's own timer starts this project's runs hours late or not at all; the schedule below is only
+# a backup. A run waits for each step of the day and, before its time limit, queues the next run itself,
+# so one start covers the whole day. Each run does what is due and never trades twice.
 # While the market is open it also starts the stock-picking run if that one has not run today.
 on:
   workflow_dispatch: {}
@@ -31,6 +32,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install the Claude client
+        run: pip install -q -r requirements.txt
+
       - name: Offline tests (stop if anything is broken)
         run: python -m unittest tests.test_daytrade
 
@@ -45,6 +49,7 @@ jobs:
           DT_ALPACA_SECRET_KEY: ${{ secrets.DT_ALPACA_SECRET_KEY }}
           ALPACA_KEY_ID: ${{ secrets.ALPACA_KEY_ID }}
           ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GH_TOKEN: ${{ github.token }}
           DT_PUBLISH: "1"
         run: python -m bot.daytrade

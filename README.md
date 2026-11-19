@@ -142,8 +142,11 @@ buy-and-hold by $X after all costs"**.
 ## Day trading side (since 2026-11-19)
 
 A second, separate test on its **own paper account**: buy stocks that break out in the morning, sell
-everything before the close, never hold overnight. Fixed rules, **no AI call: it costs nothing to run.**
-Code: [bot/daytrade.py](bot/daytrade.py). Settings: the `DT_` lines of [bot/config.py](bot/config.py).
+everything before the close, never hold overnight. **Claude picks, rules trade**: at 9:35 Claude reads the
+morning's candidates and their headlines and says which ones may be bought, best first; fixed rules buy them
+on a breakout, protect each with a stop-loss and sell everything before the close.
+Code: [bot/daytrade.py](bot/daytrade.py) and [bot/dt_ai.py](bot/dt_ai.py). Settings: the `DT_` lines of
+[bot/config.py](bot/config.py).
 
 ### What to expect, honestly
 
@@ -160,10 +163,15 @@ Code: [bot/daytrade.py](bot/daytrade.py). Settings: the `DT_` lines of [bot/conf
   $2.40 to go in and out: at 2 trades a day that is about $1,200 a year, more than the $1,000 itself. So every result
   is shown twice: with your fees, and with a no-commission broker (0.05% per order for the spread and
   slippage). If day trading ever went real, the broker's costs would matter more than the rules.
-- Unlike Claude's picks, fixed rules **can** be tested fairly on the past (nothing in them knows what happened
-  next). The test on past prices replays these exact rules since January 2024, after the paper's own data,
-  and is on the dashboard. Its main flaw: it only sees shares listed today (companies delisted since are
-  missing), which flatters it.
+- Fixed rules **can** be tested fairly on the past (nothing in them knows what happened next); Claude cannot
+  (it already knows how those days ended). So the test on past prices replays the rules alone since January
+  2024, after the paper's own data, and is on the dashboard. Its main flaw: it only sees shares listed today
+  (companies delisted since are missing), which flatters it.
+- What Claude adds is measured live instead: every day at the close the same rules are replayed on all the
+  morning's candidates, as if Claude had said yes to each, on that day's minute prices. The dashboard shows
+  that "without Claude" line next to the real one, after the same fees and with Claude's cost counted.
+- Claude's cost: one call a day (Claude Opus, quick setting), a few cents; capped at $15 in total for day
+  trading (`DT_API_BUDGET_USD`), apart from the stock side's $60. Past the cap, the rules alone choose.
 
 ### The rules
 
@@ -171,14 +179,20 @@ Code: [bot/daytrade.py](bot/daytrade.py). Settings: the `DT_` lines of [bot/conf
    traded at least 1M shares a day and moved at least $0.50 a day on average over the last 14 trading days.
 2. At 9:35 New York time: the **stocks in play** are the 20 whose first 5 minutes traded the most volume
    compared with their own usual first 5 minutes (at least 100% of it), opening at $5 or more.
-3. Only those that **rose** in their first 5 minutes are candidates (long only). One is bought, at market,
-   as soon as its price goes above the high of those 5 minutes. A breakout already more than 10% of its
-   daily range above that high when first seen is skipped, not chased.
-4. At most 5 purchases a day, each a fifth of the account, never borrowing. No new purchase after 12:00.
-5. Each purchase carries a **stop-loss 10% of the stock's daily average range (ATR) below the entry**, held by
+3. Only those that **rose** in their first 5 minutes are candidates (long only).
+4. **Claude** reads each candidate's figures (gap, first 5 minutes, volume, daily range) and its headlines
+   from the last 3 days, plus how SPY opened. It turns down those without a strong, fresh, company-specific
+   catalyst (no news, sympathy moves, share offerings, pending takeovers, tiny speculative names) and scores
+   the rest. It cannot change anything else. No answer within 90 seconds, or a bad one: the rules alone
+   choose that day (noted on the dashboard).
+5. An approved candidate is bought, at market, as soon as its price goes above the high of those 5 minutes,
+   Claude's best scores first. A breakout already more than 10% of its daily range above that high when first
+   seen is skipped, not chased.
+6. At most 5 purchases a day, each a fifth of the account, never borrowing. No new purchase after 12:00.
+7. Each purchase carries a **stop-loss 10% of the stock's daily average range (ATR) below the entry**, held by
    Alpaca itself (an OTO order), so it works even between runs.
-6. **Everything is sold at 15:50**, 10 minutes before the close (12:50 on half days).
-7. Safety by code: it refuses keys that open the stock-picking account, refuses to start on an account that
+8. **Everything is sold at 15:50**, 10 minutes before the close (12:50 on half days).
+9. Safety by code: it refuses keys that open the stock-picking account, refuses to start on an account that
    already holds shares, never buys the same stock twice a day, and sells at the next open anything a missed
    closing run left overnight (shown on the dashboard).
 
@@ -187,11 +201,14 @@ Code: [bot/daytrade.py](bot/daytrade.py). Settings: the `DT_` lines of [bot/conf
 GitHub's own timer starts this project's runs hours late or not at all (in November 2026 the 15-minute
 refresh ran about once a day, and from 13 to 18 November the stock-picking run always started after the
 close, so it decided only once).
-Day trading needs the right minute, so a free outside timer, **cron-job.org**, asks GitHub to start the
-`day-trade` workflow every 15 minutes from 9:00 to 15:45 New York time. Each run does what is due: prepare
-and wait for 9:35, watch for breakouts until 12:00, or wait for 15:50 and sell. The same runs also start the
-stock-picking run if it has not run yet that day (at most twice a day), and refresh the dashboard.
-GitHub's timer stays as a backup.
+Day trading needs the right minute, so a free outside timer, **cron-job.org** (a website: it works with
+this Mac switched off), asks GitHub to start the `day-trade` workflow on weekdays at 8:20, 8:50, 9:20, 9:50,
+14:20 and 14:50 New York time. One start is enough for the whole day: a run prepares and waits for 9:35,
+watches for breakouts until 12:00, then waits for 15:50 and sells; before GitHub's 6-hour limit it queues the
+next run itself, which carries on. The other starts are spares: if one comes while a run is going, it waits
+in line and finds nothing left to do (it shows as cancelled or as a one-minute run under Actions). The same
+runs also start the stock-picking run if it has not run yet that day (at most twice a day), and refresh the
+dashboard every 15 minutes. GitHub's timer stays as a backup.
 
 ### Setup (about 20 minutes, once)
 
@@ -201,7 +218,8 @@ GitHub's timer stays as a backup.
    **Home** page click **Generate** in the **API Keys** box and copy both keys. Never use the first
    account's keys here.
 2. **Two GitHub secrets.** Repository *Settings* > *Secrets and variables* > *Actions* > *New repository
-   secret*: `DT_ALPACA_KEY_ID` and `DT_ALPACA_SECRET_KEY`.
+   secret*: `DT_ALPACA_KEY_ID` and `DT_ALPACA_SECRET_KEY`. Claude uses the `ANTHROPIC_API_KEY` secret the
+   stock side already has.
 3. **A GitHub token for the timer.** Open https://github.com/settings/personal-access-tokens/new. Name:
    `day-trade timer`. Expiration: the longest offered. Repository access: *Only select repositories* >
    `ai-paper-trading`. Permissions > Repository permissions > **Actions: Read and write** (nothing else).
@@ -209,7 +227,7 @@ GitHub's timer stays as a backup.
 4. **The timer.** Create a free account at https://console.cron-job.org/signup and confirm the email. Then
    *Create cronjob*:
    - URL: `https://api.github.com/repos/lucascverissim0/ai-paper-trading/actions/workflows/day-trade.yml/dispatches`
-   - Schedule: custom, crontab `*/15 9-15 * * 1-5`, time zone **America/New_York**.
+   - Schedule: custom, crontab `20,50 8,9,14 * * 1-5`, time zone **America/New_York**.
    - Advanced: request method **POST**; request body `{"ref":"main"}`; three headers:
      `Accept: application/vnd.github+json`, `Authorization: Bearer <the token>`,
      `X-GitHub-Api-Version: 2022-11-28`.
@@ -218,8 +236,9 @@ GitHub's timer stays as a backup.
 
 ### Reading the results
 
-The dashboard's **Day trading** section: value after your fees and after a no-commission broker's costs,
-against SPY bought and held; today's stocks in play, what was bought and why, open positions with their
+The dashboard's **Day trading** section: value after your fees (and Claude's cost) and after a no-commission
+broker's costs, against the same rules without Claude and SPY bought and held; Claude's answer for each
+candidate; today's stocks in play, what was bought and why, open positions with their
 stop-loss; every round trip with its result in R (1 R = the distance to the stop-loss); risk figures; and
 the test on past prices with its results year by year. The strip at the top adds both tests together.
 

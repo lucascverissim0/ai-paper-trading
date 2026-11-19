@@ -109,8 +109,9 @@ DASHBOARD_DATA_PATH = os.environ.get("DASHBOARD_DATA_PATH") or "docs/data/dashbo
 LIVE_DATA_PATH = os.environ.get("LIVE_DATA_PATH") or "docs/data/live.json"
 
 # --- Day trading (its own paper account, since 2026-11-19) ---------------------------------
-# Opening-range breakout on "stocks in play" (Zarattini, Barbon & Aziz, 2024), long only, no borrowing,
-# no AI call (free to run). Every position is sold before the close.
+# Opening-range breakout on "stocks in play" (Zarattini, Barbon & Aziz, 2024), long only, no borrowing.
+# At 9:35 Claude reads each candidate's numbers and headlines and says which ones the rules may buy, best
+# first; the rules do the buying, the stop-loss and the selling. Every position is sold before the close.
 DT_REAL_CAPITAL_USD = _float("DT_REAL_CAPITAL_USD", 1000.0)  # results restated at this size
 DT_MIN_PRICE = 5.0                 # the first 5-minute bar must open at $5 or more
 DT_MIN_AVG_VOLUME = 1_000_000      # shares a day, average of the last 14 days
@@ -137,6 +138,14 @@ DT_STATE_PATH = os.environ.get("DT_STATE_PATH") or "state/daytrade.json"
 DT_DATA_PATH = os.environ.get("DT_DATA_PATH") or "docs/data/daytrade.json"
 DT_BACKTEST_PATH = os.environ.get("DT_BACKTEST_PATH") or "docs/data/daytrade_backtest.json"
 DT_TRADES_SHOWN = 300              # newest trades kept on the dashboard
+# Claude's part: one call a day, right after the 9:35 scan, so it must answer within about a minute.
+DT_AI_MODEL = os.environ.get("DT_AI_MODEL") or CLAUDE_MODEL
+DT_AI_EFFORT = os.environ.get("DT_AI_EFFORT") or "low"   # quick answer: breakouts do not wait
+DT_AI_MAX_TOKENS = 8000
+DT_AI_TIMEOUT_S = 90.0             # no answer by then: the rules alone choose that day
+DT_AI_NEWS_DAYS = 3                # headlines from the last 3 days
+DT_AI_NEWS_PER_STOCK = 5
+DT_API_BUDGET_USD = _float("DT_API_BUDGET_USD", 15.0)  # what day trading may spend on Claude in total
 
 # --- Dashboard ------------------------------------------------------------------
 HEADLINES_LIMIT = 40          # free headlines shown between decisions
@@ -152,5 +161,9 @@ def check() -> None:
             raise SystemExit(f"No price known for model {model}; add it to MODEL_PRICES_PER_MTOK.")
     if not 0 < API_BUDGET_USD <= HARD_API_LIMIT_USD:
         raise SystemExit(f"API_BUDGET_USD must be above 0 and at most {HARD_API_LIMIT_USD}.")
+    if DT_AI_MODEL not in MODEL_PRICES_PER_MTOK:
+        raise SystemExit(f"No price known for model {DT_AI_MODEL}; add it to MODEL_PRICES_PER_MTOK.")
+    if not 0 <= DT_API_BUDGET_USD <= HARD_API_LIMIT_USD - API_BUDGET_USD:
+        raise SystemExit("API_BUDGET_USD + DT_API_BUDGET_USD must stay within Lucas's total API credit.")
     if REAL_CAPITAL_USD <= 0:
         raise SystemExit("REAL_CAPITAL_USD must be above 0.")

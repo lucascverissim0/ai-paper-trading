@@ -1,4 +1,5 @@
-"""Day trading on its own paper account: opening-range breakout on "stocks in play", long only. No AI, free.
+"""Day trading on its own paper account: opening-range breakout on "stocks in play", long only, with Claude
+choosing which of the morning's candidates the rules may buy.
 
 Method (Zarattini, Barbon & Aziz, 2024, "A Profitable Day Trading Strategy For The U.S. Equity Market"):
 - universe: US shares whose first 5-minute bar opens at $5 or more, that traded at least 1M shares a day and
@@ -11,6 +12,9 @@ Method (Zarattini, Barbon & Aziz, 2024, "A Profitable Day Trading Strategy For T
 Changes from the paper: long only (the paper also sells short), no borrowing (the paper uses up to 4 times
 the account), at most 5 positions of a fifth of the account each, no new entry after 12:00, and a breakout
 already 10% of an ATR past the high when first seen is skipped rather than chased.
+Claude's part (bot/dt_ai.py): right after the scan it reads each candidate's numbers and headlines, turns some
+down and orders the rest. Without an answer the rules alone choose that day. At the close, the same rules
+without Claude are replayed on the day's minute prices, so the dashboard shows what Claude added or cost.
 
 Run with:  python -m bot.daytrade   (started every 15 minutes during US market hours, see README)
 Each run looks at the time and does what is due; running it twice never trades twice.
@@ -131,6 +135,10 @@ class Candidate:
     atr: float
     state: str = "waiting"
     detail: str = ""
+    priority: int = 0              # entry order once Claude has rated the candidates (0 = by rank)
+    ai_trade: bool | None = None   # Claude's answer, None without one
+    ai_score: int | None = None
+    ai_reason: str = ""
 
 
 def select(first_bars: dict[str, dict], avg_first: dict[str, float],
@@ -218,6 +226,7 @@ class Prep:
     universe: int = 0
     stats: dict = field(default_factory=dict)        # symbol -> DailyStats, eligible ones only
     avg_first: dict = field(default_factory=dict)    # symbol -> average first-5-minute volume
+    names: dict = field(default_factory=dict)        # symbol -> company name, eligible ones only
 
 
 def prepare(broker, session: Session, pause: float) -> Prep:
@@ -240,7 +249,7 @@ def prepare(broker, session: Session, pause: float) -> Prep:
     for s in past[-n:]:
         for sym, b in first_bars(broker, sorted(stats), s, pause).items():
             totals[sym] += float(b.get("v") or 0)
-    return Prep(len(symbols), stats, {s: v / n for s, v in totals.items()})
+    return Prep(len(symbols), stats, {s: v / n for s, v in totals.items()}, {s: names.get(s, "") for s in stats})
 
 
 # --- the ledger ----------------------------------------------------------------------------------
@@ -282,6 +291,7 @@ class Env:
     publish: Callable[[dict], None] = lambda state: None   # pushes the dashboard during long waits
     pause: float = 0.35                                    # between price requests
     started: datetime | None = None
+    review: Callable | None = None   # Claude's rating of the candidates (dt_ai.review_candidates); None = rules only
 
 
 def _sleep_until(env: Env, when: datetime) -> None:
@@ -368,6 +378,43 @@ def _counts(entry: dict) -> bool:
     return bool(entry.get("order_id")) and entry.get("status") not in FAILED
 
 
+def _ai_step(broker, state: dict, rec: dict, prep: Prep, first: dict, env: Env, today: str) -> None:
+    """Claude rates the candidates still waiting: those it turns down are not bought, the others are bought in
+    the order of its scores. Without a usable answer nothing changes: the rules alone choose today."""
+    waiting = [c for c in rec["candidates"] if c["state"] == "waiting"]
+    if not waiting or env.review is None or env.now() >= at_ny(today, config.DT_ENTRY_END):
+        return
+    fields = set(Candidate.__dataclass_fields__)
+    objs = [Candidate(**{k: v for k, v in c.items() if k in fields}) for c in waiting]
+    try:
+        r = env.review(broker, objs, prep, today, env.now(), first, state.get("api_cost_usd", 0.0))
+    except Exception as e:  # never let the call stop the trading day
+        from .dt_ai import Review
+        r = Review("api_error", detail=type(e).__name__)
+    state["api_cost_usd"] = round(state.get("api_cost_usd", 0.0) + r.cost_usd, 6)
+    rec["ai"] = {"status": r.status, "model": r.model, "cost_usd": round(r.cost_usd, 6), "summary": r.summary,
+                 "detail": r.detail, "at": iso_utc(env.now()), "rated": len(r.picks),
+                 "approved": sum(1 for p in r.picks.values() if p["trade"])}
+    if r.status != "ok":
+        rec["notes"].append(f"Claude gave no usable answer ({r.status}{': ' + r.detail if r.detail else ''}): "
+                            "the rules alone choose today")
+        return
+    approved = sorted((p["score"], c["rank"], c["symbol"]) for c in waiting
+                      for p in [r.picks.get(c["symbol"])] if p and p["trade"])
+    order = {sym: i for i, (_s, _r, sym) in enumerate(sorted(approved, key=lambda x: (-x[0], x[1])), 1)}
+    for c in waiting:
+        p = r.picks.get(c["symbol"])
+        if p:
+            c["ai_trade"], c["ai_score"], c["ai_reason"] = p["trade"], p["score"], p["reason"]
+        if p and p["trade"]:
+            c["priority"] = order[c["symbol"]]
+        else:
+            c["state"] = "ai pass"
+            c["detail"] = "Claude: " + (p["reason"] if p else "not rated, so not bought")
+    if not any(c["state"] == "waiting" for c in rec["candidates"]) and rec["status"] == "watching":
+        rec["status"] = "ai passed"
+
+
 def _enter(broker, c: dict, price: float, rec: dict, now: datetime, save: Callable[[], None]) -> None:
     """One breakout: buy at market with a stop-loss that Alpaca keeps (an OTO order)."""
     qty = shares_for(rec["slot_usd"], broker.cash(), price)
@@ -398,6 +445,24 @@ def _enter(broker, c: dict, price: float, rec: dict, now: datetime, save: Callab
     except Exception as e:
         entry["status"] = f"error: {e}"[:200]
         c["state"], c["detail"] = "error", entry["status"]
+
+
+def _rules_only(broker, rec: dict, session: Session, pause: float) -> dict:
+    """The same rules without Claude, replayed on today's minute prices: what Claude added or cost today.
+    Every candidate counts, as if Claude had approved all of them in the rules' order."""
+    from .dt_backtest import day_trades  # imported here: dt_backtest imports this module
+    fields = set(Candidate.__dataclass_fields__)
+    cands = [Candidate(**{k: v for k, v in c.items() if k in fields}) for c in rec.get("candidates", [])]
+    if not cands:
+        return {"trades": [], "ret": 0.0}
+    try:
+        bars = broker.bars([c.symbol for c in cands], "1Min", iso_utc(session.open + timedelta(minutes=5)),
+                           iso_utc(session.close_at), config.DT_FEED, pause=pause)
+        trades, _skipped = day_trades(cands, bars, session)
+    except Exception as e:
+        return {"error": type(e).__name__}
+    return {"trades": [{k: t[k] for k in ("symbol", "entry", "exit", "reason", "ret")} for t in trades],
+            "ret": sum(t["ret"] for t in trades) / config.DT_MAX_POSITIONS}
 
 
 def run_tick(broker, state: dict | None, env: Env, save: Callable[[dict], None]) -> tuple[dict | None, str]:
@@ -484,9 +549,12 @@ def run_tick(broker, state: dict | None, env: Env, save: Callable[[dict], None])
                     _mark_missed(broker, rec, session, env.now(), env.pause)
                     if not any(c["state"] == "waiting" for c in rec["candidates"]) and rec["candidates"]:
                         rec["status"] = "no entry"
+                save(state)  # the scan is kept even if the step below fails
+                _ai_step(broker, state, rec, prep, bars, env, today)
                 save(state)
                 env.publish(state)
-                messages.append(f"scanned: {in_play} in play, {len(cands)} long candidate(s)")
+                messages.append(f"scanned: {in_play} in play, {len(cands)} long candidate(s)"
+                                + (f"; Claude approved {rec['ai']['approved']}" if rec.get("ai", {}).get("status") == "ok" else ""))
 
     # 3. Watch for breakouts until 12:00, entering through Alpaca orders that carry their stop-loss.
     if rec and rec.get("scanned_at") and env.now() < session.entry_end:
@@ -504,7 +572,7 @@ def run_tick(broker, state: dict | None, env: Env, save: Callable[[dict], None])
             held = _held(broker)
             prices = broker.latest_prices([c["symbol"] for c in waiting])
             changed = False
-            for c in sorted(waiting, key=lambda c: c["rank"]):
+            for c in sorted(waiting, key=lambda c: (c.get("priority") or c["rank"], c["rank"])):
                 price = prices.get(c["symbol"])
                 if not price or entered >= config.DT_MAX_POSITIONS:
                     continue
@@ -545,6 +613,7 @@ def run_tick(broker, state: dict | None, env: Env, save: Callable[[dict], None])
         rec["closed_at"] = iso_utc(env.now())
         rec["equity_close"] = _f(broker.account().get("equity"))
         rec["bench_close"] = broker.latest_prices([config.BENCHMARK]).get(config.BENCHMARK)
+        rec["rules_only"] = _rules_only(broker, rec, session, env.pause)
         if rec["status"] in ("watching", "holding", "started"):
             rec["status"] = "closed"
         save(state)
@@ -558,6 +627,7 @@ def trades_from_fills(orders: list[dict], state: dict) -> tuple[list[dict], dict
     Returns the trades (oldest first), fees per New York date for each model, and the open lots."""
     ratio = config.DT_REAL_CAPITAL_USD / state["start_equity"]
     stops = {e.get("order_id"): e.get("stop") for d in state["days"] for e in d.get("entries", []) if e.get("order_id")}
+    why = {(d["date"], c["symbol"]): c.get("ai_reason") or "" for d in state["days"] for c in d.get("candidates", [])}
     fills = []
     for o in orders:
         qty, price = _f(o.get("filled_qty")), _f(o.get("filled_avg_price"))
@@ -598,6 +668,7 @@ def trades_from_fills(orders: list[dict], state: dict) -> tuple[list[dict], dict
                 "fee_a_usd": round(lot["fee_a"] * part_buy + fa * part_sell, 4),
                 "fee_b_usd": round(lot["fee_b"] * part_buy + fb * part_sell, 4),
                 "reason": reason,
+                "ai_reason": why.get((lot["day"], sym), ""),
             })
             lot["left"] -= take
             remaining -= take
@@ -629,8 +700,10 @@ def trade_stats(trades: list[dict]) -> dict:
 
 def curve(history: dict, spy: dict[str, float], fees: dict, state: dict, today: str | None = None,
           equity_now: float | None = None, spy_now: float | None = None) -> list[dict]:
-    """One point per trading day at real size: before costs, after each fee model, and SPY held."""
+    """One point per trading day at real size: before costs, after each fee model (and Claude's cost), the same
+    rules without Claude after each fee model, and SPY held."""
     real = config.DT_REAL_CAPITAL_USD
+    by_day = {d["date"]: d for d in state.get("days", [])}
     ratio = real / state["start_equity"]
     values: dict[str, float] = {}
     for t, equity in zip(history.get("timestamp") or [], history.get("equity") or []):
@@ -645,27 +718,42 @@ def curve(history: dict, spy: dict[str, float], fees: dict, state: dict, today: 
         spy[today] = spy_now
     bench = state.get("bench_start_price") or 0
     spy_fee_a, spy_fee_b = fee_models(real)
-    fa = fb = 0.0
+    fa = fb = api = 0.0
+    rules_a = rules_b = real
     last_spy, points = None, []
     for day in sorted(set(values) | set(fees["a"])):
         fa += fees["a"].get(day, 0.0)
         fb += fees["b"].get(day, 0.0)
+        rec = by_day.get(day) or {}
+        api += (rec.get("ai") or {}).get("cost_usd", 0.0)
+        for t in (rec.get("rules_only") or {}).get("trades", []):
+            rules_a, rules_b = _shadow_trade(rules_a, t["ret"], 0), _shadow_trade(rules_b, t["ret"], 1)
         last_spy = spy.get(day, last_spy)
         if day not in values:
             continue
         before = values[day] * ratio
         held = real * last_spy / bench if (last_spy and bench) else None
+        open_day = bool(rec) and not rec.get("closed_at")  # replayed only at the close: no comparison before
         points.append({
             "date": day,
             "before": round(before, 2),
-            "after_a": round(before - fa, 2),
-            "after_b": round(before - fb, 2),
+            "after_a": round(before - fa - api, 2),
+            "after_b": round(before - fb - api, 2),
+            "rules_a": None if open_day else round(rules_a, 2),
+            "rules_b": None if open_day else round(rules_b, 2),
             "spy_a": round(held - spy_fee_a, 2) if held else None,
             "spy_b": round(held - spy_fee_b, 2) if held else None,
             "fees_a_cum": round(fa, 4),
             "fees_b_cum": round(fb, 4),
+            "api_cum": round(api, 4),
         })
     return points
+
+
+def _shadow_trade(value: float, ret: float, model: int) -> float:
+    """One trade of the rules-without-Claude account: a fifth of its value, bought and sold with that fee model."""
+    slot = value / config.DT_MAX_POSITIONS
+    return value + slot * ret - fee_models(slot)[model] - fee_models(slot * (1 + ret))[model]
 
 
 def settings_view() -> dict:
@@ -679,6 +767,7 @@ def settings_view() -> dict:
         "fee_a": {"per_order_usd": config.FEE_PER_ORDER_USD, "rate": config.FEE_RATE},
         "fee_b": {"per_order_usd": config.DT_LOWCOST_FEE_PER_ORDER_USD, "rate": config.DT_LOWCOST_FEE_RATE},
         "min_price": config.DT_MIN_PRICE, "min_avg_volume": config.DT_MIN_AVG_VOLUME, "min_atr": config.DT_MIN_ATR,
+        "ai_model": config.DT_AI_MODEL, "ai_effort": config.DT_AI_EFFORT, "api_budget_usd": config.DT_API_BUDGET_USD,
     }
 
 
@@ -692,6 +781,7 @@ def build_view(broker, state: dict | None, now: datetime) -> dict:
     real = config.DT_REAL_CAPITAL_USD
     ratio = real / state["start_equity"]
     payload["start_date"] = state["start_date"]
+    payload["api_cost_usd"] = round(state.get("api_cost_usd", 0.0), 4)
 
     def part(name, fn):
         try:
@@ -746,6 +836,8 @@ def build_view(broker, state: dict | None, now: datetime) -> dict:
             "after_a": accounting.risk_metrics([p["after_a"] for p in full], real, rf, [p["spy_a"] for p in full]),
             "after_b": accounting.risk_metrics([p["after_b"] for p in full], real, rf, [p["spy_b"] for p in full]),
             "before": accounting.risk_metrics([p["before"] for p in full], real, rf, [p["spy_a"] for p in full]),
+            "rules_a": accounting.risk_metrics([p["rules_a"] for p in full if p["rules_a"] is not None], real, rf,
+                                               [p["spy_a"] for p in full if p["rules_a"] is not None]),
             "spy": accounting.risk_metrics([p["spy_a"] for p in full], real, rf),
         }
         return pts, metrics
@@ -756,7 +848,10 @@ def build_view(broker, state: dict | None, now: datetime) -> dict:
     payload["today"] = rec
     payload["days"] = [{k: d.get(k) for k in ("date", "status", "in_play", "eligible", "notes")}
                        | {"candidates": len(d.get("candidates", [])),
-                          "entries": sum(1 for e in d.get("entries", []) if _counts(e))}
+                          "entries": sum(1 for e in d.get("entries", []) if _counts(e)),
+                          "ai_status": (d.get("ai") or {}).get("status"),
+                          "ai_approved": (d.get("ai") or {}).get("approved"),
+                          "rules_only_ret": (d.get("rules_only") or {}).get("ret")}
                        for d in state["days"]][::-1]
     return payload
 
@@ -794,6 +889,36 @@ def kick_daily_run(now: datetime, session: Session | None, path: str = "state/sc
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(json.dumps(marks, indent=1))
     return "started the stock-picking run"
+
+
+# --- one run hands over to the next ------------------------------------------------------------------
+def next_wake(state: dict | None, session: Session | None, now: datetime) -> datetime | None:
+    """When a run should act again today, or None when nothing is left to do today."""
+    if session is None or now >= session.close:
+        return None
+    prep_at = session.open - timedelta(minutes=config.DT_PREP_BEFORE_OPEN_MIN)
+    if now < prep_at:
+        return prep_at
+    rec = next((d for d in (state or {}).get("days", []) if d["date"] == session.day), None)
+    if rec is None:
+        return session.scan_at if (state is not None and now < session.entry_end) else None
+    if rec.get("closed_at"):
+        return None
+    if not rec.get("scanned_at") and now < session.entry_end:
+        return max(now, session.scan_at)
+    return max(now, session.close_at - timedelta(minutes=55))
+
+
+def dispatch_next_run() -> str:
+    """Queue the next day-trading run (it starts when this one ends); GitHub allows this with its own token."""
+    if os.environ.get("GITHUB_ACTIONS") != "true" or not os.environ.get("GH_TOKEN"):
+        return "next run not queued (not on GitHub)"
+    try:
+        subprocess.run(["gh", "workflow", "run", "day-trade.yml", "--ref", "main"], check=True,
+                       capture_output=True, timeout=60)
+    except Exception as e:
+        return f"could not queue the next run ({type(e).__name__}): the outside timer starts one"
+    return "next run queued"
 
 
 # --- publishing from inside a long run -----------------------------------------------------------
@@ -853,9 +978,31 @@ def main() -> None:
                 kick_daily_run(now(), session)
             git_publish(f"Day trading {now().strftime('%Y-%m-%dT%H:%MZ')}")
 
-    env = Env(now=now, sleep=time.sleep, publish=publish)
-    state, message = run_tick(broker, load_state(), env, save_state)
-    print(message)
+    from .dt_ai import review_candidates
+
+    config.check()
+    env = Env(now=now, sleep=time.sleep, publish=publish, review=review_candidates)
+    env.started = now()
+    deadline = env.started + timedelta(minutes=config.DT_MAX_RUN_MIN)
+    state = load_state()
+    for _ in range(12):  # each pass does what is due, then waits for the next step of the day
+        state, message = run_tick(broker, state, env, save_state)
+        print(message)
+        today = ny_date(parse_ts(broker.clock()["timestamp"]))
+        day_session = session_for(broker, today)
+        wake = next_wake(state, day_session, now())
+        if wake is None:
+            break
+        closing = wake >= day_session.close_at - timedelta(minutes=55)
+        if wake > deadline - timedelta(minutes=5) or (closing and day_session.close_at + timedelta(minutes=8) > deadline):
+            if state is not None:
+                publish(state)
+            print(dispatch_next_run())
+            break
+        while now() < wake:  # wait, keeping the dashboard fresh
+            time.sleep(max(1.0, min((wake - now()).total_seconds(), config.DT_PUBLISH_EVERY_MIN * 60)))
+            if state is not None and now() < wake:
+                publish(state)
     write_view(build_view(broker, state, now()))
 
 

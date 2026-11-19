@@ -11,7 +11,7 @@ import unittest
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
-from bot import config, daytrade, dt_backtest
+from bot import config, daytrade, dt_ai, dt_backtest
 from bot.alpaca import AlpacaError
 from bot.daytrade import Candidate, DailyStats, Env, Session, at_ny, parse_ts
 
@@ -257,11 +257,12 @@ class Run:
 
     def __init__(self, broker: DTBroker, clock: FakeClock):
         self.broker, self.clock, self.state, self.publishes = broker, clock, None, 0
+        self.review = None
 
     def tick(self, at: datetime):
         if at > self.clock.now():
             self.clock.t = at.astimezone(timezone.utc)
-        env = Env(now=self.clock.now, sleep=self.clock.sleep, publish=self._publish, pause=0)
+        env = Env(now=self.clock.now, sleep=self.clock.sleep, publish=self._publish, pause=0, review=self.review)
         self.state, msg = daytrade.run_tick(self.broker, self.state, env, lambda s: None)
         return msg
 
@@ -526,6 +527,140 @@ class DayTest(unittest.TestCase):
         self.assertGreater(p["after_b"], p["after_a"])
         json.dumps(view)  # the page can read it
         self.assertEqual(daytrade.build_view(None, None, r.clock.now())["status"], "waiting")
+
+
+def fake_review(picks: dict, status: str = "ok", cost: float = 0.05):
+    """Stands in for Claude: picks is symbol -> (trade, score)."""
+    seen = {}
+
+    def review(broker, cands, prep, today, now, first, spent):
+        seen["symbols"] = [c.symbol for c in cands]
+        seen["spent"] = spent
+        out = {s: {"trade": t, "score": sc, "reason": f"reason {s}"} for s, (t, sc) in picks.items()}
+        return dt_ai.Review(status, out if status == "ok" else {}, "summary", cost, model="test-model")
+    review.seen = seen
+    return review
+
+
+class ClaudeTest(unittest.TestCase):
+    def test_claude_turns_down_and_orders(self):
+        r = new_run("09:00")
+        r.review = fake_review({"AAA": (False, 2), "EEE": (True, 8), "FFF": (True, 9)})
+        r.tick(ny("09:00"))
+        rec = r.day()
+        self.assertEqual(sorted(r.review.seen["symbols"]), ["AAA", "EEE", "FFF"])
+        self.assertEqual(r.cand("AAA")["state"], "ai pass")
+        self.assertEqual(r.cand("AAA")["detail"], "Claude: reason AAA")
+        self.assertEqual((r.cand("FFF")["priority"], r.cand("EEE")["priority"]), (1, 2))
+        self.assertEqual(rec["entries"], [])
+        self.assertNotIn("AAA", r.broker.pos)
+        self.assertEqual((rec["ai"]["status"], rec["ai"]["approved"], rec["ai"]["rated"]), ("ok", 2, 3))
+        self.assertAlmostEqual(r.state["api_cost_usd"], 0.05)
+        r.tick(ny("15:00"))
+        rec = r.day()
+        self.assertIsNotNone(rec["closed_at"])
+        # the same rules without Claude would have bought AAA: replayed at the close
+        self.assertEqual([t["symbol"] for t in rec["rules_only"]["trades"]], ["AAA"])
+
+    def test_unrated_candidate_is_not_bought(self):
+        r = new_run("09:00")
+        r.review = fake_review({"EEE": (True, 5)})
+        r.tick(ny("09:00"))
+        self.assertEqual(r.cand("AAA")["state"], "ai pass")
+        self.assertIn("not rated", r.cand("AAA")["detail"])
+
+    def test_claude_passes_on_all(self):
+        r = new_run("09:00")
+        r.review = fake_review({"AAA": (False, 1), "EEE": (False, 1), "FFF": (False, 1)})
+        r.tick(ny("09:00"))
+        self.assertEqual(r.day()["status"], "ai passed")
+        self.assertEqual(r.day()["entries"], [])
+
+    def test_no_answer_means_rules_alone(self):
+        for review in (fake_review({}, status="api_error", cost=0.0),
+                       lambda *a: (_ for _ in ()).throw(RuntimeError("boom"))):
+            r = new_run("09:00")
+            r.review = review
+            r.tick(ny("09:00"))
+            self.assertEqual(r.cand("AAA")["state"], "entered")
+            self.assertTrue(any("rules alone" in n for n in r.day()["notes"]))
+            self.assertEqual(r.day()["ai"]["status"], "api_error")
+
+    def test_claude_cost_and_rules_line_in_the_view(self):
+        r = new_run("09:00")
+        r.review = fake_review({"AAA": (False, 2), "EEE": (True, 8), "FFF": (True, 9)}, cost=0.25)
+        r.tick(ny("09:00"))
+        r.tick(ny("15:00"))
+        view = daytrade.build_view(r.broker, r.state, r.clock.now())
+        (p,) = view["curve"]
+        self.assertAlmostEqual(p["after_a"], round(p["before"] - p["fees_a_cum"] - 0.25, 2))
+        self.assertEqual(view["api_cost_usd"], 0.25)
+        (t,) = r.day()["rules_only"]["trades"]
+        slot = 1000 / 5
+        expected = 1000 + slot * t["ret"] - (1 + 0.001 * slot) - (1 + 0.001 * slot * (1 + t["ret"]))
+        self.assertAlmostEqual(p["rules_a"], round(expected, 2))
+        self.assertIn("rules_a", view["metrics"])
+        json.dumps(view)
+
+    def test_answer_cleaning(self):
+        picks, summary = dt_ai.clean({"candidates": [
+            {"symbol": "aaa", "trade": True, "score": 14, "reason": "x" * 500},
+            {"symbol": "AAA", "trade": False, "score": 1, "reason": "second answer ignored"},
+            {"symbol": "ZZZ", "trade": True, "score": 5, "reason": "not a candidate"},
+            {"symbol": "BBB", "trade": "yes", "score": "n/a", "reason": ""}], "summary": "ok"}, {"AAA", "BBB"})
+        self.assertEqual(picks["AAA"]["score"], 10)
+        self.assertEqual(len(picks["AAA"]["reason"]), dt_ai.MAX_REASON)
+        self.assertTrue(picks["AAA"]["trade"])
+        self.assertEqual(picks["BBB"], {"trade": False, "score": 1, "reason": ""})  # only a real true buys
+        self.assertNotIn("ZZZ", picks)
+        self.assertEqual(dt_ai.clean("garbage", {"AAA"}), ({}, ""))
+
+    def test_prompt_and_budget(self):
+        c = Candidate("AAA", 1, 3.5, 50.0, 51.0, 49.8, 50.9, 1e6, 1.2)
+        prompt = dt_ai.prompt_for(DAY, [c], {"AAA": 48.0}, {"AAA": "Alpha Inc"}, {"AAA": [
+            {"created_at": "2026-11-16T12:00:00Z", "headline": "Alpha beats", "summary": "big quarter"}]}, "SPY flat.")
+        self.assertIn("Alpha Inc", prompt)
+        self.assertIn("gap from yesterday's close +4.2%", prompt)
+        self.assertIn("Alpha beats", prompt)
+        r = dt_ai.ask(prompt, {"AAA"}, spent_usd=config.DT_API_BUDGET_USD)
+        self.assertEqual(r.status, "over_budget")  # never calls Claude past the budget
+
+    def test_news_kept_recent_and_per_symbol(self):
+        now = datetime(2026, 11, 16, 14, 36, tzinfo=timezone.utc)
+
+        class NewsBroker:
+            def news(self, symbols, limit=50):
+                return [{"created_at": "2026-11-16T13:00:00Z", "headline": "fresh", "symbols": ["AAA", "XXX"]},
+                        {"created_at": "2026-11-01T13:00:00Z", "headline": "old", "symbols": ["AAA"]},
+                        {"created_at": "2026-11-16T15:00:00Z", "headline": "after now", "symbols": ["AAA"]}]
+        out = dt_ai.news_by_symbol(NewsBroker(), ["AAA", "BBB"], now)
+        self.assertEqual([n["headline"] for n in out["AAA"]], ["fresh"])
+        self.assertEqual(out["BBB"], [])
+
+
+class HandOverTest(unittest.TestCase):
+    def test_next_wake(self):
+        s = Session(DAY, at_ny(DAY, "09:30"), at_ny(DAY, "16:00"))
+        self.assertEqual(daytrade.next_wake(None, s, ny("07:00")), ny("08:45"))
+        self.assertIsNone(daytrade.next_wake(None, s, ny("09:00")))   # the run itself scans; nothing to resume
+        self.assertIsNone(daytrade.next_wake(None, None, ny("09:00")))
+        state = {"days": []}
+        self.assertEqual(daytrade.next_wake(state, s, ny("09:00")), s.scan_at)
+        self.assertIsNone(daytrade.next_wake(state, s, ny("13:00")))
+        state = {"days": [{"date": DAY, "scanned_at": "x"}]}
+        self.assertEqual(daytrade.next_wake(state, s, ny("12:00")), ny("14:55"))
+        self.assertEqual(daytrade.next_wake(state, s, ny("15:10")), ny("15:10"))
+        state["days"][0]["closed_at"] = "y"
+        self.assertIsNone(daytrade.next_wake(state, s, ny("15:10")))
+        self.assertIsNone(daytrade.next_wake({"days": [{"date": DAY}]}, s, ny("16:00")))
+
+    def test_dispatch_only_on_github(self):
+        old = os.environ.pop("GITHUB_ACTIONS", None)
+        try:
+            self.assertIn("not on GitHub", daytrade.dispatch_next_run())
+        finally:
+            if old is not None:
+                os.environ["GITHUB_ACTIONS"] = old
 
 
 class KickTest(unittest.TestCase):
