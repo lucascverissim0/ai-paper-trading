@@ -1,0 +1,61 @@
+name: day-trade-backtest
+
+# Replays the day-trading rules on past prices (bot/dt_backtest.py). Reads market data only: no order,
+# no AI, no cost. Takes one to three hours; slower while the market is open, to leave the data
+# allowance to the live runs. Start it by hand: Actions > day-trade-backtest > Run workflow.
+on:
+  workflow_dispatch:
+    inputs:
+      start:
+        description: "First day (YYYY-MM-DD)"
+        required: false
+        default: "2024-01-02"
+      end:
+        description: "Last day (YYYY-MM-DD); empty means yesterday"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: day-trade-backtest
+  cancel-in-progress: true
+
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Offline tests (stop if anything is broken)
+        run: python -m unittest tests.test_daytrade
+
+      - name: Replay the rules on past prices
+        env:
+          ALPACA_KEY_ID: ${{ secrets.ALPACA_KEY_ID }}
+          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+          START: ${{ inputs.start }}
+          END: ${{ inputs.end }}
+        run: python -m bot.dt_backtest "$START" "$END"
+
+      - name: Publish
+        run: |
+          git config user.name "day-trade-backtest"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/daytrade_backtest.json
+          if ! git diff --cached --quiet; then
+            git commit -q -m "Day-trading backtest $(date -u +%F)"
+            for i in 1 2 3 4 5; do
+              git pull -q --rebase -X theirs && git push -q && exit 0
+              sleep $((i * 5))
+            done
+            exit 1
+          fi

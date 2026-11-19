@@ -108,6 +108,36 @@ REPORT_PATH = os.environ.get("REPORT_PATH") or "report.md"
 DASHBOARD_DATA_PATH = os.environ.get("DASHBOARD_DATA_PATH") or "docs/data/dashboard.json"
 LIVE_DATA_PATH = os.environ.get("LIVE_DATA_PATH") or "docs/data/live.json"
 
+# --- Day trading (its own paper account, since 2026-11-19) ---------------------------------
+# Opening-range breakout on "stocks in play" (Zarattini, Barbon & Aziz, 2024), long only, no borrowing,
+# no AI call (free to run). Every position is sold before the close.
+DT_REAL_CAPITAL_USD = _float("DT_REAL_CAPITAL_USD", 1000.0)  # results restated at this size
+DT_MIN_PRICE = 5.0                 # the first 5-minute bar must open at $5 or more
+DT_MIN_AVG_VOLUME = 1_000_000      # shares a day, average of the last 14 days
+DT_MIN_ATR = 0.50                  # dollars, average true range of the last 14 days
+DT_LOOKBACK_DAYS = 14
+DT_MIN_RELATIVE_VOLUME = 1.0       # first 5 minutes' volume at least its 14-day average
+DT_TOP_N = 20                      # "stocks in play": the 20 highest relative volumes of the day
+DT_MAX_POSITIONS = int(_float("DT_MAX_POSITIONS", 5))  # each entry gets this share of the account, no borrowing
+DT_STOP_ATR = 0.10                 # stop-loss 10% of the ATR below the entry price
+DT_MAX_CHASE_ATR = 0.10            # a breakout already this far above the range high is skipped, not chased
+DT_ENTRY_END = os.environ.get("DT_ENTRY_END") or "12:00"  # New York time: no new entry after this
+DT_CLOSE_BEFORE_MIN = 10           # everything is sold this many minutes before the close
+DT_POLL_SECONDS = 10               # price checks while waiting for breakouts
+DT_PREP_BEFORE_OPEN_MIN = 45       # a run that starts earlier than this before the open does nothing
+DT_MAX_RUN_MIN = 330               # one run stops before GitHub's 6-hour limit
+DT_PUBLISH_EVERY_MIN = 15          # dashboard pushed this often while a run is waiting
+DT_FEED = "iex"                    # the free feed: the only one allowed for the last 15 minutes
+DT_BATCH = 200                     # symbols per price request
+# Two cost models, both shown. "Yours" is the same as the stock side above ($1 + 0.1% per order).
+# "No-commission broker": no fee per order, 0.05% per order for the spread and slippage.
+DT_LOWCOST_FEE_PER_ORDER_USD = _float("DT_LOWCOST_FEE_PER_ORDER_USD", 0.0)
+DT_LOWCOST_FEE_RATE = _float("DT_LOWCOST_FEE_RATE", 0.0005)
+DT_STATE_PATH = os.environ.get("DT_STATE_PATH") or "state/daytrade.json"
+DT_DATA_PATH = os.environ.get("DT_DATA_PATH") or "docs/data/daytrade.json"
+DT_BACKTEST_PATH = os.environ.get("DT_BACKTEST_PATH") or "docs/data/daytrade_backtest.json"
+DT_TRADES_SHOWN = 300              # newest trades kept on the dashboard
+
 # --- Dashboard ------------------------------------------------------------------
 HEADLINES_LIMIT = 40          # free headlines shown between decisions
 MIN_DAYS_FOR_RATIOS = 5       # daily returns needed before Sharpe / Sortino / beta are shown

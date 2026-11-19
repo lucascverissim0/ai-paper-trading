@@ -1,0 +1,72 @@
+name: day-trade
+
+# Day trading on its own paper account (bot/daytrade.py): no AI, no cost.
+# Started every 15 minutes during US market hours by an outside timer (cron-job.org, see README),
+# because GitHub's own timer starts this project's runs hours late or not at all. The schedule
+# below is only a backup. Each run does what is due at that moment and never trades twice.
+# While the market is open it also starts the stock-picking run if that one has not run today.
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: "7,37 13-20 * * 1-5"
+
+permissions:
+  contents: write
+  actions: write   # to start the stock-picking run (daily-run) when GitHub's timer is late
+
+concurrency:
+  group: day-trade
+  cancel-in-progress: false
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 345
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Offline tests (stop if anything is broken)
+        run: python -m unittest tests.test_daytrade
+
+      - name: Git identity
+        run: |
+          git config user.name "day-trade"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Day trading on its paper account
+        env:
+          DT_ALPACA_KEY_ID: ${{ secrets.DT_ALPACA_KEY_ID }}
+          DT_ALPACA_SECRET_KEY: ${{ secrets.DT_ALPACA_SECRET_KEY }}
+          ALPACA_KEY_ID: ${{ secrets.ALPACA_KEY_ID }}
+          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+          GH_TOKEN: ${{ github.token }}
+          DT_PUBLISH: "1"
+        run: python -m bot.daytrade
+
+      - name: Refresh the stock-picking live view
+        if: always()
+        continue-on-error: true
+        env:
+          ALPACA_KEY_ID: ${{ secrets.ALPACA_KEY_ID }}
+          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+        run: python -m bot.live
+
+      - name: Publish
+        if: always()
+        run: |
+          git add -A state docs/data 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -q -m "Day trading $(date -u +%FT%H:%MZ)"
+            # Other runs may push at the same moment: replay on top of them and retry.
+            for i in 1 2 3 4 5; do
+              git pull -q --rebase -X theirs && git push -q && exit 0
+              sleep $((i * 5))
+            done
+            exit 1
+          fi

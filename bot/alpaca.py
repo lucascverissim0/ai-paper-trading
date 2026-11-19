@@ -38,7 +38,7 @@ class AlpacaPaper:
         if params:
             url = f"{url}?{urlencode(params)}"
         data = json.dumps(body).encode() if body is not None else None
-        attempts = 3 if method == "GET" else 1  # never repeat an order by accident
+        attempts = 5 if method == "GET" else 1  # never repeat an order by accident
         for attempt in range(attempts):
             req = Request(url, data=data, method=method, headers=self._headers)
             try:
@@ -48,13 +48,15 @@ class AlpacaPaper:
             except HTTPError as e:
                 detail = e.read().decode(errors="replace")[:300]
                 if method == "GET" and (e.code == 429 or e.code >= 500) and attempt < attempts - 1:
-                    time.sleep(2 * (attempt + 1))
+                    time.sleep(2 ** (attempt + 1))  # 2, 4, 8, 16 s: rate limits are shared by both tests
                     continue
                 raise AlpacaError(f"{method} {url.split('?')[0]} failed with {e.code}: {detail}") from None
-            except URLError as e:
+            except (URLError, TimeoutError) as e:
                 if method == "GET" and attempt < attempts - 1:
-                    time.sleep(2 * (attempt + 1))
+                    time.sleep(2 ** (attempt + 1))
                     continue
+                if isinstance(e, TimeoutError):
+                    raise AlpacaError(f"{method} {url.split('?')[0]} timed out") from None
                 raise AlpacaError(f"{method} {url.split('?')[0]} failed: {e.reason}") from None
         raise AlpacaError("unreachable")
 
@@ -135,6 +137,24 @@ class AlpacaPaper:
     def close_position(self, symbol: str) -> dict:
         return self._trade("DELETE", f"/v2/positions/{symbol}")
 
+    def open_orders(self) -> list[dict]:
+        return self._trade("GET", "/v2/orders", params={"status": "open", "limit": 500, "nested": "false"})
+
+    def cancel_order(self, order_id: str) -> None:
+        self._trade("DELETE", f"/v2/orders/{order_id}")
+
+    def oto_market_buy(self, symbol: str, qty: int, stop_price: float, client_order_id: str,
+                       time_in_force: str = "gtc") -> dict:
+        """Buy at market; once filled, Alpaca itself keeps a stop-loss sell order under the shares."""
+        body = {"symbol": symbol, "qty": str(int(qty)), "side": "buy", "type": "market",
+                "time_in_force": time_in_force, "order_class": "oto",
+                "stop_loss": {"stop_price": f"{stop_price:.2f}"}, "client_order_id": client_order_id[:128]}
+        return self._trade("POST", "/v2/orders", body=body)
+
+    def calendar(self, start: str, end: str) -> list[dict]:
+        """Trading sessions between two dates (YYYY-MM-DD): [{date, open "09:30", close "16:00"}]."""
+        return self._trade("GET", "/v2/calendar", params={"start": start, "end": end})
+
     def wait_final(self, order_id: str, timeout_s: float = 60.0) -> dict:
         deadline = time.monotonic() + timeout_s
         order = self._trade("GET", f"/v2/orders/{order_id}")
@@ -161,6 +181,25 @@ class AlpacaPaper:
 
     def latest_price(self, symbol: str) -> float:
         return self.latest_prices([symbol])[symbol]
+
+    def bars(self, symbols: list[str], timeframe: str, start_iso: str, end_iso: str, feed: str,
+             adjustment: str = "raw", pause: float = 0.35) -> dict[str, list[dict]]:
+        """Symbol -> [{t, o, h, l, c, v}] oldest first, for any bar size ("1Min", "5Min", "1Day")."""
+        out: dict[str, list[dict]] = {}
+        params = {"symbols": ",".join(symbols), "timeframe": timeframe, "start": start_iso, "end": end_iso,
+                  "adjustment": adjustment, "feed": feed, "limit": 10000}
+        while True:
+            data = self._data("/v2/stocks/bars", params)
+            for sym, rows in (data.get("bars") or {}).items():
+                out.setdefault(sym, []).extend(rows)
+            token = data.get("next_page_token")
+            time.sleep(pause)  # stay under the free plan's 200 requests a minute
+            if not token:
+                break
+            params["page_token"] = token
+        for sym in out:
+            out[sym].sort(key=lambda b: b["t"])
+        return out
 
     def daily_bars(self, symbols: list[str], start_iso: str, end_iso: str, feed: str) -> dict[str, list]:
         """Symbol -> [(YYYY-MM-DD, close, volume)], oldest first, adjusted for splits and dividends."""

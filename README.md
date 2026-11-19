@@ -30,6 +30,9 @@ Every US trading day GitHub starts the run during market hours. GitHub often sta
 late, so there are four tries (14:50, 16:30, 18:10 and 19:40 UTC); the first that finds the market open
 decides and the others stop at no cost:
 
+Since 2026-11-19 the day-trading timer also starts this run during market hours when GitHub's own timer
+is late (see *Day trading side*).
+
 1. **Screen (code, free).** Every active, tradable US-listed stock, ETF and ADR (foreign companies
    listed in the US) on NYSE, Nasdaq, NYSE Arca, NYSE American and Cboe, about 8,000 symbols. It keeps
    the liquid ones (price at least $5, at least $20M traded a day) in the "trend template" of momentum
@@ -136,6 +139,90 @@ never trades). GitHub's timer can run a few minutes late.
 Or open `report.md` in the repository. The line that matters: **"the AI is AHEAD of / BEHIND
 buy-and-hold by $X after all costs"**.
 
+## Day trading side (since 2026-11-19)
+
+A second, separate test on its **own paper account**: buy stocks that break out in the morning, sell
+everything before the close, never hold overnight. Fixed rules, **no AI call: it costs nothing to run.**
+Code: [bot/daytrade.py](bot/daytrade.py). Settings: the `DT_` lines of [bot/config.py](bot/config.py).
+
+### What to expect, honestly
+
+- **Nobody can guarantee a profit, and most day traders lose.** In Brazil, where every trade is reported,
+  97% of people who day traded for more than 300 days lost money and only 1.1% earned more than the minimum
+  wage (Chague, De-Losso and Giovannetti, 2019). In Taiwan, fewer than 1% of day traders were reliably
+  profitable over the years studied (Barber, Lee, Liu and Odean).
+- The rules used here have the best published record I found: "opening-range breakout on stocks in play"
+  (Zarattini, Barbon and Aziz, 2024, a working paper, not peer-reviewed). On 2016-2023 they report about 41%
+  a year after commissions, against about 15% for the S&P 500. That backtest used up to 4 times the account
+  (borrowed money) and short sales; this version does neither. Independent replications are mixed: about
+  1 trade in 5 wins, and some years look poor.
+- **Fees decide everything at $1,000.** With your fee model ($1 + 0.1% per order), a $200 position pays about
+  $2.40 to go in and out: at 2 trades a day that is about $1,200 a year, more than the $1,000 itself. So every result
+  is shown twice: with your fees, and with a no-commission broker (0.05% per order for the spread and
+  slippage). If day trading ever went real, the broker's costs would matter more than the rules.
+- Unlike Claude's picks, fixed rules **can** be tested fairly on the past (nothing in them knows what happened
+  next). The test on past prices replays these exact rules since January 2024, after the paper's own data,
+  and is on the dashboard. Its main flaw: it only sees shares listed today (companies delisted since are
+  missing), which flatters it.
+
+### The rules
+
+1. Before the open: every tradable US share (the same exchanges as above, leveraged funds left out) that
+   traded at least 1M shares a day and moved at least $0.50 a day on average over the last 14 trading days.
+2. At 9:35 New York time: the **stocks in play** are the 20 whose first 5 minutes traded the most volume
+   compared with their own usual first 5 minutes (at least 100% of it), opening at $5 or more.
+3. Only those that **rose** in their first 5 minutes are candidates (long only). One is bought, at market,
+   as soon as its price goes above the high of those 5 minutes. A breakout already more than 10% of its
+   daily range above that high when first seen is skipped, not chased.
+4. At most 5 purchases a day, each a fifth of the account, never borrowing. No new purchase after 12:00.
+5. Each purchase carries a **stop-loss 10% of the stock's daily average range (ATR) below the entry**, held by
+   Alpaca itself (an OTO order), so it works even between runs.
+6. **Everything is sold at 15:50**, 10 minutes before the close (12:50 on half days).
+7. Safety by code: it refuses keys that open the stock-picking account, refuses to start on an account that
+   already holds shares, never buys the same stock twice a day, and sells at the next open anything a missed
+   closing run left overnight (shown on the dashboard).
+
+### The timer (why an outside service)
+
+GitHub's own timer starts this project's runs hours late or not at all (in November 2026 the 15-minute
+refresh ran about once a day, and from 13 to 18 November the stock-picking run always started after the
+close, so it decided only once).
+Day trading needs the right minute, so a free outside timer, **cron-job.org**, asks GitHub to start the
+`day-trade` workflow every 15 minutes from 9:00 to 15:45 New York time. Each run does what is due: prepare
+and wait for 9:35, watch for breakouts until 12:00, or wait for 15:50 and sell. The same runs also start the
+stock-picking run if it has not run yet that day (at most twice a day), and refresh the dashboard.
+GitHub's timer stays as a backup.
+
+### Setup (about 20 minutes, once)
+
+1. **A second Alpaca paper account.** Log in at https://app.alpaca.markets, click the account number at
+   the top left, choose **Open New Paper Account**. Keep the starting balance at $100,000 (at least $25,000:
+   under that, Alpaca blocks frequent day trades, like US rules do). With that new account selected, on the
+   **Home** page click **Generate** in the **API Keys** box and copy both keys. Never use the first
+   account's keys here.
+2. **Two GitHub secrets.** Repository *Settings* > *Secrets and variables* > *Actions* > *New repository
+   secret*: `DT_ALPACA_KEY_ID` and `DT_ALPACA_SECRET_KEY`.
+3. **A GitHub token for the timer.** Open https://github.com/settings/personal-access-tokens/new. Name:
+   `day-trade timer`. Expiration: the longest offered. Repository access: *Only select repositories* >
+   `ai-paper-trading`. Permissions > Repository permissions > **Actions: Read and write** (nothing else).
+   Generate and copy it.
+4. **The timer.** Create a free account at https://console.cron-job.org/signup and confirm the email. Then
+   *Create cronjob*:
+   - URL: `https://api.github.com/repos/lucascverissim0/ai-paper-trading/actions/workflows/day-trade.yml/dispatches`
+   - Schedule: custom, crontab `*/15 9-15 * * 1-5`, time zone **America/New_York**.
+   - Advanced: request method **POST**; request body `{"ref":"main"}`; three headers:
+     `Accept: application/vnd.github+json`, `Authorization: Bearer <the token>`,
+     `X-GitHub-Api-Version: 2022-11-28`.
+   - Save, then *Test run*: the answer should be **204**, and a `day-trade` run appears under *Actions*.
+   The token can only start or stop this repository's workflows; it cannot change the code or read secrets.
+
+### Reading the results
+
+The dashboard's **Day trading** section: value after your fees and after a no-commission broker's costs,
+against SPY bought and held; today's stocks in play, what was bought and why, open positions with their
+stop-loss; every round trip with its result in R (1 R = the distance to the stop-loss); risk figures; and
+the test on past prices with its results year by year. The strip at the top adds both tests together.
+
 ## Before any real money (rule decided now, before seeing results)
 
 - Only consider it if, after **at least 3 months**, the AI is ahead after all costs **and** its
@@ -148,4 +235,5 @@ buy-and-hold by $X after all costs"**.
 
 ```bash
 python3 -m unittest tests.test_bot
+python3 -m unittest tests.test_daytrade
 ```

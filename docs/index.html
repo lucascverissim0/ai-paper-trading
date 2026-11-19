@@ -647,11 +647,162 @@ function LivePill({ live }) {
     : html`<span class="pill good"><i></i>Market open · updated ${age} min ago</span>`;
 }
 
-const SECTIONS = [["overview", "Overview"], ["positions", "Positions"], ["performance", "Performance"], ["news", "Decisions & news"]];
+// --- day trading -----------------------------------------------------------------------------
+const DT_STATE = {
+  waiting: ["Waiting for a breakout", ""], entered: ["Bought", "good"], skipped: ["Skipped: ran too far", "warn"],
+  missed: ["Missed: before the run", "warn"], "no breakout": ["No breakout", ""], "not taken": ["No place left", ""],
+  error: ["Order error", "bad"],
+};
+const DT_DAY = {
+  started: ["Preparing", ""], watching: ["Watching for breakouts", "good"], holding: ["Holding until the close", "good"],
+  closed: ["Closed for the day", ""], "no candidate": ["No stock in play rose", ""], "no entry": ["No entry today", ""],
+  "no scan": ["Not scanned: run too late", "warn"], "close missed": ["Closing run missed: kept overnight", "bad"],
+};
+const DT_LINES = [
+  { key: "after_a", label: "After your fees ($1 + 0.1% per order)", color: "var(--ai)" },
+  { key: "after_b", label: "After a no-commission broker's costs", color: "var(--gold)" },
+  { key: "spy_a", label: "SPY bought and held", color: "var(--spy)" },
+  { key: "before", label: "Before costs", color: "var(--muted)", dashed: true },
+];
+
+function DtMetricsTable({ m, cols }) {
+  const rows = [["total_return", "Return", (v) => pct(v)], ["annual_return", "Annualised", (v) => pct(v)],
+    ["sharpe", "Sharpe ratio", (v) => num(v)], ["max_drawdown", "Worst fall from a peak", (v) => pct(isNum(v) ? -v : v)],
+    ["worst_day", "Worst day", (v) => pct(v)], ["best_day", "Best day", (v) => pct(v)], ["volatility", "Volatility", (v) => pct(v, 1, false)]];
+  return html`<div class="table"><table>
+    <thead><tr><th></th>${cols.map(([k, label]) => html`<th key=${k} class=${"num" + (k === "after_a" ? " hl" : "")}>${label}</th>`)}</tr></thead>
+    <tbody>${rows.map(([key, label, fmt]) => html`<tr key=${key}><td>${label}</td>
+      ${cols.map(([k]) => html`<td key=${k} class=${"num" + (k === "after_a" ? " hl" : "")}>${m[k] ? fmt(m[k][key]) : NA}</td>`)}</tr>`)}
+    </tbody></table></div>`;
+}
+
+function Backtest({ bt }) {
+  if (!bt) return html`<div class="card mt"><h2>Test on past prices</h2><p class="sub">Not run yet. It replays these exact rules on every trading day since January 2024 and appears here when done.</p></div>`;
+  const r = bt.results || {};
+  const pts = (bt.curve || []).map((p) => ({ ...p, label: p.date }));
+  const cap = (bt.rules || {}).real_capital_usd || 1000;
+  const cols = [["after_a", "Your fees"], ["after_b", "No-commission broker"], ["before", "Before costs"], ["spy_a", "SPY held"]];
+  const verdict = (k) => { const x = r[k] && r[k].total_return, s = r.spy_a && r.spy_a.total_return; return isNum(x) && isNum(s) ? (x > s ? "beat" : "trailed") : "?"; };
+  return html`<div class="card mt">
+    <h2>Test on past prices · ${bt.start} to ${bt.end}</h2>
+    <p class="sub small mb">The same code replayed on ${bt.sessions} trading days (${bt.trades} trades, ${pct(bt.win_rate, 0, false)} won, average ${num(bt.avg_r)} R, profit factor ${num(bt.profit_factor)}). With your fees it ${verdict("after_a")} SPY; with a no-commission broker it ${verdict("after_b")} SPY.${bt.stopped_early_at ? " Stopped early at " + bt.stopped_early_at + " (time limit)." : ""}</p>
+    <${LineChart} points=${pts} lines=${DT_LINES} baseline=${cap} format=${(v) => usd(v)} aria="Day-trading rules on past prices, against SPY" />
+    <div class="mt"><${DtMetricsTable} m=${r} cols=${cols} /></div>
+    ${(bt.years || []).length > 0 && html`<div class="table mt"><table>
+      <thead><tr><th>Year</th><th class="num">Trades</th><th class="num hl">Your fees</th><th class="num">No-commission</th><th class="num">Before costs</th><th class="num">SPY</th></tr></thead>
+      <tbody>${bt.years.map((y) => html`<tr key=${y.year}><td>${y.year}</td><td class="num">${y.trades}</td>
+        <td class=${"num hl " + tone(y.after_a)}>${pct(y.after_a, 1)}</td><td class=${"num " + tone(y.after_b)}>${pct(y.after_b, 1)}</td>
+        <td class=${"num " + tone(y.before)}>${pct(y.before, 1)}</td><td class=${"num " + tone(y.spy_a)}>${pct(y.spy_a, 1)}</td></tr>`)}</tbody></table></div>`}
+    <h3>Limits of this test</h3>
+    ${(bt.caveats || []).map((c, i) => html`<div class="sub small" key=${i}>· ${c}</div>`)}
+  </div>`;
+}
+
+function DayTrading({ dt, bt }) {
+  const [allTrades, setAllTrades] = useState(false);
+  if (!dt || dt.status === "waiting") return html`<div>
+    <div class="card"><h2>Day trading · not started yet</h2>
+      <p class="sub">A second, separate paper account that buys stocks breaking out in the morning and sells everything before the close. It starts on the first trading day after its paper account keys and its timer are set up (see the README). No Claude call: it costs nothing to run.</p></div>
+    <${Backtest} bt=${bt} /></div>`;
+  const cfg = dt.settings || {}, cap = cfg.real_capital_usd || 1000, capTxt = usd(cap).replace(".00", "");
+  const curve = (dt.curve || []).map((p) => ({ ...p, label: p.date }));
+  const last = curve[curve.length - 1] || {};
+  const net = (k) => (isNum(last[k]) ? last[k] - cap : null);
+  const value = isNum(last.after_a) ? last.after_a : cap;
+  const st = dt.stats || {}, today = dt.today || {}, a = dt.account || {}, m = dt.metrics || {};
+  const [dayLabel, dayCls] = DT_DAY[today.status] || [today.status || "No run yet today", ""];
+  const cands = today.candidates || [], pos = dt.positions || [];
+  const trades = dt.trades || [], shown = allTrades ? trades : trades.slice(0, 20);
+  const intra = (dt.intraday || []).map((p) => ({ label: hhmm(p.time), value: p.value_real_usd }));
+  return html`<div>
+    <section class="card hero" style=${{ marginTop: 0 }}>
+      <div class="herohead">
+        <div>
+          <div class="eyebrow">Day trading · after your fees · on ${capTxt}</div>
+          <div class="big mono">${usd(value)}</div>
+          <div class="delta">
+            <span class=${tone(net("after_a"))}>${usd(net("after_a"), true)} (${pct(net("after_a") / cap)}) <em>since ${shortDate(dt.start_date)}</em></span>
+            ${isNum(a.today_real_usd) && html`<span class=${tone(a.today_real_usd)}>${usd(a.today_real_usd, true)} <em>today, before costs</em></span>`}
+          </div>
+        </div>
+        <div class="versus">
+          <div><div class="k"><i style=${{ background: "var(--ai)" }}></i>Your fees</div><div class=${"n mono " + tone(net("after_a"))}>${pct(net("after_a") / cap)}</div><div class="meta">${usd(net("after_a"), true)}</div></div>
+          <div><div class="k"><i style=${{ background: "var(--gold)" }}></i>No-commission</div><div class=${"n mono " + tone(net("after_b"))}>${pct(net("after_b") / cap)}</div><div class="meta">${usd(net("after_b"), true)}</div></div>
+          <div><div class="k"><i style=${{ background: "var(--spy)" }}></i>SPY held</div><div class=${"n mono " + tone(net("spy_a"))}>${pct(net("spy_a") / cap)}</div><div class="meta">${usd(net("spy_a"), true)}</div></div>
+        </div>
+      </div>
+      <div class="mt">${curve.length > 1
+        ? html`<${LineChart} points=${curve} lines=${DT_LINES} baseline=${cap} format=${(v) => usd(v)} aria="Day trading value every trading day" />`
+        : intra.length > 1 ? html`<${LineChart} points=${intra} lines=${[{ key: "value", label: "Today, before costs", color: "var(--ai)" }]} format=${(v) => usd(v)} aria="Day trading value today" />`
+        : html`<p class="sub">The curve appears after the first trading day.</p>`}</div>
+    </section>
+    ${dt.errors && dt.errors.length > 0 && html`<div class="alert warn small">Day-trading data partly missing: ${dt.errors.join("; ")}.</div>`}
+
+    <div class="grid">
+      <${Kpi} label="Trades" value=${st.trades || 0} note=${(st.stopped || 0) + " ended by the stop-loss"} />
+      <${Kpi} label="Win rate" value=${pct(st.win_rate, 0, false)} note="most trades lose a little; a few win big" />
+      <${Kpi} label="Average win / loss" value=${pct(st.avg_win_pct, 1) + " / " + pct(st.avg_loss_pct, 1)} note="per trade, before costs" />
+      <${Kpi} label="Profit factor" value=${num(st.profit_factor)} note="gains / losses, before costs" />
+      <${Kpi} label="Average R" value=${num(st.avg_r)} note="1 R = the distance to the stop" />
+      <${Kpi} label="Fees" value=${usd(st.fees_a_usd)} note=${"no-commission broker: " + usd(st.fees_b_usd)} />
+    </div>
+
+    <div class="card">
+      <h2>Today · ${today.date || "no run yet"} <span class=${"pill " + dayCls}><i></i>${dayLabel}</span></h2>
+      ${today.scanned_at ? html`<p class="sub small mb">At ${hhmm(today.scanned_at)}: ${today.eligible} shares qualified, ${today.traded_first_bar} traded in the first 5 minutes, ${today.in_play} in play, ${cands.length} of them rose (the only ones bought). Each entry gets ${usd((today.slot_usd || 0) * cap / ((today.equity_open || 1))).replace(".00", "")}.</p>` : ""}
+      ${(today.notes || []).map((n, i) => html`<div class="alert small" key=${i}>${n}</div>`)}
+      ${cands.length > 0 && html`<div class="table mt"><table>
+        <thead><tr><th>Stock</th><th class="num">Volume vs usual</th><th class="num">Breakout above</th><th class="num">Stop distance</th><th>State</th><th>Detail</th></tr></thead>
+        <tbody>${cands.map((c) => { const [lbl, cls] = DT_STATE[c.state] || [c.state, ""]; return html`<tr key=${c.symbol}>
+          <td><b>${c.symbol}</b> <span class="sub small">#${c.rank}</span></td><td class="num">${num(c.rv, 1)}x</td><td class="num">${usd(c.high)}</td>
+          <td class="num">${usd(c.atr * (cfg.stop_atr || 0.1))}</td><td><span class=${"side " + cls}>${lbl}</span></td><td class="wrap small">${c.detail}</td></tr>`; })}</tbody></table></div>`}
+      ${pos.length > 0 && html`<div><h3>Open now (live, at ${capTxt})</h3><div class="table"><table>
+        <thead><tr><th>Stock</th><th class="num">Bought at</th><th class="num">Last</th><th class="num">Stop-loss</th><th class="num">Value</th><th class="num">P&L</th></tr></thead>
+        <tbody>${pos.map((p) => html`<tr key=${p.symbol}><td><b>${p.symbol}</b></td><td class="num">${usd(p.entry)}</td><td class="num">${usd(p.price)}</td>
+          <td class="num">${isNum(p.stop) ? usd(p.stop) : "-"}</td><td class="num">${usd(p.value_real_usd)}</td>
+          <td class=${"num " + tone(p.pl_real_usd)}>${usd(p.pl_real_usd, true)} (${pct(p.pl_pct)})</td></tr>`)}</tbody></table></div></div>`}
+      ${intra.length > 1 && curve.length > 1 && html`<div class="mt"><h3>Today, before costs</h3>
+        <${LineChart} points=${intra} height=${160} lines=${[{ key: "value", label: "Today", color: "var(--ai)" }]} format=${(v) => usd(v)} aria="Day trading value today" /></div>`}
+    </div>
+
+    <div class="card mt">
+      <h2>Round trips ${trades.length ? "(" + trades.length + ")" : ""}</h2>
+      ${trades.length === 0 ? html`<p class="sub">No trade yet.</p>` : html`<div class="table"><table>
+        <thead><tr><th>Bought</th><th>Stock</th><th class="num">Entry</th><th class="num">Exit</th><th class="num">Amount</th><th class="num">P&L before costs</th><th class="num">R</th><th class="num">Your fees</th><th>How it ended</th></tr></thead>
+        <tbody>${shown.map((t, i) => html`<tr key=${i}><td>${when(t.entry_time)}</td><td><b>${t.symbol}</b></td>
+          <td class="num">${usd(t.entry_price)}</td><td class="num">${usd(t.exit_price)}</td><td class="num">${usd(t.amount_real_usd)}</td>
+          <td class=${"num " + tone(t.pl_real_usd)}>${usd(t.pl_real_usd, true)} (${pct(t.pl_pct)})</td><td class=${"num " + tone(t.r)}>${num(t.r, 1)}</td>
+          <td class="num">${usd(t.fee_a_usd)}</td><td>${t.reason}</td></tr>`)}</tbody></table></div>`}
+      <${More} total=${trades.length} shown=${20} open=${allTrades} setOpen=${setAllTrades} what="trades" />
+    </div>
+
+    ${m.after_a && html`<div class="card mt"><h2>Risk and return · ${m.after_a.days} trading day(s)</h2>
+      <${DtMetricsTable} m=${m} cols=${[["after_a", "Your fees"], ["after_b", "No-commission broker"], ["before", "Before costs"], ["spy", "SPY held"]]} />
+      <p class="sub small mt">Under about 60 trading days these figures are mostly noise.</p></div>`}
+
+    <${Backtest} bt=${bt} />
+    <p class="sub small mt">Rules (Zarattini, Barbon and Aziz, 2024): at 9:35 New York time, take the 20 shares whose first 5 minutes traded the most volume compared with their usual (at least their usual amount; price $5+, 1M+ shares a day, moving $0.50+ a day). Buy those that rose in those 5 minutes when they break above their 5-minute high, at most ${cfg.max_positions} a day, a ${cfg.max_positions ? Math.round(100 / cfg.max_positions) : 20}% share each, never borrowing; stop-loss ${Math.round((cfg.stop_atr || 0.1) * 100)}% of the daily average range below the entry; no new entry after ${cfg.entry_end}; everything sold ${cfg.close_before_min} minutes before the close. Long only, unlike the paper. Your fees: $${(cfg.fee_a || {}).per_order_usd} + ${((cfg.fee_a || {}).rate * 100).toFixed(1)}% per order, as for the stock side. No-commission broker: ${(((cfg.fee_b || {}).rate || 0) * 100).toFixed(2)}% per order for the spread and slippage. Refreshed ${when(dt.refreshed_at)}.</p>
+  </div>`;
+}
+
+function BothStrip({ stockValue, stockCap, dt }) {
+  const dtCap = dt && dt.settings ? dt.settings.real_capital_usd : null;
+  const curve = (dt && dt.curve) || [];
+  const last = curve[curve.length - 1];
+  if (!dtCap || !last || !isNum(last.after_a)) return null;
+  const total = stockValue + last.after_a, cap = stockCap + dtCap;
+  return html`<div class="stats" style=${{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))" }}>
+    <${Stat} label="Stock picking (Claude)" value=${usd(stockValue)} cls=${tone(stockValue - stockCap)} note=${pct(stockValue / stockCap - 1) + " after all costs"} />
+    <${Stat} label="Day trading (rules)" value=${usd(last.after_a)} cls=${tone(last.after_a - dtCap)} note=${pct(last.after_a / dtCap - 1) + " after your fees"} />
+    <${Stat} label=${"Both, on " + usd(cap).replace(".00", "")} value=${usd(total)} cls=${tone(total - cap)} note=${usd(total - cap, true) + " (" + pct(total / cap - 1) + ")"} />
+  </div>`;
+}
+
+const SECTIONS = [["overview", "Overview"], ["positions", "Positions"], ["performance", "Performance"], ["news", "Decisions & news"], ["daytrading", "Day trading"]];
 
 const RANGES = [["1D", 0], ["1W", 5], ["1M", 21], ["3M", 63], ["ALL", Infinity]];
 
-function Dashboard({ d, live }) {
+function Dashboard({ d, live, dt, bt }) {
   const s = d.summary, cfg = d.settings, cap = cfg.real_capital_usd;
   const a = (live && live.account) || {};
   const metrics = dailyMetrics(d, live);
@@ -687,6 +838,7 @@ function Dashboard({ d, live }) {
       <span class="pill">Since ${shortDate(d.start_date)} · ${s.decisions} decision${s.decisions === 1 ? "" : "s"} · last ${(d.log[d.log.length - 1] || {}).date || "-"}</span>
     </div>
     ${d.halt_reason && html`<div class="alert bad">Stopped: ${d.halt_reason}</div>`}
+    <${BothStrip} stockValue=${value} stockCap=${cap} dt=${dt} />
     ${live && live.errors && live.errors.length > 0 && html`<div class="alert warn small">Live data partly missing: ${live.errors.join("; ")}.</div>`}
 
     <section id="overview" class="card hero">
@@ -744,6 +896,8 @@ function Dashboard({ d, live }) {
     <${Performance} d=${d} live=${live} cap=${cap} />
     <h2 class="sect" id="news">Decisions & news</h2>
     <${News} d=${d} live=${live} />
+    <h2 class="sect" id="daytrading">Day trading · separate account, no AI</h2>
+    <${DayTrading} dt=${dt} bt=${bt} />
 
     <p class="foot">Paper money only. Every trading day, code screens all US-listed stocks for strong, orderly uptrends; a smaller Claude model reads the headlines of the best ${(d.candidates || []).length || 40}; Claude Opus reads them with the market news and economic data and picks the stocks to hold, each with a stop-loss. A stock is held only if most of 3 independent answers hold it. Results are restated as if ${capTxt} were invested. Dividends are left out on all lines. Under 12 months, a result either way can be luck. Decisions: once a day during US market hours (last update ${d.updated_at}). Live data and the daily curve: about every 15 minutes while the market is open. This page reloads its data every 5 minutes.</p>
   </div>`;
@@ -755,15 +909,16 @@ function App() {
     let alive = true;
     const getJson = (url) => fetch(url + "?t=" + Date.now(), { cache: "no-store" })
       .then((r) => (r.status === 404 ? null : r.ok ? r.json() : Promise.reject(new Error("HTTP " + r.status))));
-    const load = () => Promise.all([getJson("data/dashboard.json"), getJson("data/live.json").catch(() => null)])
-      .then(([data, live]) => alive && setState({ data, live }))
+    const load = () => Promise.all([getJson("data/dashboard.json"), getJson("data/live.json").catch(() => null),
+      getJson("data/daytrade.json").catch(() => null), getJson("data/daytrade_backtest.json").catch(() => null)])
+      .then(([data, live, dt, bt]) => alive && setState({ data, live, dt, bt }))
       .catch((e) => alive && setState((prev) => ({ ...prev, loading: false, error: e.message })));
     load();
     const id = setInterval(load, REFRESH_MS);
     return () => { alive = false; clearInterval(id); };
   }, []);
 
-  if (state.data) return html`<${Dashboard} d=${state.data} live=${state.live} />`;
+  if (state.data) return html`<${Dashboard} d=${state.data} live=${state.live} dt=${state.dt} bt=${state.bt} />`;
   if (state.loading) return html`<p class="sub">Loading...</p>`;
   if (state.error) return html`<div><h1>AI trading test</h1><p class="bad">Could not load the data (${state.error}). It will retry in 5 minutes.</p></div>`;
   return html`<div><h1>AI trading test</h1><p class="sub">No results yet. The first decision happens at the next run during US market hours (during US market hours on trading days).</p></div>`;
