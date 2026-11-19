@@ -1,15 +1,15 @@
 {
- "refreshed_at": "2026-11-19T14:41:53Z",
+ "refreshed_at": "2026-11-19T14:42:19Z",
  "market_open": true,
  "next_open": "2026-11-20T09:30:00-05:00",
  "next_close": "2026-11-19T16:00:00-05:00",
  "errors": [],
  "account": {
-  "value_real_usd": 997.13,
-  "today_real_usd": 0.89,
-  "today_pct": 0.0008939780524082064,
-  "cash_weight": 0.669732659462663,
-  "open_pl_real_usd": -0.24
+  "value_real_usd": 998.2,
+  "today_real_usd": 1.97,
+  "today_pct": 0.0019730323543065698,
+  "cash_weight": 0.6690114046144993,
+  "open_pl_real_usd": 0.84
  },
  "positions": [
   {
@@ -18,13 +18,13 @@
    "stop": 112.0,
    "qty": 105.0,
    "avg_entry_price": 113.5,
-   "price": 114.05,
-   "weight": 0.12120168429882418,
-   "value_real_usd": 120.85,
-   "pl_real_usd": 0.58,
-   "pl_pct": 0.00485,
-   "today_real_usd": -0.51,
-   "today_pct": -0.00419
+   "price": 114.255,
+   "weight": 0.12128877886387376,
+   "value_real_usd": 121.07,
+   "pl_real_usd": 0.8,
+   "pl_pct": 0.00665,
+   "today_real_usd": -0.29,
+   "today_pct": -0.0024
   },
   {
    "symbol": "APPN",
@@ -32,13 +32,13 @@
    "stop": 50.9,
    "qty": 200.0,
    "avg_entry_price": 54.58,
-   "price": 54.85,
-   "weight": 0.11102753401875545,
-   "value_real_usd": 110.71,
-   "pl_real_usd": 0.54,
-   "pl_pct": 0.00495,
-   "today_real_usd": 1.59,
-   "today_pct": 0.01461
+   "price": 55.275,
+   "weight": 0.11176732499693665,
+   "value_real_usd": 111.57,
+   "pl_real_usd": 1.4,
+   "pl_pct": 0.01273,
+   "today_real_usd": 2.45,
+   "today_pct": 0.02248
   },
   {
    "symbol": "HAE",
@@ -47,7 +47,7 @@
    "qty": 79.0,
    "avg_entry_price": 124.32,
    "price": 122.615,
-   "weight": 0.09803807161468242,
+   "weight": 0.09793249152469032,
    "value_real_usd": 97.76,
    "pl_real_usd": -1.36,
    "pl_pct": -0.01371,
@@ -174,7 +174,7 @@
  "intraday": [
   {
    "time": "2026-11-19T14:30:00Z",
-   "value_real_usd": 995.12
+   "value_real_usd": 995.62
   }
  ],
  "daily": [
@@ -212,9 +212,9 @@
   },
   {
    "date": "2026-11-19",
-   "ai_before_costs": 997.13,
-   "ai_after_costs": 986.59,
-   "spy_after_costs": 981.98,
+   "ai_before_costs": 998.2,
+   "ai_after_costs": 987.66,
+   "spy_after_costs": 981.59,
    "fees_cum": 9.513,
    "api_cum": 1.0276
   }
@@ -222,41 +222,41 @@
  "daily_metrics": {
   "ai_after_costs": {
    "days": 5,
-   "total_return": -0.013409999999999922,
+   "total_return": -0.012340000000000018,
    "annual_return": null,
-   "volatility": 0.14270727229892946,
-   "sharpe": -4.993028696628845,
-   "sortino": -5.745577326469809,
+   "volatility": 0.14461199736147262,
+   "sharpe": -4.5489389517298395,
+   "sortino": -5.3044204386501566,
    "max_drawdown": 0.017169999999999908,
    "best_day": 0.007229794042001636,
    "worst_day": -0.012419999999999987,
    "up_days": 0.6,
-   "beta": -0.2184352000253198,
-   "correlation": -0.28200505080477173
+   "beta": -0.1979704767697301,
+   "correlation": -0.24964495367160824
   },
   "ai_before_costs": {
    "days": 5,
-   "total_return": -0.002870000000000039,
+   "total_return": -0.0017999999999999128,
    "annual_return": null,
-   "volatility": 0.11286860213300506,
-   "sharpe": -1.6027476873780537,
-   "sortino": -2.0947933249094555,
+   "volatility": 0.11398850579798503,
+   "sharpe": -1.1121152574887494,
+   "sortino": -1.4679583576329691,
    "max_drawdown": 0.011827785846447725,
    "best_day": 0.007153448483148361,
    "worst_day": -0.011827785846447725,
    "up_days": 0.6,
-   "beta": -0.06396016376207135,
-   "correlation": -0.10440391584235234
+   "beta": -0.03897672723387895,
+   "correlation": -0.062354958747919687
   },
   "spy_after_costs": {
    "days": 5,
-   "total_return": -0.018020000000000036,
+   "total_return": -0.018409999999999926,
    "annual_return": null,
-   "volatility": 0.18423849072953954,
-   "sharpe": -5.115015110117112,
-   "sortino": -5.993297103874841,
+   "volatility": 0.18235878384864074,
+   "sharpe": -5.278626154820673,
+   "sortino": -6.1218983148069945,
    "max_drawdown": 0.03211191874937769,
-   "best_day": 0.01021552389280389,
+   "best_day": 0.009814309963479317,
    "worst_day": -0.019157622224434956,
    "up_days": 0.4,
    "beta": null,
