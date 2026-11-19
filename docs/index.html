@@ -46,6 +46,12 @@
   .brand small { color: var(--faint); font-weight: 500; letter-spacing: .02em; }
   .logo { width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center;
           background: linear-gradient(135deg, #2b5fd9, #5b9dff 55%, #9cc3ff); box-shadow: 0 0 0 1px rgba(255,255,255,.08) inset, 0 6px 18px -6px rgba(91,157,255,.6); }
+  .tabs { display: inline-flex; background: var(--bg2); border: 1px solid var(--line); border-radius: 11px; padding: 3px; gap: 2px; flex-shrink: 0; }
+  .tabs button { background: transparent; border: 0; color: var(--muted); font: inherit; font-size: 13px; font-weight: 600;
+                 padding: 6px 14px; border-radius: 8px; cursor: pointer; white-space: nowrap; }
+  .tabs button:hover { color: var(--text); }
+  .tabs button.on { background: var(--card2); color: var(--text); box-shadow: 0 0 0 1px var(--line2) inset; }
+  [hidden] { display: none !important; }
   .nav { display: flex; gap: 2px; margin-left: auto; overflow-x: auto; scrollbar-width: none; }
   .nav a { color: var(--muted); padding: 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; white-space: nowrap; }
   .nav a:hover { background: var(--chip); color: var(--text); text-decoration: none; }
@@ -74,6 +80,7 @@
   .versus > div:first-child { border-left: 0; }
   .versus .n { font-size: 20px; font-weight: 650; letter-spacing: -.02em; margin-top: 4px; }
   .versus .k { font-size: 11px; color: var(--faint); letter-spacing: .08em; text-transform: uppercase; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+  .versus.four { grid-template-columns: repeat(4, auto); }
   .versus .k i { width: 8px; height: 8px; border-radius: 2px; display: inline-block; }
   .ranges { display: inline-flex; background: var(--bg2); border: 1px solid var(--line); border-radius: 10px; padding: 3px; gap: 2px; }
   .ranges button { background: transparent; border: 0; color: var(--muted); font: inherit; font-size: 12px; font-weight: 600;
@@ -85,6 +92,9 @@
   .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--line);
            border: 1px solid var(--line); border-radius: 18px; overflow: hidden; margin-top: 16px; }
   .stat { background: var(--card); padding: 16px 18px; min-width: 0; }
+  .stats.both { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+  .stat.click { cursor: pointer; } .stat.click:hover { background: var(--card2); }
+  .stat.active { box-shadow: inset 0 -2px 0 var(--ai); background: var(--card2); }
   .stat .label { color: var(--faint); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
   .stat .value { font-size: 24px; font-weight: 650; margin-top: 6px; letter-spacing: -.02em; }
   .stat .note { color: var(--faint); font-size: 12px; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -150,9 +160,15 @@
   .rank .nm { flex: 1; min-width: 0; }
   .alert { border-radius: 12px; padding: 12px 16px; margin-top: 16px; background: var(--chip); border: 1px solid var(--line); }
   .split { display: grid; grid-template-columns: 180px 1fr; gap: 22px; align-items: center; }
+  @media (max-width: 1100px) { .brand small { display: none; } }
   @media (max-width: 900px) { .newsgrid { grid-template-columns: minmax(0, 1fr); } }
   @media (max-width: 640px) { .nav { display: none; } .hero { padding: 20px 16px 12px; } .card { padding: 16px; }
-    .versus { grid-template-columns: 1fr 1fr 1fr; width: 100%; } .versus > div { min-width: 0; padding: 10px 12px; } .versus .n { font-size: 16px; }
+    .brand h1 { display: none; } .tabs { flex: 1; } .tabs button { flex: 1; padding: 6px 8px; }
+    .stats.both { grid-template-columns: repeat(3, minmax(0, 1fr)); } .stats.both .stat { padding: 10px; }
+    .stats.both .label { font-size: 9.5px; letter-spacing: .05em; } .stats.both .value { font-size: 15px; } .stats.both .note { font-size: 11px; }
+    .versus { grid-template-columns: 1fr 1fr 1fr; width: 100%; }
+    .versus.four { grid-template-columns: 1fr 1fr; } .versus.four > div:nth-child(3) { border-left: 0; }
+    .versus.four > div:nth-child(n+3) { border-top: 1px solid var(--line); } .versus > div { min-width: 0; padding: 10px 12px; } .versus .n { font-size: 16px; }
     .split { grid-template-columns: 1fr; } .sect { margin-top: 40px; } }
 </style>
 </head>
@@ -218,7 +234,7 @@ function More({ total, shown, open, setOpen, what }) {
 }
 
 function Link({ url, children }) {
-  return url ? html`<a href=${url} target="_blank" rel="noopener noreferrer nofollow">${children}</a>` : html`<span>${children}</span>`;
+  return url && /^https?:\/\//i.test(url) ? html`<a href=${url} target="_blank" rel="noopener noreferrer nofollow">${children}</a>` : html`<span>${children}</span>`;
 }
 
 // --- line chart with toggles and hover --------------------------------------------------
@@ -351,8 +367,10 @@ function EquityChart({ points, cap, height = 320 }) {
   </div>`;
 }
 
-function Stat({ label, value, note, cls }) {
-  return html`<div class="stat"><div class="label">${label}</div><div class=${"value " + (cls || "")}>${value}</div>${note && html`<div class="note" title=${note}>${note}</div>`}</div>`;
+function Stat({ label, value, note, cls, onClick, active }) {
+  const click = onClick ? { role: "button", tabIndex: 0, "aria-pressed": !!active, onClick,
+    onKeyDown: (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onClick(); } } } : {};
+  return html`<div class=${"stat" + (onClick ? " click" : "") + (active ? " active" : "")} ...${click}><div class="label">${label}</div><div class=${"value " + (cls || "")}>${value}</div>${note && html`<div class="note" title=${note}>${note}</div>`}</div>`;
 }
 
 function Donut({ parts, size = 160 }) {
@@ -667,8 +685,8 @@ const DT_LINES = [
   { key: "before", label: "Before costs", color: "var(--muted)", dashed: true },
 ];
 
-function DtMetricsTable({ m, cols }) {
-  const rows = [["total_return", "Return", (v) => pct(v)], ["annual_return", "Annualised", (v) => pct(v)],
+function DtMetricsTable({ m, cols, rows: given }) {
+  const rows = given || [["total_return", "Return", (v) => pct(v)], ["annual_return", "Annualised", (v) => pct(v)],
     ["sharpe", "Sharpe ratio", (v) => num(v)], ["max_drawdown", "Worst fall from a peak", (v) => pct(isNum(v) ? -v : v)],
     ["worst_day", "Worst day", (v) => pct(v)], ["best_day", "Best day", (v) => pct(v)], ["volatility", "Volatility", (v) => pct(v, 1, false)]];
   return html`<div class="table"><table>
@@ -689,7 +707,7 @@ function Backtest({ bt }) {
   const verdict = (k) => { const x = r[k] && r[k].total_return, s = r.spy_a && r.spy_a.total_return; return isNum(x) && isNum(s) ? (x > s ? "beat" : "trailed") : "?"; };
   return html`<div class="card mt">
     <h2>Test on past prices · rules only · ${bt.start} to ${bt.end}</h2>
-    <p class="sub small mb">Claude's choices cannot be replayed fairly on the past (it already knows what happened next), so this tests the rules alone; what Claude adds is measured live above, against the "same rules without Claude" line. The same code replayed on ${bt.sessions} trading days (${bt.trades} trades, ${pct(bt.win_rate, 0, false)} won, average ${num(bt.avg_r)} R, profit factor ${num(bt.profit_factor)}). With your fees it ${verdict("after_a")} SPY; with a no-commission broker it ${verdict("after_b")} SPY.${bt.stopped_early_at ? " Stopped early at " + bt.stopped_early_at + " (time limit)." : ""}${Object.entries(bt.too_small_to_trade || {}).map(([k, d]) => " " + ({ after_a: "With your fees", after_b: "With a no-commission broker", before: "Before costs" }[k] || k) + " the $1,000 fell under $50 on " + d + " and could no longer trade.").join("")}</p>
+    <p class="sub small mb">Claude's choices cannot be replayed fairly on the past (it already knows what happened next), so this tests the rules alone; what Claude adds is measured live on this tab, against the "same rules without Claude" line. The same code replayed on ${bt.sessions} trading days (${bt.trades} trades, ${pct(bt.win_rate, 0, false)} won, average ${num(bt.avg_r)} R, profit factor ${num(bt.profit_factor)}). With your fees it ${verdict("after_a")} SPY; with a no-commission broker it ${verdict("after_b")} SPY.${bt.stopped_early_at ? " Stopped early at " + bt.stopped_early_at + " (time limit)." : ""}${Object.entries(bt.too_small_to_trade || {}).map(([k, d]) => " " + ({ after_a: "With your fees", after_b: "With a no-commission broker", before: "Before costs" }[k] || k) + " the $1,000 fell under $50 on " + d + " and could no longer trade.").join("")}</p>
     <${LineChart} points=${pts} lines=${BT_LINES} baseline=${cap} format=${(v) => usd(v)} aria="Day-trading rules on past prices, against SPY" />
     <div class="mt"><${DtMetricsTable} m=${r} cols=${cols} /></div>
     ${(bt.years || []).length > 0 && html`<div class="table mt"><table>
@@ -702,83 +720,219 @@ function Backtest({ bt }) {
   </div>`;
 }
 
-function DayTrading({ dt, bt }) {
-  const [allTrades, setAllTrades] = useState(false);
-  if (!dt || dt.status === "waiting") return html`<div>
-    <div class="card"><h2>Day trading · not started yet</h2>
-      <p class="sub">A second, separate paper account. At 9:35 New York time Claude reads the morning's candidates and their headlines and says which ones may be bought; fixed rules buy them on a breakout, protect each with a stop-loss and sell everything before the close. It starts on the first trading day after its keys are set up (see the README).</p></div>
-    <${Backtest} bt=${bt} /></div>`;
-  const cfg = dt.settings || {}, cap = cfg.real_capital_usd || 1000, capTxt = usd(cap).replace(".00", "");
-  const curve = (dt.curve || []).map((p) => ({ ...p, label: p.date }));
-  const last = curve[curve.length - 1] || {};
+// --- day-trading tab: the same four parts as the investments tab ---------------------------------
+const dtCap = (dt) => ((dt && dt.settings) || {}).real_capital_usd || 1000;
+const dtCurve = (dt) => ((dt && dt.curve) || []).map((p) => ({ ...p, label: p.date }));
+const lastClosed = (curve) => [...curve].reverse().find((p) => isNum(p.rules_a)) || {};  // last close both were measured
+
+// Each day's change with Claude (after your fees and Claude's cost), without Claude (your fees) and for SPY.
+function dtDayChanges(dt) {
+  const cap = dtCap(dt), out = {};
+  let pa = cap, pr = cap, ps = cap;
+  for (const p of dt.curve || []) {
+    out[p.date] = {
+      withAi: isNum(p.after_a) ? p.after_a / pa - 1 : null,
+      without: isNum(p.rules_a) ? p.rules_a / pr - 1 : null,
+      spy: isNum(p.spy_a) ? p.spy_a / ps - 1 : null,
+    };
+    if (isNum(p.after_a)) pa = p.after_a;
+    if (isNum(p.rules_a)) pr = p.rules_a;
+    if (isNum(p.spy_a)) ps = p.spy_a;
+  }
+  return out;
+}
+
+const AI_STATUS = { ok: "answered", over_budget: "budget used up: rules alone", api_error: "no answer: rules alone",
+  refused: "no answer: rules alone", truncated: "answer cut off: rules alone", bad_output: "unreadable answer: rules alone" };
+const aiText = (day) => (!day.ai_status ? "not asked" : day.ai_status === "ok"
+  ? "approved " + (day.ai_approved || 0) + (isNum(day.ai_rated) ? " of " + day.ai_rated : "") : AI_STATUS[day.ai_status] || day.ai_status);
+
+function DtLivePill({ dt }) {
+  const age = minutesAgo(dt.refreshed_at);
+  if (!dt.market_open) return html`<span class="pill"><i></i>Market closed · updated ${when(dt.refreshed_at)}</span>`;
+  return age > 45 ? html`<span class="pill warn"><i></i>Data delayed (${age} min)</span>`
+    : html`<span class="pill good"><i></i>Market open · updated ${age} min ago</span>`;
+}
+
+function DtHero({ dt }) {
+  const cap = dtCap(dt), capTxt = usd(cap).replace(".00", "");
+  const curve = dtCurve(dt), last = curve[curve.length - 1] || {}, closed = lastClosed(curve);
   const net = (k) => (isNum(last[k]) ? last[k] - cap : null);
-  const closed = [...curve].reverse().find((p) => isNum(p.rules_a)) || {};  // last day both were measured
-  const edge = isNum(closed.after_a) && isNum(closed.rules_a) ? closed.after_a - closed.rules_a : null;
   const value = isNum(last.after_a) ? last.after_a : cap;
-  const st = dt.stats || {}, today = dt.today || {}, a = dt.account || {}, m = dt.metrics || {};
-  const [dayLabel, dayCls] = DT_DAY[today.status] || [today.status || "No run yet today", ""];
-  const cands = today.candidates || [], pos = dt.positions || [];
-  const trades = dt.trades || [], shown = allTrades ? trades : trades.slice(0, 20);
+  const dollars = Math.trunc(value), cents = Math.abs(Math.round((value - dollars) * 100)).toString().padStart(2, "0");
+  const a = dt.account || {};
   const intra = (dt.intraday || []).map((p) => ({ label: hhmm(p.time), value: p.value_real_usd }));
-  return html`<div>
-    <section class="card hero" style=${{ marginTop: 0 }}>
-      <div class="herohead">
-        <div>
-          <div class="eyebrow">Day trading · after your fees · on ${capTxt}</div>
-          <div class="big mono">${usd(value)}</div>
-          <div class="delta">
-            <span class=${tone(net("after_a"))}>${usd(net("after_a"), true)} (${pct(net("after_a") / cap)}) <em>since ${shortDate(dt.start_date)}</em></span>
-            ${isNum(a.today_real_usd) && html`<span class=${tone(a.today_real_usd)}>${usd(a.today_real_usd, true)} <em>today, before costs</em></span>`}
-          </div>
-        </div>
-        <div class="versus">
-          <div><div class="k"><i style=${{ background: "var(--ai)" }}></i>Your fees</div><div class=${"n mono " + tone(net("after_a"))}>${pct(net("after_a") / cap)}</div><div class="meta">${usd(net("after_a"), true)}</div></div>
-          <div><div class="k"><i style=${{ background: "var(--gold)" }}></i>No-commission</div><div class=${"n mono " + tone(net("after_b"))}>${pct(net("after_b") / cap)}</div><div class="meta">${usd(net("after_b"), true)}</div></div>
-          <div><div class="k"><i style=${{ background: "var(--s_6040)" }}></i>Without Claude</div><div class=${"n mono " + tone(closed.rules_a - cap)}>${isNum(closed.rules_a) ? pct(closed.rules_a / cap - 1) : NA}</div><div class="meta">${isNum(closed.rules_a) ? usd(closed.rules_a - cap, true) + " at " + shortDate(closed.date) + " close" : "after the first close"}</div></div>
-          <div><div class="k"><i style=${{ background: "var(--spy)" }}></i>SPY held</div><div class=${"n mono " + tone(net("spy_a"))}>${pct(net("spy_a") / cap)}</div><div class="meta">${usd(net("spy_a"), true)}</div></div>
+  const prevClose = isNum(a.value_real_usd) && isNum(a.today_real_usd) ? a.value_real_usd - a.today_real_usd : null;
+  const nDays = curve.length;
+  const [picked, setRange] = useState(null);
+  const range = picked || (nDays > 1 || intra.length < 2 ? "ALL" : "1D");
+  const shown = range === "ALL" ? curve : curve.slice(-Math.max(2, (RANGES.find((r) => r[0] === range) || [0, Infinity])[1] + 1));
+  return html`<section id="dt-overview" class="card hero">
+    <div class="herohead">
+      <div>
+        <div class="eyebrow">Account value · after your fees and Claude's cost · on ${capTxt}</div>
+        <div class="big mono">${usd(dollars).replace(".00", "")}<span class="cents">.${cents}</span></div>
+        <div class="delta">
+          <span class=${tone(net("after_a"))}>${usd(net("after_a"), true)} (${pct(net("after_a") / cap)}) <em>since start</em></span>
+          ${isNum(a.today_real_usd) && html`<span class=${tone(a.today_real_usd)}>${usd(a.today_real_usd, true)} (${pct(a.today_pct)}) <em>today, before costs</em></span>`}
         </div>
       </div>
-      <div class="mt">${curve.length > 1
-        ? html`<${LineChart} points=${curve} lines=${DT_LINES} baseline=${cap} format=${(v) => usd(v)} aria="Day trading value every trading day" />`
-        : intra.length > 1 ? html`<${LineChart} points=${intra} lines=${[{ key: "value", label: "Today, before costs", color: "var(--ai)" }]} format=${(v) => usd(v)} aria="Day trading value today" />`
-        : html`<p class="sub">The curve appears after the first trading day.</p>`}</div>
-    </section>
-    ${dt.errors && dt.errors.length > 0 && html`<div class="alert warn small">Day-trading data partly missing: ${dt.errors.join("; ")}.</div>`}
+      <div class="versus four">
+        <div><div class="k"><i style=${{ background: "var(--ai)" }}></i>Your fees</div><div class=${"n mono " + tone(net("after_a"))}>${pct(net("after_a") / cap)}</div><div class="meta">${usd(net("after_a"), true)}</div></div>
+        <div><div class="k"><i style=${{ background: "var(--gold)" }}></i>No-commission</div><div class=${"n mono " + tone(net("after_b"))}>${pct(net("after_b") / cap)}</div><div class="meta">${usd(net("after_b"), true)}</div></div>
+        <div><div class="k"><i style=${{ background: "var(--s_6040)" }}></i>Without Claude</div><div class=${"n mono " + tone(isNum(closed.rules_a) ? closed.rules_a - cap : null)}>${isNum(closed.rules_a) ? pct(closed.rules_a / cap - 1) : NA}</div><div class="meta">${isNum(closed.rules_a) ? "at " + shortDate(closed.date) + " close" : "after the first close"}</div></div>
+        <div><div class="k"><i style=${{ background: "var(--spy)" }}></i>SPY held</div><div class=${"n mono " + tone(net("spy_a"))}>${pct(net("spy_a") / cap)}</div><div class="meta">${usd(net("spy_a"), true)}</div></div>
+      </div>
+    </div>
+    <div class="charttools" style=${{ justifyContent: "flex-end" }}>
+      <div class="ranges" role="group" aria-label="Chart period">${RANGES.map(([k, n]) => html`<button key=${k} class=${range === k ? "on" : ""}
+        disabled=${k === "1D" ? intra.length < 2 : k === "ALL" ? nDays < 2 : nDays <= n}
+        onClick=${() => setRange(k)}>${k}</button>`)}</div>
+    </div>
+    ${range === "1D" && intra.length > 1
+      ? html`<${LineChart} points=${intra} height=${300} baseline=${prevClose} format=${(v) => usd(v)} aria="Day-trading account value during today, before costs"
+          lines=${[{ key: "value", label: "Today, before costs", color: "var(--ai)" }]} />`
+      : shown.length > 1 ? html`<${LineChart} points=${shown} lines=${DT_LINES} baseline=${cap} height=${300} format=${(v) => usd(v)} aria="Day-trading value every trading day" />`
+      : html`<p class="sub">The daily curve appears after the second trading day${intra.length > 1 ? "; today's curve is under 1D" : ""}.</p>`}
+  </section>`;
+}
+
+function DtStats({ dt }) {
+  const cap = dtCap(dt), cfg = dt.settings || {};
+  const mm = dt.metrics || {}, m = mm.after_a || {}, mSpy = mm.spy || {}, st = dt.stats || {};
+  const curve = dtCurve(dt), last = curve[curve.length - 1] || {}, closed = lastClosed(curve);
+  const alpha = isNum(m.total_return) && isNum(mSpy.total_return) ? m.total_return - mSpy.total_return
+    : isNum(last.after_a) && isNum(last.spy_a) ? (last.after_a - last.spy_a) / cap : null;
+  const edge = isNum(closed.after_a) && isNum(closed.rules_a) ? closed.after_a - closed.rules_a : null;
+  const later = (k) => "after " + (k === "annual_return" ? 20 : k === "volatility" ? 2 : 5) + " trading days";
+  const costs = (last.fees_a_cum || 0) + (last.api_cum || 0);
+  return html`<div>
+    <div class="stats">
+      <${Stat} label="Sharpe ratio" value=${num(m.sharpe)} cls=${tone(m.sharpe)} note=${isNum(m.sharpe) ? "SPY " + num(mSpy.sharpe) : later("sharpe")} />
+      <${Stat} label="Sortino ratio" value=${num(m.sortino)} cls=${tone(m.sortino)} note=${isNum(m.sortino) ? "SPY " + num(mSpy.sortino) : later("sortino")} />
+      <${Stat} label="Return vs SPY" value=${pct(alpha)} cls=${tone(alpha)} note="after your fees and Claude" />
+      <${Stat} label="Annualised" value=${pct(m.annual_return)} cls=${tone(m.annual_return)} note=${isNum(m.annual_return) ? "SPY " + pct(mSpy.annual_return) : later("annual_return")} />
+      <${Stat} label="Volatility" value=${pct(m.volatility, 1, false)} note=${isNum(m.volatility) ? "SPY " + pct(mSpy.volatility, 1, false) : later("volatility")} />
+      <${Stat} label="Max drawdown" value=${pct(isNum(m.max_drawdown) ? -m.max_drawdown : null)} cls="bad" note=${"SPY " + pct(isNum(mSpy.max_drawdown) ? -mSpy.max_drawdown : null)} />
+      <${Stat} label="Days up" value=${pct(m.up_days, 0, false)} note=${isNum(m.best_day) ? "best " + pct(m.best_day) + " · worst " + pct(m.worst_day) : (m.days || 0) + " trading days"} />
+      <${Stat} label="Win rate" value=${pct(st.win_rate, 0, false)} note=${(st.wins || 0) + " of " + (st.trades || 0) + " trades at a gain"} />
+      <${Stat} label="Profit factor" value=${num(st.profit_factor)} cls=${isNum(st.profit_factor) ? tone(st.profit_factor - 1) : ""} note="gains / losses, before costs" />
+      <${Stat} label="Trades" value=${st.trades || 0} note=${(st.stopped || 0) + " ended by the stop-loss"} />
+      <${Stat} label="Claude vs no Claude" value=${isNum(edge) ? usd(edge, true) : NA} cls=${tone(edge)} note=${isNum(edge) ? "at " + shortDate(closed.date) + " close, after costs" : "measured at each close"} />
+      <${Stat} label="Costs paid" value=${usd(costs)} note=${"Claude " + usd(last.api_cum || 0) + " of " + usd(cfg.api_budget_usd || 0).replace(".00", "")} />
+    </div>
+    <p class="sub small" style=${{ marginTop: "10px" }}>Ratios from one value per trading day; under about 60 days they are mostly noise. Win rate and profit factor count each finished trade, before costs.</p>
+  </div>`;
+}
+
+function DtOverview({ dt }) {
+  const cap = dtCap(dt), cfg = dt.settings || {}, a = dt.account || {}, pos = dt.positions || [];
+  const curve = dtCurve(dt), last = curve[curve.length - 1] || {};
+  const total = isNum(a.value_real_usd) && a.value_real_usd > 0 ? a.value_real_usd : null;
+  const held = pos.map((p, i) => ({ sym: p.symbol, w: total ? p.value_real_usd / total : 0, color: PALETTE[i % PALETTE.length], stop: p.stop }));
+  const cash = isNum(a.cash_weight) ? Math.max(0, a.cash_weight) : Math.max(0, 1 - held.reduce((t, p) => t + p.w, 0));
+  const parts = held.concat([{ sym: "Cash", w: cash, color: "#3a4250", cash: true }]);
+  const feeA = cfg.fee_a || {}, fees = last.fees_a_cum || 0, api = last.api_cum || 0, budget = cfg.api_budget_usd || 0;
+  const dd = (key) => { let peak = cap; return curve.map((p) => { const v = p[key]; if (!isNum(v)) return null; peak = Math.max(peak, v); return v / peak - 1; }); };
+  const ddA = dd("after_a"), ddS = dd("spy_a");
+  const ddPoints = curve.map((p, i) => ({ label: p.date, ai: ddA[i], spy: ddS[i] }));
+  const closes = curve.filter((p) => isNum(p.rules_a));
+  return html`<div>
+    <div class="two">
+      <div class="card">
+        <h2>Allocation · live</h2>
+        <div class="split">
+          <${Donut} parts=${parts} />
+          <div>
+            ${parts.map((p) => html`<div key=${p.sym} class="hold">
+              <div class="row flat"><span><i class="swatch" style=${{ background: p.color }}></i><b>${p.sym}</b>${!p.cash && isNum(p.stop) ? html` <span class="sub small">· stop ${usd(p.stop)}</span>` : ""}</span><span class="mono">${(p.w * 100).toFixed(1)}%</span></div>
+              <div class="barwrap"><div style=${{ width: Math.min(100, p.w * 100) + "%", background: p.color }}></div></div></div>`)}
+            <p class="sub small">Everything is sold before each close, so the account holds only cash overnight.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Costs so far · ${usd(fees + api)}</h2>
+        <div class="row"><span>Trading fees <span class="sub small">($${feeA.per_order_usd} + ${((feeA.rate || 0) * 100).toFixed(1)}% per order)</span></span><b class="mono">${usd(fees)}</b></div>
+        <div class="row"><span>Claude API <span class="sub small">(measured, one call a day)</span></span><b class="mono">${usd(api)}</b></div>
+        <div class="row"><span class="sub">With a no-commission broker the fees would have been</span><b class="mono sub">${usd(last.fees_b_cum || 0)}</b></div>
+        <div class="sub mt small">Claude budget: ${usd(api)} of ${usd(budget)}; once used up, the rules alone choose.</div>
+        <div class="barwrap"><div style=${{ width: (budget ? Math.min(1, api / budget) : 0) * 100 + "%", background: "linear-gradient(90deg, #b8913f, var(--gold))" }}></div></div>
+      </div>
+    </div>
+    <div class="card mt">
+      <h2>Fall from the previous peak · after costs</h2>
+      ${curve.length > 1 ? html`<${LineChart} points=${ddPoints} height=${170} baseline=${0} format=${(v) => pct(v, 1)} aria="Drawdown of day trading and of SPY"
+        lines=${[{ key: "ai", label: "Day trading, your fees", color: "var(--ai)" }, { key: "spy", label: "SPY bought and held", color: "var(--spy)" }]} />`
+        : html`<p class="sub">Appears after the second trading day.</p>`}
+      <p class="sub small mt">No loss limit on the whole account. Each position has its own stop-loss, ${Math.round((cfg.stop_atr || 0.1) * 100)}% of the stock's average daily range below the entry, kept by the broker.</p>
+    </div>
+    <div class="card mt">
+      <h2>Claude against the same rules without Claude · at each close</h2><p class="sub small mb">The rules alone, replayed each day on every candidate with the same minute prices and fees. If Claude cannot beat them, it adds nothing. Click a label to hide or show a line.</p>
+      ${closes.length > 0 ? html`<${LineChart} points=${closes} baseline=${cap} format=${(v) => usd(v)} aria="Day trading with and without Claude, at each close"
+        lines=${[{ key: "after_a", label: "With Claude, your fees", color: "var(--ai)" }, { key: "rules_a", label: "Without Claude, your fees", color: "var(--s_6040)" }, { key: "spy_a", label: "SPY bought and held", color: "var(--spy)" }]} />`
+        : html`<p class="sub">Appears after the first close.</p>`}
+    </div>
+  </div>`;
+}
+
+function DtCandidates({ dt }) {
+  const cfg = dt.settings || {}, cap = dtCap(dt), today = dt.today || {};
+  const [dayLabel, dayCls] = DT_DAY[today.status] || [today.status || "No run yet today", ""];
+  const cands = today.candidates || [];
+  return html`<div class="card mt">
+    <h2>Today's candidates · ${today.date || "no run yet"} <span class=${"pill " + dayCls}><i></i>${dayLabel}</span></h2>
+    ${today.scanned_at ? html`<p class="sub small mb">At ${hhmm(today.scanned_at)}: ${today.eligible} shares qualified, ${today.traded_first_bar} traded in the first 5 minutes, ${today.in_play} in play, ${cands.length} of them rose (the only ones that may be bought). Each entry gets ${usd((today.slot_usd || 0) * cap / (today.equity_open || 1)).replace(".00", "")}.</p>` : ""}
+    ${today.ai && today.ai.status === "ok" && html`<p class="sub small mb"><b>Claude</b> (${hhmm(today.ai.at)}, ${usd(today.ai.cost_usd)}): approved ${today.ai.approved} of ${today.ai.rated}. ${today.ai.summary}</p>`}
+    ${(today.notes || []).map((n, i) => html`<div class="alert small" key=${i}>${n}</div>`)}
+    ${cands.length === 0 ? html`<p class="sub">${today.date ? "No candidate today." : "Appears after the 9:35 New York scan."}</p>` : html`<div class="table mt"><table>
+      <thead><tr><th>Stock</th><th class="num">Volume vs usual</th><th class="num">Breakout above</th><th class="num">Stop distance</th><th class="num">Claude</th><th>State</th><th>Detail</th></tr></thead>
+      <tbody>${cands.map((c) => { const [lbl, cls] = DT_STATE[c.state] || [c.state, ""]; return html`<tr key=${c.symbol}>
+        <td><b>${c.symbol}</b> <span class="sub small">#${c.rank}</span></td><td class="num">${num(c.rv, 1)}x</td><td class="num">${usd(c.high)}</td>
+        <td class="num">${usd(c.atr * (cfg.stop_atr || 0.1))}</td>
+        <td class=${"num " + (c.ai_trade === true ? "good" : "")}>${isNum(c.ai_score) ? (c.ai_trade ? "yes " : "no ") + c.ai_score + "/10" : "-"}</td>
+        <td><span class=${"side " + cls}>${lbl}</span></td><td class="wrap small">${c.detail}${c.ai_reason && c.state !== "ai pass" ? html`<div class="sub">Claude: ${c.ai_reason}</div>` : ""}</td></tr>`; })}</tbody></table></div>`}
+    <p class="sub small mt">Stocks "in play": the first 5 minutes traded far more shares than usual. Only those that rose in those 5 minutes are candidates; Claude turns down those without a strong fresh reason, and the rest are bought, best first, if the price breaks above its 5-minute high before ${cfg.entry_end || "12:00"}.</p>
+  </div>`;
+}
+
+function DtPositions({ dt }) {
+  const [allTrades, setAllTrades] = useState(false);
+  const cap = dtCap(dt), capTxt = usd(cap).replace(".00", ""), a = dt.account || {};
+  const pos = dt.positions || [], st = dt.stats || {}, trades = dt.trades || [];
+  const shown = allTrades ? trades : trades.slice(0, 20);
+  const total = isNum(a.value_real_usd) && a.value_real_usd > 0 ? a.value_real_usd : null;
+  const sum = pos.reduce((t, p) => ({ value: t.value + p.value_real_usd, pl: t.pl + p.pl_real_usd }), { value: 0, pl: 0 });
+  return html`<div>
+    <div class="card">
+      <h2>Open positions (live, at ${capTxt})</h2>
+      ${pos.length === 0 ? html`<p class="sub">No open position: everything is in cash.</p>` : html`<div class="table"><table>
+        <thead><tr><th>Stock</th><th class="num">Shares (paper)</th><th class="num">Bought at</th><th class="num">Last price</th><th class="num">Stop-loss</th><th class="num">Value</th><th class="num">Weight</th><th class="num">P&L since bought</th></tr></thead>
+        <tbody>
+          ${pos.map((p) => html`<tr key=${p.symbol}><td><b>${p.symbol}</b></td>
+            <td class="num">${num(p.qty, 0)}</td><td class="num">${usd(p.entry)}</td><td class="num">${usd(p.price)}</td>
+            <td class="num">${isNum(p.stop) ? usd(p.stop) + (p.price ? " (" + pct(p.stop / p.price - 1, 1) + ")" : "") : "-"}</td>
+            <td class="num">${usd(p.value_real_usd)}</td><td class="num">${total ? pct(p.value_real_usd / total, 1, false) : NA}</td>
+            <td class=${"num " + tone(p.pl_real_usd)}>${usd(p.pl_real_usd, true)} (${pct(p.pl_pct)})</td></tr>`)}
+          <tr class="total"><td>Total</td><td></td><td></td><td></td><td></td><td class="num">${usd(sum.value)}</td><td></td>
+            <td class=${"num " + tone(sum.pl)}>${usd(sum.pl, true)}</td></tr>
+        </tbody></table></div>`}
+      <p class="sub small mt">P&L is before fees (fees are counted in the results). Shares and prices are those of the paper account; values are restated as if ${capTxt} had been invested. Every position is sold ${(dt.settings || {}).close_before_min || 10} minutes before the close. Refreshed ${when(dt.refreshed_at)}.</p>
+    </div>
+
+    <${DtCandidates} dt=${dt} />
 
     <div class="grid">
       <${Kpi} label="Trades" value=${st.trades || 0} note=${(st.stopped || 0) + " ended by the stop-loss"} />
-      <${Kpi} label="Win rate" value=${pct(st.win_rate, 0, false)} note="most trades lose a little; a few win big" />
+      <${Kpi} label="Realised P&L" value=${usd(st.pl_real_usd || 0, true)} cls=${tone(st.pl_real_usd)} note="before fees" />
+      <${Kpi} label="Trades at a gain" value=${st.trades ? (st.wins || 0) + " of " + st.trades : NA} note="most lose a little; a few win big" />
       <${Kpi} label="Average win / loss" value=${pct(st.avg_win_pct, 1) + " / " + pct(st.avg_loss_pct, 1)} note="per trade, before costs" />
-      <${Kpi} label="Profit factor" value=${num(st.profit_factor)} note="gains / losses, before costs" />
       <${Kpi} label="Average R" value=${num(st.avg_r)} note="1 R = the distance to the stop" />
-      <${Kpi} label="Fees" value=${usd(st.fees_a_usd)} note=${"no-commission broker: " + usd(st.fees_b_usd)} />
-      <${Kpi} label="Claude cost" value=${usd(dt.api_cost_usd || 0)} note=${"of a " + usd(cfg.api_budget_usd || 0).replace(".00", "") + " budget, included in the lines"} />
-      <${Kpi} label="Claude vs no Claude" value=${isNum(edge) ? usd(edge, true) : NA} note=${isNum(edge) ? "at " + shortDate(closed.date) + " close, after fees and Claude's cost" : "measured at each close"} />
+      <${Kpi} label="Fees paid (modelled)" value=${usd(st.fees_a_usd || 0)} note=${"no-commission broker: " + usd(st.fees_b_usd || 0)} />
     </div>
 
     <div class="card">
-      <h2>Today · ${today.date || "no run yet"} <span class=${"pill " + dayCls}><i></i>${dayLabel}</span></h2>
-      ${today.scanned_at ? html`<p class="sub small mb">At ${hhmm(today.scanned_at)}: ${today.eligible} shares qualified, ${today.traded_first_bar} traded in the first 5 minutes, ${today.in_play} in play, ${cands.length} of them rose (the only ones bought). Each entry gets ${usd((today.slot_usd || 0) * cap / ((today.equity_open || 1))).replace(".00", "")}.</p>` : ""}
-      ${today.ai && today.ai.status === "ok" && html`<p class="sub small mb"><b>Claude</b> (${hhmm(today.ai.at)}, ${usd(today.ai.cost_usd)}): approved ${today.ai.approved} of ${today.ai.rated}. ${today.ai.summary}</p>`}
-      ${(today.notes || []).map((n, i) => html`<div class="alert small" key=${i}>${n}</div>`)}
-      ${cands.length > 0 && html`<div class="table mt"><table>
-        <thead><tr><th>Stock</th><th class="num">Volume vs usual</th><th class="num">Breakout above</th><th class="num">Stop distance</th><th class="num">Claude</th><th>State</th><th>Detail</th></tr></thead>
-        <tbody>${cands.map((c) => { const [lbl, cls] = DT_STATE[c.state] || [c.state, ""]; return html`<tr key=${c.symbol}>
-          <td><b>${c.symbol}</b> <span class="sub small">#${c.rank}</span></td><td class="num">${num(c.rv, 1)}x</td><td class="num">${usd(c.high)}</td>
-          <td class="num">${usd(c.atr * (cfg.stop_atr || 0.1))}</td>
-          <td class=${"num " + (c.ai_trade === true ? "good" : "")}>${isNum(c.ai_score) ? (c.ai_trade ? "yes " : "no ") + c.ai_score + "/10" : "-"}</td>
-          <td><span class=${"side " + cls}>${lbl}</span></td><td class="wrap small">${c.detail}${c.ai_reason && c.state !== "ai pass" ? html`<div class="sub">Claude: ${c.ai_reason}</div>` : ""}</td></tr>`; })}</tbody></table></div>`}
-      ${pos.length > 0 && html`<div><h3>Open now (live, at ${capTxt})</h3><div class="table"><table>
-        <thead><tr><th>Stock</th><th class="num">Bought at</th><th class="num">Last</th><th class="num">Stop-loss</th><th class="num">Value</th><th class="num">P&L</th></tr></thead>
-        <tbody>${pos.map((p) => html`<tr key=${p.symbol}><td><b>${p.symbol}</b></td><td class="num">${usd(p.entry)}</td><td class="num">${usd(p.price)}</td>
-          <td class="num">${isNum(p.stop) ? usd(p.stop) : "-"}</td><td class="num">${usd(p.value_real_usd)}</td>
-          <td class=${"num " + tone(p.pl_real_usd)}>${usd(p.pl_real_usd, true)} (${pct(p.pl_pct)})</td></tr>`)}</tbody></table></div></div>`}
-      ${intra.length > 1 && curve.length > 1 && html`<div class="mt"><h3>Today, before costs</h3>
-        <${LineChart} points=${intra} height=${160} lines=${[{ key: "value", label: "Today", color: "var(--ai)" }]} format=${(v) => usd(v)} aria="Day trading value today" /></div>`}
-    </div>
-
-    <div class="card mt">
-      <h2>Round trips ${trades.length ? "(" + trades.length + ")" : ""}</h2>
+      <h2>Trade history ${trades.length ? "(" + trades.length + ")" : ""}</h2>
       ${trades.length === 0 ? html`<p class="sub">No trade yet.</p>` : html`<div class="table"><table>
         <thead><tr><th>Bought</th><th>Stock</th><th class="num">Entry</th><th class="num">Exit</th><th class="num">Amount</th><th class="num">P&L before costs</th><th class="num">R</th><th class="num">Your fees</th><th>How it ended</th><th>Why Claude approved it</th></tr></thead>
         <tbody>${shown.map((t, i) => html`<tr key=${i}><td>${when(t.entry_time)}</td><td><b>${t.symbol}</b></td>
@@ -786,35 +940,144 @@ function DayTrading({ dt, bt }) {
           <td class=${"num " + tone(t.pl_real_usd)}>${usd(t.pl_real_usd, true)} (${pct(t.pl_pct)})</td><td class=${"num " + tone(t.r)}>${num(t.r, 1)}</td>
           <td class="num">${usd(t.fee_a_usd)}</td><td>${t.reason}</td><td class="wrap small">${t.ai_reason || "-"}</td></tr>`)}</tbody></table></div>`}
       <${More} total=${trades.length} shown=${20} open=${allTrades} setOpen=${setAllTrades} what="trades" />
+      <p class="sub small mt">One row per finished trade: bought on a breakout, sold by the stop-loss or before the close. R compares the result with the distance to the stop.</p>
+    </div>
+  </div>`;
+}
+
+function DtPerformance({ dt, bt }) {
+  const [allDays, setAllDays] = useState(false);
+  const cap = dtCap(dt), m = dt.metrics || {};
+  const curve = dtCurve(dt), last = curve[curve.length - 1] || {}, closed = lastClosed(curve);
+  const cols = [["after_a", "Your fees"], ["after_b", "No-commission broker"], ["rules_a", "Without Claude"], ["before", "Before costs"], ["spy", "SPY held"]].filter(([k]) => m[k]);
+  const net = (p, k) => (isNum(p[k]) ? p[k] - cap : null);
+  const compare = [["Claude + rules, your fees", net(last, "after_a"), "var(--ai)"], ["Claude + rules, no-commission broker", net(last, "after_b"), "var(--gold)"],
+    ["Same rules without Claude, your fees" + (closed.date ? " (at " + shortDate(closed.date) + " close)" : ""), net(closed, "rules_a"), "var(--s_6040)"],
+    ["SPY bought and held", net(last, "spy_a"), "var(--spy)"]].filter(([, v]) => isNum(v)).sort((a, b) => b[1] - a[1]);
+  const changes = dtDayChanges(dt);
+  const days = dt.days || [], shownDays = allDays ? days : days.slice(0, 15);
+  return html`<div>
+    <div class="card">
+      <h2>Risk and return · ${(m.after_a || {}).days || 0} trading day(s)</h2>
+      ${cols.length === 0 ? html`<p class="sub">Appears after the first trading day.</p>` : html`<${DtMetricsTable} m=${m} cols=${cols} rows=${METRIC_ROWS} />`}
+      <p class="sub small mt">One value per trading day. "Without Claude" counts closed days only. Costs are included except in "Before costs". Sharpe and Sortino appear after 5 trading days, the annualised return after 20. Under about 60 trading days these figures are mostly noise.</p>
     </div>
 
-    ${m.after_a && html`<div class="card mt"><h2>Risk and return · ${m.after_a.days} trading day(s)</h2>
-      <${DtMetricsTable} m=${m} cols=${[["after_a", "Your fees"], ["after_b", "No-commission broker"], ["rules_a", "Without Claude"], ["before", "Before costs"], ["spy", "SPY held"]]} />
-      <p class="sub small mt">Under about 60 trading days these figures are mostly noise.</p></div>`}
+    <div class="card mt">
+      <h2>Ranking: Claude against the rules alone and SPY</h2>
+      ${compare.length === 0 ? html`<p class="sub">Appears after the first trading day.</p>` : compare.map(([name, v, color], i) => html`<div class="rank" key=${name}><span class="pos">${i + 1}</span>
+        <span class="nm"><i class="swatch" style=${{ background: color }}></i>${name}</span><b class=${tone(v)}>${usd(v, true)}</b><span class="meta" style=${{ width: "64px", textAlign: "right" }}>${pct(v / cap)}</span></div>`)}
+      <p class="sub small mt">The rules alone cost nothing to run. If Claude cannot beat them after its own cost, it adds nothing.</p>
+    </div>
+
+    <div class="card mt">
+      <h2>Did Claude help each day?</h2>
+      ${days.length === 0 ? html`<p class="sub">Appears after the first trading day.</p>` : html`<div class="table"><table>
+        <thead><tr><th>Day</th><th>Outcome</th><th>Claude</th><th class="num">Bought</th><th class="num hl">With Claude</th><th class="num">Without Claude</th><th class="num">Value added</th><th class="num">SPY</th></tr></thead>
+        <tbody>${shownDays.map((day) => { const c = changes[day.date] || {}, [lbl] = DT_DAY[day.status] || [day.status || "", ""];
+          const added = isNum(c.withAi) && isNum(c.without) ? c.withAi - c.without : null; return html`<tr key=${day.date}>
+          <td>${day.date}</td><td>${lbl}</td><td>${aiText(day)}</td><td class="num">${day.entries || 0}</td>
+          <td class=${"num hl " + tone(c.withAi)}>${pct(c.withAi)}</td><td class=${"num " + tone(c.without)}>${isNum(c.without) ? pct(c.without) : "at the close"}</td>
+          <td class=${"num " + tone(added)}><b>${pct(added)}</b></td><td class=${"num " + tone(c.spy)}>${pct(c.spy)}</td></tr>`; })}
+        </tbody></table></div>`}
+      <${More} total=${days.length} shown=${15} open=${allDays} setOpen=${setAllDays} what="days" />
+      <p class="sub small mt">Each day's change of the account after your fees and Claude's cost, against the same rules without Claude after your fees. Value added = the difference. Today's figures move until the close.</p>
+    </div>
 
     <${Backtest} bt=${bt} />
-    <p class="sub small mt">Claude (${cfg.ai_model}, quick setting): right after the 9:35 scan it reads each candidate's figures and its last 3 days of headlines, turns down those without a strong fresh catalyst and orders the rest; it never changes the stop-loss or the selling. Without an answer in time, the rules alone choose that day. The "without Claude" line replays the same rules on all candidates, on the day's minute prices. Rules (Zarattini, Barbon and Aziz, 2024): at 9:35 New York time, take the 20 shares whose first 5 minutes traded the most volume compared with their usual (at least their usual amount; price $5+, 1M+ shares a day, moving $0.50+ a day). Buy those that rose in those 5 minutes when they break above their 5-minute high, at most ${cfg.max_positions} a day, a ${cfg.max_positions ? Math.round(100 / cfg.max_positions) : 20}% share each, never borrowing; stop-loss ${Math.round((cfg.stop_atr || 0.1) * 100)}% of the daily average range below the entry; no new entry after ${cfg.entry_end}; everything sold ${cfg.close_before_min} minutes before the close. Long only, unlike the paper. Your fees: $${(cfg.fee_a || {}).per_order_usd} + ${((cfg.fee_a || {}).rate * 100).toFixed(1)}% per order, as for the stock side. No-commission broker: ${(((cfg.fee_b || {}).rate || 0) * 100).toFixed(2)}% per order for the spread and slippage. Refreshed ${when(dt.refreshed_at)}.</p>
   </div>`;
 }
 
-function BothStrip({ stockValue, stockCap, dt }) {
-  const dtCap = dt && dt.settings ? dt.settings.real_capital_usd : null;
-  const curve = (dt && dt.curve) || [];
-  const last = curve[curve.length - 1];
-  if (!dtCap || !last || !isNum(last.after_a)) return null;
-  const total = stockValue + last.after_a, cap = stockCap + dtCap;
-  return html`<div class="stats" style=${{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))" }}>
-    <${Stat} label="Stock picking (Claude)" value=${usd(stockValue)} cls=${tone(stockValue - stockCap)} note=${pct(stockValue / stockCap - 1) + " after all costs"} />
-    <${Stat} label="Day trading (Claude + rules)" value=${usd(last.after_a)} cls=${tone(last.after_a - dtCap)} note=${pct(last.after_a / dtCap - 1) + " after your fees"} />
-    <${Stat} label=${"Both, on " + usd(cap).replace(".00", "")} value=${usd(total)} cls=${tone(total - cap)} note=${usd(total - cap, true) + " (" + pct(total / cap - 1) + ")"} />
+function DtDecision({ day }) {
+  const [lbl, cls] = DT_DAY[day.status] || [day.status || "", ""];
+  const picks = (day.picks || []).slice().sort((x, y) => (y.ai_score || 0) - (x.ai_score || 0) || x.rank - y.rank);
+  return html`<div class="log">
+    <div><b>${day.date}</b> <span class=${"pill " + cls}><i></i>${lbl}</span> <span class="meta">Claude ${aiText(day)}${isNum(day.ai_cost_usd) ? " · API cost " + usd(day.ai_cost_usd) : ""} · ${day.in_play || 0} in play, ${day.candidates} rose, ${day.entries || 0} bought</span></div>
+    ${day.ai_status === "ok" && day.ai_summary ? html`<div class="quote mt">${day.ai_summary}</div>`
+      : day.ai_status ? html`<div class="meta mt">No usable answer from Claude${day.ai_detail ? " (" + day.ai_detail + ")" : ""}: the rules alone chose that day.</div>`
+      : day.candidates === 0 ? html`<div class="meta mt">No candidate that day, so Claude was not asked.</div>` : ""}
+    ${(day.notes || []).map((n, i) => html`<div class="meta" key=${i}>${n}</div>`)}
+    ${picks.length > 0 && html`<div class="table mt"><table>
+      <thead><tr><th>Stock</th><th class="num">Claude</th><th>What happened</th><th>Claude's reason</th></tr></thead>
+      <tbody>${picks.map((c) => { const [sl, sc] = DT_STATE[c.state] || [c.state, ""]; return html`<tr key=${c.symbol}>
+        <td><b>${c.symbol}</b> <span class="sub small">#${c.rank}</span></td>
+        <td class=${"num " + (c.ai_trade === true ? "good" : "")}>${isNum(c.ai_score) ? (c.ai_trade ? "yes " : "no ") + c.ai_score + "/10" : "-"}</td>
+        <td><span class=${"side " + sc}>${sl}</span></td><td class="wrap small">${c.ai_reason || c.detail || ""}</td></tr>`; })}</tbody></table></div>`}
   </div>`;
 }
 
-const SECTIONS = [["overview", "Overview"], ["positions", "Positions"], ["performance", "Performance"], ["news", "Decisions & news"], ["daytrading", "Day trading"]];
+function DtNews({ dt }) {
+  const [allLog, setAllLog] = useState(false);
+  const [allNews, setAllNews] = useState(false);
+  const days = (dt.days || []).filter((d) => d.picks || d.ai_status);
+  const shownDays = allLog ? days : days.slice(0, 5);
+  const heads = dt.headlines || [], shownHeads = allNews ? heads : heads.slice(0, 12);
+  return html`<div class="newsgrid">
+    <div class="card">
+      <h2>Claude's decisions and the news behind them</h2>
+      <p class="sub small">Each trading day at 9:35 New York time Claude reads every candidate's figures and its last 3 days of headlines, then approves or turns it down with a score and a reason. The rules do the rest.</p>
+      ${days.length === 0 ? html`<p class="sub mt">Appears after the first 9:35 scan.</p>` : shownDays.map((d) => html`<${DtDecision} key=${d.date} day=${d} />`)}
+      <${More} total=${days.length} shown=${5} open=${allLog} setOpen=${setAllLog} what="days" />
+    </div>
+    <div class="card">
+      <h2>Latest headlines on today's stocks</h2>
+      <p class="sub small">Free news feed: the last 3 days of headlines on today's candidates and positions, the feed Claude reads at 9:35. Refreshed with the day-trading data.</p>
+      ${heads.length === 0 ? html`<p class="sub mt">${((dt.today || {}).candidates || []).length ? "No headline in the last 3 days." : "Appears after today's 9:35 scan."}</p>`
+        : shownHeads.map((h, i) => html`<div class="news" key=${i}>
+          <div class="meta">${when(h.time)}${h.source ? " - " + h.source : ""} ${(h.symbols || []).map((s) => html`<span class="chip" key=${s}>${s}</span>`)}</div>
+          <${Link} url=${h.url}>${h.headline}</${Link}>
+          ${h.summary && html`<div class="sub small">${h.summary}</div>`}</div>`)}
+      <${More} total=${heads.length} shown=${12} open=${allNews} setOpen=${setAllNews} what="headlines" />
+    </div>
+  </div>`;
+}
 
-const RANGES = [["1D", 0], ["1W", 5], ["1M", 21], ["3M", 63], ["ALL", Infinity]];
+function DtFoot({ dt }) {
+  const cfg = (dt && dt.settings) || {};
+  return html`<p class="foot">Paper money only, on a second paper account kept apart from the investments. Claude (${cfg.ai_model || "Claude"}, quick setting): right after the 9:35 scan it reads each candidate's figures and its last 3 days of headlines, turns down those without a strong fresh catalyst and orders the rest; it never changes the stop-loss or the selling. Without an answer in time, or once its ${usd(cfg.api_budget_usd || 0).replace(".00", "")} budget is used, the rules alone choose that day. The "without Claude" line replays the same rules on all candidates, on the day's minute prices. Rules (Zarattini, Barbon and Aziz, 2024): at 9:35 New York time, take the 20 shares whose first 5 minutes traded the most volume compared with their usual (at least their usual amount; price $5+, 1M+ shares a day, moving $0.50+ a day). Buy those that rose in those 5 minutes when they break above their 5-minute high, at most ${cfg.max_positions || 5} a day, a ${cfg.max_positions ? Math.round(100 / cfg.max_positions) : 20}% share each, never borrowing; stop-loss ${Math.round((cfg.stop_atr || 0.1) * 100)}% of the daily average range below the entry; no new entry after ${cfg.entry_end || "12:00"}; everything sold ${cfg.close_before_min || 10} minutes before the close. Long only, unlike the paper. Your fees: $${(cfg.fee_a || {}).per_order_usd} + ${(((cfg.fee_a || {}).rate || 0) * 100).toFixed(1)}% per order, as for the investments. No-commission broker: ${(((cfg.fee_b || {}).rate || 0) * 100).toFixed(2)}% per order for the spread and slippage. Results are restated as if ${usd(dtCap(dt)).replace(".00", "")} were invested. Runs in the cloud on trading days; data refreshed during the day (last ${dt ? when(dt.refreshed_at) : "-"}). This page reloads its data every 5 minutes.</p>`;
+}
 
-function Dashboard({ d, live, dt, bt }) {
+function DayTradingTab({ dt, bt }) {
+  if (!dt || dt.status === "waiting") return html`<div>
+    <div class="pills"><span class="pill"><i></i>Day trading not started yet</span></div>
+    <section id="dt-overview" class="card hero"><h2>Day trading · not started yet</h2>
+      <p class="sub">A second, separate paper account. At 9:35 New York time Claude reads the morning's candidates and their headlines and says which ones may be bought; fixed rules buy them on a breakout, protect each with a stop-loss and sell everything before the close. It starts on the first trading day after its keys are set up (see the README).</p></section>
+    <h2 class="sect" id="dt-positions">Positions & trades</h2><div class="card"><p class="sub">Appears once day trading starts.</p></div>
+    <h2 class="sect" id="dt-performance">Performance</h2><${Backtest} bt=${bt} />
+    <h2 class="sect" id="dt-news">Decisions & news</h2><div class="card"><p class="sub">Appears once day trading starts.</p></div>
+    <${DtFoot} dt=${dt} />
+  </div>`;
+  const cfg = dt.settings || {}, today = dt.today || {};
+  const [dayLabel, dayCls] = DT_DAY[today.status] || [today.status || "No run yet today", ""];
+  const nDays = (dt.curve || []).length;
+  return html`<div>
+    <div class="pills">
+      <span class=${"pill " + dayCls}><i></i>${dayLabel}</span>
+      <${DtLivePill} dt=${dt} />
+      <span class="pill">Paper money · ${cfg.ai_model || "Claude"} + rules</span>
+      <span class="pill">Since ${shortDate(dt.start_date)} · ${nDays} trading day${nDays === 1 ? "" : "s"} · Claude ${usd(dt.api_cost_usd || 0)}</span>
+    </div>
+    ${dt.errors && dt.errors.length > 0 && html`<div class="alert warn small">Day-trading data partly missing: ${dt.errors.join("; ")}.</div>`}
+    <${DtHero} dt=${dt} />
+    <${DtStats} dt=${dt} />
+    <${DtOverview} dt=${dt} />
+    <h2 class="sect" id="dt-positions">Positions & trades</h2>
+    <${DtPositions} dt=${dt} />
+    <h2 class="sect" id="dt-performance">Performance</h2>
+    <${DtPerformance} dt=${dt} bt=${bt} />
+    <h2 class="sect" id="dt-news">Decisions & news</h2>
+    <${DtNews} dt=${dt} />
+    <${DtFoot} dt=${dt} />
+  </div>`;
+}
+
+// --- investments tab -------------------------------------------------------------------------------
+function stockNow(d, live) {
+  const cap = d.settings.real_capital_usd, curve = dailyCurve(d, live), last = curve[curve.length - 1] || {};
+  return { cap, value: cap + (isNum(last.ai_after_costs) ? last.ai_after_costs - cap : d.summary.strat_net_usd) };
+}
+
+function InvestmentsTab({ d, live }) {
   const s = d.summary, cfg = d.settings, cap = cfg.real_capital_usd;
   const a = (live && live.account) || {};
   const metrics = dailyMetrics(d, live);
@@ -838,11 +1101,6 @@ function Dashboard({ d, live, dt, bt }) {
   const noteDays = (k) => (isNum(m[k]) ? null : "after " + (k === "annual_return" ? 20 : 5) + " trading days");
 
   return html`<div>
-    <header class="top"><div class="topin">
-      <div class="brand"><span class="logo"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M1 10 L5 6 L8 8 L13 2" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h1>AI TRADING DESK <small>· Claude vs S&P 500</small></h1></div>
-      <nav class="nav">${SECTIONS.map(([k, label]) => html`<a key=${k} href=${"#" + k}>${label}</a>`)}</nav>
-    </div></header>
-
     <div class="pills">
       <span class=${"pill " + (d.status === "running" ? "good" : "bad")}><i></i>${d.status === "running" ? "Test running" : "Test stopped"}</span>
       <${LivePill} live=${live} />
@@ -850,7 +1108,6 @@ function Dashboard({ d, live, dt, bt }) {
       <span class="pill">Since ${shortDate(d.start_date)} · ${s.decisions} decision${s.decisions === 1 ? "" : "s"} · last ${(d.log[d.log.length - 1] || {}).date || "-"}</span>
     </div>
     ${d.halt_reason && html`<div class="alert bad">Stopped: ${d.halt_reason}</div>`}
-    <${BothStrip} stockValue=${value} stockCap=${cap} dt=${dt} />
     ${live && live.errors && live.errors.length > 0 && html`<div class="alert warn small">Live data partly missing: ${live.errors.join("; ")}.</div>`}
 
     <section id="overview" class="card hero">
@@ -908,10 +1165,74 @@ function Dashboard({ d, live, dt, bt }) {
     <${Performance} d=${d} live=${live} cap=${cap} />
     <h2 class="sect" id="news">Decisions & news</h2>
     <${News} d=${d} live=${live} />
-    <h2 class="sect" id="daytrading">Day trading · separate account · Claude picks, rules trade</h2>
-    <${DayTrading} dt=${dt} bt=${bt} />
 
     <p class="foot">Paper money only. Every trading day, code screens all US-listed stocks for strong, orderly uptrends; a smaller Claude model reads the headlines of the best ${(d.candidates || []).length || 40}; Claude Opus reads them with the market news and economic data and picks the stocks to hold, each with a stop-loss. A stock is held only if most of 3 independent answers hold it. Results are restated as if ${capTxt} were invested. Dividends are left out on all lines. Under 12 months, a result either way can be luck. Decisions: once a day during US market hours (last update ${d.updated_at}). Live data and the daily curve: about every 15 minutes while the market is open. This page reloads its data every 5 minutes.</p>
+  </div>`;
+}
+
+// --- the page: one header, both results side by side, then one tab at a time ----------------------
+function BothStrip({ stock, dt, tab, choose }) {
+  const cap = dt && dt.settings ? dt.settings.real_capital_usd : null;
+  const curve = (dt && dt.curve) || [];
+  const last = curve[curve.length - 1];
+  if (!cap || !last || !isNum(last.after_a)) return null;
+  const total = stock.value + last.after_a, both = stock.cap + cap;
+  return html`<div class="stats both">
+    <${Stat} label="Investments · Claude picks stocks" value=${usd(stock.value)} cls=${tone(stock.value - stock.cap)} note=${pct(stock.value / stock.cap - 1) + " after all costs"} active=${tab === "invest"} onClick=${() => choose("invest")} />
+    <${Stat} label="Day trading · Claude + rules" value=${usd(last.after_a)} cls=${tone(last.after_a - cap)} note=${pct(last.after_a / cap - 1) + " after your fees"} active=${tab === "day"} onClick=${() => choose("day")} />
+    <${Stat} label=${"Both, on " + usd(both).replace(".00", "")} value=${usd(total)} cls=${tone(total - both)} note=${usd(total - both, true) + " (" + pct(total / both - 1) + ")"} />
+  </div>`;
+}
+
+const TABS = [["invest", "Investments"], ["day", "Day trading"]];
+const SECTIONS = {
+  invest: [["overview", "Overview"], ["positions", "Positions"], ["performance", "Performance"], ["news", "Decisions & news"]],
+  day: [["dt-overview", "Overview"], ["dt-positions", "Positions"], ["dt-performance", "Performance"], ["dt-news", "Decisions & news"]],
+};
+const TAB_HASH = { invest: "investments", day: "day-trading" };
+const tabOfHash = (hash) => {
+  const h = (hash || "").replace(/^#/, "");
+  if (h === "day-trading" || h === "daytrading" || h.startsWith("dt-")) return "day";
+  if (h === "investments" || SECTIONS.invest.some(([k]) => k === h)) return "invest";
+  return null;
+};
+const savedTab = () => { try { return localStorage.getItem("dashboard-tab"); } catch (e) { return null; } };
+
+const RANGES = [["1D", 0], ["1W", 5], ["1M", 21], ["3M", 63], ["ALL", Infinity]];
+
+function Dashboard({ d, live, dt, bt }) {
+  const [tab, setTab] = useState(() => tabOfHash(location.hash) || (savedTab() === "day" ? "day" : "invest"));
+  useEffect(() => {
+    const onHash = () => { const t = tabOfHash(location.hash); if (t) setTab(t); };
+    window.addEventListener("hashchange", onHash);
+    const id = location.hash.slice(1), el = id && !Object.values(TAB_HASH).includes(id) && document.getElementById(id);
+    if (el) el.scrollIntoView();  // a link to a section: the section exists only now
+    return () => window.removeEventListener("hashchange", onHash);
+  }, []);
+  useEffect(() => {
+    try { localStorage.setItem("dashboard-tab", tab); } catch (e) { /* private window: not remembered */ }
+    document.title = "AI Trading Desk · " + (tab === "day" ? "Day trading" : "Investments");
+  }, [tab]);
+  const choose = (t) => {
+    if (t !== tab) {
+      setTab(t);
+      try { history.replaceState(null, "", "#" + TAB_HASH[t]); } catch (e) { /* the tab still changes */ }
+    }
+    window.scrollTo({ top: 0 });
+  };
+  const stock = stockNow(d, live);
+
+  return html`<div>
+    <header class="top"><div class="topin">
+      <div class="brand"><span class="logo"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M1 10 L5 6 L8 8 L13 2" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h1>AI TRADING DESK <small>· ${tab === "day" ? "Claude + rules, in and out each day" : "Claude vs S&P 500"}</small></h1></div>
+      <div class="tabs" role="tablist" aria-label="Dashboard">${TABS.map(([k, label]) => html`<button key=${k} role="tab" aria-selected=${tab === k}
+        class=${tab === k ? "on" : ""} onClick=${() => choose(k)}>${label}</button>`)}</div>
+      <nav class="nav">${SECTIONS[tab].map(([k, label]) => html`<a key=${k} href=${"#" + k}>${label}</a>`)}</nav>
+    </div></header>
+
+    <${BothStrip} stock=${stock} dt=${dt} tab=${tab} choose=${choose} />
+    <div role="tabpanel" hidden=${tab !== "invest"}><${InvestmentsTab} d=${d} live=${live} /></div>
+    <div role="tabpanel" hidden=${tab !== "day"}><${DayTradingTab} dt=${dt} bt=${bt} /></div>
   </div>`;
 }
 

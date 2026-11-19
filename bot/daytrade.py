@@ -846,14 +846,46 @@ def build_view(broker, state: dict | None, now: datetime) -> dict:
     if got is not None:
         payload["curve"], payload["metrics"] = got
     payload["today"] = rec
+    if rec:
+        symbols = sorted({c["symbol"] for c in rec.get("candidates", [])}
+                         | {p["symbol"] for p in payload.get("positions") or []})
+        if symbols:
+            heads = part("headlines", lambda: headlines(broker, symbols, now))
+            if heads is not None:
+                payload["headlines"] = heads
+    newest = sorted(state["days"], key=lambda d: d["date"], reverse=True)
     payload["days"] = [{k: d.get(k) for k in ("date", "status", "in_play", "eligible", "notes")}
                        | {"candidates": len(d.get("candidates", [])),
                           "entries": sum(1 for e in d.get("entries", []) if _counts(e)),
                           "ai_status": (d.get("ai") or {}).get("status"),
                           "ai_approved": (d.get("ai") or {}).get("approved"),
+                          "ai_rated": (d.get("ai") or {}).get("rated"),
+                          "ai_summary": (d.get("ai") or {}).get("summary") or "",
+                          "ai_detail": (d.get("ai") or {}).get("detail") or "",
+                          "ai_cost_usd": (d.get("ai") or {}).get("cost_usd"),
                           "rules_only_ret": (d.get("rules_only") or {}).get("ret")}
-                       for d in state["days"]][::-1]
+                       | ({"picks": [{k: c.get(k) for k in ("symbol", "rank", "rv", "ai_trade", "ai_score",
+                                                             "ai_reason", "state", "detail")}
+                                     for c in d.get("candidates", [])]} if i < config.DT_DAYS_WITH_PICKS else {})
+                       for i, d in enumerate(newest)]
     return payload
+
+
+def headlines(broker, symbols: list[str], now: datetime) -> list[dict]:
+    """The latest headlines (last few days) on the day's candidates and held stocks, newest first, each once."""
+    from .dt_ai import news_by_symbol
+    seen, out = set(), []
+    for items in news_by_symbol(broker, symbols, now).values():
+        for n in items:
+            key = n.get("id") or (n.get("headline"), n.get("created_at"))
+            if key in seen:
+                continue
+            seen.add(key)
+            out.append({"time": str(n.get("created_at") or ""), "headline": str(n.get("headline") or "").strip()[:300],
+                        "summary": str(n.get("summary") or "").strip()[:300], "source": str(n.get("source") or ""),
+                        "url": str(n.get("url") or ""), "symbols": [x for x in n.get("symbols") or [] if x in symbols]})
+    out.sort(key=lambda h: h["time"], reverse=True)
+    return out[:config.DT_HEADLINES_SHOWN]
 
 
 def write_view(payload: dict, path: str = None) -> None:

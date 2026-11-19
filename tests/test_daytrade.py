@@ -93,6 +93,11 @@ class DTBroker:
         self.bar_requests: list[tuple] = []
         clock.hooks.append(self.process_stops)
 
+    def news(self, symbols, limit=50):
+        when = (self.clock_.now() - timedelta(hours=1)).astimezone(timezone.utc).isoformat()
+        return [{"id": 7, "created_at": when, "headline": "Alpha wins a contract", "summary": "", "source": "wire",
+                 "url": "https://example.com/a", "symbols": ["AAA", "ZZZ"]}] if "AAA" in symbols else []
+
     # -- calendar and clock
     def calendar(self, start, end):
         d, out = date.fromisoformat(start), []
@@ -600,6 +605,12 @@ class ClaudeTest(unittest.TestCase):
         expected = 1000 + slot * t["ret"] - (1 + 0.001 * slot) - (1 + 0.001 * slot * (1 + t["ret"]))
         self.assertAlmostEqual(p["rules_a"], round(expected, 2))
         self.assertIn("rules_a", view["metrics"])
+        day = view["days"][0]
+        self.assertEqual((day["ai_summary"], day["ai_rated"], day["ai_cost_usd"]), ("summary", 3, 0.25))
+        aaa = next(p for p in day["picks"] if p["symbol"] == "AAA")
+        self.assertEqual((aaa["ai_trade"], aaa["ai_score"], aaa["state"]), (False, 2, "ai pass"))
+        (h,) = view["headlines"]  # one headline, listed once, tagged only with the day's stocks
+        self.assertEqual((h["headline"], h["symbols"]), ("Alpha wins a contract", ["AAA"]))
         json.dumps(view)
 
     def test_answer_cleaning(self):

@@ -138,6 +138,8 @@ DT_STATE_PATH = os.environ.get("DT_STATE_PATH") or "state/daytrade.json"
 DT_DATA_PATH = os.environ.get("DT_DATA_PATH") or "docs/data/daytrade.json"
 DT_BACKTEST_PATH = os.environ.get("DT_BACKTEST_PATH") or "docs/data/daytrade_backtest.json"
 DT_TRADES_SHOWN = 300              # newest trades kept on the dashboard
+DT_DAYS_WITH_PICKS = 30            # latest days whose Claude answers the dashboard lists
+DT_HEADLINES_SHOWN = 40            # latest headlines on the day's stocks shown on the dashboard
 # Claude's part: one call a day, right after the 9:35 scan, so it must answer within about a minute.
 DT_AI_MODEL = os.environ.get("DT_AI_MODEL") or CLAUDE_MODEL
 DT_AI_EFFORT = os.environ.get("DT_AI_EFFORT") or "low"   # quick answer: breakouts do not wait
