@@ -120,12 +120,20 @@ def day_trades(cands: list, minute_bars: dict[str, list[dict]], session: Session
 class Accounts:
     """Three versions of the same $1,000: before costs, your broker's fees, a no-commission broker."""
 
+    MIN_TO_TRADE = 50.0  # below this the fees alone eat a position: the account stops trading
+
     def __init__(self):
         real = config.DT_REAL_CAPITAL_USD
         self.value = {"before": real, "after_a": real, "after_b": real}
+        self.stopped = {}  # account -> first day it was too small to trade
 
-    def apply(self, trades: list[dict]) -> None:
+    def apply(self, trades: list[dict], day: str = "") -> None:
         for key in self.value:
+            if key in self.stopped:
+                continue
+            if self.value[key] < self.MIN_TO_TRADE:
+                self.stopped[key] = day
+                continue
             slot = self.value[key] / config.DT_MAX_POSITIONS
             change = 0.0
             for t in trades:
@@ -134,7 +142,7 @@ class Accounts:
                     fee_buy = fee_models(slot)[0 if key == "after_a" else 1]
                     fee_sell = fee_models(slot * (1 + t["ret"]))[0 if key == "after_a" else 1]
                     change -= fee_buy + fee_sell
-            self.value[key] += change
+            self.value[key] = max(0.01, self.value[key] + change)
 
 
 def summarize(points: list[dict], trades: list[dict], rf: float) -> dict:
@@ -147,7 +155,7 @@ def summarize(points: list[dict], trades: list[dict], rf: float) -> dict:
     for year in sorted({p["date"][:4] for p in points}):
         last = [p for p in points if p["date"][:4] == year][-1]
         years.append({"year": year, "trades": sum(1 for t in trades if t["date"][:4] == year),
-                      **{k: last[k] / prev[k] - 1 for k in lines}})
+                      **{k: (last[k] / prev[k] - 1) if prev[k] else None for k in lines}})
         prev = {k: last[k] for k in lines}
     wins = [t for t in trades if t["ret"] > 0]
     gain, loss = sum(t["ret"] for t in wins), -sum(t["ret"] for t in trades if t["ret"] <= 0)
@@ -259,7 +267,7 @@ def run(broker, start: str, end: str, log=print, clock=time.monotonic, risk_free
             cands = [c for c in cands if minute.get(c.symbol)]
             day, skip = day_trades(cands, minute, s)
             skipped += skip
-        accounts.apply(day)
+        accounts.apply(day, s.day)
         trades += day
         spy = spy_closes.get(s.day)
         held = real * spy / base_spy if (spy and base_spy) else None
@@ -280,6 +288,7 @@ def run(broker, start: str, end: str, log=print, clock=time.monotonic, risk_free
         "start": points[0]["date"] if points else start,
         "end": points[-1]["date"] if points else end,
         "stopped_early_at": stopped_at,
+        "too_small_to_trade": accounts.stopped,  # account -> day its value fell under $50
         "sessions": len(points),
         "symbols": len(symbols),
         "avg_eligible": round(sum(len(v) for v in eligible.values()) / len(test_idx)),

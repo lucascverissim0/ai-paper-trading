@@ -776,6 +776,20 @@ class BacktestBroker(DTBroker):
         return out
 
 
+class RuinTest(unittest.TestCase):
+    def test_account_ruined_by_fees_stops_and_stays_positive(self):
+        acc = dt_backtest.Accounts()
+        losing = [{"ret": -0.01}] * 5
+        for i in range(400):
+            acc.apply(losing, f"d{i}")
+        self.assertIn("after_a", acc.stopped)
+        self.assertGreater(acc.value["after_a"], 0)
+        self.assertLess(acc.value["after_a"], dt_backtest.Accounts.MIN_TO_TRADE)
+        points = [{"date": "2024-01-02", "before": 1000, "after_a": 1000, "after_b": 1000, "spy_a": 1000},
+                  {"date": "2024-01-03", "before": 990, "after_a": acc.value["after_a"], "after_b": 950, "spy_a": 1001}]
+        json.dumps(dt_backtest.summarize(points, [], 0.0))  # no complex numbers, saves fine
+
+
 class BacktestRunTest(unittest.TestCase):
     def test_end_to_end_on_fake_history(self):
         clock = FakeClock(ny("09:00"))
