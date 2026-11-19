@@ -709,6 +709,8 @@ class LiveTest(unittest.TestCase):
         bench_fee = config.FEE_PER_ORDER_USD + config.FEE_RATE * config.REAL_CAPITAL_USD
         self.assertAlmostEqual(pts[1]["spy_after_costs"], round(1020 - bench_fee, 2))
         self.assertAlmostEqual(pts[2]["spy_after_costs"], round(1010 - bench_fee, 2))  # live price today
+        utc_midnight = {"timestamp": [1794614400], "equity": [101_000.0]}   # 2026-11-14 00:00 UTC = 13 Nov in New York
+        self.assertEqual(live.daily_view(utc_midnight, spy, [], state)[0]["date"], "2026-11-13")
         m = live.daily_metrics(pts, state)
         self.assertEqual(m["ai_after_costs"]["days"], 3)
         self.assertAlmostEqual(m["ai_after_costs"]["total_return"], 0.0255)

@@ -9,8 +9,12 @@ import json
 import os
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 from . import accounting, config
+
+NEW_YORK = ZoneInfo("America/New_York")
+DAILY_VERSION = 2  # raise when the daily curve changes, so a closed-market refresh rebuilds it
 
 
 def _f(value, default: float = 0.0) -> float:
@@ -160,7 +164,7 @@ def daily_view(history: dict, spy: dict[str, float], trades: list[dict], state: 
     values: dict[str, float] = {}
     for t, equity in zip(history.get("timestamp") or [], history.get("equity") or []):
         if equity:
-            day = datetime.fromtimestamp(int(t), tz=timezone.utc).strftime("%Y-%m-%d")
+            day = datetime.fromtimestamp(int(t), tz=NEW_YORK).strftime("%Y-%m-%d")  # stamps are midnight UTC
             if day >= state["start_date"]:
                 values[day] = _f(equity)
     if today and equity_now and today >= state["start_date"]:
@@ -276,6 +280,7 @@ def build_live(broker, state: dict, clock: dict, now: str) -> dict:
     got = part("equity curve", daily)
     if got is not None:
         payload["daily"], payload["daily_metrics"] = got
+        payload["daily_version"] = DAILY_VERSION
     watched = sorted(set(state.get("stops", {})) | {p["symbol"] for p in payload.get("positions", [])}
                      | {config.BENCHMARK})
     news = part("headlines", lambda: headlines_view(broker.news(watched, config.HEADLINES_LIMIT), set(watched)))
@@ -293,7 +298,8 @@ def refresh(broker, state: dict | None, path: Path, now: str) -> str:
         return "Test not started: nothing to show."
     old = json.loads(path.read_text()) if path.exists() else None
     clock = broker.clock()
-    if not clock.get("is_open") and old and old.get("market_open") is False and "daily" in old:
+    if not clock.get("is_open") and old and old.get("market_open") is False \
+            and old.get("daily_version") == DAILY_VERSION:
         return "Market closed and closing values already saved."
     payload = build_live(broker, state, clock, now)
     if _content(payload) == _content(old):
