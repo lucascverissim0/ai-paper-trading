@@ -1,5 +1,5 @@
 {
- "refreshed_at": "2026-11-19T13:23:47Z",
+ "refreshed_at": "2026-11-19T13:24:34Z",
  "market_open": false,
  "next_open": "2026-11-19T09:30:00-05:00",
  "next_close": "2026-11-19T16:00:00-05:00",
@@ -284,14 +284,6 @@
  "daily": [
   {
    "date": "2026-11-13",
-   "ai_before_costs": 1009.2,
-   "ai_after_costs": 998.65,
-   "spy_after_costs": 1004.3,
-   "fees_cum": 9.513,
-   "api_cum": 1.0276
-  },
-  {
-   "date": "2026-11-14",
    "ai_before_costs": 998.12,
    "ai_after_costs": 987.58,
    "spy_after_costs": 1004.3,
@@ -299,23 +291,23 @@
    "api_cum": 1.0276
   },
   {
-   "date": "2026-11-17",
+   "date": "2026-11-16",
    "ai_before_costs": 1005.26,
    "ai_after_costs": 994.72,
+   "spy_after_costs": 985.06,
+   "fees_cum": 9.513,
+   "api_cum": 1.0276
+  },
+  {
+   "date": "2026-11-17",
+   "ai_before_costs": 993.37,
+   "ai_after_costs": 982.83,
    "spy_after_costs": 975.04,
    "fees_cum": 9.513,
    "api_cum": 1.0276
   },
   {
    "date": "2026-11-18",
-   "ai_before_costs": 993.37,
-   "ai_after_costs": 982.83,
-   "spy_after_costs": 972.05,
-   "fees_cum": 9.513,
-   "api_cum": 1.0276
-  },
-  {
-   "date": "2026-11-19",
    "ai_before_costs": 996.24,
    "ai_after_costs": 985.7,
    "spy_after_costs": 972.05,
@@ -325,48 +317,49 @@
  ],
  "daily_metrics": {
   "ai_after_costs": {
-   "days": 5,
+   "days": 4,
    "total_return": -0.01429999999999998,
    "annual_return": null,
-   "volatility": 0.1346594420167972,
-   "sharpe": -5.634974138571478,
-   "sortino": -6.437982616773127,
+   "volatility": 0.16067943382831137,
+   "sharpe": null,
+   "sortino": null,
    "max_drawdown": 0.017169999999999908,
    "best_day": 0.007229794042001636,
-   "worst_day": -0.011953112433649604,
-   "up_days": 0.4,
-   "beta": -0.3595424936323306,
-   "correlation": -0.5690628313880384
+   "worst_day": -0.012419999999999987,
+   "up_days": 0.5,
+   "beta": null,
+   "correlation": null
   },
   "ai_before_costs": {
-   "days": 5,
+   "days": 4,
    "total_return": -0.0037599999999999856,
    "annual_return": null,
-   "volatility": 0.15915197326260336,
-   "sharpe": -1.3875696419784818,
-   "sortino": -1.9003260975419698,
-   "max_drawdown": 0.015685691636940224,
-   "best_day": 0.009200000000000097,
+   "volatility": 0.12948239993490904,
+   "sharpe": null,
+   "sortino": null,
+   "max_drawdown": 0.011827785846447725,
+   "best_day": 0.007153448483148361,
    "worst_day": -0.011827785846447725,
-   "up_days": 0.6,
-   "beta": -0.21146475211077087,
-   "correlation": -0.2831866426753893
+   "up_days": 0.5,
+   "beta": null,
+   "correlation": null
   },
   "spy_after_costs": {
-   "days": 5,
+   "days": 4,
    "total_return": -0.02795000000000003,
    "annual_return": null,
-   "volatility": 0.21313108938264685,
-   "sharpe": -6.791236261492058,
-   "sortino": -6.916756935130446,
+   "volatility": 0.15901708215275004,
+   "sharpe": null,
+   "sortino": null,
    "max_drawdown": 0.03211191874937769,
    "best_day": 0.0042999999999999705,
-   "worst_day": -0.029134720700985772,
-   "up_days": 0.2,
+   "worst_day": -0.019157622224434956,
+   "up_days": 0.25,
    "beta": null,
    "correlation": null
   }
  },
+ "daily_version": 2,
  "headlines": [
   {
    "time": "2026-11-18T12:32:28Z",
