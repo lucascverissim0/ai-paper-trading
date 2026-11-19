@@ -1,5 +1,5 @@
 {
- "refreshed_at": "2026-11-19T14:53:53Z",
+ "refreshed_at": "2026-11-19T14:54:27Z",
  "market_open": true,
  "next_open": "2026-11-20T09:30:00-05:00",
  "next_close": "2026-11-19T16:00:00-05:00",
@@ -217,7 +217,7 @@
    "date": "2026-11-19",
    "ai_before_costs": 996.8,
    "ai_after_costs": 985.14,
-   "spy_after_costs": 981.75,
+   "spy_after_costs": 980.94,
    "fees_cum": 10.6312,
    "api_cum": 1.0276
   }
@@ -234,8 +234,8 @@
    "best_day": 0.007229794042001636,
    "worst_day": -0.012419999999999987,
    "up_days": 0.4,
-   "beta": -0.2602706596751309,
-   "correlation": -0.3386094782981426
+   "beta": -0.27545560428527066,
+   "correlation": -0.35084212816249805
   },
   "ai_before_costs": {
    "days": 5,
@@ -248,18 +248,18 @@
    "best_day": 0.007153448483148361,
    "worst_day": -0.011827785846447725,
    "up_days": 0.6,
-   "beta": -0.07384698729602757,
-   "correlation": -0.12007415319052
+   "beta": -0.07897953804453621,
+   "correlation": -0.12572381925085707
   },
   "spy_after_costs": {
    "days": 5,
-   "total_return": -0.01824999999999999,
+   "total_return": -0.019059999999999966,
    "annual_return": null,
-   "volatility": 0.1831269203215997,
-   "sharpe": -5.211183450007108,
-   "sortino": -6.069138843655343,
+   "volatility": 0.17928271402195023,
+   "sharpe": -5.557177229735663,
+   "sortino": -6.336233666360606,
    "max_drawdown": 0.03211191874937769,
-   "best_day": 0.00997891054986888,
+   "best_day": 0.009145620081271622,
    "worst_day": -0.019157622224434956,
    "up_days": 0.4,
    "beta": null,
