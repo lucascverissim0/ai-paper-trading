@@ -1,15 +1,15 @@
 {
- "refreshed_at": "2026-11-19T14:42:45Z",
+ "refreshed_at": "2026-11-19T14:43:16Z",
  "market_open": true,
  "next_open": "2026-11-20T09:30:00-05:00",
  "next_close": "2026-11-19T16:00:00-05:00",
  "errors": [],
  "account": {
-  "value_real_usd": 997.84,
-  "today_real_usd": 1.61,
-  "today_pct": 0.001612604715726551,
-  "cash_weight": 0.6692521465935968,
-  "open_pl_real_usd": 0.48
+  "value_real_usd": 999.41,
+  "today_real_usd": 3.17,
+  "today_pct": 0.003186006087965154,
+  "cash_weight": 0.6682024885646433,
+  "open_pl_real_usd": 2.06
  },
  "positions": [
   {
@@ -18,13 +18,13 @@
    "stop": 112.0,
    "qty": 105.0,
    "avg_entry_price": 113.5,
-   "price": 113.95,
-   "weight": 0.12100853135556863,
-   "value_real_usd": 120.75,
-   "pl_real_usd": 0.48,
-   "pl_pct": 0.00396,
-   "today_real_usd": -0.61,
-   "today_pct": -0.00506
+   "price": 113.93,
+   "weight": 0.12079753546833714,
+   "value_real_usd": 120.73,
+   "pl_real_usd": 0.46,
+   "pl_pct": 0.00379,
+   "today_real_usd": -0.64,
+   "today_pct": -0.00524
   },
   {
    "symbol": "APPN",
@@ -32,13 +32,13 @@
    "stop": 50.9,
    "qty": 200.0,
    "avg_entry_price": 54.58,
-   "price": 55.275,
-   "weight": 0.1118075441723238,
-   "value_real_usd": 111.57,
-   "pl_real_usd": 1.4,
-   "pl_pct": 0.01273,
-   "today_real_usd": 2.45,
-   "today_pct": 0.02248
+   "price": 56.07,
+   "weight": 0.11323774939013788,
+   "value_real_usd": 113.17,
+   "pl_real_usd": 3.01,
+   "pl_pct": 0.0273,
+   "today_real_usd": 4.06,
+   "today_pct": 0.03718
   },
   {
    "symbol": "HAE",
@@ -46,13 +46,13 @@
    "stop": 115.0,
    "qty": 79.0,
    "avg_entry_price": 124.32,
-   "price": 122.57,
-   "weight": 0.09793177787851078,
-   "value_real_usd": 97.72,
-   "pl_real_usd": -1.4,
-   "pl_pct": -0.01408,
-   "today_real_usd": -0.23,
-   "today_pct": -0.00236
+   "price": 122.55,
+   "weight": 0.0977622265768816,
+   "value_real_usd": 97.7,
+   "pl_real_usd": -1.41,
+   "pl_pct": -0.01424,
+   "today_real_usd": -0.25,
+   "today_pct": -0.00252
   }
  ],
  "trades": [
@@ -174,7 +174,7 @@
  "intraday": [
   {
    "time": "2026-11-19T14:30:00Z",
-   "value_real_usd": 995.62
+   "value_real_usd": 995.42
   }
  ],
  "daily": [
@@ -212,9 +212,9 @@
   },
   {
    "date": "2026-11-19",
-   "ai_before_costs": 997.84,
-   "ai_after_costs": 987.3,
-   "spy_after_costs": 981.62,
+   "ai_before_costs": 999.41,
+   "ai_after_costs": 988.87,
+   "spy_after_costs": 982.38,
    "fees_cum": 9.513,
    "api_cum": 1.0276
   }
@@ -222,41 +222,41 @@
  "daily_metrics": {
   "ai_after_costs": {
    "days": 5,
-   "total_return": -0.012700000000000045,
+   "total_return": -0.011129999999999973,
    "annual_return": null,
-   "volatility": 0.1439279152039521,
-   "sharpe": -4.698451791091978,
-   "sortino": -5.452847055112831,
+   "volatility": 0.1472229797887985,
+   "sharpe": -4.04802582996817,
+   "sortino": -4.805542088872691,
    "max_drawdown": 0.017169999999999908,
    "best_day": 0.007229794042001636,
    "worst_day": -0.012419999999999987,
    "up_days": 0.6,
-   "beta": -0.2067226940776717,
-   "correlation": -0.2621270896751236
+   "beta": -0.15185167763107704,
+   "correlation": -0.1920458320157348
   },
   "ai_before_costs": {
    "days": 5,
-   "total_return": -0.0021599999999999397,
+   "total_return": -0.0005899999999999794,
    "annual_return": null,
-   "volatility": 0.11355581137343695,
-   "sharpe": -1.276736378733191,
-   "sortino": -1.6788561036325942,
+   "volatility": 0.11584806369744796,
+   "sharpe": -0.5658635036500251,
+   "sortino": -0.7591076002456398,
    "max_drawdown": 0.011827785846447725,
    "best_day": 0.007153448483148361,
    "worst_day": -0.011827785846447725,
    "up_days": 0.6,
-   "beta": -0.04800484501501198,
-   "correlation": -0.07715152081212809
+   "beta": -0.002813794197222395,
+   "correlation": -0.004522352862563745
   },
   "spy_after_costs": {
    "days": 5,
-   "total_return": -0.018379999999999952,
+   "total_return": -0.01761999999999997,
    "annual_return": null,
-   "volatility": 0.1825024857756772,
-   "sharpe": -5.265946742361701,
-   "sortino": -6.112005913966037,
+   "volatility": 0.18619194786945986,
+   "sharpe": -4.949961588606637,
+   "sortino": -5.861398425995678,
    "max_drawdown": 0.03211191874937769,
-   "best_day": 0.00984517257342743,
+   "best_day": 0.010627025358777908,
    "worst_day": -0.019157622224434956,
    "up_days": 0.4,
    "beta": null,
