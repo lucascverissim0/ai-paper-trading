@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import json
 import os
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from . import accounting, config
@@ -51,6 +51,10 @@ def trades_from_orders(orders: list[dict], state: dict) -> tuple[list[dict], dic
             continue
         fills.append((when, o, qty, price))
     fills.sort(key=lambda f: f[0])
+    # The test starts with its first recorded order: earlier fills the same day belong to a previous test.
+    first = next((f[0] for f in fills if f[1].get("id") in fee_by_id), None)
+    if first:
+        fills = [f for f in fills if f[0] >= first]
 
     held: dict[str, list[float]] = {}  # symbol -> [shares, total cost]
     rows = []
@@ -134,6 +138,77 @@ def intraday_view(history: dict, state: dict) -> list[dict]:
     return points
 
 
+def _spy_closes(broker, start: str, end_iso: str) -> dict[str, float]:
+    """Benchmark daily closes since `start`, all-exchanges feed or IEX if the plan refuses it."""
+    feed = config.BARS_FEED
+    for attempt in (feed, "iex"):
+        try:
+            bars = broker.daily_bars([config.BENCHMARK], start + "T00:00:00Z", end_iso, attempt)
+            return {d: c for d, c, _v in bars.get(config.BENCHMARK, [])}
+        except Exception:
+            if attempt == "iex":
+                raise
+    return {}
+
+
+def daily_view(history: dict, spy: dict[str, float], trades: list[dict], state: dict,
+               today: str | None = None, equity_now: float | None = None, spy_now: float | None = None) -> list[dict]:
+    """One point per trading day since the start, every day (not only decision days), at $1,000:
+    the AI before costs, the AI after trading fees and API cost so far, and SPY bought once and held.
+    `today` / `equity_now` / `spy_now` give the latest value while the market is open."""
+    scale, real = _scale(state), config.REAL_CAPITAL_USD
+    values: dict[str, float] = {}
+    for t, equity in zip(history.get("timestamp") or [], history.get("equity") or []):
+        if equity:
+            day = datetime.fromtimestamp(int(t), tz=timezone.utc).strftime("%Y-%m-%d")
+            if day >= state["start_date"]:
+                values[day] = _f(equity)
+    if today and equity_now and today >= state["start_date"]:
+        values[today] = equity_now
+    spy = dict(spy)
+    if today and spy_now and today >= state["start_date"]:
+        spy[today] = spy_now
+    fee_by_day: dict[str, float] = {}
+    for r in trades:
+        fee_by_day[r["date"]] = fee_by_day.get(r["date"], 0.0) + r.get("fee_real_usd", 0.0)
+    api_by_day: dict[str, float] = {}
+    for d in state["days"]:
+        api_by_day[d["date"]] = api_by_day.get(d["date"], 0.0) + d.get("api_cost_usd", 0.0)
+    bench_fees = config.FEE_PER_ORDER_USD + config.FEE_RATE * real
+    fees = api = 0.0
+    last_spy = None
+    points = []
+    for day in sorted(set(values) | set(fee_by_day) | set(api_by_day)):
+        fees += fee_by_day.get(day, 0.0)
+        api += api_by_day.get(day, 0.0)
+        last_spy = spy.get(day, last_spy)
+        if day not in values:
+            continue
+        before = values[day] * scale
+        points.append({
+            "date": day,
+            "ai_before_costs": round(before, 2),
+            "ai_after_costs": round(before - fees - api, 2),
+            "spy_after_costs": round(real * last_spy / state["bench_start_price"] - bench_fees, 2)
+            if last_spy else None,
+            "fees_cum": round(fees, 4),
+            "api_cum": round(api, 4),
+        })
+    return points
+
+
+def daily_metrics(points: list[dict], state: dict) -> dict:
+    """Return and risk figures (Sharpe, Sortino, drawdown, beta...) from the every-day curve."""
+    real, rf = config.REAL_CAPITAL_USD, state.get("risk_free_rate") or 0.0
+    full = [p for p in points if p["spy_after_costs"] is not None]
+    spy = [p["spy_after_costs"] for p in full]
+    return {
+        "ai_after_costs": accounting.risk_metrics([p["ai_after_costs"] for p in full], real, rf, spy),
+        "ai_before_costs": accounting.risk_metrics([p["ai_before_costs"] for p in full], real, rf, spy),
+        "spy_after_costs": accounting.risk_metrics(spy, real, rf),
+    }
+
+
 def headlines_view(news: list[dict], symbols: set[str]) -> list[dict]:
     rows = []
     for n in news[: config.HEADLINES_LIMIT]:
@@ -186,6 +261,21 @@ def build_live(broker, state: dict, clock: dict, now: str) -> dict:
     intraday = part("today's curve", lambda: intraday_view(broker.portfolio_history(), state))
     if intraday is not None:
         payload["intraday"] = intraday
+
+    def daily():
+        today = str(clock.get("timestamp") or "")[:10] or None  # New York date
+        open_now = bool(clock.get("is_open"))
+        equity_now = _f(account.get("equity")) if (account and open_now) else None
+        spy_now = broker.latest_prices([config.BENCHMARK]).get(config.BENCHMARK) if open_now else None
+        end = (datetime.now(timezone.utc) - timedelta(minutes=20)).strftime("%Y-%m-%dT%H:%M:%SZ")
+        points = daily_view(broker.portfolio_history(timeframe="1D", start=state["start_date"]),
+                            _spy_closes(broker, state["start_date"], end), payload.get("trades") or [],
+                            state, today, equity_now, spy_now)
+        return points, daily_metrics(points, state)
+
+    got = part("equity curve", daily)
+    if got is not None:
+        payload["daily"], payload["daily_metrics"] = got
     watched = sorted(set(state.get("stops", {})) | {p["symbol"] for p in payload.get("positions", [])}
                      | {config.BENCHMARK})
     news = part("headlines", lambda: headlines_view(broker.news(watched, config.HEADLINES_LIMIT), set(watched)))
@@ -203,7 +293,7 @@ def refresh(broker, state: dict | None, path: Path, now: str) -> str:
         return "Test not started: nothing to show."
     old = json.loads(path.read_text()) if path.exists() else None
     clock = broker.clock()
-    if not clock.get("is_open") and old and old.get("market_open") is False:
+    if not clock.get("is_open") and old and old.get("market_open") is False and "daily" in old:
         return "Market closed and closing values already saved."
     payload = build_live(broker, state, clock, now)
     if _content(payload) == _content(old):

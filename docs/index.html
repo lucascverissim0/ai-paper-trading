@@ -3,132 +3,157 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AI Trading Test</title>
+<title>AI Trading Desk</title>
 <meta name="description" content="Live results of a fake-money test: does Claude beat buying and holding the S&P 500 after all costs?">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
+  /* Dark trading-desk look, always (a deliberate choice: numbers read best on dark). */
   :root {
-    color-scheme: light;
-    --bg: #f4f3ef; --card: #fcfcfb; --text: #0b0b0b; --muted: #52514e; --faint: #8a8984; --line: #e6e4de;
-    --ai: #2a78d6; --ai-soft: rgba(42,120,214,.10); --spy: #eb6834; --good: #0a7d0a; --bad: #c22f2f; --warn: #9a6400;
-    --bar: #ecebe6; --s_6040: #1baf7a; --s_equal: #c98500; --s_trend: #e87ba4; --s_qqq: #7a5af5; --chip: #efeee9;
-    --shadow: 0 1px 2px rgba(20,20,15,.04), 0 4px 16px rgba(20,20,15,.05);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      color-scheme: dark;
-      --bg: #121211; --card: #1a1a19; --text: #f0efec; --muted: #c3c2b7; --faint: #8f8e86; --line: #2c2c2a;
-      --ai: #3987e5; --ai-soft: rgba(57,135,229,.14); --spy: #d95926; --good: #3fbf3f; --bad: #e66767; --warn: #e0a82e;
-      --bar: #2a2a28; --s_6040: #199e70; --s_equal: #c98500; --s_trend: #d55181; --s_qqq: #9a85ff; --chip: #262624;
-      --shadow: none;
-    }
-  }
-  :root[data-theme="dark"] {
     color-scheme: dark;
-    --bg: #121211; --card: #1a1a19; --text: #f0efec; --muted: #c3c2b7; --faint: #8f8e86; --line: #2c2c2a;
-    --ai: #3987e5; --ai-soft: rgba(57,135,229,.14); --spy: #d95926; --good: #3fbf3f; --bad: #e66767; --warn: #e0a82e;
-    --bar: #2a2a28; --s_6040: #199e70; --s_equal: #c98500; --s_trend: #d55181; --s_qqq: #9a85ff; --chip: #262624; --shadow: none;
+    --bg: #07090d; --bg2: #0b0e14; --card: #0f131a; --card2: #131822; --text: #eef1f6; --muted: #9aa3b2; --faint: #636c7b;
+    --line: #1c222d; --line2: #262e3b;
+    --ai: #5b9dff; --ai-soft: rgba(91,157,255,.12); --spy: #f08a4b; --good: #2fd47a; --bad: #ff5c6c; --warn: #f5b942;
+    --gold: #d9b56c;
+    --bar: #1a202a; --s_6040: #2bc49a; --s_equal: #e0a53a; --s_trend: #ec7fb0; --s_qqq: #a48bff; --chip: #171c25;
+    --shadow: 0 1px 0 rgba(255,255,255,.03) inset, 0 20px 40px -24px rgba(0,0,0,.8);
   }
+  :root[data-theme="light"] { color-scheme: dark; }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
   body { margin: 0; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased;
-         font: 15px/1.55 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-  main { max-width: 1120px; margin: 0 auto; padding: 0 16px 56px; }
+         font: 14.5px/1.55 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+         background-image: radial-gradient(1200px 600px at 15% -10%, rgba(91,157,255,.10), transparent 60%),
+                           radial-gradient(900px 500px at 100% 0%, rgba(217,181,108,.06), transparent 60%);
+         background-attachment: fixed; }
+  main { max-width: 1240px; margin: 0 auto; padding: 0 16px 64px; }
   a { color: var(--ai); text-decoration: none; } a:hover { text-decoration: underline; }
-  h1 { font-size: 15px; font-weight: 600; margin: 0; letter-spacing: -.01em; }
-  h2 { font-size: 15px; font-weight: 600; margin: 0 0 14px; letter-spacing: -.01em; }
-  h3 { font-size: 12px; margin: 16px 0 6px; color: var(--faint); text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
-  .sect { font-size: 22px; font-weight: 700; letter-spacing: -.02em; margin: 44px 0 14px; }
+  h1 { font-size: 14px; font-weight: 600; margin: 0; letter-spacing: .02em; }
+  h2 { font-size: 13px; font-weight: 600; margin: 0 0 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  h3 { font-size: 11px; margin: 16px 0 6px; color: var(--faint); text-transform: uppercase; letter-spacing: .1em; font-weight: 600; }
+  .sect { font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--gold);
+          margin: 52px 0 14px; display: flex; align-items: center; gap: 12px; }
+  .sect::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--line2), transparent); }
   .sub { color: var(--muted); margin: 0; }
-  .small { font-size: 13px; }
-  .num, .value, .row, table { font-variant-numeric: tabular-nums; }
-  .top { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--bg) 86%, transparent);
-         backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px);
+  .small { font-size: 12.5px; }
+  .num, .value, .row, table, .mono { font-variant-numeric: tabular-nums; }
+  .mono { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .top { position: sticky; top: 0; z-index: 5; background: rgba(7,9,13,.78);
+         backdrop-filter: saturate(1.5) blur(14px); -webkit-backdrop-filter: saturate(1.5) blur(14px);
          border-bottom: 1px solid var(--line); margin: 0 -16px; padding: 0 16px; }
-  .topin { display: flex; align-items: center; gap: 16px; height: 56px; max-width: 1120px; margin: 0 auto; }
+  .topin { display: flex; align-items: center; gap: 16px; height: 60px; max-width: 1240px; margin: 0 auto; }
   .brand { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
-  .logo { width: 26px; height: 26px; border-radius: 8px; background: var(--ai); display: grid; place-items: center; }
+  .brand small { color: var(--faint); font-weight: 500; letter-spacing: .02em; }
+  .logo { width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center;
+          background: linear-gradient(135deg, #2b5fd9, #5b9dff 55%, #9cc3ff); box-shadow: 0 0 0 1px rgba(255,255,255,.08) inset, 0 6px 18px -6px rgba(91,157,255,.6); }
   .nav { display: flex; gap: 2px; margin-left: auto; overflow-x: auto; scrollbar-width: none; }
-  .nav a { color: var(--muted); padding: 6px 10px; border-radius: 8px; font-size: 14px; font-weight: 500; white-space: nowrap; }
+  .nav a { color: var(--muted); padding: 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; white-space: nowrap; }
   .nav a:hover { background: var(--chip); color: var(--text); text-decoration: none; }
-  .pill { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; font-size: 12.5px;
-          font-weight: 500; background: var(--chip); color: var(--muted); white-space: nowrap; }
+  .pill { display: inline-flex; align-items: center; gap: 7px; padding: 4px 11px; border-radius: 999px; font-size: 12px;
+          font-weight: 500; background: var(--chip); color: var(--muted); white-space: nowrap; border: 1px solid var(--line); }
   .pill i { width: 7px; height: 7px; border-radius: 50%; background: var(--faint); }
-  .pill.good i { background: var(--good); box-shadow: 0 0 0 3px color-mix(in srgb, var(--good) 22%, transparent); }
+  .pill.good i { background: var(--good); box-shadow: 0 0 0 3px rgba(47,212,122,.18); animation: pulse 2s infinite; }
   .pill.bad i { background: var(--bad); } .pill.warn i { background: var(--warn); }
-  .pills { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
-  .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 16px; margin-top: 28px; }
-  .verdict { padding: 26px; }
-  .eyebrow { font-size: 13px; color: var(--muted); font-weight: 500; }
-  .big { font-size: clamp(40px, 7vw, 60px); font-weight: 700; letter-spacing: -.035em; line-height: 1.05; margin: 8px 0 10px; }
-  .lede { font-size: 16px; color: var(--muted); max-width: 46ch; margin: 0; }
-  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 22px; }
-  .vs > div { border-top: 3px solid; padding-top: 10px; }
-  .vs .n { font-size: 22px; font-weight: 650; letter-spacing: -.02em; }
-  .kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @keyframes pulse { 50% { box-shadow: 0 0 0 6px rgba(47,212,122,0); } }
+  .pills { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
+  .card { background: linear-gradient(180deg, var(--card2), var(--card)); border: 1px solid var(--line); border-radius: 18px;
+          padding: 22px; min-width: 0; box-shadow: var(--shadow); }
+  /* hero */
+  .hero { margin-top: 18px; padding: 28px 28px 18px; position: relative; overflow: hidden; }
+  .hero::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 1px;
+                  background: linear-gradient(90deg, transparent, rgba(91,157,255,.6), rgba(217,181,108,.5), transparent); }
+  .herohead { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; flex-wrap: wrap; }
+  .eyebrow { font-size: 11.5px; color: var(--faint); font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+  .big { font-size: clamp(40px, 6.4vw, 64px); font-weight: 650; letter-spacing: -.035em; line-height: 1; margin: 10px 0 10px; }
+  .big .cents { font-size: .5em; color: var(--muted); letter-spacing: -.01em; }
+  .delta { display: flex; gap: 14px; flex-wrap: wrap; font-size: 14px; font-weight: 500; }
+  .delta span { display: inline-flex; gap: 6px; align-items: baseline; }
+  .delta em { font-style: normal; color: var(--faint); font-size: 12px; }
+  .versus { display: grid; grid-template-columns: repeat(3, auto); gap: 0; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .versus > div { padding: 12px 18px; border-left: 1px solid var(--line); min-width: 130px; }
+  .versus > div:first-child { border-left: 0; }
+  .versus .n { font-size: 20px; font-weight: 650; letter-spacing: -.02em; margin-top: 4px; }
+  .versus .k { font-size: 11px; color: var(--faint); letter-spacing: .08em; text-transform: uppercase; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+  .versus .k i { width: 8px; height: 8px; border-radius: 2px; display: inline-block; }
+  .ranges { display: inline-flex; background: var(--bg2); border: 1px solid var(--line); border-radius: 10px; padding: 3px; gap: 2px; }
+  .ranges button { background: transparent; border: 0; color: var(--muted); font: inherit; font-size: 12px; font-weight: 600;
+                   padding: 5px 11px; border-radius: 7px; cursor: pointer; letter-spacing: .04em; }
+  .ranges button.on { background: var(--card2); color: var(--text); box-shadow: 0 0 0 1px var(--line2) inset; }
+  .ranges button:disabled { opacity: .35; cursor: default; }
+  .charttools { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin: 22px 0 6px; }
+  /* key numbers */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--line);
+           border: 1px solid var(--line); border-radius: 18px; overflow: hidden; margin-top: 16px; }
+  .stat { background: var(--card); padding: 16px 18px; min-width: 0; }
+  .stat .label { color: var(--faint); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+  .stat .value { font-size: 24px; font-weight: 650; margin-top: 6px; letter-spacing: -.02em; }
+  .stat .note { color: var(--faint); font-size: 12px; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin: 16px 0; }
-  .two { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); margin-top: 16px; }
-  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px; min-width: 0; box-shadow: var(--shadow); }
+  .two { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); margin-top: 16px; }
   .kpi { padding: 16px 18px; }
-  .kpi .label { color: var(--muted); font-size: 13px; font-weight: 500; }
-  .kpi .value { font-size: 24px; font-weight: 650; margin-top: 4px; letter-spacing: -.02em; }
-  .kpi .note { color: var(--faint); font-size: 12.5px; margin-top: 2px; }
+  .kpi .label { color: var(--faint); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+  .kpi .value { font-size: 22px; font-weight: 650; margin-top: 6px; letter-spacing: -.02em; }
+  .kpi .note { color: var(--faint); font-size: 12px; margin-top: 2px; }
   .good { color: var(--good); } .bad { color: var(--bad); } .warn { color: var(--warn); }
   .legend { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
   .lg { display: inline-flex; align-items: center; gap: 7px; background: transparent; border: 1px solid var(--line);
-        border-radius: 999px; padding: 4px 11px; font: inherit; font-size: 12.5px; color: var(--text); cursor: pointer; margin: 0; }
+        border-radius: 999px; padding: 4px 11px; font: inherit; font-size: 12px; color: var(--text); cursor: pointer; margin: 0; }
   .lg:hover { background: var(--chip); }
-  .lg.off { opacity: .45; } .lg.off i { background: var(--faint) !important; }
+  .lg.off { opacity: .4; } .lg.off i { background: var(--faint) !important; }
   .lg i { display: inline-block; width: 14px; height: 3px; border-radius: 2px; }
-  svg text { fill: var(--faint); font-size: 11px; font-family: inherit; }
-  .row { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--line); }
+  svg text { fill: var(--faint); font-size: 11px; font-family: inherit; font-variant-numeric: tabular-nums; }
+  .row { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
   .row:last-child { border-bottom: 0; }
   .row.flat { border: 0; padding: 0; }
-  .barwrap { background: var(--bar); border-radius: 999px; height: 8px; overflow: hidden; margin-top: 6px; }
-  .barwrap div { height: 100%; background: var(--ai); border-radius: 999px; }
+  .barwrap { background: var(--bar); border-radius: 999px; height: 6px; overflow: hidden; margin-top: 7px; }
+  .barwrap div { height: 100%; background: linear-gradient(90deg, #2b5fd9, var(--ai)); border-radius: 999px; }
   .hold { margin-bottom: 14px; }
   .table { overflow-x: auto; margin: 0 -4px; }
-  table { width: 100%; border-collapse: collapse; font-size: 14px; }
-  th, td { text-align: left; padding: 9px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; vertical-align: top; }
-  th { color: var(--faint); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
-  tbody tr:hover td { background: color-mix(in srgb, var(--chip) 60%, transparent); }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; vertical-align: top; }
+  th { color: var(--faint); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
+  tbody tr:hover td { background: rgba(255,255,255,.02); }
   td.num, th.num { text-align: right; }
   td.wrap { white-space: normal; min-width: 260px; color: var(--muted); font-size: 13px; }
   tr.total td { font-weight: 650; border-bottom: 0; }
   td.hl, th.hl { background: var(--ai-soft) !important; }
-  .side { display: inline-block; padding: 1px 8px; border-radius: 6px; font-size: 12px; font-weight: 600; background: var(--chip); }
+  .side { display: inline-block; padding: 1px 8px; border-radius: 6px; font-size: 11.5px; font-weight: 600; background: var(--chip); text-transform: uppercase; letter-spacing: .04em; }
   .log { border-bottom: 1px solid var(--line); padding: 20px 0; }
   .log:first-of-type { padding-top: 4px; } .log:last-child { border-bottom: 0; }
-  .meta { font-size: 13px; color: var(--muted); }
+  .meta { font-size: 12.5px; color: var(--muted); }
   button.more { background: transparent; color: var(--ai); border: 1px solid var(--line); border-radius: 10px;
-                padding: 7px 14px; font: inherit; font-size: 14px; font-weight: 500; cursor: pointer; margin-top: 12px; }
+                padding: 7px 14px; font: inherit; font-size: 13px; font-weight: 500; cursor: pointer; margin-top: 12px; }
   button.more:hover { background: var(--chip); }
-  details { margin-top: 10px; font-size: 14px; } summary { cursor: pointer; color: var(--ai); font-weight: 500; }
-  .pre { white-space: pre-wrap; color: var(--muted); margin: 6px 0 0; font-size: 14px; }
-  .quote { font-size: 15px; line-height: 1.6; border-left: 3px solid var(--ai); padding-left: 14px; }
-  .chip { display: inline-block; background: var(--chip); border-radius: 6px; padding: 1px 7px; font-size: 12px;
+  details { margin-top: 10px; font-size: 13.5px; } summary { cursor: pointer; color: var(--ai); font-weight: 500; }
+  .pre { white-space: pre-wrap; color: var(--muted); margin: 6px 0 0; font-size: 13.5px; }
+  .quote { font-size: 14.5px; line-height: 1.65; border-left: 2px solid var(--gold); padding-left: 14px; color: var(--text); }
+  .chip { display: inline-block; background: var(--chip); border: 1px solid var(--line); border-radius: 6px; padding: 0 7px; font-size: 11.5px;
           font-weight: 600; margin-right: 4px; color: var(--muted); }
-  .drv { padding: 6px 0; font-size: 14px; }
-  .src { font-size: 13px; padding: 2px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .drv { padding: 6px 0; font-size: 13.5px; }
+  .src { font-size: 12.5px; padding: 2px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .news { padding: 12px 0; border-bottom: 1px solid var(--line); }
   .news:last-child { border-bottom: 0; }
   .news a { color: var(--text); font-weight: 500; }
   .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 8px; }
   .rel { position: relative; } .mt { margin-top: 16px; } .mb { margin-bottom: 8px; }
-  .foot { color: var(--faint); font-size: 13px; margin-top: 40px; border-top: 1px solid var(--line); padding-top: 18px; }
-  .tip { position: absolute; pointer-events: none; background: var(--card); border: 1px solid var(--line); z-index: 2;
-         border-radius: 10px; padding: 8px 12px; font-size: 13px; white-space: nowrap; box-shadow: 0 8px 24px rgba(0,0,0,.14); }
-  .tip b { display: block; margin-bottom: 4px; }
+  .foot { color: var(--faint); font-size: 12.5px; margin-top: 48px; border-top: 1px solid var(--line); padding-top: 18px; }
+  .tip { position: absolute; pointer-events: none; background: rgba(15,19,26,.96); border: 1px solid var(--line2); z-index: 2;
+         border-radius: 12px; padding: 10px 12px; font-size: 12.5px; white-space: nowrap; box-shadow: 0 16px 40px rgba(0,0,0,.5);
+         backdrop-filter: blur(8px); }
+  .tip b { display: block; margin-bottom: 6px; color: var(--muted); font-weight: 600; }
+  .tip .tv { display: flex; justify-content: space-between; gap: 18px; }
   .cols { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
   .newsgrid { display: grid; gap: 16px; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
-  .rank { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .rank { display: flex; align-items: center; gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--line); }
   .rank:last-of-type { border-bottom: 0; }
   .rank .pos { width: 22px; color: var(--faint); font-weight: 600; }
   .rank .nm { flex: 1; min-width: 0; }
-  .alert { border-radius: 12px; padding: 12px 16px; margin-top: 16px; background: var(--chip); }
-  @media (max-width: 900px) { .newsgrid, .hero { grid-template-columns: minmax(0, 1fr); } }
-  @media (max-width: 640px) { .nav { display: none; } .verdict { padding: 20px; } .card { padding: 16px; } .sect { margin-top: 36px; } }
+  .alert { border-radius: 12px; padding: 12px 16px; margin-top: 16px; background: var(--chip); border: 1px solid var(--line); }
+  .split { display: grid; grid-template-columns: 180px 1fr; gap: 22px; align-items: center; }
+  @media (max-width: 900px) { .newsgrid { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 640px) { .nav { display: none; } .hero { padding: 20px 16px 12px; } .card { padding: 16px; }
+    .versus { grid-template-columns: 1fr 1fr 1fr; width: 100%; } .versus > div { min-width: 0; padding: 10px 12px; } .versus .n { font-size: 16px; }
+    .split { grid-template-columns: 1fr; } .sect { margin-top: 40px; } }
 </style>
 </head>
 <body>
@@ -252,6 +277,98 @@ function LineChart({ points, lines, format, baseline, height = 260, aria }) {
   </div>`;
 }
 
+// --- the every-day curve: from the live refresh (every trading day), else the decision days --------
+function dailyCurve(d, live) {
+  const pts = live && live.daily && live.daily.length ? live.daily : d.series;
+  return pts.map((p) => ({ ...p, label: p.date }));
+}
+function dailyMetrics(d, live) {
+  return (live && live.daily_metrics) || d.metrics || {};
+}
+const shortDate = (iso) => { const t = new Date(iso + "T12:00:00Z"); return isNaN(t) ? iso : t.toLocaleDateString("en-US", { month: "short", day: "numeric" }); };
+
+// --- hero equity chart: area for the AI after costs, SPY dashed, hover crosshair -----------------
+function EquityChart({ points, cap, height = 320 }) {
+  const [hover, setHover] = useState(null);
+  const ref = useRef(null);
+  const W = 1000, H = height, L = 8, R = 64, T = 16, B = 30;
+  const n = points.length;
+  if (n === 0) return html`<p class="sub">No data yet.</p>`;
+  const keys = ["ai_after_costs", "spy_after_costs", "ai_before_costs"];
+  const vals = points.flatMap((p) => keys.map((k) => p[k])).filter(isNum).concat([cap]);
+  let lo = Math.min(...vals), hi = Math.max(...vals);
+  const span = hi - lo, pad = span > 0 ? span * 0.12 : Math.max(hi * 0.005, 1);
+  lo -= pad; hi += pad;
+  const x = (i) => (n === 1 ? (L + W - R) / 2 : L + (i * (W - L - R)) / (n - 1));
+  const y = (v) => T + ((hi - v) * (H - T - B)) / (hi - lo);
+  const path = (k) => points.map((p, i) => (isNum(p[k]) ? (i === 0 || !isNum(points[i - 1][k]) ? "M" : "L") + x(i).toFixed(1) + "," + y(p[k]).toFixed(1) : "")).join("");
+  const last = points[n - 1];
+  const up = (last.ai_after_costs || cap) >= cap;
+  const col = up ? "var(--good)" : "var(--bad)";
+  const area = n > 1 ? path("ai_after_costs") + `L${x(n - 1)},${H - B}L${x(0)},${H - B}Z` : "";
+  const ticks = [0, 1, 2, 3, 4].map((i) => lo + ((hi - lo) * i) / 4);
+  const xt = n <= 1 ? [0] : [...new Set([0, Math.round((n - 1) / 3), Math.round((2 * (n - 1)) / 3), n - 1])];
+  const onMove = (e) => {
+    const box = ref.current.getBoundingClientRect();
+    const px = ((e.clientX - box.left) / box.width) * W;
+    let best = 0;
+    points.forEach((_, i) => { if (Math.abs(x(i) - px) < Math.abs(x(best) - px)) best = i; });
+    setHover({ i: best, left: (x(best) / W) * box.width, top: e.clientY - box.top, width: box.width });
+  };
+  const p = hover && points[hover.i];
+  const gid = up ? "gUp" : "gDn";
+  return html`<div class="rel">
+    <svg ref=${ref} viewBox=${`0 0 ${W} ${H}`} width="100%" role="img" aria-label="Portfolio value every trading day, after costs, against SPY"
+         onMouseMove=${onMove} onMouseLeave=${() => setHover(null)} style=${{ display: "block", touchAction: "pan-y" }}>
+      <defs>
+        <linearGradient id="gUp" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2fd47a" stop-opacity=".28"/><stop offset="100%" stop-color="#2fd47a" stop-opacity="0"/></linearGradient>
+        <linearGradient id="gDn" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ff5c6c" stop-opacity=".24"/><stop offset="100%" stop-color="#ff5c6c" stop-opacity="0"/></linearGradient>
+      </defs>
+      ${ticks.map((t, i) => html`<g key=${i}>
+        <line x1=${L} x2=${W - R} y1=${y(t)} y2=${y(t)} stroke="var(--line)" stroke-dasharray="2 6" />
+        <text x=${W - R + 10} y=${y(t) + 4}>${usd(t).replace(/\.\d\d$/, "")}</text></g>`)}
+      <line x1=${L} x2=${W - R} y1=${y(cap)} y2=${y(cap)} stroke="var(--faint)" stroke-dasharray="1 4" />
+      ${n > 1 && html`<path d=${area} fill=${`url(#${gid})`} />`}
+      ${n > 1 && html`<path d=${path("ai_before_costs")} fill="none" stroke="var(--ai)" stroke-width="1.2" opacity=".45" />`}
+      ${n > 1 && html`<path d=${path("spy_after_costs")} fill="none" stroke="var(--spy)" stroke-width="1.6" stroke-dasharray="5 5" />`}
+      ${n > 1 && html`<path d=${path("ai_after_costs")} fill="none" stroke=${col} stroke-width="2.4" stroke-linejoin="round" />`}
+      ${isNum(last.spy_after_costs) && html`<circle cx=${x(n - 1)} cy=${y(last.spy_after_costs)} r="3.5" fill="var(--spy)" />`}
+      ${isNum(last.ai_after_costs) && html`<g><circle cx=${x(n - 1)} cy=${y(last.ai_after_costs)} r="9" fill=${col} opacity=".18" /><circle cx=${x(n - 1)} cy=${y(last.ai_after_costs)} r="4.5" fill=${col} /></g>`}
+      ${xt.map((i) => html`<text key=${i} x=${x(i)} y=${H - 8} text-anchor=${i === 0 && n > 1 ? "start" : i === n - 1 && n > 1 ? "end" : "middle"}>${shortDate(points[i].date)}</text>`)}
+      ${hover && html`<g>
+        <line x1=${x(hover.i)} x2=${x(hover.i)} y1=${T} y2=${H - B} stroke="var(--line2)" />
+        ${isNum(p.ai_after_costs) && html`<circle cx=${x(hover.i)} cy=${y(p.ai_after_costs)} r="4.5" fill="var(--bg)" stroke=${col} stroke-width="2" />`}
+        ${isNum(p.spy_after_costs) && html`<circle cx=${x(hover.i)} cy=${y(p.spy_after_costs)} r="3.5" fill="var(--bg)" stroke="var(--spy)" stroke-width="2" />`}
+      </g>`}
+    </svg>
+    ${p && html`<div class="tip" style=${{ left: Math.max(0, Math.min(hover.left + 14, hover.width - 220)) + "px", top: Math.max(0, hover.top - 40) + "px" }}>
+      <b>${shortDate(p.date)}</b>
+      <div class="tv"><span><span class="swatch" style=${{ background: col }}></span>Claude, after costs</span><span>${usd(p.ai_after_costs)}</span></div>
+      <div class="tv"><span><span class="swatch" style=${{ background: "var(--spy)" }}></span>SPY held</span><span>${usd(p.spy_after_costs)}</span></div>
+      <div class="tv"><span><span class="swatch" style=${{ background: "var(--ai)", opacity: .5 }}></span>Claude, before costs</span><span>${usd(p.ai_before_costs)}</span></div>
+      ${isNum(p.ai_after_costs) && isNum(p.spy_after_costs) && html`<div class="tv" style=${{ marginTop: "6px" }}><span>Lead over SPY</span><b class=${tone(p.ai_after_costs - p.spy_after_costs)} style=${{ margin: 0 }}>${usd(p.ai_after_costs - p.spy_after_costs, true)}</b></div>`}
+    </div>`}
+  </div>`;
+}
+
+function Stat({ label, value, note, cls }) {
+  return html`<div class="stat"><div class="label">${label}</div><div class=${"value " + (cls || "")}>${value}</div>${note && html`<div class="note" title=${note}>${note}</div>`}</div>`;
+}
+
+function Donut({ parts, size = 160 }) {
+  const r = 62, c = 2 * Math.PI * r;
+  let acc = 0;
+  return html`<svg viewBox="0 0 160 160" width=${size} height=${size} role="img" aria-label="Allocation">
+    <circle cx="80" cy="80" r=${r} fill="none" stroke="var(--bar)" stroke-width="16" />
+    ${parts.filter((p) => p.w > 0).map((p, i) => { const len = Math.max(0, p.w * c - 2); const el = html`<circle key=${i} cx="80" cy="80" r=${r} fill="none"
+      stroke=${p.color} stroke-width="16" stroke-dasharray=${len + " " + (c - len)} stroke-dashoffset=${-acc} transform="rotate(-90 80 80)" />`; acc += p.w * c; return el; })}
+    <text x="80" y="76" text-anchor="middle" style=${{ fill: "var(--text)", fontSize: "22px", fontWeight: 650 }}>${Math.round((1 - (parts.find((p) => p.cash) || { w: 0 }).w) * 100)}%</text>
+    <text x="80" y="96" text-anchor="middle" style=${{ fontSize: "10px", letterSpacing: ".1em" }}>INVESTED</text>
+  </svg>`;
+}
+const cleanName = (n) => { let t = n || "", prev; do { prev = t; t = t.replace(/,?\s+(Common Stock|Class [A-Z]|Ordinary Shares|Inc\.?|Corp\.?|Corporation|Holdings|plc|Co\.)$/i, ""); } while (t !== prev); return t; };
+const PALETTE = ["#5b9dff", "#2fd47a", "#d9b56c", "#a48bff", "#ec7fb0", "#2bc49a", "#f08a4b", "#7fd3ff", "#e0a53a", "#c6cbd4"];
+
 // --- tabs --------------------------------------------------------------------------------
 function Overview({ d, live, cap }) {
   const s = d.summary, cfg = d.settings, labels = d.shadow_labels || {}, split = d.api_cost_split || {};
@@ -259,49 +376,55 @@ function Overview({ d, live, cap }) {
   const lines = [
     { key: "ai_after_costs", label: "AI after costs", color: "var(--ai)" },
     { key: "spy_after_costs", label: "SPY buy-and-hold", color: "var(--spy)" },
-    { key: "ai_before_costs", label: "AI before costs", color: "var(--ai)", dashed: true },
   ].concat(SHADOW_KEYS.map((k) => ({ key: k, label: labels[k] || k, color: "var(--" + k + ")", thin: true })));
 
-  const dd = (key) => { let peak = cap; return d.series.map((p) => { const v = p[key]; if (!isNum(v)) return null; peak = Math.max(peak, v); return v / peak - 1; }); };
+  const curve = dailyCurve(d, live);
+  const dd = (key) => { let peak = cap; return curve.map((p) => { const v = p[key]; if (!isNum(v)) return null; peak = Math.max(peak, v); return v / peak - 1; }); };
   const ddAi = dd("ai_after_costs"), ddSpy = dd("spy_after_costs");
-  const ddPoints = d.series.map((p, i) => ({ label: p.date, ai: ddAi[i], spy: ddSpy[i] }));
+  const ddPoints = curve.map((p, i) => ({ label: p.date, ai: ddAi[i], spy: ddSpy[i] }));
 
   const pos = live && live.positions;
   const holdings = pos ? pos.map((p) => [p.symbol, p.weight]) : Object.entries(d.holdings || {}).filter(([, w]) => w > 0).sort((a, b) => b[1] - a[1]);
   const cash = pos && live.account && isNum(live.account.cash_weight) ? Math.max(0, live.account.cash_weight)
     : Math.max(0, 1 - holdings.reduce((t, [, w]) => t + w, 0));
+  const parts = holdings.map(([sym, w], i) => ({ sym, w, color: PALETTE[i % PALETTE.length] })).concat([{ sym: "Cash", w: cash, color: "#3a4250", cash: true }]);
   const budgetUsed = Math.min(1, s.api_cost / cfg.api_budget_usd);
+  const lastPt = curve[curve.length - 1] || {};
+  const fees = isNum(lastPt.fees_cum) ? lastPt.fees_cum : s.fees_real;  // live list also has stop-loss sales not yet in the ledger
+  const costTotal = fees + s.api_cost + s.other_costs;
 
   return html`<div>
-    <div class="card mt">
-      <h2>Value of ${usd(cap).replace(".00", "")} over time</h2><p class="sub small mb">Click a label to hide or show a line.</p>
-      <${LineChart} points=${points} lines=${lines} baseline=${cap} format=${(v) => usd(v)} aria="Value over time of the AI, SPY and the simple rules" />
+    <div class="two">
+      <div class="card">
+        <h2>Allocation ${pos ? "· live" : "· last target"}</h2>
+        <div class="split">
+          <${Donut} parts=${parts} />
+          <div>
+            ${parts.map((p) => html`<div key=${p.sym} class="hold">
+              <div class="row flat"><span><i class="swatch" style=${{ background: p.color }}></i><b>${p.sym}</b> ${!p.cash && html`<span class="sub small">${cleanName((d.names || {})[p.sym])}</span>`}${!p.cash && isNum((d.stops || {})[p.sym]) ? html` <span class="sub small">· stop ${usd(d.stops[p.sym])}</span>` : ""}</span><span class="mono">${(p.w * 100).toFixed(1)}%</span></div>
+              <div class="barwrap"><div style=${{ width: Math.min(100, p.w * 100) + "%", background: p.color }}></div></div></div>`)}
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Costs so far · ${usd(costTotal)}</h2>
+        <div class="row"><span>Trading fees <span class="sub small">($${cfg.fee_per_order_usd.toFixed(2)} + ${(cfg.fee_rate * 100).toFixed(1)}% per order)</span></span><b class="mono">${usd(fees)}</b></div>
+        <div class="row"><span>Claude API <span class="sub small">(measured)</span></span><b class="mono">${usd(s.api_cost)}</b></div>
+        <div class="row"><span class="sub small">analyst ${usd(split.analyst || 0)} · research ${usd(split.research || 0)} · searches ${usd(split.searches || 0)} · decisions ${usd(split.decisions || 0)}</span><span></span></div>
+        <div class="row"><span>Other costs</span><b class="mono">${usd(s.other_costs)}</b></div>
+        <div class="sub mt small">API budget: ${usd(s.api_cost)} of ${usd(cfg.api_budget_usd)}</div>
+        <div class="barwrap"><div style=${{ width: budgetUsed * 100 + "%", background: "linear-gradient(90deg, #b8913f, var(--gold))" }}></div></div>
+      </div>
     </div>
     <div class="card mt">
-      <h2>Fall from the previous peak (after costs)</h2>
-      <${LineChart} points=${ddPoints} height=${180} baseline=${0} format=${(v) => pct(v, 1)} aria="Drawdown of the AI and of SPY"
+      <h2>Fall from the previous peak · after costs</h2>
+      <${LineChart} points=${ddPoints} height=${170} baseline=${0} format=${(v) => pct(v, 1)} aria="Drawdown of the AI and of SPY"
         lines=${[{ key: "ai", label: "AI after costs", color: "var(--ai)" }, { key: "spy", label: "SPY buy-and-hold", color: "var(--spy)" }]} />
       <p class="sub small mt">No loss limit on the whole test (owner's choice). Each stock has its own stop-loss, ${Math.round(cfg.default_stop * 100)}% below the price unless Claude sets another, never lowered.</p>
     </div>
-    <div class="two">
-      <div class="card">
-        <h2>Costs so far</h2>
-        <div class="row"><span>Trading fees (modelled: $${cfg.fee_per_order_usd.toFixed(2)} + ${(cfg.fee_rate * 100).toFixed(1)}% per order)</span><b>${usd(s.fees_real)}</b></div>
-        <div class="row"><span>Claude API (measured)</span><b>${usd(s.api_cost)}</b></div>
-        <div class="row"><span class="sub small">analyst cards ${usd(split.analyst || 0)}, news research ${usd(split.research || 0)}, web searches ${usd(split.searches || 0)}, decisions ${usd(split.decisions || 0)}</span><span></span></div>
-        <div class="row"><span>Other costs</span><b>${usd(s.other_costs)}</b></div>
-        <div class="row"><span>Total</span><b>${usd(s.fees_real + s.api_cost + s.other_costs)}</b></div>
-        <div class="sub mt">API budget: ${usd(s.api_cost)} of ${usd(cfg.api_budget_usd)}</div>
-        <div class="barwrap"><div style=${{ width: budgetUsed * 100 + "%" }}></div></div>
-      </div>
-      <div class="card">
-        <h2>Current holdings ${pos ? "(live)" : "(last target)"}</h2>
-        ${holdings.map(([sym, w]) => html`<div key=${sym} class="hold">
-          <div class="row flat"><span><b>${sym}</b> <span class="sub">${(d.names || {})[sym] || ""}</span>${isNum((d.stops || {})[sym]) ? html` <span class="sub small">· stop ${usd(d.stops[sym])}</span>` : ""}</span><span>${(w * 100).toFixed(1)}%</span></div>
-          <div class="barwrap"><div style=${{ width: Math.min(100, w * 100) + "%" }}></div></div></div>`)}
-        <div class="row flat"><span><b>Cash</b></span><span>${(cash * 100).toFixed(1)}%</span></div>
-        <div class="barwrap"><div style=${{ width: Math.min(100, cash * 100) + "%", background: "var(--muted)" }}></div></div>
-      </div>
+    <div class="card mt">
+      <h2>Against the simple rules · decision days</h2><p class="sub small mb">Free rules run on the same days, prices and fees. Click a label to hide or show a line.</p>
+      <${LineChart} points=${points} lines=${lines} baseline=${cap} format=${(v) => usd(v)} aria="Value over time of the AI, SPY and the simple rules" />
     </div>
   </div>`;
 }
@@ -335,8 +458,6 @@ function Positions({ d, live, cap }) {
   const st = live.trade_stats;
   const trades = live.trades || null;
   const shownTrades = trades ? (allTrades ? trades : trades.slice(0, 20)) : [];
-  const intraday = (live.intraday || []).map((p) => ({ label: hhmm(p.time), value: p.value_real_usd }));
-  const prevClose = isNum(a.value_real_usd) && isNum(a.today_real_usd) ? a.value_real_usd - a.today_real_usd : null;
 
   return html`<div>
     <div class="card">
@@ -359,11 +480,6 @@ function Positions({ d, live, cap }) {
 
     <${Candidates} d=${d} />
 
-    ${intraday.length > 1 && html`<div class="card mt">
-      <h2>Today, before costs (dotted line: yesterday's close)</h2>
-      <${LineChart} points=${intraday} height=${180} baseline=${prevClose} format=${(v) => usd(v)} aria="Value of the portfolio during today"
-        lines=${[{ key: "value", label: "Portfolio", color: "var(--ai)" }]} />
-    </div>`}
 
     ${st && html`<div class="grid">
       <${Kpi} label="Trades" value=${st.trades} note=${st.buys + " buys, " + st.sells + " sells"} />
@@ -408,8 +524,9 @@ const METRIC_ROWS = [
   ["correlation", "Correlation with SPY", (v) => num(v)],
 ];
 
-function Performance({ d, cap }) {
-  const s = d.summary, m = d.metrics || {}, labels = d.shadow_labels || {};
+function Performance({ d, live, cap }) {
+  const s = d.summary, labels = d.shadow_labels || {};
+  const m = { ...(d.metrics || {}), ...((live && live.daily_metrics) || {}) };
   const cols = [["ai_after_costs", "AI after costs"], ["ai_before_costs", "AI before costs"], ["spy_after_costs", "SPY buy-and-hold"]]
     .concat(SHADOW_KEYS.map((k) => [k, labels[k] || k])).filter(([k]) => m[k]);
   const days = m.ai_after_costs ? m.ai_after_costs.days : 0;
@@ -426,7 +543,7 @@ function Performance({ d, cap }) {
         <tbody>${METRIC_ROWS.map(([key, label, fmt]) => html`<tr key=${key}><td>${label}</td>
           ${cols.map(([k]) => html`<td key=${k} class=${"num" + (k === "ai_after_costs" ? " hl" : "")}>${fmt(m[k][key])}</td>`)}</tr>`)}
         </tbody></table></div>
-      <p class="sub small mt">Based on ${days} trading day(s) of daily values; costs are included except in "AI before costs". Sharpe and Sortino use the 3-month US Treasury bill rate (${isNum(d.risk_free_rate) ? pct(d.risk_free_rate, 2, false) : "not available, 0% used"}) and appear after ${5} trading days; the annualised return after 20. Under about 60 trading days these ratios are mostly noise.</p>
+      <p class="sub small mt">Claude and SPY: ${days} trading day(s), one value per day. Simple rules: decision days only. Costs are included except in "AI before costs". Sharpe and Sortino use the 3-month US Treasury bill rate (${isNum(d.risk_free_rate) ? pct(d.risk_free_rate, 2, false) : "not available, 0% used"}) and appear after ${5} trading days; the annualised return after 20. Under about 60 trading days these ratios are mostly noise.</p>
     </div>
 
     <div class="card mt">
@@ -532,58 +649,103 @@ function LivePill({ live }) {
 
 const SECTIONS = [["overview", "Overview"], ["positions", "Positions"], ["performance", "Performance"], ["news", "Decisions & news"]];
 
+const RANGES = [["1D", 0], ["1W", 5], ["1M", 21], ["3M", 63], ["ALL", Infinity]];
+
 function Dashboard({ d, live }) {
   const s = d.summary, cfg = d.settings, cap = cfg.real_capital_usd;
   const a = (live && live.account) || {};
-  const m = (d.metrics && d.metrics.ai_after_costs) || {}, mSpy = (d.metrics && d.metrics.spy_after_costs) || {};
+  const metrics = dailyMetrics(d, live);
+  const m = metrics.ai_after_costs || {}, mSpy = metrics.spy_after_costs || {};
   const capTxt = usd(cap).replace(".00", "");
-  const ahead = s.edge_usd >= 0;
-  const value = isNum(a.value_real_usd) ? a.value_real_usd : cap + s.strat_net_usd;
+  const curve = dailyCurve(d, live);
+  const last = curve[curve.length - 1] || {};
+  const aiNet = isNum(last.ai_after_costs) ? last.ai_after_costs - cap : s.strat_net_usd;
+  const spyNet = isNum(last.spy_after_costs) ? last.spy_after_costs - cap : s.bench_net_usd;
+  const edge = aiNet - spyNet;
+  const value = cap + aiNet;
+  const intraday = (live && live.intraday) || [];
+  const [range, setRange] = useState("ALL");
+  const nDays = curve.length;
+  const shown = range === "ALL" ? curve : curve.slice(-Math.max(2, (RANGES.find((r) => r[0] === range) || [0, Infinity])[1] + 1));
+  const intraPts = intraday.map((p) => ({ label: hhmm(p.time), value: p.value_real_usd }));
+  const prevClose = isNum(a.value_real_usd) && isNum(a.today_real_usd) ? a.value_real_usd - a.today_real_usd : null;
+  const st = live && live.trade_stats;
+  const dollars = Math.trunc(value), cents = Math.abs(Math.round((value - dollars) * 100)).toString().padStart(2, "0");
+  const alpha = isNum(m.total_return) && isNum(mSpy.total_return) ? m.total_return - mSpy.total_return : edge / cap;
+  const noteDays = (k) => (isNum(m[k]) ? null : "after " + (k === "annual_return" ? 20 : 5) + " trading days");
 
   return html`<div>
     <header class="top"><div class="topin">
-      <div class="brand"><span class="logo"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M1 10 L5 6 L8 8 L13 2" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h1>AI trading test</h1></div>
+      <div class="brand"><span class="logo"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M1 10 L5 6 L8 8 L13 2" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h1>AI TRADING DESK <small>· Claude vs S&P 500</small></h1></div>
       <nav class="nav">${SECTIONS.map(([k, label]) => html`<a key=${k} href=${"#" + k}>${label}</a>`)}</nav>
     </div></header>
 
     <div class="pills">
       <span class=${"pill " + (d.status === "running" ? "good" : "bad")}><i></i>${d.status === "running" ? "Test running" : "Test stopped"}</span>
       <${LivePill} live=${live} />
-      <span class="pill">Fake money · ${cfg.model}</span>
-      <span class="pill">Started ${d.start_date}</span>
+      <span class="pill">Paper money · ${cfg.model}</span>
+      <span class="pill">Since ${shortDate(d.start_date)} · ${s.decisions} decision${s.decisions === 1 ? "" : "s"} · last ${(d.log[d.log.length - 1] || {}).date || "-"}</span>
     </div>
     ${d.halt_reason && html`<div class="alert bad">Stopped: ${d.halt_reason}</div>`}
     ${live && live.errors && live.errors.length > 0 && html`<div class="alert warn small">Live data partly missing: ${live.errors.join("; ")}.</div>`}
 
-    <section id="overview" class="hero">
-      <div class="card verdict">
-        <div class="eyebrow">Claude vs simply holding SPY, after every cost</div>
-        <div class=${"big " + tone(s.edge_usd)}>${usd(s.edge_usd, true)}</div>
-        <p class="lede">Claude is <b class=${tone(s.edge_usd)}>${ahead ? "ahead" : "behind"}</b> by ${usd(Math.abs(s.edge_usd))} on ${capTxt} after trading fees and its own API bill.</p>
-        <div class="vs">
-          <div style=${{ borderColor: "var(--ai)" }}><div class="eyebrow">Claude</div><div class=${"n " + tone(s.strat_net_usd)}>${usd(s.strat_net_usd, true)}</div><div class="meta">${pct(s.strat_net_usd / cap)}</div></div>
-          <div style=${{ borderColor: "var(--spy)" }}><div class="eyebrow">Buy and hold SPY</div><div class=${"n " + tone(s.bench_net_usd)}>${usd(s.bench_net_usd, true)}</div><div class="meta">${pct(s.bench_net_usd / cap)}</div></div>
+    <section id="overview" class="card hero">
+      <div class="herohead">
+        <div>
+          <div class="eyebrow">Portfolio value · after every cost · on ${capTxt}</div>
+          <div class="big mono">${usd(dollars).replace(".00", "")}<span class="cents">.${cents}</span></div>
+          <div class="delta">
+            <span class=${tone(aiNet)}>${usd(aiNet, true)} (${pct(aiNet / cap)}) <em>since start</em></span>
+            ${isNum(a.today_real_usd) && html`<span class=${tone(a.today_real_usd)}>${usd(a.today_real_usd, true)} (${pct(a.today_pct)}) <em>today</em></span>`}
+          </div>
+        </div>
+        <div class="versus">
+          <div><div class="k"><i style=${{ background: "var(--ai)" }}></i>Claude</div><div class=${"n mono " + tone(aiNet)}>${pct(aiNet / cap)}</div><div class="meta">${usd(aiNet, true)}</div></div>
+          <div><div class="k"><i style=${{ background: "var(--spy)" }}></i>SPY held</div><div class=${"n mono " + tone(spyNet)}>${pct(spyNet / cap)}</div><div class="meta">${usd(spyNet, true)}</div></div>
+          <div><div class="k"><i style=${{ background: "var(--gold)" }}></i>Lead</div><div class=${"n mono " + tone(edge)}>${usd(edge, true)}</div><div class="meta">${edge >= 0 ? "ahead of SPY" : "behind SPY"}</div></div>
         </div>
       </div>
-      <div class="kpis">
-        <${Kpi} label="Portfolio value" value=${usd(value)} note=${"started at " + capTxt} />
-        <${Kpi} label="Today" value=${usd(a.today_real_usd, true)} cls=${tone(a.today_real_usd)} note=${isNum(a.today_pct) ? pct(a.today_pct) + " before costs" : "appears with live data"} />
-        <${Kpi} label="Today's candidates" value=${(d.candidates || []).length} note=${s.decisions + " decision" + (s.decisions === 1 ? "" : "s") + " so far · " + (s.stop_fills || 0) + " stop-loss sale" + (s.stop_fills === 1 ? "" : "s")} />
-        <${Kpi} label="API spent" value=${usd(s.api_cost)} note=${"of " + usd(cfg.api_budget_usd) + " budget"} />
-        <${Kpi} label="Worst fall from peak" value=${pct(isNum(m.max_drawdown) ? -m.max_drawdown : -s.strat_drawdown)} note=${"no loss limit · SPY " + pct(isNum(mSpy.max_drawdown) ? -mSpy.max_drawdown : -s.bench_drawdown)} />
-        <${Kpi} label="Sharpe ratio" value=${num(m.sharpe)} note=${isNum(m.sharpe) ? "SPY " + num(mSpy.sharpe) + " · noisy under 60 days" : "shown after 5 trading days"} />
+      <div class="charttools">
+        <div class="legend" style=${{ margin: 0 }}>
+          <span class="lg" style=${{ cursor: "default" }}><i style=${{ background: aiNet >= 0 ? "var(--good)" : "var(--bad)" }}></i>Claude, after costs</span>
+          <span class="lg" style=${{ cursor: "default" }}><i style=${{ background: "var(--spy)" }}></i>SPY bought and held</span>
+          <span class="lg" style=${{ cursor: "default" }}><i style=${{ background: "var(--ai)", opacity: .5 }}></i>Claude, before costs</span>
+        </div>
+        <div class="ranges" role="group" aria-label="Chart period">${RANGES.map(([k, n]) => html`<button key=${k} class=${range === k ? "on" : ""}
+          disabled=${k === "1D" ? intraPts.length < 2 : k !== "ALL" && nDays <= n}
+          onClick=${() => setRange(k)}>${k}</button>`)}</div>
       </div>
+      ${range === "1D" && intraPts.length > 1
+        ? html`<${LineChart} points=${intraPts} height=${300} baseline=${prevClose} format=${(v) => usd(v)} aria="Value of the portfolio during today, before costs"
+            lines=${[{ key: "value", label: "Today, before costs", color: "var(--ai)" }]} />`
+        : html`<${EquityChart} points=${shown} cap=${cap} />`}
     </section>
+
+    <div class="stats">
+      <${Stat} label="Sharpe ratio" value=${num(m.sharpe)} cls=${tone(m.sharpe)} note=${isNum(m.sharpe) ? "SPY " + num(mSpy.sharpe) : "after 5 trading days"} />
+      <${Stat} label="Sortino ratio" value=${num(m.sortino)} cls=${tone(m.sortino)} note=${isNum(m.sortino) ? "SPY " + num(mSpy.sortino) : noteDays("sortino")} />
+      <${Stat} label="Return vs SPY" value=${pct(alpha)} cls=${tone(alpha)} note="after all costs" />
+      <${Stat} label="Annualised" value=${pct(m.annual_return)} cls=${tone(m.annual_return)} note=${isNum(m.annual_return) ? "target +100% · SPY " + pct(mSpy.annual_return) : noteDays("annual_return")} />
+      <${Stat} label="Volatility" value=${pct(m.volatility, 1, false)} note=${isNum(m.volatility) ? "SPY " + pct(mSpy.volatility, 1, false) : "after 2 trading days"} />
+      <${Stat} label="Max drawdown" value=${pct(isNum(m.max_drawdown) ? -m.max_drawdown : -s.strat_drawdown)} cls="bad" note=${"SPY " + pct(isNum(mSpy.max_drawdown) ? -mSpy.max_drawdown : -s.bench_drawdown)} />
+      <${Stat} label="Beta to SPY" value=${num(m.beta)} note=${isNum(m.correlation) ? "correlation " + num(m.correlation) : "after 5 trading days"} />
+      <${Stat} label="Days up" value=${pct(m.up_days, 0, false)} note=${isNum(m.best_day) ? "best " + pct(m.best_day) + " · worst " + pct(m.worst_day) : (m.days || 0) + " trading days"} />
+      <${Stat} label="Win rate" value=${st && st.closed_sells ? pct(st.winning_sells / st.closed_sells, 0, false) : NA} note=${st ? st.winning_sells + " of " + st.closed_sells + " sales at a gain" : "with live data"} />
+      <${Stat} label="Cash" value=${isNum(a.cash_weight) ? pct(a.cash_weight, 0, false) : NA} note=${(live && live.positions ? live.positions.length : Object.keys(d.holdings || {}).length) + " stocks held"} />
+      <${Stat} label="Trades" value=${st ? st.trades : (d.trades || []).length} note=${st ? "turnover " + pct(st.turnover, 0, false) : ""} />
+      <${Stat} label="Costs paid" value=${usd((isNum(last.fees_cum) ? last.fees_cum : s.fees_real) + s.api_cost + s.other_costs)} note=${"API " + usd(s.api_cost) + " of " + usd(cfg.api_budget_usd)} />
+    </div>
+    <p class="sub small" style=${{ marginTop: "10px" }}>Risk-free rate ${isNum(d.risk_free_rate) ? pct(d.risk_free_rate, 2, false) : "0%"} (3-month T-bill). Ratios from one value per trading day; under about 60 days they are mostly noise.</p>
 
     <${Overview} d=${d} live=${live} cap=${cap} />
     <h2 class="sect" id="positions">Positions & trades</h2>
     <${Positions} d=${d} live=${live} cap=${cap} />
     <h2 class="sect" id="performance">Performance</h2>
-    <${Performance} d=${d} cap=${cap} />
+    <${Performance} d=${d} live=${live} cap=${cap} />
     <h2 class="sect" id="news">Decisions & news</h2>
     <${News} d=${d} live=${live} />
 
-    <p class="foot">Fake money only. Every trading day, code screens all US-listed stocks for strong, orderly uptrends; a smaller Claude model reads the headlines of the best ${(d.candidates || []).length || 40}; Claude Opus reads them with the market news and economic data and picks the stocks to hold, each with a stop-loss. A stock is held only if most of 3 independent answers hold it. Results are restated as if ${capTxt} were invested. Dividends are left out on all lines. Under 12 months, a result either way can be luck. Decision data updates after the daily run (16:30 UTC, last ${d.updated_at}); live data about every 15 minutes while the US market is open. This page reloads its data every 5 minutes.</p>
+    <p class="foot">Paper money only. Every trading day, code screens all US-listed stocks for strong, orderly uptrends; a smaller Claude model reads the headlines of the best ${(d.candidates || []).length || 40}; Claude Opus reads them with the market news and economic data and picks the stocks to hold, each with a stop-loss. A stock is held only if most of 3 independent answers hold it. Results are restated as if ${capTxt} were invested. Dividends are left out on all lines. Under 12 months, a result either way can be luck. Decisions: once a day during US market hours (last update ${d.updated_at}). Live data and the daily curve: about every 15 minutes while the market is open. This page reloads its data every 5 minutes.</p>
   </div>`;
 }
 
@@ -604,7 +766,7 @@ function App() {
   if (state.data) return html`<${Dashboard} d=${state.data} live=${state.live} />`;
   if (state.loading) return html`<p class="sub">Loading...</p>`;
   if (state.error) return html`<div><h1>AI trading test</h1><p class="bad">Could not load the data (${state.error}). It will retry in 5 minutes.</p></div>`;
-  return html`<div><h1>AI trading test</h1><p class="sub">No results yet. The first decision happens at the next run during US market hours (16:30 UTC on trading days).</p></div>`;
+  return html`<div><h1>AI trading test</h1><p class="sub">No results yet. The first decision happens at the next run during US market hours (during US market hours on trading days).</p></div>`;
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(html`<${App} />`);

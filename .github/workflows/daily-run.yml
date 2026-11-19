@@ -2,8 +2,14 @@ name: daily-run
 
 on:
   schedule:
-    # 16:30 UTC = 11:30 or 12:30 in New York: always during US market hours on trading days.
+    # GitHub often starts scheduled runs hours late (Nov 2026: 16:30 started at 23:00, market closed,
+    # so no decision was made). Several tries during market hours; the first that finds the market open
+    # decides, the others see "Already ran today" and stop at no cost.
+    # 14:50 / 16:30 / 18:10 / 19:40 UTC are all inside US market hours in winter and in summer.
+    - cron: "50 14 * * 1-5"
     - cron: "30 16 * * 1-5"
+    - cron: "10 18 * * 1-5"
+    - cron: "40 19 * * 1-5"
   workflow_dispatch: {}
 
 permissions:
@@ -19,6 +25,10 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
+        with:
+          # The latest ledger, not the one from when the run was queued: an earlier try may have
+          # decided already, and this one must see it to avoid deciding twice.
+          ref: main
 
       - uses: actions/setup-python@v5
         with:

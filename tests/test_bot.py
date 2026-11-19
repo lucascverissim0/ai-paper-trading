@@ -608,7 +608,9 @@ class LiveBroker(FakeBroker):
     def filled_orders(self, after_iso):
         return self.filled
 
-    def portfolio_history(self):
+    def portfolio_history(self, period="1D", timeframe="15Min", start=None):
+        if timeframe == "1D":  # 2026-11-13 and 2026-11-16, midnight New York
+            return {"timestamp": [1794546000, 1794805200], "equity": [100000.0, 101000.0]}
         return {"timestamp": [1794580200, 1794581100, 1794582000], "equity": [100000.0, 100500.0, None]}
 
     def news(self, symbols, limit):
@@ -682,6 +684,46 @@ class LiveTest(unittest.TestCase):
             live.refresh(broker, state, path, "2026-11-16T21:10:00Z")
             self.assertFalse(json.loads(path.read_text())["market_open"])
             self.assertIn("already saved", live.refresh(broker, state, path, "2026-11-16T21:25:00Z"))
+
+    def test_fills_before_the_first_recorded_order_belong_to_an_earlier_test(self):
+        orders = [
+            order("etf", "SPY", "buy", 5, 90, "2026-11-16T14:49:00Z"),        # same day, earlier test
+            order("a", "SPY", "buy", 100, 100, "2026-11-16T15:00:00Z"),
+            order("stop", "SPY", "sell", 100, 95, "2026-11-16T17:00:00Z"),    # stop-loss, not yet in ledger
+        ]
+        rows, stats = live.trades_from_orders(orders, self._state())
+        self.assertEqual([r["time"][11:16] for r in rows], ["15:00", "17:00"])
+        self.assertEqual(stats["closed_sells"], 1)
+
+    def test_daily_curve_counts_every_day_and_all_costs(self):
+        state = {"start_date": "2026-11-13", "start_equity": 100_000.0, "bench_start_price": 500.0,
+                 "risk_free_rate": 0.04, "days": [{"date": "2026-11-13", "api_cost_usd": 1.0}]}
+        history = {"timestamp": [1794459600, 1794546000, 1794805200, 1794891600],  # 12, 13, 16, 17 Nov
+                   "equity": [99_000.0, 100_000.0, 102_000.0, None]}
+        trades = [{"date": "2026-11-16", "fee_real_usd": 1.5}, {"date": "2026-11-13", "fee_real_usd": 2.0}]
+        spy = {"2026-11-13": 500.0, "2026-11-16": 510.0}
+        pts = live.daily_view(history, spy, trades, state, "2026-11-17", 103_000.0, 505.0)
+        self.assertEqual([p["date"] for p in pts], ["2026-11-13", "2026-11-16", "2026-11-17"])  # before start dropped
+        self.assertEqual([p["ai_before_costs"] for p in pts], [1000.0, 1020.0, 1030.0])
+        self.assertEqual([p["ai_after_costs"] for p in pts], [997.0, 1015.5, 1025.5])  # fees + API so far
+        bench_fee = config.FEE_PER_ORDER_USD + config.FEE_RATE * config.REAL_CAPITAL_USD
+        self.assertAlmostEqual(pts[1]["spy_after_costs"], round(1020 - bench_fee, 2))
+        self.assertAlmostEqual(pts[2]["spy_after_costs"], round(1010 - bench_fee, 2))  # live price today
+        m = live.daily_metrics(pts, state)
+        self.assertEqual(m["ai_after_costs"]["days"], 3)
+        self.assertAlmostEqual(m["ai_after_costs"]["total_return"], 0.0255)
+        self.assertIsNone(m["ai_after_costs"]["sharpe"])                  # too few days yet
+
+    def test_daily_curve_in_live_view(self):
+        broker = LiveBroker()
+        state, _ = run.run_once(broker, ai_says({"AAA": 0.5}), None)
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "live.json"
+            live.refresh(broker, state, path, "2026-11-16T15:30:00Z")
+            data = json.loads(path.read_text())
+            self.assertNotIn("equity curve unavailable", " ".join(data["errors"]))
+            self.assertEqual(data["daily"][-1]["date"], state["start_date"])
+            self.assertIn("sharpe", data["daily_metrics"]["ai_after_costs"])
 
     def test_nothing_before_the_test_starts(self):
         with tempfile.TemporaryDirectory() as tmp:

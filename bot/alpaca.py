@@ -99,8 +99,14 @@ class AlpacaPaper:
             after = page[-1]["submitted_at"]
         return sorted(out.values(), key=lambda o: o.get("submitted_at") or "")
 
-    def portfolio_history(self, period: str = "1D", timeframe: str = "15Min") -> dict:
-        return self._trade("GET", "/v2/account/portfolio/history", params={"period": period, "timeframe": timeframe})
+    def portfolio_history(self, period: str = "1D", timeframe: str = "15Min", start: str | None = None) -> dict:
+        """Account value over time. With `start` (YYYY-MM-DD) the period is ignored: every bar since then."""
+        params = {"timeframe": timeframe}
+        if start:
+            params["start"] = start + "T00:00:00Z"
+        else:
+            params["period"] = period
+        return self._trade("GET", "/v2/account/portfolio/history", params=params)
 
     def news(self, symbols: list[str], limit: int = 50) -> list[dict]:
         """Latest headlines tagged with these symbols (free Alpaca news feed), newest first."""

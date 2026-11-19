@@ -26,7 +26,9 @@ Alpaca's paper-trading address and cannot place a real trade.
 
 ## How it works (version 3, since 2026-11-13)
 
-Every US trading day at 16:30 UTC (17:30 Paris in winter, 18:30 in summer), GitHub starts the run:
+Every US trading day GitHub starts the run during market hours. GitHub often starts scheduled runs hours
+late, so there are four tries (14:50, 16:30, 18:10 and 19:40 UTC); the first that finds the market open
+decides and the others stop at no cost:
 
 1. **Screen (code, free).** Every active, tradable US-listed stock, ETF and ADR (foreign companies
    listed in the US) on NYSE, Nasdaq, NYSE Arca, NYSE American and Cboe, about 8,000 symbols. It keeps
