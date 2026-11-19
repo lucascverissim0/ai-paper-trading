@@ -1,5 +1,5 @@
 {
- "refreshed_at": "2026-11-19T14:57:50Z",
+ "refreshed_at": "2026-11-19T14:57:54Z",
  "settings": {
   "real_capital_usd": 1000.0,
   "max_positions": 5,
@@ -85,8 +85,8 @@
    "after_b": 993.97,
    "rules_a": null,
    "rules_b": null,
-   "spy_a": 994.35,
-   "spy_b": 995.85,
+   "spy_a": 994.25,
+   "spy_b": 995.75,
    "fees_a_cum": 2.3952,
    "fees_b_cum": 0.1976,
    "api_cum": 0.0355
@@ -151,14 +151,14 @@
   },
   "spy": {
    "days": 1,
-   "total_return": -0.005649999999999933,
+   "total_return": -0.005750000000000033,
    "annual_return": null,
    "volatility": null,
    "sharpe": null,
    "sortino": null,
-   "max_drawdown": 0.005649999999999933,
-   "best_day": -0.005649999999999933,
-   "worst_day": -0.005649999999999933,
+   "max_drawdown": 0.005750000000000033,
+   "best_day": -0.005750000000000033,
+   "worst_day": -0.005750000000000033,
    "up_days": 0.0,
    "beta": null,
    "correlation": null
