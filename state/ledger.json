@@ -1,7 +1,34 @@
 {
-  "api_cost_usd": 1.0276404000000001,
+  "api_cost_usd": 1.6627034000000003,
   "bench_start_price": 749.65,
   "cards": {
+    "ACHC": {
+      "card": {
+        "business": "Acadia Healthcare Company, Inc. (ACHC). The material does not describe its business beyond naming CEO Catherine Owen Adams.",
+        "catalysts": [
+          "Guidance raise for FY2026 following the Q3 beat.",
+          "Price target raises in early November: Deutsche Bank to $46 (Buy), UBS to $45 (Buy), RBC to $41 (Outperform), Guggenheim to $41, Cantor Fitzgerald to $39 (Neutral), Barclays to $35 (Equal-Weight).",
+          "Participation in two November 2026 investor conferences."
+        ],
+        "growth_facts": [
+          "Third-quarter 2026 results, reported 2026-11-04, exceeded analyst expectations for both revenue and adjusted EPS.",
+          "On 2026-11-05 the company raised full-year 2026 revenue, earnings and cash-flow guidance after strong third-quarter performance.",
+          "Price is up 140.2% over 12 months, 56.2% over 6 months, 39.4% over 3 months and 19.6% over 1 month, with relative strength percentile 99.",
+          "Average 12-month analyst price target was raised to $34.29 on 2026-11-05."
+        ],
+        "next_earnings_date": "",
+        "risks": [
+          "Highly shorted: noted on 2026-10-30 for high short interest relative to float.",
+          "Raymond James downgraded from Strong Buy to Outperform on 2026-09-28.",
+          "BofA's price target of $19 sits well below the current price of $37.59.",
+          "Extended: price is 21.1% above the 50-day average and 38.0% above the 200-day average.",
+          "Volume is not heavy: 5-day volume is 1.1x normal, and the stock has pulled back from about $38.80 to $37.59 over the last few sessions."
+        ],
+        "setup_quality": 7,
+        "summary": "ACHC is a top-ranked leader (relative strength 99, 12-month gain 140.2%) trading 3.1% below its 52-week high after a strong Q3 beat and FY2026 guidance raise, with a broad set of price target increases following. Against that, volume is only 1.1x normal, the stock is extended well above its moving a"
+      },
+      "date": "2026-11-19"
+    },
     "AMD": {
       "card": {
         "business": "Advanced Micro Devices (AMD) designs CPUs, GPUs and AI accelerators (e.g., Instinct MI325X) for data centers, PCs and embedded markets, competing with Nvidia and Broadcom in AI chips.",
@@ -173,6 +200,34 @@
       },
       "date": "2026-11-13"
     },
+    "ARHS": {
+      "card": {
+        "business": "Arhaus, Inc. (ARHS) is a US home furnishings retailer; Class A common stock, price 13.81.",
+        "catalysts": [
+          "Analyst upgrades and target raises: Piper Sandler to Overweight (target $13, Oct 20), Jefferies to Buy (Sep 21), Craig Hallum to Buy (target $12, Aug 7), Guggenheim Buy with target raised to $17 (Nov 10), Telsey Market Perform with target $14 (Nov 7).",
+          "Fall 2026 collection launch (Aug 27) and new Chief Digital Officer to lead eCommerce growth (Sep 30).",
+          "Investor conference participation at Morgan Stanley Global Consumer & Retail Conference (announced Nov 17)."
+        ],
+        "growth_facts": [
+          "Q3 2026 (quarter ended Sep 30, 2026) net revenue $368 million, up 6.8% year over year.",
+          "Q2 2026 (quarter ended Jun 30, 2026) net revenue $385 million, up 7.4% year over year.",
+          "Revenue growth rates are single-digit and decelerating from Q2 to Q3 as stated; no earnings or EPS figures given.",
+          "RS percentile 98; 1m +28.7%, 3m +43.1%, 6m +130.6%, 12m +62.6%.",
+          "Price 8.1% below 52-week high and 140.2% above 52-week low; 50-day average is 28.2% below price and 200-day average 63.1% below price."
+        ],
+        "next_earnings_date": "",
+        "risks": [
+          "Next earnings is not a near-term gap risk only if it falls later; the Q3 report was Nov 5, 2026, so the next report date is not stated in the material.",
+          "Revenue growth slowed from 7.4% in Q2 to 6.8% in Q3, against a strong prior-year trend implied by the rally.",
+          "$6 million settlement of a false advertising class action (Sep 4, 2026), a legal issue.",
+          "Volume is currently below normal, and the stock has pulled back about 8% from its high.",
+          "Telsey rating is Market Perform, not Buy, and the stock sits near or above several analyst targets ($12 to $14)."
+        ],
+        "setup_quality": 5,
+        "summary": "ARHS is a strong relative-strength leader (RS 98, +130.6% over 6 months) that is 8.1% below its 52-week high, but revenue growth is modest and slowing (6.8% in Q3), volume is currently light at 0.9x normal, and the price is in a choppy 13 to 15 range rather than a tight base near highs. Analyst upgr"
+      },
+      "date": "2026-11-19"
+    },
     "ATEX": {
       "card": {
         "business": "Anterix Inc. (NASDAQ: ATEX) holds 900 MHz spectrum and is positioned around private LTE networks; headlines reference iPhone models operating on dedicated private LTE networks using its 900 MHz spectrum.",
@@ -202,6 +257,33 @@
         "summary": "ATEX has a very strong 12-month run and top relative strength, and it has fresh bullish analyst news (B. Riley upgrade, PT $103) plus a buyback. However, the latest quarter missed on sales and EPS, the stock sits about 24% below its 52-week high after a choppy 3-month decline, and the volume surge i"
       },
       "date": "2026-11-13"
+    },
+    "AZTA": {
+      "card": {
+        "business": "Azenta, Inc. (AZTA) is a life sciences company offering sample management and gene synthesis services, including its GENEWIZ capabilities, as described in headlines on its licensing and acquisition activity.",
+        "catalysts": [
+          "Exclusive licensing agreement with Elegen Corp. and acquisition of SynPlexity Inc. to expand GENEWIZ gene synthesis and library offerings (2026-10-30).",
+          "Management participation in the 9th Annual Evercore Healthcare Conference on November 30, 2026 (announced 2026-11-17)."
+        ],
+        "growth_facts": [
+          "Q4 fiscal 2026 revenue grew 5% year over year (reported 2026-11-10).",
+          "Fiscal 2027 revenue guidance is $648 million to $660 million (reported 2026-11-10).",
+          "Q3 fiscal 2026 revenue was $161 million (reported 2026-08-04).",
+          "Needham raised its price target from $37 to $57 and maintained Buy following the recent results (2026-11-12).",
+          "Price is 48.69, -0.4% from 52-week high, with a 98 RS percentile and 1-month gain of +36.3%."
+        ],
+        "next_earnings_date": "",
+        "risks": [
+          "Securities-claim investigations by multiple law firms (Rosen, Bronstein Gewirtz, Pomerantz) following the August 2026 CEO resignation.",
+          "CEO John Marotta resigned in August 2026; Martin Madaus is Interim President and CEO, so leadership is not permanent.",
+          "Scopia Capital exited its stake (2026-08-19).",
+          "Price is extended: 50-day average is 29.8% below price and 200-day is 70.5% below, and the 6-month gain is +162.2%.",
+          "Recent move is volatile: 10-day range is 23.7%, and last 5-day volume is only 1.0x normal."
+        ],
+        "setup_quality": 4,
+        "summary": "AZTA is near its 52-week high with a 98 RS and a strong 6-month run, and analysts raised targets after results. However, the setup is weakened by a leadership vacuum with an interim CEO, multiple securities-claim investigations, modest 5% revenue growth, and volume that is only at normal levels rath"
+      },
+      "date": "2026-11-19"
     },
     "BMBL": {
       "card": {
@@ -255,6 +337,34 @@
         "summary": "BRZE is at its 52-week high with extreme relative strength, but the move came from a $47.50 per share Salesforce takeover offer rather than organic fundamentals, and analysts have downgraded to neutral with price targets pinned to the offer. Upside looks capped near the deal price, and the material "
       },
       "date": "2026-11-13"
+    },
+    "CAKE": {
+      "card": {
+        "business": "The Cheesecake Factory Incorporated (CAKE) operates restaurants and bakery operations, including the Cheesecake Factory Bakery, with recent activity in gift card promotions and a licensed dessert product at Long John Silver's.",
+        "catalysts": [
+          "Holiday gift card promotion offering $15 bonus per $50 purchased (2026-11-12)",
+          "Limited-time Cinnamon Roll Cheesecake partnership with Long John Silver's (2026-11-02)",
+          "Recognition for early cage-free egg commitment fulfillment (2026-09-29)"
+        ],
+        "growth_facts": [
+          "Q3 fiscal 2026 total revenues of $1.033 billion and diluted EPS of $1.19, reported 2026-10-27",
+          "Price +100.2% over 6 months and +174.8% over 12 months; RS percentile 99",
+          "Price 120.05 is at its 52-week high (+0.0% from high) and +182.5% above 52-week low",
+          "Price 11.2% above 50-day average and 45.3% above 200-day average",
+          "Baird raised price target from $105 to $120 (2026-10-22); Oppenheimer raised from $101 to $122 (2026-10-06); BofA raised from $98 to $117 (2026-09-08); Morgan Stanley raised from $80 to $87 (2026-10-15)"
+        ],
+        "next_earnings_date": "",
+        "risks": [
+          "Last 5-day volume only x1.1 of normal, so no heavy buying surge stated",
+          "Trading in a 10-day range of 11.5%, not a tight range",
+          "Recent 3-month return +13.0% and 1-month +3.4% are modest versus 6-month and 12-month gains",
+          "Analyst ratings mixed: UBS Sell and Deutsche Bank Hold versus Outperform and Neutral ratings with targets near the price",
+          "Insider selling reported"
+        ],
+        "setup_quality": 6,
+        "summary": "CAKE is a leader at a new 52-week high with RS 99, strong 6- and 12-month gains, and rising recent quarterly revenue and EPS data. The setup is held back by only average volume, a wide 10-day range, mixed analyst ratings, and promotional rather than transformative catalysts. Next earnings date is no"
+      },
+      "date": "2026-11-19"
     },
     "CBRL": {
       "card": {
@@ -509,6 +619,34 @@
       },
       "date": "2026-11-13"
     },
+    "GCT": {
+      "card": {
+        "business": "GigaCloud Technology Inc (GCT) is a US-listed company reporting record quarterly revenue and net income in its Q3 2026 results; the materials do not describe its products or markets in detail.",
+        "catalysts": [
+          "Board approved a $120M share repurchase program on 2026-08-10.",
+          "Roth Capital raised its price target to $65 from $40 on 2026-11-12 while keeping a neutral rating.",
+          "Recognition on Fortune Fastest Growing Companies 2026 and TIME America's Growth Leaders 2027 lists (2026-10-23)."
+        ],
+        "growth_facts": [
+          "Q3 2026 results (reported 2026-11-05) highlighted record quarterly revenue and net income.",
+          "Q2 2026 results (reported 2026-08-06) reported record revenue and earnings growth.",
+          "Q3 2026 revenue guidance was $375.0M to $400.0M, issued 2026-08-06.",
+          "Price is 65.30, 2.0% below the 52-week high, with RS percentile 98.",
+          "Returns: 1m +10.8%, 3m +31.0%, 6m +74.9%, 12m +118.4%."
+        ],
+        "next_earnings_date": "",
+        "risks": [
+          "Recurring insider selling: a director sold about $990,000 on 2026-09-27, a director and Head of Brand Center sold over $1.48M on 2026-09-25, and an insider sold about $3.06M on 2026-08-14.",
+          "Product recall of 1,250 Merax Murphy beds for impact and crush hazards issued 2026-08-13.",
+          "Analyst rating is neutral, not a strong buy.",
+          "Volume is not expanding: 5-day volume is 1.0x normal.",
+          "The materials do not state the industry group strength."
+        ],
+        "setup_quality": 6,
+        "summary": "GCT is a strong relative-strength leader (RS 98) trading 2% below its 52-week high after record Q2 and Q3 2026 results, a buyback, and a higher price target. Against that, insider selling, a product recall, a neutral analyst rating, and flat volume weaken the setup. No next earnings date is given in"
+      },
+      "date": "2026-11-19"
+    },
     "GKOS": {
       "card": {
         "business": "Glaukos Corporation (NYSE:GKOS) is a US-listed healthcare company with a market cap of about $10.7 billion per the headlines; the materials do not describe its products in detail.",
@@ -675,6 +813,34 @@
       },
       "date": "2026-11-13"
     },
+    "LIND": {
+      "card": {
+        "business": "Lindblad Expeditions Holdings operates expedition travel: voyages under the National Geographic-Lindblad brand across Antarctica, the Arctic, Alaska, Europe and the South Pacific, with a 2028-29 deployment schedule already announced. In September 2026 it acquired a majority stake in White Desert (lu",
+        "catalysts": [
+          "Acquisition of majority stake in White Desert and Echo Charlie (2026-09-15), a new-market and adjacent-brand expansion",
+          "Analyst price target raises: Benchmark to $40 from $34 (2026-08-06); Deutsche Bank to $30 from $29 (2026-09-17)",
+          "Forward voyage schedule extended to 2028-29 and 2027 expedition additions"
+        ],
+        "growth_facts": [
+          "Q3 2026 revenue $269.2M and EPS $0.36, reported as exceeding analyst expectations (2026-11-03)",
+          "Q2 2026 revenue $199.2M, reported as exceeding analyst expectations (2026-08-03)",
+          "Full-year 2026 revenue outlook of $830M to $860M (2026-08-04)",
+          "12-month price change +191.9%; 6-month +74.2%; 3-month +6.7%; 1-month -5.7%",
+          "RS percentile 98"
+        ],
+        "next_earnings_date": "",
+        "risks": [
+          "Price at 33.42 is about 10.6% below the 52-week high and has pulled back over the last month (-5.7%)",
+          "Recurring insider selling: roughly $8.25M (2026-10-30) and $8.64M (2026-10-23) by a 10% owner and director",
+          "Analyst ratings are Hold from Deutsche Bank (target $30, below the Benchmark target of $40 and near the current price) and Jefferies",
+          "Volume is light: 5-day volume is 0.8x normal, and the 10-day range of 12.4% is not a tight base",
+          "Price is only 1.9% above the 50-day average, and 3-month gain has slowed to +6.7%"
+        ],
+        "setup_quality": 4,
+        "summary": "LIND is a strong long-term leader with 98 RS, accelerating reported revenue, and a 12-month gain of +192%, but the current setup is weak: the stock is 10.6% off its high after a choppy 1-month decline, volume is below normal, the 10-day range is wide, and insider sales and Hold ratings cap enthusias"
+      },
+      "date": "2026-11-19"
+    },
     "MGNI": {
       "card": {
         "business": "Magnite, Inc. operates a sell-side advertising platform for connected TV (CTV) and digital advertising; the material describes it as integrating Gracenote's content intelligence into its CTV advertising platform.",
@@ -730,6 +896,34 @@
         "summary": "Moderna is a top-ranked momentum leader (RS 100, huge 6-12 month gains) with accelerating news flow: raised FY26 sales guidance to 15%-25%, a surprise profit, and rising price targets. However, the stock sits 14% below its 52-week high after a volatile post-earnings pattern, volume is currently ligh"
       },
       "date": "2026-11-13"
+    },
+    "NTSK": {
+      "card": {
+        "business": "Netskope, Inc. (NTSK) is a US-listed security company offering Security Service Edge (SSE) and AI-related security products, including the AgentSkope Marketplace for managing AI agents and Skylight Agent Action Control for blocking high-risk AI agent actions.",
+        "catalysts": [
+          "Fiscal Q3 2027 results (quarter ended October 31, 2026) scheduled for December 2, 2026.",
+          "Continued analyst target increases and new coverage with Overweight/Buy ratings from Cantor Fitzgerald, BTIG and others.",
+          "New AI agent security products (AgentSkope Marketplace, Skylight) and partner-led channel expansion."
+        ],
+        "growth_facts": [
+          "Price 23.50 with relative strength percentile 98.",
+          "Performance: 1m +18.6%, 3m +63.6%, 6m +100.0%, 12m +21.6%.",
+          "Trades 11.4% below its 52-week high and 204.1% above its 52-week low.",
+          "Price sits +15.5% above the 50-day average and +72.4% above the 200-day average.",
+          "Average dollar volume about $136M per day; 5-day volume is 0.8x normal, so recent volume is light."
+        ],
+        "next_earnings_date": "2026-12-02",
+        "risks": [
+          "Earnings report on December 2, 2026 is about 13 days away, creating gap risk for a momentum trade.",
+          "Morgan Stanley downgraded to Equalweight with a $24 target on November 13.",
+          "Price is well below its 52-week high (-11.4%) and has chopped between roughly 20.85 and 26.52 over the last 20 sessions, not a tight base just below a high.",
+          "Volume in the last 5 sessions is light at 0.8x normal, not heavy buying.",
+          "No accelerating sales or earnings figures are provided in the material, so growth quality cannot be confirmed."
+        ],
+        "setup_quality": 4,
+        "summary": "NTSK is a strong relative-strength leader (RS 98, +100% over 6 months) with a steady stream of analyst target raises and AI-security product launches. However, it is 11.4% below its 52-week high after a choppy range, volume is light, sales and earnings acceleration are not documented, and earnings o"
+      },
+      "date": "2026-11-19"
     },
     "ORKA": {
       "card": {
@@ -980,6 +1174,63 @@
       },
       "date": "2026-11-13"
     },
+    "SLS": {
+      "card": {
+        "business": "Clinical-stage biopharmaceutical company developing galinpepimut-S (GPS) for acute myeloid leukemia (AML) and the CDK9 inhibitor SLS009, per the headlines provided.",
+        "catalysts": [
+          "Positive topline results from the pivotal Phase 3 REGAL trial of GPS met its primary endpoint with a statistically significant overall survival improvement in AML (2026-11-17).",
+          "Planned presentation of positive Phase 2 SLS009 data in relapsed/refractory AML at the 68th ASH Annual Meeting (announced 2026-11-04)."
+        ],
+        "growth_facts": [
+          "Price 17.95, RS percentile 100, 1m +49.8%, 3m +33.9%, 6m +100.1%, 12m +1173.0%.",
+          "Stock is 6.3% below its 52-week high and 1191.4% above its 52-week low.",
+          "Traded $128M per day; 5-day volume was 3.7x normal.",
+          "Last 20 closes show a jump from 7.47 to 19.15 (about +156%) before settling at 17.95, after the Phase 3 REGAL topline news on 2026-11-17.",
+          "On 2026-11-19 SELLAS priced an underwritten public offering of 11,538,462 shares at $13.00 per share, about $150M in gross proceeds."
+        ],
+        "next_earnings_date": "",
+        "risks": [
+          "Underwritten offering of 11,538,462 shares at $13.00 (2026-11-19) is significantly dilutive and priced well below the current 17.95 price.",
+          "Pomerantz LLP launched an investigation into potential securities fraud or unlawful business practices (2026-09-03).",
+          "Short seller BMF Capital disclosed a short position and called the company dangerously overvalued (2026-09-04).",
+          "Citigroup reported a 64% reduction in its SELLAS holdings as of September 30, 2026 (disclosed 2026-11-05).",
+          "The price spike is tied to a single trial readout and a large equity raise, which is a one-off move rather than an established sales and earnings trend."
+        ],
+        "setup_quality": 3,
+        "summary": "SLS shows a strong price and volume surge after positive Phase 3 REGAL topline data, with RS at 100 and heavy trading. However, the move is a one-off spike on trial news followed by a $150M offering priced at $13.00, well below the 17.95 price, which is heavily dilutive. There is also an open securi"
+      },
+      "date": "2026-11-19"
+    },
+    "SN": {
+      "card": {
+        "business": "SharkNinja, Inc. markets consumer products under the Ninja and Shark brands, including espresso machines and LED face masks, and sells through partners such as Amazon and JD.com (Joybuy).",
+        "catalysts": [
+          "Selected as official partner in Amazon Ads Holiday Sponsorship Program for 2026 holiday season (2026-11-18)",
+          "JD.com cited partnership with SharkNinja in Q3 2026 results via Joybuy (2026-11-17)",
+          "Morgan Stanley Global Consumer & Retail Conference fireside chat on December 1, 2026 (2026-11-17)",
+          "Limited-edition Ninja Luxe Caf\u00e9 Pro with Jonathan Adler launched (2026-11-03)",
+          "Oracle Fusion Cloud adopted to automate finance and supply chain operations (2026-10-26)"
+        ],
+        "growth_facts": [
+          "Price 230.09, RS percentile 99",
+          "+0.0% from 52-week high",
+          "1m +15.8%, 3m +27.8%, 6m +114.7%, 12m +171.8%",
+          "Price +18.9% above 50-day average and +54.3% above 200-day average",
+          "Average daily traded value $316M"
+        ],
+        "next_earnings_date": "",
+        "risks": [
+          "Insider sold shares worth approximately $25 million (SEC filing reported 2026-11-09)",
+          "Earnings report date not stated in material; gap risk cannot be assessed",
+          "No stated evidence of accelerating sales or earnings growth",
+          "Industry group strength not stated in material",
+          "Price is extended well above 50-day and 200-day averages after a 114.7% six-month gain"
+        ],
+        "setup_quality": 7,
+        "summary": "Leader with RS 99 trading at its 52-week high, in a tight 5.6% 10-day range on quiet volume (5-day x0.8), with steady analyst target raises and partner news. Missing items: next earnings date, sales/earnings acceleration, and industry group strength. The $25M insider sale and extension above moving "
+      },
+      "date": "2026-11-19"
+    },
     "SPY": {
       "card": {
         "business": "SPDR S&P 500 ETF Trust (SPY), a broad US large-cap market index fund; not a single company, so no company-specific growth, catalyst or earnings data applies.",
@@ -1055,6 +1306,92 @@
         "summary": "TBBB is an RS 98 leader at its 52-week high after a sharp run (+137% over 12 months), with a Q3 2026 sales and EPS beat and multiple analyst target raises. Volume is only modestly elevated, the stock is overbought, and the Q2 EPS miss weakens the earnings-acceleration case. The last 20 closes show a"
       },
       "date": "2026-11-13"
+    },
+    "TGTX": {
+      "card": {
+        "business": "TG Therapeutics, Inc. (TGTX) is a biopharmaceutical company with a commercial multiple sclerosis product, BRIUMVI (ublituximab-xiiy), plus clinical programs including azer-cel in primary progressive multiple sclerosis and a lipid-lowering study.",
+        "catalysts": [
+          "Raised full-year revenue guidance after Q3 2026 results.",
+          "Initial Phase 1 results for azer-cel in primary progressive multiple sclerosis presented at MSToronto2026 (announced 2026-10-08).",
+          "Five-year BRIUMVI comparative analysis published (2026-10-12).",
+          "Positive interim clinical data showing triglyceride, non-HDL cholesterol and ApoB reductions (2026-09-15).",
+          "Deloitte Technology Fast 500 ranking, fifth fastest-growing in North America (2026-11-18)."
+        ],
+        "growth_facts": [
+          "Q3 2026 revenue reported at $259.9 million, with full-year revenue guidance raised (headline dated 2026-11-09).",
+          "Q2 2026 total global revenue reported at $240 million, with full-year 2026 revenue targets raised (headline dated 2026-08-03).",
+          "Revenue rose from $240 million in Q2 to $259.9 million in Q3 2026, per the two reported figures.",
+          "Price 66.12 is at its 52-week high (+0.0% from high), +145.4% above 52-week low; relative strength percentile 98.",
+          "Returns: 1m +21.3%, 3m +30.8%, 6m +66.3%, 12m +115.4%."
+        ],
+        "next_earnings_date": "",
+        "risks": [
+          "Shareholder litigation firm Kuehn Law announced an investigation into possible fiduciary breaches by officers and directors (2026-09-28).",
+          "Insider Laurence N. Charney sold about $274K of stock (2026-09-15).",
+          "Unconfirmed takeover speculation drove a sharp rise on 2026-08-21; spike-driven moves can reverse.",
+          "Five-day volume is 0.8x normal, not heavy buying volume.",
+          "Last 20 closes show choppy moves (e.g., 64.56 to 57.98 range swings), so the 10-day range is 12.3%, not especially tight."
+        ],
+        "setup_quality": 7,
+        "summary": "TGTX is a strong relative-strength leader trading at its 52-week high with raised revenue guidance and strong 3m, 6m and 12m returns. Setup is hampered by below-normal recent volume, a 12.3% 10-day range, a shareholder investigation notice, an insider sale, and takeover-spike history. Revenue growth"
+      },
+      "date": "2026-11-19"
+    },
+    "ULCC": {
+      "card": {
+        "business": "Frontier Group Holdings (ULCC) is a US low-cost airline operating Frontier Airlines, recently adding First Class seating, premium seats, international service to South America (Colombia), and product launches such as Cancel for Any Reason and the GoWild! pass.",
+        "catalysts": [
+          "Record Q3 2026 results and upward analyst target revisions",
+          "New First Class and premium seating rollout and international expansion to South America",
+          "Deutsche Bank upgrade to Buy"
+        ],
+        "growth_facts": [
+          "Q3 2026 revenue of $1.4 billion, a 53% year-over-year increase, reported 2026-10-28 with adjusted EPS above company guidance",
+          "Price 8.16, RS percentile 98, 12m +121.6%, 6m +74.1%, 3m +41.8%, 1m +66.6%",
+          "Price 31.8% above 50-day average and 46.2% above 200-day average",
+          "Stock is 2.2% below its 52-week high and 163.4% above its 52-week low",
+          "Deutsche Bank upgraded to Buy with $10 target on 2026-11-05; UBS raised target to $7 from $6 on 2026-10-30 while keeping Neutral"
+        ],
+        "next_earnings_date": "",
+        "risks": [
+          "Nearly 66.6% one-month gain with stock extended well above 50- and 200-day averages",
+          "FAA nationwide ground stop on 2026-11-13 hit shares",
+          "Operational incident: flight diversion after cabin flooding (2026-11-12)",
+          "Mixed analyst stance: UBS still Neutral; price already near Deutsche Bank target area of $10 is not exceeded yet",
+          "Executive leadership transition with COO effective 2026-11-30"
+        ],
+        "setup_quality": 6,
+        "summary": "Strong momentum leader: RS 98, 12-month gain of 121.6%, price within 2.2% of its 52-week high, and record Q3 revenue growth of 53% with upgrades and new product catalysts. Offsetting this, the stock has run up sharply over the past month, volume is only modestly elevated, the 10-day range is wide, a"
+      },
+      "date": "2026-11-19"
+    },
+    "VAC": {
+      "card": {
+        "business": "Marriott Vacations Worldwide Corporation, a vacation ownership company that operates the Marriott Vacation Clubs (per headlines).",
+        "catalysts": [
+          "Investor Day on December 9, 2026 in New York City to discuss long-term strategy and financial framework.",
+          "$460M vacation ownership loan securitization completed 2026-10-20.",
+          "Strong Q3 2026 contract sales and development profit growth reported 2026-11-04."
+        ],
+        "growth_facts": [
+          "Q3 2026 results (reported 2026-11-04) highlighted significant growth in contract sales and development profit; no figures given.",
+          "RS percentile 98; 12m +162.4%, 6m +60.3%, 3m +6.3%, 1m +2.7%.",
+          "Price 116.33 is 6.0% below the 52-week high and 160.8% above the 52-week low; 50-day average is 7.3% below price and 200-day average 30.3% below price.",
+          "Average daily traded value about $41M; 5-day volume is 0.8x normal; 10-day range 8.9%.",
+          "Quarterly cash dividend of $0.80 per share authorized 2026-09-02."
+        ],
+        "next_earnings_date": "",
+        "risks": [
+          "Wells Fargo maintained Underweight and cut target from $100 to $97 on 2026-11-05.",
+          "Morgan Stanley maintained Underweight and cut target from $65 to $63 on 2026-10-21.",
+          "Price at 116.33 is near the $110 and $97 targets of several brokers, limiting upside per analyst views.",
+          "Quiet recent volume (5-day at 0.8x normal) gives no sign of heavy accumulation.",
+          "Industry group strength and sales/earnings acceleration figures not provided in the material."
+        ],
+        "setup_quality": 6,
+        "summary": "VAC is a high relative-strength leader, up 162% over 12 months and within 6% of its 52-week high, with a tight 10-day range and a clear near-term catalyst in the December 9 Investor Day. Offsetting this, two brokers hold Underweight ratings with targets below the current price, recent volume is ligh"
+      },
+      "date": "2026-11-19"
     },
     "VIA": {
       "card": {
@@ -2064,21 +2401,785 @@
         "QQQ": 0.1983,
         "SPY": 0.4999
       }
+    },
+    {
+      "api_cost_usd": 0.6350630000000002,
+      "bench_price": 736.66,
+      "briefing": "- [2026-11-19] Minutes of the October Fed meeting show nearly all officials expect more rate hikes. Governor Waller says a 0.5-point hike should be considered in December. Markets price three more hikes, taking the policy rate to 4.50\u20134.75% by June 2027 (Saxo) -> whole market, growth stocks\n- [2026-12-09] Fed decision and press conference. Markets price a December hike as nearly certain (Admiral Markets; The Investing Group, 11-16) -> whole market\n- [2026-11-18] The S&P 500 fell 0.2%, its fifth straight down day, and the Dow fell 1.1%. The Nasdaq-100 rose 0.4% as tech held up better (Saxo) -> indexes, small caps\n- [2026-11-13] Week to Nov 13: S&P 500 +2.51%, Nasdaq-100 +3.53%, Russell 2000 +1.32%, rebounding from a sharp Nov 5\u20136 selloff. The 10-year yield rose every day, from 4.86% to 5.15% (The Glass Desk, a newsletter) -> whole market, valuations of growth stocks\n- [2026-11-10] October CPI: +0.4% overall, +0.3% core, above the +0.3%/+0.2% forecasts. Stocks fell after the release (TheStreet; FXEmpire) -> whole market\n- [2026-11-06] October payrolls +165,000 and unemployment 4.1%. After the report, futures priced about an 80% chance of a December hike (FXEmpire) -> rates\n- [2026-11-25] GDP and PCE inflation data, plus the Fed Beige Book. Next: jobs report Dec 4, CPI Dec 10, PPI Dec 15 (Admiral Markets) -> whole market\n- [2026-11-13] Chips other than Nvidia were strong. Nvidia fell about 9.5% over two days before its earnings report (The Glass Desk) -> semiconductors\n- [2026-11-12] Biotech is a leading group: KOD, REPL, XNCR, TGTX, KYMR, ZYME and SEPN hit one-year highs that week (MarketWise) -> KOD, REPL, XNCR\n- [2026-11-17] SELLAS's Phase 3 REGAL trial of GPS in AML (a leukemia) met its overall survival goal. SLS closed up 156% at $19.15, then announced a $150M stock offering after the close (Off Label Trades newsletter) -> SLS\n- [2026-11-18] SLS rose $0.92 to $20.07 on about 19.5M shares, versus 8.4M average volume. 52-week high is $24.89 (MarketBeat) -> SLS\n- [2026-11-12] Xeris Q3: revenue $107.2M (+44%), a surprise GAAP profit of $0.06 per share, 88% gross margin, $34M of convertible notes retired, and higher guidance (Seeking Alpha) -> XERS\n- [2026-11-05] Appian Q3: EPS 32c versus 33c expected. FY26 EPS guidance raised to $1.20\u20131.24 from $1.04\u20131.12. Q4 revenue guided at $233\u2013237M (TipRanks via CNN; StockTitan 8-K) -> APPN\n- [2026-11-05/06] Appian: William Blair upgraded it to Outperform. Price targets raised: Citi $69, DA Davidson $60, TD Cowen $58, Morgan Stanley $57 (TheFly/TipRanks) -> APPN\n- [2026-11-17] APPN fell 3.8% to $53.47. 52-week range is $18.63\u201357.26. The same day, Appian showed new AI-agent tools at Appian Europe in London (GuruFocus; PR Newswire) -> APPN\n- [2026-11-19] APPN is at $55.20 premarket (+3.2%), up 21% over the past month. Short interest is 3.7 days to cover (Massive) -> APPN\n- [2026-11] Recent Q3 report dates: REPL Nov 4, XERS Nov 5, XNCR Nov 9, SLS Nov 10 (BiopharmaWatch calendar). No other earnings found for the candidates in the next two weeks -> candidates\n- [not found] No recent news for HAE, CDNA, SLN, ETON, VIA or HNGE in the searches I ran. Their earnings dates and deal/legal news need checking separately -> HAE, CDNA, SLN, ETON, VIA, HNGE\n\nNotes: Admiral Markets cites a headline that the Fed held rates for a \"fourth straight meeting,\" which conflicts with the hike talk above. The market recap figures come from newsletters, not primary sources.",
+      "briefing_status": "ok",
+      "cards_written": 12,
+      "cost_split": {
+        "analyst": 0.009125,
+        "decisions": 0.327732,
+        "research": 0.268208,
+        "searches": 0.03
+      },
+      "date": "2026-11-19",
+      "decision_status": "ok",
+      "drivers": [
+        {
+          "effect": "lower",
+          "factor": "SPY is 4.2% below its 50-day average, QQQ is below its 200-day average, only 46% of stocks are above their 200-day average, and VIX is 24.6.",
+          "input": "prices",
+          "symbols": [
+            "SPY",
+            "QQQ",
+            "IWM"
+          ]
+        },
+        {
+          "effect": "hold",
+          "factor": "Fed minutes point to more hikes, a December hike is priced as near-certain, the 10-year yield is at 5.1% and CPI ran hot, a headwind for growth valuations.",
+          "input": "news",
+          "symbols": [
+            "APPN",
+            "HAE"
+          ]
+        },
+        {
+          "effect": "hold",
+          "factor": "Both holdings are near their highs with intact tight ranges while the indexes weaken, a sign of relative strength.",
+          "input": "portfolio",
+          "symbols": [
+            "APPN",
+            "HAE"
+          ]
+        },
+        {
+          "effect": "hold",
+          "factor": "Most screen leaders are extended biotech or event spikes (SLS offering, KOD, XERS) or takeover-pinned stocks (SLN, BMBL, BRZE, SGRY), so there are no clean low-risk breakouts to buy into a weak tape.",
+          "input": "screen",
+          "symbols": [
+            "SLS",
+            "XERS",
+            "KOD",
+            "SLN"
+          ]
+        },
+        {
+          "effect": "hold",
+          "factor": "At $1,000 each new order costs about 1-2%, so needless turnover in a correction destroys edge.",
+          "input": "costs",
+          "symbols": [
+            "APPN",
+            "HAE"
+          ]
+        }
+      ],
+      "economy": "- US 10-year Treasury yield (%): 5.10 on 2026-11-17 (change: 1 month -0.02, 3 months +0.41)\n- US 2-year Treasury yield (%): 4.80 on 2026-11-17 (change: 1 month +0.01, 3 months +0.61)\n- 10-year minus 2-year yield spread (points): 0.27 on 2026-11-18 (change: 1 month -0.06, 3 months -0.23)\n- Fed funds rate (%): 3.88 on 2026-10-01 (change: 1 month +0.00, 3 months +0.25)\n- US inflation (CPI, 12 months to 2026-10): 4.1%\n- US unemployment rate (%): 4.10 on 2026-10-01 (change: 1 month +0.00, 3 months +0.00)\n- High-yield bond spread (%): 3.43 on 2026-11-17 (change: 1 month +0.10, 3 months +0.68)\n- VIX volatility index: 24.56 on 2026-11-18 (change: 1 month +7.25, 3 months +8.55)",
+      "equity": 98674.08,
+      "feed": "sip",
+      "orders": [],
+      "prices": {
+        "ACHC": 36.585,
+        "AMPL": 17.41,
+        "ANDG": 60.39,
+        "APPN": 55.85,
+        "ARHS": 13.74,
+        "AZTA": 49.21,
+        "BMBL": 5.995,
+        "BRZE": 46.54,
+        "CAKE": 116.88,
+        "CBRL": 74.23,
+        "CDNA": 75.32,
+        "CRL": 335.03,
+        "EEM": 58.27,
+        "EFA": 100.365,
+        "ETON": 62.375,
+        "FIGS": 21.155,
+        "GCT": 65.3,
+        "GKOS": 233.56,
+        "GLD": 339.73,
+        "HAE": 122.0,
+        "HNGE": 109.58,
+        "IEF": 90.47,
+        "IWM": 270.0,
+        "KNSA": 94.63,
+        "KOD": 97.975,
+        "LIND": 33.185,
+        "MGNI": 27.89,
+        "NTSK": 26.32,
+        "ORKA": 100.1,
+        "PRCH": 20.32,
+        "QQQ": 672.32,
+        "REPL": 19.85,
+        "SG": 12.69,
+        "SGRY": 26.95,
+        "SLN": 19.825,
+        "SLS": 15.84,
+        "SN": 224.82,
+        "SPY": 736.66,
+        "SYRE": 99.96,
+        "TBBB": 67.025,
+        "TGTX": 66.99,
+        "TLT": 79.875,
+        "ULCC": 8.09,
+        "VAC": 113.12,
+        "VIA": 46.99,
+        "VSXY": 101.6,
+        "XERS": 16.79,
+        "XNCR": 34.83,
+        "ZETA": 34.805
+      },
+      "rationale": "The market is in a correction with a hawkish Fed, so I keep about 79% in cash and hold only the two leaders that are acting well, with tight stops. APPN's stop moves up slightly and HAE's stop stays at 115. New buys wait until the indexes reclaim their 50-day averages and breadth improves.",
+      "reasons": {
+        "APPN": "RS-99 software leader holding near its high after a beat-and-raise quarter and analyst upgrades; the stop is raised slightly to just under the recent pullback low.",
+        "HAE": "Beat-and-raise quarter plus FDA approval, trading in a tight 4.8% 10-day range just under its high, and holding up while the market falls."
+      },
+      "samples": [
+        {
+          "cost_usd": 0.2468,
+          "detail": "",
+          "drivers": [
+            {
+              "effect": "lower",
+              "factor": "SPY is 4.2% below its 50-day average, QQQ is below its 200-day average, only 46% of stocks are above their 200-day average, and VIX is 24.6.",
+              "input": "prices",
+              "symbols": [
+                "SPY",
+                "QQQ",
+                "IWM"
+              ]
+            },
+            {
+              "effect": "hold",
+              "factor": "Fed minutes point to more hikes, a December hike is priced as near-certain, the 10-year yield is at 5.1% and CPI ran hot, a headwind for growth valuations.",
+              "input": "news",
+              "symbols": [
+                "APPN",
+                "HAE"
+              ]
+            },
+            {
+              "effect": "hold",
+              "factor": "Both holdings are near their highs with intact tight ranges while the indexes weaken, a sign of relative strength.",
+              "input": "portfolio",
+              "symbols": [
+                "APPN",
+                "HAE"
+              ]
+            },
+            {
+              "effect": "hold",
+              "factor": "Most screen leaders are extended biotech or event spikes (SLS offering, KOD, XERS) or takeover-pinned stocks (SLN, BMBL, BRZE, SGRY), so there are no clean low-risk breakouts to buy into a weak tape.",
+              "input": "screen",
+              "symbols": [
+                "SLS",
+                "XERS",
+                "KOD",
+                "SLN"
+              ]
+            },
+            {
+              "effect": "hold",
+              "factor": "At $1,000 each new order costs about 1-2%, so needless turnover in a correction destroys edge.",
+              "input": "costs",
+              "symbols": [
+                "APPN",
+                "HAE"
+              ]
+            }
+          ],
+          "rationale": "The market is in a correction with a hawkish Fed, so I keep about 79% in cash and hold only the two leaders that are acting well, with tight stops. APPN's stop moves up slightly and HAE's stop stays at 115. New buys wait until the indexes reclaim their 50-day averages and breadth improves.",
+          "status": "ok",
+          "stops": {
+            "APPN": 51.0,
+            "HAE": 115.0
+          },
+          "weights": {
+            "APPN": 0.11,
+            "HAE": 0.1
+          }
+        },
+        {
+          "cost_usd": 0.041,
+          "detail": "",
+          "drivers": [
+            {
+              "effect": "lower",
+              "factor": "QQQ is 3.3% below its 200-day average, SPY sits exactly on its 200-day, only 46% of stocks are above their 200-day, and VIX is at 24.6.",
+              "input": "prices",
+              "symbols": [
+                "SN",
+                "HNGE",
+                "XERS",
+                "FIGS"
+              ]
+            },
+            {
+              "effect": "hold",
+              "factor": "Fed minutes show almost all officials expect more hikes, with a 0.5-point hike floated for December; the 10-year yield is at 5.1%, pressuring growth valuations.",
+              "input": "news",
+              "symbols": [
+                "APPN",
+                "HAE"
+              ]
+            },
+            {
+              "effect": "hold",
+              "factor": "CPI is 4.1% with a hot October print and high-yield spreads widened 0.68 points in 3 months, so financial conditions are tightening.",
+              "input": "economy",
+              "symbols": [
+                "APPN",
+                "HAE"
+              ]
+            },
+            {
+              "effect": "hold",
+              "factor": "Both holdings are near their highs in tight ranges with fresh beat-and-raise catalysts; APPN is at a profit, so its stop is raised.",
+              "input": "portfolio",
+              "symbols": [
+                "APPN",
+                "HAE"
+              ]
+            },
+            {
+              "effect": "hold",
+              "factor": "At $1,000 each new order costs about 1% round-trip on small sizes, and new breakouts are failing often in a correcting market.",
+              "input": "costs",
+              "symbols": [
+                "SN",
+                "TGTX",
+                "CAKE"
+              ]
+            }
+          ],
+          "rationale": "The market is in a correction (Nasdaq below its 200-day average, VIX near 25, Fed hikes being priced), so I keep exposure low at about 21% in two leaders that are still acting well and hold the rest in cash. APPN's stop moves up to 51.50 to protect the small gain, and HAE stays with its stop at 115. I will add strong breakouts such as SN or TGTX only once the indexes reclaim their 50-day averages.",
+          "status": "ok",
+          "stops": {
+            "APPN": 51.5,
+            "HAE": 115.0
+          },
+          "weights": {
+            "APPN": 0.11,
+            "HAE": 0.1
+          }
+        },
+        {
+          "cost_usd": 0.0399,
+          "detail": "",
+          "drivers": [
+            {
+              "effect": "hold",
+              "factor": "SPY is 4.2% below its 50-day average and QQQ is below its 200-day; only 46% of stocks are above their 200-day and the VIX is 24.6",
+              "input": "prices",
+              "symbols": [
+                "APPN",
+                "HAE"
+              ]
+            },
+            {
+              "effect": "lower",
+              "factor": "Fed minutes point to more hikes, possibly 0.5 points in December, with the 10-year yield at 5.1% pressuring growth valuations",
+              "input": "news",
+              "symbols": [
+                "APPN",
+                "HAE"
+              ]
+            },
+            {
+              "effect": "hold",
+              "factor": "APPN is near its 52-week high after a beat and raised guidance with upgrades, and trades +3.2% premarket",
+              "input": "news",
+              "symbols": [
+                "APPN"
+              ]
+            },
+            {
+              "effect": "hold",
+              "factor": "HAE holds a tight range 3.6% below its high with RS 97 after a beat-and-raise quarter",
+              "input": "prices",
+              "symbols": [
+                "HAE"
+              ]
+            },
+            {
+              "effect": "hold",
+              "factor": "Most top screen names are takeover-pinned, one-off biotech spikes or loose extended setups, and adding positions costs fees",
+              "input": "screen",
+              "symbols": [
+                "SLS",
+                "KOD",
+                "SN"
+              ]
+            }
+          ],
+          "rationale": "The market is in a correction with the Fed leaning toward more hikes, so I keep about 79% cash and only the two leaders still holding tight ranges near their highs. I raise the APPN stop slightly and keep the HAE stop. I avoid new buys among mostly event-driven or loose screen names until the indexes recover their averages.",
+          "status": "ok",
+          "stops": {
+            "APPN": 51.5,
+            "HAE": 115.0
+          },
+          "weights": {
+            "APPN": 0.11,
+            "HAE": 0.1
+          }
+        }
+      ],
+      "screen": {
+        "breadth": 0.45619774627408216,
+        "candidates": [
+          {
+            "from_high": -0.0627,
+            "price": 17.95,
+            "r12m": 11.73049645390071,
+            "r3m": 0.3390525923162999,
+            "rs": 100,
+            "symbol": "SLS"
+          },
+          {
+            "from_high": -0.1203,
+            "price": 97.81,
+            "r12m": 3.9324256177508827,
+            "r3m": 1.455070281124498,
+            "rs": 100,
+            "symbol": "KOD"
+          },
+          {
+            "from_high": -0.1586,
+            "price": 74.44,
+            "r12m": 3.7994842037395227,
+            "r3m": 0.5845040442741594,
+            "rs": 100,
+            "symbol": "CDNA"
+          },
+          {
+            "from_high": -0.0005,
+            "price": 19.82,
+            "r12m": 1.9582089552238804,
+            "r3m": 0.5049354593773729,
+            "rs": 100,
+            "symbol": "SLN"
+          },
+          {
+            "from_high": 0.0,
+            "price": 16.99,
+            "r12m": 1.340220385674931,
+            "r3m": 0.975581395348837,
+            "rs": 100,
+            "symbol": "XERS"
+          },
+          {
+            "from_high": -0.1491,
+            "price": 19.81,
+            "r12m": 1.258836944127708,
+            "r3m": 0.40996441281138774,
+            "rs": 100,
+            "symbol": "REPL"
+          },
+          {
+            "from_high": -0.0937,
+            "price": 61.99,
+            "r12m": 2.5915411355735802,
+            "r3m": 0.034718744783842626,
+            "rs": 100,
+            "symbol": "ETON"
+          },
+          {
+            "from_high": 0.0,
+            "price": 46.52,
+            "r12m": 0.19465844889573725,
+            "r3m": 0.7508468197214906,
+            "rs": 100,
+            "symbol": "VIA"
+          },
+          {
+            "from_high": -0.1396,
+            "price": 34.39,
+            "r12m": 1.2016645326504483,
+            "r3m": 0.2737037037037038,
+            "rs": 100,
+            "symbol": "XNCR"
+          },
+          {
+            "from_high": -0.0706,
+            "price": 114.53,
+            "r12m": 1.8043584720861898,
+            "r3m": 0.33765475356225183,
+            "rs": 99,
+            "symbol": "HNGE"
+          },
+          {
+            "from_high": 0.0,
+            "price": 74.34,
+            "r12m": 1.7697466467958272,
+            "r3m": 0.3533588203167668,
+            "rs": 99,
+            "symbol": "CBRL"
+          },
+          {
+            "from_high": -0.0692,
+            "price": 101.46,
+            "r12m": 3.165024630541872,
+            "r3m": -0.05872529919287517,
+            "rs": 99,
+            "symbol": "SYRE"
+          },
+          {
+            "from_high": -0.0033,
+            "price": 5.99,
+            "r12m": 0.6778711484593838,
+            "r3m": 1.1392857142857147,
+            "rs": 99,
+            "symbol": "BMBL"
+          },
+          {
+            "from_high": -0.0225,
+            "price": 13.06,
+            "r12m": 1.2832167832167833,
+            "r3m": 0.9848024316109423,
+            "rs": 99,
+            "symbol": "SG"
+          },
+          {
+            "from_high": -0.1533,
+            "price": 95.74,
+            "r12m": 2.3914275593340415,
+            "r3m": -0.08697310699980931,
+            "rs": 99,
+            "symbol": "ORKA"
+          },
+          {
+            "from_high": -0.0026,
+            "price": 46.52,
+            "r12m": 0.7242401779095626,
+            "r3m": 0.5148160208401173,
+            "rs": 99,
+            "symbol": "BRZE"
+          },
+          {
+            "from_high": 0.0,
+            "price": 26.96,
+            "r12m": 0.7901726427622842,
+            "r3m": 0.9340028694404592,
+            "rs": 99,
+            "symbol": "SGRY"
+          },
+          {
+            "from_high": -0.0623,
+            "price": 20.76,
+            "r12m": 1.2014846235418877,
+            "r3m": 0.21545667447306815,
+            "rs": 99,
+            "symbol": "PRCH"
+          },
+          {
+            "from_high": -0.0495,
+            "price": 16.89,
+            "r12m": 0.6957831325301205,
+            "r3m": 0.30626450116009285,
+            "rs": 99,
+            "symbol": "AMPL"
+          },
+          {
+            "from_high": 0.0,
+            "price": 230.09,
+            "r12m": 1.718454631379962,
+            "r3m": 0.2784198244249363,
+            "rs": 99,
+            "symbol": "SN"
+          },
+          {
+            "from_high": -0.1076,
+            "price": 101.3,
+            "r12m": 1.8868623539469929,
+            "r3m": 0.16705069124423955,
+            "rs": 99,
+            "symbol": "VSXY"
+          },
+          {
+            "from_high": -0.0855,
+            "price": 21.4,
+            "r12m": 1.3311546840958606,
+            "r3m": 0.4850798056904926,
+            "rs": 99,
+            "symbol": "FIGS"
+          },
+          {
+            "from_high": -0.0312,
+            "price": 37.59,
+            "r12m": 1.4019169329073482,
+            "r3m": 0.3937708565072304,
+            "rs": 99,
+            "symbol": "ACHC"
+          },
+          {
+            "from_high": 0.0,
+            "price": 120.05,
+            "r12m": 1.7477683680476082,
+            "r3m": 0.12998870481927716,
+            "rs": 99,
+            "symbol": "CAKE"
+          },
+          {
+            "from_high": -0.0273,
+            "price": 54.06,
+            "r12m": 0.3013962445835341,
+            "r3m": 0.45010729613733913,
+            "rs": 99,
+            "symbol": "APPN"
+          },
+          {
+            "from_high": -0.0556,
+            "price": 27.71,
+            "r12m": 1.0741017964071857,
+            "r3m": 0.18672376873661656,
+            "rs": 99,
+            "symbol": "MGNI"
+          },
+          {
+            "from_high": -0.057,
+            "price": 233.08,
+            "r12m": 1.6366515837104072,
+            "r3m": 0.26064146249121123,
+            "rs": 98,
+            "symbol": "GKOS"
+          },
+          {
+            "from_high": -0.0267,
+            "price": 68.15,
+            "r12m": 1.399647887323944,
+            "r3m": 0.3692987743620655,
+            "rs": 98,
+            "symbol": "TBBB"
+          },
+          {
+            "from_high": 0.0,
+            "price": 66.12,
+            "r12m": 1.1544477028347995,
+            "r3m": 0.307753164556962,
+            "rs": 98,
+            "symbol": "TGTX"
+          },
+          {
+            "from_high": -0.0888,
+            "price": 61.47,
+            "r12m": null,
+            "r3m": 0.22158187599364076,
+            "rs": 98,
+            "symbol": "ANDG"
+          },
+          {
+            "from_high": -0.0043,
+            "price": 48.69,
+            "r12m": 0.657814096016343,
+            "r3m": 0.33360723089564503,
+            "rs": 98,
+            "symbol": "AZTA"
+          },
+          {
+            "from_high": -0.1137,
+            "price": 23.5,
+            "r12m": 0.21598551474392136,
+            "r3m": 0.6356993736951984,
+            "rs": 98,
+            "symbol": "NTSK"
+          },
+          {
+            "from_high": -0.1139,
+            "price": 333.25,
+            "r12m": 1.0477448691163818,
+            "r3m": 0.1434208268999828,
+            "rs": 98,
+            "symbol": "CRL"
+          },
+          {
+            "from_high": -0.0376,
+            "price": 95.05,
+            "r12m": 1.2958937198067635,
+            "r3m": 0.2112909392124378,
+            "rs": 98,
+            "symbol": "KNSA"
+          },
+          {
+            "from_high": -0.0806,
+            "price": 13.81,
+            "r12m": 0.6264279825697798,
+            "r3m": 0.4310880829015544,
+            "rs": 98,
+            "symbol": "ARHS"
+          },
+          {
+            "from_high": -0.1058,
+            "price": 33.42,
+            "r12m": 1.9192139737991267,
+            "r3m": 0.0672094508301404,
+            "rs": 98,
+            "symbol": "LIND"
+          },
+          {
+            "from_high": -0.1002,
+            "price": 33.96,
+            "r12m": 0.9630057803468208,
+            "r3m": 0.21938958707360867,
+            "rs": 98,
+            "symbol": "ZETA"
+          },
+          {
+            "from_high": -0.02,
+            "price": 65.3,
+            "r12m": 1.1839464882943145,
+            "r3m": 0.30966706778981146,
+            "rs": 98,
+            "symbol": "GCT"
+          },
+          {
+            "from_high": -0.0222,
+            "price": 8.16,
+            "r12m": 1.2157394843962006,
+            "r3m": 0.4175347222222221,
+            "rs": 98,
+            "symbol": "ULCC"
+          },
+          {
+            "from_high": -0.06,
+            "price": 116.33,
+            "r12m": 1.6241822693435597,
+            "r3m": 0.06324833196234358,
+            "rs": 98,
+            "symbol": "VAC"
+          }
+        ],
+        "liquid": 2751,
+        "passing": 327
+      },
+      "searches": 3,
+      "sources": [
+        {
+          "title": "Weekly Market Review: Nov 13, 2026 - The Glass Desk",
+          "url": "https://theglassdesk.substack.com/p/weekly-market-review-nov-13-2026"
+        },
+        {
+          "title": "Weekly Economic Brief - Week of November 16, 2026",
+          "url": "https://theinvestinggroup.substack.com/p/weekly-economic-brief-week-of-november-d6e"
+        },
+        {
+          "title": "Stock Market Today (Nov. 10, 2026): Nasdaq falls after key inflation report derails strong start to week - TheStreet",
+          "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-nov-10-2026"
+        },
+        {
+          "title": "The Week Ahead: CPI and Tech Earnings Test a Fragile Stock Market",
+          "url": "https://www.fxempire.com/forecasts/article/the-week-ahead-cpi-and-tech-earnings-test-a-fragile-stock-market-1643118"
+        },
+        {
+          "title": "Market Calendar 2026: Fed Meetings, Holidays and Key Events",
+          "url": "https://admiralmarkets.com/education/articles/general-trading/market-calendar-2026"
+        },
+        {
+          "title": "Market Quick Take - Metals slide while Fed minutes point to further hikes - 19 November 2026",
+          "url": "https://home.saxo/en-gb/content/articles/macro/market-quick-take---metals-slide-while-fed-minutes-point-to-further-hikes---19-november-2026-19112026"
+        },
+        {
+          "title": "Stocks This Week: CPI After Nasdaq's AI Rout",
+          "url": "https://www.stockcram.com/analysis/week-ahead-2026-11-08"
+        },
+        {
+          "title": "Market Commentary",
+          "url": "https://www.thornhillfinancialservices.net/market-commentary/market-commentary-november-16th-2026/"
+        },
+        {
+          "title": "General Market Analysis",
+          "url": "https://ic.com/blog/general-market-analysis-18-november-2026-ic"
+        },
+        {
+          "title": "Daily Gold Trading Report - Thursday, November 19, 2026",
+          "url": "https://investorideas.com/news/2026/mining/11191-daily-gold-trading-report-thursday-november-19-2026.asp"
+        },
+        {
+          "title": "Appian (APPN) Stock Price, Chart & News",
+          "url": "https://stockanalysis.com/stocks/appn/"
+        },
+        {
+          "title": "Appian Corp (APPN) Shares Fall 3.8% -- GF Value Says Still Overvalued",
+          "url": "https://www.gurufocus.com/news/9206514/appian-corp-appn-shares-fall-38-gf-value-says-still-overvalued"
+        },
+        {
+          "title": "APPN Stock Quote Price and Forecast",
+          "url": "https://www.cnn.com/markets/stocks/APPN"
+        },
+        {
+          "title": "Appian Corporation - APPN Stock Price Quote & News - M1",
+          "url": "https://m1.com/invest/stocks/APPN"
+        },
+        {
+          "title": "Appian Corporation Class A Common Stock (APPN) Stock Price, Quote & News - Massive",
+          "url": "https://massive.com/quote/appn"
+        }
+      ],
+      "stop_fills": [
+        {
+          "fee_real_usd": 1.1164,
+          "filled_usd": 11485.97,
+          "order_id": "1d78180c-0da7-4400-a8ea-71e57efd5c4a",
+          "price": 60.772329,
+          "side": "sell",
+          "status": "stop-loss filled",
+          "symbol": "ANDG",
+          "time": "2026-11-13T17:02:33.04464Z"
+        },
+        {
+          "fee_real_usd": 1.1187,
+          "filled_usd": 11709.2,
+          "order_id": "d9daf4b9-7daf-4a3f-8c35-43f815586b45",
+          "price": 111.51619,
+          "side": "sell",
+          "status": "stop-loss filled",
+          "symbol": "HNGE",
+          "time": "2026-11-19T14:44:33.947894Z"
+        }
+      ],
+      "stop_orders": [
+        {
+          "order_id": "8d22a726-f839-4fd7-a80d-ed2a6f384316",
+          "qty": 200,
+          "status": "pending_new",
+          "stop_price": 51.5,
+          "symbol": "APPN"
+        },
+        {
+          "order_id": "5b038798-7048-4d26-959d-757c33146995",
+          "qty": 79,
+          "status": "pending_new",
+          "stop_price": 115.0,
+          "symbol": "HAE"
+        }
+      ],
+      "stops_proposed": {
+        "APPN": 51.5,
+        "HAE": 115.0
+      },
+      "trend_up": [
+        "SPY"
+      ],
+      "trigger": "daily review",
+      "unpriced": [],
+      "weights": {
+        "APPN": 0.11,
+        "HAE": 0.1
+      },
+      "weights_before": {
+        "APPN": 0.113,
+        "HAE": 0.0977
+      }
     }
   ],
-  "fees_real_usd": 8.397067763245818,
+  "fees_real_usd": 10.632136285100799,
   "halt_reason": null,
   "halted": false,
   "names": {
+    "ACHC": "Acadia Healthcare Company, Inc. Common Stock",
     "AMD": "Advanced Micro Devices, Inc. Common Stock",
     "AMLX": "Amylyx Pharmaceuticals, Inc. Common Stock",
     "AMPL": "Amplitude, Inc. Class A Common Stock",
     "ANDG": "Andersen Group Inc.",
     "ANF": "Abercrombie & Fitch Co.",
     "APPN": "Appian Corporation Class A Common Stock",
+    "ARHS": "Arhaus, Inc. Class A Common Stock",
     "ATEX": "Anterix Inc. Common Stock",
+    "AZTA": "Azenta, Inc.",
     "BMBL": "Bumble Inc. Class A Common Stock",
     "BRZE": "Braze, Inc. Class A Common Stock",
+    "CAKE": "Cheesecake Factory Incorporated (The) Common Stock",
     "CBRL": "Cracker Barrel Old Country Store, Inc Common Stock",
     "CDNA": "CareDx, Inc. Common Stock",
     "CERT": "Certara, Inc. Common Stock",
@@ -2088,14 +3189,17 @@
     "EFA": "iShares MSCI EAFE ETF",
     "ETON": "Eton Pharmaceuticals, Inc. Common Stock",
     "FIGS": "FIGS, Inc.",
+    "GCT": "GigaCloud Technology Inc Class A Ordinary Shares",
     "GKOS": "Glaukos Corporation",
     "HAE": "Haemonetics Corporation",
     "HNGE": "Hinge Health, Inc.",
     "HTFL": "Heartflow, Inc. Common Stock",
     "KNSA": "Kiniksa Pharmaceuticals International, plc Class A Ordinary Shares",
     "KOD": "Kodiak Sciences Inc Common Stock",
+    "LIND": "Lindblad Expeditions Holdings Inc. Common Stock",
     "MGNI": "Magnite, Inc. Common Stock",
     "MRNA": "Moderna, Inc. Common Stock",
+    "NTSK": "Netskope, Inc. Class A Common Stock",
     "ORKA": "Oruka Therapeutics, Inc. Common Stock",
     "PLSE": "Pulse Biosciences, Inc Common Stock (DE)",
     "PRCH": "Porch Group, Inc. Common Stock",
@@ -2105,9 +3209,14 @@
     "SG": "Sweetgreen, Inc.",
     "SGRY": "Surgery Partners, Inc. Common Stock",
     "SLN": "Silence Therapeutics Plc American Depository Share",
+    "SLS": "SELLAS Life Sciences Group, Inc. Common Stock",
+    "SN": "SharkNinja, Inc.",
     "SPY": "State Street SPDR S&P 500 ETF Trust",
     "SYRE": "Spyre Therapeutics, Inc. Common Stock",
     "TBBB": "BBB Foods Inc.",
+    "TGTX": "TG Therapeutics, Inc. Common Stock",
+    "ULCC": "Frontier Group Holdings, Inc. Common Stock",
+    "VAC": "MARRIOTT VACATIONS WORLDWIDE CORPORATION",
     "VIA": "Via Transportation, Inc.",
     "VSXY": "Victorias Secret & Co.",
     "XERS": "Xeris Biopharma Holdings, Inc. Common Stock",
@@ -2115,14 +3224,12 @@
     "ZETA": "Zeta Global Holdings Corp."
   },
   "peak_equity": 99088.82,
-  "risk_free_rate": 0.0412,
+  "risk_free_rate": 0.0415,
   "start_date": "2026-11-13",
   "start_equity": 99088.82,
   "stops": {
-    "ANDG": 61.0,
-    "APPN": 50.9,
-    "HAE": 115.0,
-    "HNGE": 112.0
+    "APPN": 51.5,
+    "HAE": 115.0
   },
   "version": 3
 }

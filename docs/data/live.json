@@ -1,5 +1,5 @@
 {
- "refreshed_at": "2026-11-19T15:08:45Z",
+ "refreshed_at": "2026-11-19T15:08:38Z",
  "market_open": true,
  "next_open": "2026-11-20T09:30:00-05:00",
  "next_close": "2026-11-19T16:00:00-05:00",
@@ -15,7 +15,7 @@
   {
    "symbol": "APPN",
    "name": "Appian Corporation Class A Common Stock",
-   "stop": 50.9,
+   "stop": 51.5,
    "qty": 200.0,
    "avg_entry_price": 54.58,
    "price": 56.0,
@@ -50,10 +50,10 @@
    "qty": 105.0,
    "price": 111.5162,
    "amount_real_usd": 118.17,
-   "fee_real_usd": 1.1182,
+   "fee_real_usd": 1.1187,
    "realized_real_usd": -2.1,
    "realized_pct": -0.017478502202643242,
-   "reason": ""
+   "reason": "The market is in a correction with a hawkish Fed, so I keep about 79% in cash and hold only the two leaders that are acting well, with tight stops. APPN's stop moves up slightly and HAE's stop stays at 115. New buys wait until the indexes reclaim their 50-day averages and breadth improves."
   },
   {
    "time": "2026-11-13T17:02:33.04464Z",
@@ -63,7 +63,7 @@
    "qty": 189.0,
    "price": 60.7723,
    "amount_real_usd": 115.92,
-   "fee_real_usd": 1.1159,
+   "fee_real_usd": 1.1164,
    "realized_real_usd": -2.34,
    "realized_pct": -0.01978274237277622,
    "reason": "The market is in a correction with QQQ below its 50-day average and a Fed hike looming, so I am swapping the index ETFs for about 45% in four leaders with tight bases near highs and holding the rest in cash. Each position is sized around 10-12% so costs stay small, and stops sit about 6-8% below the price, just under recent support. I will add exposure if the indexes recover their 50-day averages "
@@ -167,8 +167,8 @@
   "realized_real_usd": -4.44,
   "winning_sells": 0,
   "closed_sells": 2,
-  "fees_real_usd": 10.6312,
-  "turnover": 1.6311523969209383
+  "fees_real_usd": 10.6322,
+  "turnover": 1.6345731808247896
  },
  "intraday": [
   {
@@ -190,7 +190,7 @@
    "ai_before_costs": 998.12,
    "ai_after_costs": 987.58,
    "spy_after_costs": 1004.3,
-   "fees_cum": 9.513,
+   "fees_cum": 9.5135,
    "api_cum": 1.0276
   },
   {
@@ -198,7 +198,7 @@
    "ai_before_costs": 1005.26,
    "ai_after_costs": 994.72,
    "spy_after_costs": 985.06,
-   "fees_cum": 9.513,
+   "fees_cum": 9.5135,
    "api_cum": 1.0276
   },
   {
@@ -206,7 +206,7 @@
    "ai_before_costs": 993.37,
    "ai_after_costs": 982.83,
    "spy_after_costs": 975.04,
-   "fees_cum": 9.513,
+   "fees_cum": 9.5135,
    "api_cum": 1.0276
   },
   {
@@ -214,56 +214,56 @@
    "ai_before_costs": 996.24,
    "ai_after_costs": 985.7,
    "spy_after_costs": 972.05,
-   "fees_cum": 9.513,
+   "fees_cum": 9.5135,
    "api_cum": 1.0276
   },
   {
    "date": "2026-11-19",
    "ai_before_costs": 996.28,
-   "ai_after_costs": 984.62,
-   "spy_after_costs": 980.63,
-   "fees_cum": 10.6312,
-   "api_cum": 1.0276
+   "ai_after_costs": 983.99,
+   "spy_after_costs": 980.97,
+   "fees_cum": 10.6322,
+   "api_cum": 1.6627
   }
  ],
  "daily_metrics": {
   "ai_after_costs": {
    "days": 5,
-   "total_return": -0.01537999999999995,
+   "total_return": -0.01600999999999997,
    "annual_return": null,
-   "volatility": 0.14024422425487015,
-   "sharpe": -5.7989548338337435,
-   "sortino": -6.540830851789128,
+   "volatility": 0.1397516956945108,
+   "sharpe": -6.052037928554274,
+   "sortino": -6.7793563442133085,
    "max_drawdown": 0.017169999999999908,
    "best_day": 0.007229794042001636,
    "worst_day": -0.012419999999999987,
    "up_days": 0.4,
-   "beta": -0.2947815474877195,
-   "correlation": -0.37380797705927155
+   "beta": -0.30447116011922204,
+   "correlation": -0.3909015473897359
   },
   "ai_before_costs": {
    "days": 5,
    "total_return": -0.0037200000000000566,
    "annual_return": null,
    "volatility": 0.11234043944313178,
-   "sharpe": -1.993063036754982,
-   "sortino": -2.592613061374355,
+   "sharpe": -1.9957334909697517,
+   "sortino": -2.595791160400035,
    "max_drawdown": 0.011827785846447725,
    "best_day": 0.007153448483148361,
    "worst_day": -0.011827785846447725,
    "up_days": 0.6,
-   "beta": -0.09420026635073907,
-   "correlation": -0.14912459166996372
+   "beta": -0.09202317824546896,
+   "correlation": -0.14697363112557843
   },
   "spy_after_costs": {
    "days": 5,
-   "total_return": -0.01937,
+   "total_return": -0.01902999999999999,
    "annual_return": null,
-   "volatility": 0.177841558298841,
-   "sharpe": -5.692589926634361,
-   "sortino": -6.43845514171697,
+   "volatility": 0.17942308255380435,
+   "sharpe": -5.545832377549404,
+   "sortino": -6.327744170840973,
    "max_drawdown": 0.03211191874937769,
-   "best_day": 0.008826706445141719,
+   "best_day": 0.009176482691219734,
    "worst_day": -0.019157622224434956,
    "up_days": 0.4,
    "beta": null,
@@ -303,16 +303,6 @@
    ]
   },
   {
-   "time": "2026-11-13T12:32:49Z",
-   "headline": "Hinge Health Insider Reports Sale of Shares",
-   "summary": "An insider at Hinge Health, Inc. has sold shares of the company's stock, according to a recent regulatory filing.",
-   "source": "fiscal.ai",
-   "url": "https://www.moomoo.com/news/post/1004564338?futusource=nnq_personal_guest",
-   "symbols": [
-    "HNGE"
-   ]
-  },
-  {
    "time": "2026-11-13T12:32:28Z",
    "headline": "Jefferies Initiates Coverage on Haemonetics With Buy Rating",
    "summary": "Jefferies has initiated coverage on Haemonetics Corporation with a Buy rating and a price target of $150.",
@@ -320,26 +310,6 @@
    "url": "https://www.marketscreener.com/news/jefferies-initiates-coverage-on-haemonetics-with-buy-rating-150-price-target-ce785ed9df80f622",
    "symbols": [
     "HAE"
-   ]
-  },
-  {
-   "time": "2026-11-10T22:31:55Z",
-   "headline": "Andersen Group Inc. Announces Five New Acquisition Agreements",
-   "summary": "Andersen Group Inc. has entered into five new acquisition agreements aimed at expanding the technology and strategic advisory capabilities of its Andersen Consulting division.",
-   "source": "fiscal.ai",
-   "url": "https://www.businesswire.com/newsroom/subject/merger-acquisition",
-   "symbols": [
-    "ANDG"
-   ]
-  },
-  {
-   "time": "2026-11-10T19:02:46Z",
-   "headline": "Stifel Maintains Bullish Rating on Hinge Health",
-   "summary": "Analyst David Grossman of Stifel Financial has reaffirmed a bullish rating on Hinge Health (HNGE) and maintained a price target of $135.",
-   "source": "fiscal.ai",
-   "url": "https://www.moomoo.com/ja/news/post/1004150796/stifel-maintains-hinge-health-hngeus-with-buy-rating-maintains-target",
-   "symbols": [
-    "HNGE"
    ]
   },
   {
@@ -403,16 +373,6 @@
    ]
   },
   {
-   "time": "2026-11-03T22:32:08Z",
-   "headline": "Andersen Consulting Enters Collaboration with Bakia Consulting",
-   "summary": "Andersen Consulting has formed a strategic collaboration with Paris-based Bakia Consulting to enhance its business transformation and financial management advisory services.",
-   "source": "fiscal.ai",
-   "url": "https://www.businesswire.com/newsroom",
-   "symbols": [
-    "ANDG"
-   ]
-  },
-  {
    "time": "2026-11-03T19:02:59Z",
    "headline": "TD Cowen Maintains Appian at Hold, Raises Price Target to $50",
    "summary": "TD Cowen has maintained its 'Hold' rating on Appian Corporation while increasing its price target from $30 to $50.",
@@ -420,46 +380,6 @@
    "url": "https://www.tradingview.com/news/tradingview:4f22343fe10d0:0-td-cowen-maintains-appian-at-hold-raises-price-target-to-50-from-30",
    "symbols": [
     "APPN"
-   ]
-  },
-  {
-   "time": "2026-11-03T19:02:42Z",
-   "headline": "Analysts Adjust Price Targets for Hinge Health Following Q3 Earnings",
-   "summary": "Multiple financial institutions, including RBC, Truist, and Morgan Stanley, updated their price targets for Hinge Health following the company's Q3 2026 earnings report.",
-   "source": "fiscal.ai",
-   "url": "https://www.marketscreener.com/news/rbc-raises-price-target-on-hinge-health-to-135-from-110-keeps-outperform-rating-ce785fded98fff22",
-   "symbols": [
-    "HNGE"
-   ]
-  },
-  {
-   "time": "2026-11-03T12:32:19Z",
-   "headline": "Hinge Health Reports Q3 2026 Financial Results and Executive Leadership Changes",
-   "summary": "Hinge Health announced strong Q3 2026 financial results, including a 52% year-over-year revenue increase, and disclosed upcoming changes to its executive leadership team.",
-   "source": "fiscal.ai",
-   "url": "https://www.tradingview.com/news/tradingview:1011f04aff107:0-key-facts-revenue-up-52-guidance-raised-president-to-join-board/",
-   "symbols": [
-    "HNGE"
-   ]
-  },
-  {
-   "time": "2026-11-02T23:02:23Z",
-   "headline": "Hinge Health Reports Q3 2026 Financial Results and Updates Full-Year Guidance",
-   "summary": "Hinge Health, Inc. reported third-quarter 2026 revenue of $235.0 million and adjusted earnings per share of $0.71, both exceeding analyst expectations.",
-   "source": "fiscal.ai",
-   "url": "https://www.marketscreener.com/news/hnge-hinge-health-now-expects-2026-revenue-range-879m-881m-vs-factset-est-of-860-6m-ce785fd9da8ff127",
-   "symbols": [
-    "HNGE"
-   ]
-  },
-  {
-   "time": "2026-11-02T22:32:19Z",
-   "headline": "Andersen Group Inc. Announces Closing of Three Strategic Acquisitions",
-   "summary": "Andersen Group Inc. has finalized the acquisition of Andersen in the Netherlands, Clareo Partners, and Endeavor Management as part of its ongoing global expansion strategy.",
-   "source": "fiscal.ai",
-   "url": "https://natlawreview.com/press-releases/andersen-group-closes-three-strategic-acquisitions-further-accelerating",
-   "symbols": [
-    "ANDG"
    ]
   },
   {
@@ -493,26 +413,6 @@
    ]
   },
   {
-   "time": "2026-10-28T18:02:13Z",
-   "headline": "Harvard Pilgrim Health Care Expands Partnership with Hinge Health",
-   "summary": "Harvard Pilgrim Health Care has expanded its relationship with Hinge Health to provide members with increased access to digital musculoskeletal care and pain management programs.",
-   "source": "fiscal.ai",
-   "url": "https://www.prnewswire.com/news-releases/harvard-pilgrim-adds-well-being-solutions-to-its-suite-of-products-302921860.html",
-   "symbols": [
-    "HNGE"
-   ]
-  },
-  {
-   "time": "2026-10-28T13:02:57Z",
-   "headline": "Andersen Consulting Enters Collaboration Agreement with John Keells IT",
-   "summary": "Andersen Consulting has announced a new collaboration with Sri Lanka-based technology solutions provider John Keells IT to expand its digital and business transformation capabilities.",
-   "source": "fiscal.ai",
-   "url": "https://www.newswire.co.kr/newsRead.php?no=1045711",
-   "symbols": [
-    "ANDG"
-   ]
-  },
-  {
    "time": "2026-10-28T11:32:42Z",
    "headline": "Appian and PSI CRO Form Strategic Partnership to Advance AI-driven Clinical Trial Operations",
    "summary": "Appian and PSI CRO have launched a joint AI-powered process orchestration solution designed to automate clinical trial site identification and selection.",
@@ -520,56 +420,6 @@
    "url": "https://www.prnewswire.com/news-releases/appian-and-psi-cro-form-strategic-partnership-to-advance-ai-driven-clinical-trial-operations-302921701.html",
    "symbols": [
     "APPN"
-   ]
-  },
-  {
-   "time": "2026-10-26T18:02:20Z",
-   "headline": "Stifel Raises Hinge Health Price Target to $130 from $115",
-   "summary": "Stifel analyst David Grossman maintained a 'Buy' rating on Hinge Health, Inc. and increased the price target from $115 to $130.",
-   "source": "fiscal.ai",
-   "url": "https://www.moomoo.com/ja/news/post/1002349490/stifel-maintains-hinge-health-hngeus-with-buy-rating-raises-target",
-   "symbols": [
-    "HNGE"
-   ]
-  },
-  {
-   "time": "2026-10-23T13:32:29Z",
-   "headline": "BofA Securities Adjusts Hinge Health Price Target to $130 From $110",
-   "summary": "BofA Securities has updated its price target for Hinge Health, raising it from $110 to $130.",
-   "source": "fiscal.ai",
-   "url": "https://www.marketscreener.com/news/bofa-securities-adjusts-hinge-health-price-target-to-130-from-110-ce785cdfdb8afe25",
-   "symbols": [
-    "HNGE"
-   ]
-  },
-  {
-   "time": "2026-10-22T21:32:29Z",
-   "headline": "Andersen Consulting Broadens Technology and AI Services Through TechSparq Collaboration",
-   "summary": "Andersen Consulting has formed a collaboration agreement with U.S.-based digital consulting firm TechSparq to enhance its technology and business transformation offerings.",
-   "source": "fiscal.ai",
-   "url": "https://natlawreview.com/press-releases/andersen-consulting-adds-collaborating-firm-techsparq",
-   "symbols": [
-    "ANDG"
-   ]
-  },
-  {
-   "time": "2026-10-22T21:32:29Z",
-   "headline": "Andersen Global Strengthens Legal Capabilities in Argentina Through Collaboration with MHR",
-   "summary": "Andersen Global has entered into a collaboration agreement with the Argentine law firm Mart\u00ednez de Hoz & Rueda (MHR) to enhance its legal service offerings in the region.",
-   "source": "fiscal.ai",
-   "url": "https://www.fidelity.com/news/article/default/202610210930BIZWIRE_USPR_____20261021_BW793760",
-   "symbols": [
-    "ANDG"
-   ]
-  },
-  {
-   "time": "2026-10-21T13:02:30Z",
-   "headline": "Andersen Consulting Expands Capabilities Through Collaboration with Algoruni",
-   "summary": "Andersen Consulting has entered into a collaboration agreement with Uzbekistan-based firm Algoruni to enhance its cybersecurity and business transformation service offerings.",
-   "source": "fiscal.ai",
-   "url": "https://www.newswire.co.kr/newsRead.php?no=1045140",
-   "symbols": [
-    "ANDG"
    ]
   },
   {
@@ -583,16 +433,6 @@
    ]
   },
   {
-   "time": "2026-10-18T13:02:36Z",
-   "headline": "Andersen Global Expands Private Client Tax Capabilities Through Collaboration with KTA Tax",
-   "summary": "Andersen Global has entered into a collaboration agreement with Dublin-based tax practice KTA Tax to enhance its private client tax services in Ireland.",
-   "source": "fiscal.ai",
-   "url": "https://www.newswire.co.kr/newsRead.php?no=1044908",
-   "symbols": [
-    "ANDG"
-   ]
-  },
-  {
    "time": "2026-10-15T22:02:24Z",
    "headline": "Appian to Announce Third Quarter 2026 Financial Results on November 5, 2026",
    "summary": "Appian Corporation has scheduled the release of its financial results for the third quarter ended September 30, 2026, for November 5, 2026.",
@@ -603,26 +443,6 @@
    ]
   },
   {
-   "time": "2026-10-15T21:32:30Z",
-   "headline": "Andersen Group Inc. Closes Four Consulting Acquisitions",
-   "summary": "Andersen Group Inc. announced the closing of four consulting acquisitions\u2014SPR, BD Emerson, Daniels Consulting Group, and Zenger Folkman\u2014to accelerate its global expansion.",
-   "source": "fiscal.ai",
-   "url": "https://www.businesswire.com/newsroom/subject/merger-acquisition",
-   "symbols": [
-    "ANDG"
-   ]
-  },
-  {
-   "time": "2026-10-13T21:33:04Z",
-   "headline": "Andersen Group Inc. Appoints Two Senior Executives to Board of Directors",
-   "summary": "Andersen Group Inc. has appointed longtime senior executives Daniel DePaoli and Peter Coscia to its Board of Directors to strengthen operational expertise.",
-   "source": "fiscal.ai",
-   "url": "https://natlawreview.com/press-releases/andersen-group-appoints-daniel-depaoli-and-peter-coscia-board-directors",
-   "symbols": [
-    "ANDG"
-   ]
-  },
-  {
    "time": "2026-10-13T18:03:24Z",
    "headline": "Barclays Maintains Underweight Rating on Appian Corporation",
    "summary": "Barclays has reaffirmed its Underweight rating on Appian Corporation, reflecting the firm's current stance on the enterprise software company.",
@@ -630,16 +450,6 @@
    "url": "https://www.moomoo.com/news/post/1001060515/what-s-moving-markets-today-wsj",
    "symbols": [
     "APPN"
-   ]
-  },
-  {
-   "time": "2026-10-11T13:02:13Z",
-   "headline": "Andersen Consulting Enters Collaboration Agreement with TalentSmartEQ",
-   "summary": "Andersen Consulting has partnered with TalentSmartEQ to enhance its human capital and leadership development services through emotional intelligence-based training.",
-   "source": "fiscal.ai",
-   "url": "https://www.newswire.co.kr/newsRead.php?no=1044348",
-   "symbols": [
-    "ANDG"
    ]
   },
   {
@@ -670,6 +480,196 @@
    "url": "https://www.morningstar.com/news/dow-jones/202610085085/haemonetics-shares-gain-as-csl-targets-rollout-of-companys-devices-by-end-of-2027",
    "symbols": [
     "HAE"
+   ]
+  },
+  {
+   "time": "2026-10-08T11:33:11Z",
+   "headline": "Appian Releases New Research on AI Errors in the Workplace",
+   "summary": "Appian published new research findings indicating that a majority of Australian workers have encountered AI errors with significant financial, compliance, or reputational consequences.",
+   "source": "fiscal.ai",
+   "url": "https://fnarena.com/pr-newswire/",
+   "symbols": [
+    "APPN"
+   ]
+  },
+  {
+   "time": "2026-09-30T22:02:51Z",
+   "headline": "Haemonetics Sets Date for Publishing Second Quarter Fiscal Year 2027 Results",
+   "summary": "Haemonetics Corporation announced it will release its second quarter fiscal year 2027 financial results on November 5, 2026.",
+   "source": "fiscal.ai",
+   "url": "https://www.morningstar.com/news/pr-newswire/20260930ne60863/haemonetics-sets-date-for-publishing-second-quarter-fiscal-year-2027-results-november-5-2026",
+   "symbols": [
+    "HAE"
+   ]
+  },
+  {
+   "time": "2026-09-30T18:03:07Z",
+   "headline": "Appian Chief People Officer Susan Charnaux Named 2026 Women in Leadership Awards Recipient",
+   "summary": "Appian Corporation announced that its Chief People Officer, Susan Charnaux, has been honored with a 2026 Women in Leadership Award by Virginia Business.",
+   "source": "fiscal.ai",
+   "url": "https://www.prnewswire.com/news-releases/virginia-business-names-appian-chief-people-officer-susan-charnaux-a-2026-women-in-leadership-awards-recipient-302894478.html",
+   "symbols": [
+    "APPN"
+   ]
+  },
+  {
+   "time": "2026-09-28T22:02:34Z",
+   "headline": "Trimble Launches Appian Fleet Assistant with Autonomous Planning",
+   "summary": "Trimble introduced a new autonomous planning feature for its Appian Fleet Assistant, designed to automate route generation for private fleets.",
+   "source": "fiscal.ai",
+   "url": "https://www.prnewswire.com/news-releases/trimble-accelerates-transportation-modernization-with-autonomous-ai-and-agent-ready-platforms-at-2026-insight-conference-302890699.html",
+   "symbols": [
+    "APPN"
+   ]
+  },
+  {
+   "time": "2026-09-18T22:03:07Z",
+   "headline": "Appian Ranked #1 in 2026 Gartner Critical Capabilities for Business Orchestration and Automation Technologies",
+   "summary": "Appian Corporation announced it achieved the #1 ranking for the Deterministic Workflow Automation and Platform Consolidation use cases in the 2026 Gartner Critical Capabilities for Business Orchestration and Automation Technologies (BOAT) report.",
+   "source": "fiscal.ai",
+   "url": "https://www.prnewswire.com/news-releases/2026-gartner-critical-capabilities-for-business-orchestration-and-automation-technologies-report-ranks-appian-1-for-the-deterministic-workflow-automation-use-case-and-platform-consolidation-use-case-302883520.html",
+   "symbols": [
+    "APPN"
+   ]
+  },
+  {
+   "time": "2026-09-17T11:33:08Z",
+   "headline": "Citigroup Upgrades Haemonetics to Buy From Neutral, Adjusts Price Target to $123 From $92",
+   "summary": "Citigroup has upgraded Haemonetics Corporation's stock rating to Buy from Neutral and increased its price target to $123 from $92.",
+   "source": "fiscal.ai",
+   "url": "https://www.marketscreener.com/news/citigroup-upgrades-haemonetics-to-buy-from-neutral-adjusts-price-target-to-123-from-92-ce785bd3da8bf42c",
+   "symbols": [
+    "HAE"
+   ]
+  },
+  {
+   "time": "2026-09-08T22:02:25Z",
+   "headline": "Appian Named a Leader in 2026 LCAP Technology Value Matrix",
+   "summary": "Nucleus Research has identified Appian as a leader in its 2026 Low-Code Application Platform (LCAP) Technology Value Matrix.",
+   "source": "fiscal.ai",
+   "url": "https://www.prnewswire.com/news-releases/nucleus-research-releases-2026-lcap-technology-value-matrix-302872448.html",
+   "symbols": [
+    "APPN"
+   ]
+  },
+  {
+   "time": "2026-09-08T13:33:21Z",
+   "headline": "Appian Announces Partnership with Tria",
+   "summary": "Appian has entered into a partnership with Tria to provide access to the Appian Platform and associated resources for federal health and public safety initiatives.",
+   "source": "fiscal.ai",
+   "url": "https://www.globenewswire.com/news-release/2026/09/08/3357683/0/en/tria-federal-joins-appian-public-sector-partner-program-to-power-federal-missions.html",
+   "symbols": [
+    "APPN"
+   ]
+  },
+  {
+   "time": "2026-09-07T18:02:35Z",
+   "headline": "AIA Australia, Long Service Corporation, New Zealand Police and RMBL Investments Named 2026 Appian APJ Innovation Award Winners",
+   "summary": "Appian announced the winners of its 2026 APJ Innovation Awards, recognizing AIA Australia, Long Service Corporation, New Zealand Police, and RMBL Investments for their achievements.",
+   "source": "fiscal.ai",
+   "url": "https://thetimes.com.au/news/press-releases?rkey=20260906AE40992&filter=24774",
+   "symbols": [
+    "APPN"
+   ]
+  },
+  {
+   "time": "2026-09-02T22:02:34Z",
+   "headline": "Appian Announces 2026 Asia Pacific and Japan Partner Award Winners",
+   "summary": "Appian has recognized Accenture, Deloitte, Roboyo, and Conexxia as winners of its 2026 APJ Partner Awards for their contributions to AI automation and process transformation.",
+   "source": "fiscal.ai",
+   "url": "https://mystarjob.com/articles/prnewswire/?rkey=20260902AE39000&filter=3206",
+   "symbols": [
+    "APPN"
+   ]
+  },
+  {
+   "time": "2026-09-02T18:03:04Z",
+   "headline": "Appian Announces 2026 APJ Partner Award Winners",
+   "summary": "Appian has recognized its top-performing partners in the Asia-Pacific and Japan (APJ) region for their contributions to customer success through process automation and AI.",
+   "source": "fiscal.ai",
+   "url": "https://mystarjob.com/articles/prnewswire/?rkey=20260902AE38993&filter=3206",
+   "symbols": [
+    "APPN"
+   ]
+  },
+  {
+   "time": "2026-08-19T18:03:04Z",
+   "headline": "Barrington Research Raises Haemonetics Price Target to $118 from $95",
+   "summary": "Barrington Research has increased its price target for Haemonetics Corporation to $118.00 from $95.00 while maintaining an 'Outperform' rating.",
+   "source": "fiscal.ai",
+   "url": "https://www.marketscreener.com/news/barrington-raises-price-target-on-haemonetics-to-118-from-95-keeps-outperform-rating-ce7859d2d88ef224",
+   "symbols": [
+    "HAE"
+   ]
+  },
+  {
+   "time": "2026-08-18T11:32:44Z",
+   "headline": "Haemonetics Enters Into New Supply Agreement with CSL Plasma",
+   "summary": "Haemonetics Corporation has signed a non-exclusive supply agreement with CSL Plasma to provide NexSys PCS devices with Persona PLUS technology and related disposables in the United States.",
+   "source": "fiscal.ai",
+   "url": "https://www.streetinsider.com/Corporate+News/Haemonetics+signs+non-exclusive+supply+deal+with+CSL+Plasma/26940151.html",
+   "symbols": [
+    "HAE"
+   ]
+  },
+  {
+   "time": "2026-08-12T13:32:47Z",
+   "headline": "BofA Securities Adjusts Haemonetics Price Target to $100 From $93",
+   "summary": "BofA Securities has updated its price target for Haemonetics Corporation, increasing it to $100.00 from the previous target of $93.00.",
+   "source": "fiscal.ai",
+   "url": "https://www.marketscreener.com/news/bofa-securities-adjusts-haemonetics-price-target-to-100-from-93-ce7859d8da81f725",
+   "symbols": [
+    "HAE"
+   ]
+  },
+  {
+   "time": "2026-08-11T13:33:14Z",
+   "headline": "Appian and Synechron Introduce Open Underwriting Stack",
+   "summary": "Appian and Synechron have partnered to launch the Open Underwriting Stack, an AI-powered solution designed to enhance connected underwriting processes.",
+   "source": "fiscal.ai",
+   "url": "https://www.prnewswire.com/news-releases/appian-and-synechron-introduce-open-underwriting-stack-for-ai-powered-connected-underwriting-302847628.html",
+   "symbols": [
+    "APPN"
+   ]
+  },
+  {
+   "time": "2026-08-07T22:02:27Z",
+   "headline": "Barrington Research Adjusts Haemonetics Price Target to $95 from $89",
+   "summary": "Barrington Research has maintained its 'Outperform' rating on Haemonetics Corporation while increasing its price target for the company's shares to $95.00 from $89.00.",
+   "source": "fiscal.ai",
+   "url": "https://www.marketscreener.com/news/barrington-research-adjusts-haemonetics-pt-to-95-from-89-maintains-outperform-rating-ce7f50d2d189f32c",
+   "symbols": [
+    "HAE"
+   ]
+  },
+  {
+   "time": "2026-08-07T11:33:08Z",
+   "headline": "Morgan Stanley Adjusts Price Target on Appian to $32 From $25",
+   "summary": "Morgan Stanley has updated its price target for Appian Corporation, raising it to $32 from $25 while maintaining an Equalweight rating.",
+   "source": "fiscal.ai",
+   "url": "https://www.marketscreener.com/news/morgan-stanley-adjusts-price-target-on-appian-to-32-from-25-maintains-equalweight-rating-ce7f50d2dc89fe27",
+   "symbols": [
+    "APPN"
+   ]
+  },
+  {
+   "time": "2026-08-06T18:03:20Z",
+   "headline": "Haemonetics Reports Fiscal Q1 2027 Financial Results and Raises Revenue Outlook",
+   "summary": "Haemonetics Corporation reported its first-quarter fiscal 2027 financial results, showing revenue growth and an increased full-year revenue outlook despite a decline in net income.",
+   "source": "fiscal.ai",
+   "url": "https://www.finanzen.ch/nachrichten/aktien/hamonetics-q1-profit-declines-but-revenue-rises;-raises-fy-revenue-outlook-1036418976",
+   "symbols": [
+    "HAE"
+   ]
+  },
+  {
+   "time": "2026-08-06T13:02:31Z",
+   "headline": "Appian Reports Second Quarter 2026 Financial Results",
+   "summary": "Appian Corporation announced its financial results for the second quarter ended June 30, 2026, reporting total revenue of $203.3 million, a 19% increase year-over-year.",
+   "source": "fiscal.ai",
+   "url": "https://www.globenewswire.com/news-release/2026/08/06/3340130/0/en/appian-announces-second-quarter-2026-financial-results.html",
+   "symbols": [
+    "APPN"
    ]
   }
  ]

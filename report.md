@@ -1,6 +1,6 @@
 # AI paper-trading test - results (version 3: stock picking)
 
-Last update: 2026-11-13 - status: running
+Last update: 2026-11-19 - status: running
 
 Simulated money only. No real money is used or at risk.
 
@@ -8,18 +8,18 @@ Results restated as if $1,000 had been invested.
 
 | | AI strategy | Buy and hold SPY |
 |---|---|---|
-| Return before costs | -0.37% | -2.47% |
-| Trading fees (modelled) | $8.40 | $2.00 |
-| Claude API cost (measured) | $1.03 | $0.00 |
+| Return before costs | -0.37% | -1.70% |
+| Trading fees (modelled) | $10.63 | $2.00 |
+| Claude API cost (measured) | $1.66 | $0.00 |
 | Other costs | $0.00 | $0.00 |
-| Gain after all costs | -$13.13 (-1.31%) | -$26.72 (-2.67%) |
-| Worst fall from a peak | -0.37% | -2.47% |
+| Gain after all costs | -$16.01 (-1.60%) | -$19.03 (-1.90%) |
+| Worst fall from a peak | -0.42% | -1.73% |
 
-**Verdict so far: the AI is AHEAD of buy-and-hold by $13.59 after all costs.**
+**Verdict so far: the AI is AHEAD of buy-and-hold by $3.02 after all costs.**
 
-Days since start: 0 - AI decisions made: 1 - API budget used: $1.03 of $60.00.
+Days since start: 6 - AI decisions made: 2 - API budget used: $1.66 of $60.00.
 
-Stop-losses that sold a position between runs: 0.
+Stop-losses that sold a position between runs: 2.
 
 Under 12 months, a result either way can be luck. Dividends are left out on both sides.
 
@@ -27,13 +27,13 @@ Simple rules on the same days, prices and fees (no AI cost):
 
 | Rule | Gain after fees |
 |---|---|
-| Buy and hold QQQ (Nasdaq-100) | -$2.00 (-0.20%) |
-| 60% SPY / 40% IEF | -$3.00 (-0.30%) |
-| Equal weight, 8 ETFs | -$8.99 (-0.90%) |
-| Trend rule (above 200-day average) | -$5.00 (-0.50%) |
+| Buy and hold QQQ (Nasdaq-100) | -$2.98 (-0.30%) |
+| 60% SPY / 40% IEF | -$12.12 (-1.21%) |
+| Equal weight, 8 ETFs | -$26.89 (-2.69%) |
+| Trend rule (above 200-day average) | -$28.63 (-2.86%) |
 
-Last decision (2026-11-13): ANDG 12%, HNGE 12%, APPN 11%, HAE 10%.
+Last decision (2026-11-19): APPN 11%, HAE 10%.
 
-Reason given: The market is in a correction with QQQ below its 50-day average and a Fed hike looming, so I am swapping the index ETFs for about 45% in four leaders with tight bases near highs and holding the rest in cash. Each position is sized around 10-12% so costs stay small, and stops sit about 6-8% below the price, just under recent support. I will add exposure if the indexes recover their 50-day averages and these breakouts follow through.
+Reason given: The market is in a correction with a hawkish Fed, so I keep about 79% in cash and hold only the two leaders that are acting well, with tight stops. APPN's stop moves up slightly and HAE's stop stays at 115. New buys wait until the indexes reclaim their 50-day averages and breadth improves.
 
-Stop-losses in place: ANDG at 61.00, APPN at 50.90, HAE at 115.00, HNGE at 112.00.
+Stop-losses in place: APPN at 51.50, HAE at 115.00.
