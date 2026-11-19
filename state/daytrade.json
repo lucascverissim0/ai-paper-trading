@@ -13,6 +13,7 @@
     "status": "ok",
     "summary": "In a firm market, approve only VVV and UTI, which have fresh earnings and constructive price action, and pass on gap-down reports, stale news, ETFs and structural flows."
    },
+   "bench_close": 718.855,
    "candidates": [
     {
      "ai_reason": "Fresh fiscal Q4 earnings with revenue growth on the day's heaviest relative volume (34.9x), reversing a small gap down.",
@@ -237,6 +238,7 @@
     }
    ],
    "close_orders": [],
+   "closed_at": "2026-11-19T19:55:01Z",
    "date": "2026-11-19",
    "eligible": 1735,
    "entries": [
@@ -251,13 +253,54 @@
      "time": "2026-11-19T14:35:41Z"
     }
    ],
+   "equity_close": 99420.11,
    "equity_open": 100000.0,
    "in_play": 20,
    "leftovers": [],
    "notes": [],
+   "rules_only": {
+    "ret": -0.004538082334159888,
+    "trades": [
+     {
+      "entry": 22.28,
+      "exit": 22.13,
+      "reason": "stop-loss",
+      "ret": -0.006732495511669767,
+      "symbol": "UTI"
+     },
+     {
+      "entry": 246.51,
+      "exit": 245.46,
+      "reason": "stop-loss",
+      "ret": -0.004259462090787314,
+      "symbol": "WSM"
+     },
+     {
+      "entry": 52.7,
+      "exit": 52.36,
+      "reason": "stop-loss",
+      "ret": -0.006451612903225823,
+      "symbol": "VIST"
+     },
+     {
+      "entry": 41.91,
+      "exit": 41.8,
+      "reason": "stop-loss",
+      "ret": -0.002624671916010457,
+      "symbol": "BIP"
+     },
+     {
+      "entry": 41.95,
+      "exit": 41.84,
+      "reason": "stop-loss",
+      "ret": -0.0026221692491060766,
+      "symbol": "BIPC"
+     }
+    ]
+   },
    "scanned_at": "2026-11-19T14:35:27Z",
    "slot_usd": 20000.0,
-   "status": "holding",
+   "status": "closed",
    "traded_first_bar": 1449,
    "universe": 12466
   }

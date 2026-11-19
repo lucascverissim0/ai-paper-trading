@@ -1,5 +1,5 @@
 {
- "refreshed_at": "2026-11-19T19:49:29Z",
+ "refreshed_at": "2026-11-19T19:55:03Z",
  "settings": {
   "real_capital_usd": 1000.0,
   "max_positions": 5,
@@ -163,10 +163,10 @@
    "before": 994.2,
    "after_a": 991.77,
    "after_b": 993.97,
-   "rules_a": null,
-   "rules_b": null,
-   "spy_a": 971.98,
-   "spy_b": 973.48,
+   "rules_a": 983.51,
+   "rules_b": 994.48,
+   "spy_a": 970.69,
+   "spy_b": 972.19,
    "fees_a_cum": 2.3952,
    "fees_b_cum": 0.1976,
    "api_cum": 0.0355
@@ -216,29 +216,29 @@
    "correlation": null
   },
   "rules_a": {
-   "days": 0,
-   "total_return": 0.0,
+   "days": 1,
+   "total_return": -0.016490000000000005,
    "annual_return": null,
    "volatility": null,
    "sharpe": null,
    "sortino": null,
-   "max_drawdown": 0.0,
-   "best_day": null,
-   "worst_day": null,
-   "up_days": null,
+   "max_drawdown": 0.016490000000000005,
+   "best_day": -0.016490000000000005,
+   "worst_day": -0.016490000000000005,
+   "up_days": 0.0,
    "beta": null,
    "correlation": null
   },
   "spy": {
    "days": 1,
-   "total_return": -0.028019999999999934,
+   "total_return": -0.029309999999999947,
    "annual_return": null,
    "volatility": null,
    "sharpe": null,
    "sortino": null,
-   "max_drawdown": 0.028019999999999934,
-   "best_day": -0.028019999999999934,
-   "worst_day": -0.028019999999999934,
+   "max_drawdown": 0.029309999999999947,
+   "best_day": -0.029309999999999947,
+   "worst_day": -0.029309999999999947,
    "up_days": 0.0,
    "beta": null,
    "correlation": null
@@ -499,14 +499,57 @@
   "notes": [],
   "scanned_at": "2026-11-19T14:35:27Z",
   "slot_usd": 20000.0,
-  "status": "holding",
+  "status": "closed",
   "traded_first_bar": 1449,
-  "universe": 12466
+  "universe": 12466,
+  "closed_at": "2026-11-19T19:55:01Z",
+  "equity_close": 99420.11,
+  "bench_close": 718.855,
+  "rules_only": {
+   "trades": [
+    {
+     "symbol": "UTI",
+     "entry": 22.28,
+     "exit": 22.13,
+     "reason": "stop-loss",
+     "ret": -0.006732495511669767
+    },
+    {
+     "symbol": "WSM",
+     "entry": 246.51,
+     "exit": 245.46,
+     "reason": "stop-loss",
+     "ret": -0.004259462090787314
+    },
+    {
+     "symbol": "VIST",
+     "entry": 52.7,
+     "exit": 52.36,
+     "reason": "stop-loss",
+     "ret": -0.006451612903225823
+    },
+    {
+     "symbol": "BIP",
+     "entry": 41.91,
+     "exit": 41.8,
+     "reason": "stop-loss",
+     "ret": -0.002624671916010457
+    },
+    {
+     "symbol": "BIPC",
+     "entry": 41.95,
+     "exit": 41.84,
+     "reason": "stop-loss",
+     "ret": -0.0026221692491060766
+    }
+   ],
+   "ret": -0.004538082334159888
+  }
  },
  "days": [
   {
    "date": "2026-11-19",
-   "status": "holding",
+   "status": "closed",
    "in_play": 20,
    "eligible": 1735,
    "notes": [],
@@ -514,7 +557,7 @@
    "entries": 1,
    "ai_status": "ok",
    "ai_approved": 2,
-   "rules_only_ret": null
+   "rules_only_ret": -0.004538082334159888
   }
  ]
 }
