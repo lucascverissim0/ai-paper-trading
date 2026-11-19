@@ -1,15 +1,15 @@
 {
- "refreshed_at": "2026-11-19T14:56:13Z",
+ "refreshed_at": "2026-11-19T14:56:40Z",
  "market_open": true,
  "next_open": "2026-11-20T09:30:00-05:00",
  "next_close": "2026-11-19T16:00:00-05:00",
  "errors": [],
  "account": {
-  "value_real_usd": 995.82,
-  "today_real_usd": -0.41,
-  "today_pct": -0.0004165481871392096,
-  "cash_weight": 0.7892750895744056,
-  "open_pl_real_usd": 0.56
+  "value_real_usd": 995.56,
+  "today_real_usd": -0.68,
+  "today_pct": -0.0006797272217178296,
+  "cash_weight": 0.7894829515199195,
+  "open_pl_real_usd": 0.3
  },
  "positions": [
   {
@@ -18,13 +18,13 @@
    "stop": 50.9,
    "qty": 200.0,
    "avg_entry_price": 54.58,
-   "price": 55.8099,
-   "weight": 0.1131186790568427,
-   "value_real_usd": 112.65,
-   "pl_real_usd": 2.48,
-   "pl_pct": 0.02253,
-   "today_real_usd": 3.53,
-   "today_pct": 0.03237
+   "price": 55.68,
+   "weight": 0.11288511172493743,
+   "value_real_usd": 112.38,
+   "pl_real_usd": 2.22,
+   "pl_pct": 0.02015,
+   "today_real_usd": 3.27,
+   "today_pct": 0.02997
   },
   {
    "symbol": "HAE",
@@ -33,7 +33,7 @@
    "qty": 79.0,
    "avg_entry_price": 124.32,
    "price": 121.915,
-   "weight": 0.09760618069732997,
+   "weight": 0.09763188607037661,
    "value_real_usd": 97.2,
    "pl_real_usd": -1.92,
    "pl_pct": -0.01935,
@@ -215,9 +215,9 @@
   },
   {
    "date": "2026-11-19",
-   "ai_before_costs": 995.82,
-   "ai_after_costs": 984.16,
-   "spy_after_costs": 980.13,
+   "ai_before_costs": 995.56,
+   "ai_after_costs": 983.9,
+   "spy_after_costs": 980.18,
    "fees_cum": 10.6312,
    "api_cum": 1.0276
   }
@@ -225,41 +225,41 @@
  "daily_metrics": {
   "ai_after_costs": {
    "days": 5,
-   "total_return": -0.015840000000000076,
+   "total_return": -0.016100000000000003,
    "annual_return": null,
-   "volatility": 0.13987027100436641,
-   "sharpe": -5.9826170137929475,
-   "sortino": -6.714766574822154,
+   "volatility": 0.13969322446670676,
+   "sharpe": -6.085365786290019,
+   "sortino": -6.810622166863165,
    "max_drawdown": 0.017169999999999908,
    "best_day": 0.007229794042001636,
    "worst_day": -0.012419999999999987,
    "up_days": 0.4,
-   "beta": -0.31628862594741586,
-   "correlation": -0.3969795939147052
+   "beta": -0.32192659844727567,
+   "correlation": -0.40509047421963473
   },
   "ai_before_costs": {
    "days": 5,
-   "total_return": -0.0041799999999999615,
+   "total_return": -0.0044399999999999995,
    "annual_return": null,
-   "volatility": 0.11219003402408215,
-   "sharpe": -2.2031643040327626,
-   "sortino": -2.858921694318758,
+   "volatility": 0.11214732380396042,
+   "sharpe": -2.3212906594495784,
+   "sortino": -3.007276484718785,
    "max_drawdown": 0.011827785846447725,
    "best_day": 0.007153448483148361,
    "worst_day": -0.011827785846447725,
    "up_days": 0.4,
-   "beta": -0.10905656300321219,
-   "correlation": -0.17065049473238833
+   "beta": -0.11528444354752046,
+   "correlation": -0.18069756713807203
   },
   "spy_after_costs": {
    "days": 5,
-   "total_return": -0.019870000000000054,
+   "total_return": -0.01982000000000006,
    "annual_return": null,
-   "volatility": 0.1755537152742397,
-   "sharpe": -5.9144499109193855,
-   "sortino": -6.60332848906587,
+   "volatility": 0.17578042577850564,
+   "sharpe": -5.8920735448367205,
+   "sortino": -6.586841154331037,
    "max_drawdown": 0.03211191874937769,
-   "best_day": 0.008312329612674363,
+   "best_day": 0.00836376729592092,
    "worst_day": -0.019157622224434956,
    "up_days": 0.4,
    "beta": null,
