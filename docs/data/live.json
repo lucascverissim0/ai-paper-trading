@@ -1,15 +1,15 @@
 {
- "refreshed_at": "2026-11-18T23:00:35Z",
+ "refreshed_at": "2026-11-19T13:23:47Z",
  "market_open": false,
  "next_open": "2026-11-19T09:30:00-05:00",
  "next_close": "2026-11-19T16:00:00-05:00",
  "errors": [],
  "account": {
-  "value_real_usd": 996.3,
-  "today_real_usd": 2.92,
-  "today_pct": 0.002943243883277491,
-  "cash_weight": 0.6702916636953576,
-  "open_pl_real_usd": -1.06
+  "value_real_usd": 997.75,
+  "today_real_usd": 1.51,
+  "today_pct": 0.001519509437521105,
+  "cash_weight": 0.6693143562801677,
+  "open_pl_real_usd": 0.39
  },
  "positions": [
   {
@@ -18,13 +18,13 @@
    "stop": 112.0,
    "qty": 105.0,
    "avg_entry_price": 113.5,
-   "price": 114.7,
-   "weight": 0.12199418325737588,
-   "value_real_usd": 121.54,
-   "pl_real_usd": 1.27,
-   "pl_pct": 0.01057,
-   "today_real_usd": 0.31,
-   "today_pct": 0.00253
+   "price": 114.53,
+   "weight": 0.12163576442352769,
+   "value_real_usd": 121.36,
+   "pl_real_usd": 1.09,
+   "pl_pct": 0.00907,
+   "today_real_usd": 0.0,
+   "today_pct": 0.0
   },
   {
    "symbol": "APPN",
@@ -32,13 +32,13 @@
    "stop": 50.9,
    "qty": 200.0,
    "avg_entry_price": 54.58,
-   "price": 54.0,
-   "weight": 0.10939819646943658,
-   "value_real_usd": 108.99,
-   "pl_real_usd": -1.17,
-   "pl_pct": -0.01063,
-   "today_real_usd": 1.07,
-   "today_pct": 0.00991
+   "price": 54.81,
+   "weight": 0.11087727063491043,
+   "value_real_usd": 110.63,
+   "pl_real_usd": 0.46,
+   "pl_pct": 0.00421,
+   "today_real_usd": 1.51,
+   "today_pct": 0.01387
   },
   {
    "symbol": "HAE",
@@ -47,12 +47,12 @@
    "qty": 79.0,
    "avg_entry_price": 124.32,
    "price": 122.86,
-   "weight": 0.09831595657782993,
+   "weight": 0.09817260866139414,
    "value_real_usd": 97.95,
    "pl_real_usd": -1.16,
    "pl_pct": -0.01174,
-   "today_real_usd": 1.55,
-   "today_pct": 0.01604
+   "today_real_usd": 0.0,
+   "today_pct": 0.0
   }
  ],
  "trades": [
@@ -130,8 +130,8 @@
    "price": 749.1885,
    "amount_real_usd": 499.62,
    "fee_real_usd": 1.4996,
-   "realized_real_usd": -4.97,
-   "realized_pct": -0.009855717661443775,
+   "realized_real_usd": null,
+   "realized_pct": null,
    "reason": "The market is in a correction with QQQ below its 50-day average and a Fed hike looming, so I am swapping the index ETFs for about 45% in four leaders with tight bases near highs and holding the rest in cash. Each position is sized around 10-12% so costs stay small, and stops sit about 6-8% below the price, just under recent support. I will add exposure if the indexes recover their 50-day averages "
   },
   {
@@ -143,8 +143,8 @@
    "price": 672.94,
    "amount_real_usd": 198.33,
    "fee_real_usd": 1.1983,
-   "realized_real_usd": -3.51,
-   "realized_pct": -0.017376321476549217,
+   "realized_real_usd": null,
+   "realized_pct": null,
    "reason": "The market is in a correction with QQQ below its 50-day average and a Fed hike looming, so I am swapping the index ETFs for about 45% in four leaders with tight bases near highs and holding the rest in cash. Each position is sized around 10-12% so costs stay small, and stops sit about 6-8% below the price, just under recent support. I will add exposure if the indexes recover their 50-day averages "
   },
   {
@@ -156,59 +156,20 @@
    "price": 103.7658,
    "amount_real_usd": 251.31,
    "fee_real_usd": 1.2513,
-   "realized_real_usd": -0.99,
-   "realized_pct": -0.0039368774919495975,
-   "reason": "The market is in a correction with QQQ below its 50-day average and a Fed hike looming, so I am swapping the index ETFs for about 45% in four leaders with tight bases near highs and holding the rest in cash. Each position is sized around 10-12% so costs stay small, and stops sit about 6-8% below the price, just under recent support. I will add exposure if the indexes recover their 50-day averages "
-  },
-  {
-   "time": "2026-11-13T14:49:17.438253Z",
-   "date": "2026-11-13",
-   "symbol": "EFA",
-   "side": "buy",
-   "qty": 239.97849,
-   "price": 104.176,
-   "amount_real_usd": 252.3,
-   "fee_real_usd": 1.2523,
-   "realized_real_usd": null,
-   "realized_pct": null,
-   "reason": "The market is in a correction with QQQ below its 50-day average and a Fed hike looming, so I am swapping the index ETFs for about 45% in four leaders with tight bases near highs and holding the rest in cash. Each position is sized around 10-12% so costs stay small, and stops sit about 6-8% below the price, just under recent support. I will add exposure if the indexes recover their 50-day averages "
-  },
-  {
-   "time": "2026-11-13T14:49:07.779234Z",
-   "date": "2026-11-13",
-   "symbol": "QQQ",
-   "side": "buy",
-   "qty": 29.203887,
-   "price": 684.84,
-   "amount_real_usd": 201.84,
-   "fee_real_usd": 1.2018,
-   "realized_real_usd": null,
-   "realized_pct": null,
-   "reason": "The market is in a correction with QQQ below its 50-day average and a Fed hike looming, so I am swapping the index ETFs for about 45% in four leaders with tight bases near highs and holding the rest in cash. Each position is sized around 10-12% so costs stay small, and stops sit about 6-8% below the price, just under recent support. I will add exposure if the indexes recover their 50-day averages "
-  },
-  {
-   "time": "2026-11-13T14:49:06.516055Z",
-   "date": "2026-11-13",
-   "symbol": "SPY",
-   "side": "buy",
-   "qty": 66.081108,
-   "price": 756.6458,
-   "amount_real_usd": 504.6,
-   "fee_real_usd": 1.5046,
    "realized_real_usd": null,
    "realized_pct": null,
    "reason": "The market is in a correction with QQQ below its 50-day average and a Fed hike looming, so I am swapping the index ETFs for about 45% in four leaders with tight bases near highs and holding the rest in cash. Each position is sized around 10-12% so costs stay small, and stops sit about 6-8% below the price, just under recent support. I will add exposure if the indexes recover their 50-day averages "
   }
  ],
  "trade_stats": {
-  "trades": 11,
-  "buys": 7,
+  "trades": 8,
+  "buys": 4,
   "sells": 4,
-  "realized_real_usd": -11.81,
+  "realized_real_usd": -2.34,
   "winning_sells": 0,
-  "closed_sells": 4,
-  "fees_real_usd": 13.4717,
-  "turnover": 2.4717191743251163
+  "closed_sells": 1,
+  "fees_real_usd": 9.513,
+  "turnover": 1.5129836675930481
  },
  "intraday": [
   {
@@ -320,6 +281,92 @@
    "value_real_usd": 996.23
   }
  ],
+ "daily": [
+  {
+   "date": "2026-11-13",
+   "ai_before_costs": 1009.2,
+   "ai_after_costs": 998.65,
+   "spy_after_costs": 1004.3,
+   "fees_cum": 9.513,
+   "api_cum": 1.0276
+  },
+  {
+   "date": "2026-11-14",
+   "ai_before_costs": 998.12,
+   "ai_after_costs": 987.58,
+   "spy_after_costs": 1004.3,
+   "fees_cum": 9.513,
+   "api_cum": 1.0276
+  },
+  {
+   "date": "2026-11-17",
+   "ai_before_costs": 1005.26,
+   "ai_after_costs": 994.72,
+   "spy_after_costs": 975.04,
+   "fees_cum": 9.513,
+   "api_cum": 1.0276
+  },
+  {
+   "date": "2026-11-18",
+   "ai_before_costs": 993.37,
+   "ai_after_costs": 982.83,
+   "spy_after_costs": 972.05,
+   "fees_cum": 9.513,
+   "api_cum": 1.0276
+  },
+  {
+   "date": "2026-11-19",
+   "ai_before_costs": 996.24,
+   "ai_after_costs": 985.7,
+   "spy_after_costs": 972.05,
+   "fees_cum": 9.513,
+   "api_cum": 1.0276
+  }
+ ],
+ "daily_metrics": {
+  "ai_after_costs": {
+   "days": 5,
+   "total_return": -0.01429999999999998,
+   "annual_return": null,
+   "volatility": 0.1346594420167972,
+   "sharpe": -5.634974138571478,
+   "sortino": -6.437982616773127,
+   "max_drawdown": 0.017169999999999908,
+   "best_day": 0.007229794042001636,
+   "worst_day": -0.011953112433649604,
+   "up_days": 0.4,
+   "beta": -0.3595424936323306,
+   "correlation": -0.5690628313880384
+  },
+  "ai_before_costs": {
+   "days": 5,
+   "total_return": -0.0037599999999999856,
+   "annual_return": null,
+   "volatility": 0.15915197326260336,
+   "sharpe": -1.3875696419784818,
+   "sortino": -1.9003260975419698,
+   "max_drawdown": 0.015685691636940224,
+   "best_day": 0.009200000000000097,
+   "worst_day": -0.011827785846447725,
+   "up_days": 0.6,
+   "beta": -0.21146475211077087,
+   "correlation": -0.2831866426753893
+  },
+  "spy_after_costs": {
+   "days": 5,
+   "total_return": -0.02795000000000003,
+   "annual_return": null,
+   "volatility": 0.21313108938264685,
+   "sharpe": -6.791236261492058,
+   "sortino": -6.916756935130446,
+   "max_drawdown": 0.03211191874937769,
+   "best_day": 0.0042999999999999705,
+   "worst_day": -0.029134720700985772,
+   "up_days": 0.2,
+   "beta": null,
+   "correlation": null
+  }
+ },
  "headlines": [
   {
    "time": "2026-11-18T12:32:28Z",
