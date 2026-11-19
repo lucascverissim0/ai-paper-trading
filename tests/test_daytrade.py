@@ -654,6 +654,15 @@ class HandOverTest(unittest.TestCase):
         self.assertIsNone(daytrade.next_wake(state, s, ny("15:10")))
         self.assertIsNone(daytrade.next_wake({"days": [{"date": DAY}]}, s, ny("16:00")))
 
+    def test_handover_waits_until_the_next_run_can_close(self):
+        start = ny("10:25")
+        deadline = start + timedelta(minutes=config.DT_MAX_RUN_MIN)
+        must_end = ny("15:58")
+        at = daytrade.handover_time(must_end, deadline, ny("10:26"))
+        self.assertGreater(at + timedelta(minutes=config.DT_MAX_RUN_MIN), must_end)  # the next run reaches the close
+        self.assertLessEqual(at, deadline - timedelta(minutes=5))                    # and this one is still alive
+        self.assertGreater(at, ny("10:26"))                                          # so no instant hand-over loop
+
     def test_dispatch_only_on_github(self):
         old = os.environ.pop("GITHUB_ACTIONS", None)
         try:

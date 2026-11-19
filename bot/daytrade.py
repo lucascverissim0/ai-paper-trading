@@ -909,6 +909,14 @@ def next_wake(state: dict | None, session: Session | None, now: datetime) -> dat
     return max(now, session.close_at - timedelta(minutes=55))
 
 
+def handover_time(must_end: datetime, deadline: datetime, now: datetime) -> datetime:
+    """When to queue the next run so that it can still be running at `must_end`: as late as this run allows,
+    never so early that the next run would end before `must_end` (runs handing over in a loop)."""
+    latest = deadline - timedelta(minutes=5)
+    earliest = must_end - timedelta(minutes=config.DT_MAX_RUN_MIN) + timedelta(minutes=5)
+    return max(now, min(latest, max(earliest, now)))
+
+
 def dispatch_next_run() -> str:
     """Queue the next day-trading run (it starts when this one ends); GitHub allows this with its own token."""
     if os.environ.get("GITHUB_ACTIONS") != "true" or not os.environ.get("GH_TOKEN"):
@@ -994,15 +1002,22 @@ def main() -> None:
         if wake is None:
             break
         closing = wake >= day_session.close_at - timedelta(minutes=55)
-        if wake > deadline - timedelta(minutes=5) or (closing and day_session.close_at + timedelta(minutes=8) > deadline):
-            if state is not None:
-                publish(state)
-            print(dispatch_next_run())
-            break
+        must_end = day_session.close_at + timedelta(minutes=8) if closing else wake + timedelta(minutes=5)
+        if must_end > deadline:
+            # This run cannot reach that step: wait until a fresh run could, then queue it and stop.
+            wake = handover_time(must_end, deadline, now())
+            hand_over = True
+        else:
+            hand_over = False
         while now() < wake:  # wait, keeping the dashboard fresh
             time.sleep(max(1.0, min((wake - now()).total_seconds(), config.DT_PUBLISH_EVERY_MIN * 60)))
             if state is not None and now() < wake:
                 publish(state)
+        if hand_over:
+            if state is not None:
+                publish(state)
+            print(dispatch_next_run())
+            break
     write_view(build_view(broker, state, now()))
 
 
