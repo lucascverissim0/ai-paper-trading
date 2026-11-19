@@ -1,5 +1,5 @@
 {
- "refreshed_at": "2026-11-19T14:35:37Z",
+ "refreshed_at": "2026-11-19T14:41:46Z",
  "settings": {
   "real_capital_usd": 1000.0,
   "max_positions": 5,
@@ -28,26 +28,45 @@
  "api_cost_usd": 0.0355,
  "market_open": true,
  "account": {
-  "value_real_usd": 1000.0,
-  "today_real_usd": 0.0,
-  "today_pct": 0.0,
+  "value_real_usd": 994.2,
+  "today_real_usd": -5.8,
+  "today_pct": -0.00579889999999994,
   "cash_weight": 1.0
  },
  "positions": [],
  "stats": {
-  "trades": 0,
+  "trades": 1,
   "wins": 0,
-  "win_rate": null,
+  "win_rate": 0.0,
   "avg_win_pct": null,
-  "avg_loss_pct": null,
-  "profit_factor": null,
-  "avg_r": null,
-  "pl_real_usd": 0,
-  "fees_a_usd": 0,
-  "fees_b_usd": 0,
-  "stopped": 0
+  "avg_loss_pct": -0.028925145413870257,
+  "profit_factor": 0.0,
+  "avg_r": -2.9385318181817897,
+  "pl_real_usd": -5.8,
+  "fees_a_usd": 2.3952,
+  "fees_b_usd": 0.1976,
+  "stopped": 1
  },
- "trades": [],
+ "trades": [
+  {
+   "symbol": "UTI",
+   "date": "2026-11-19",
+   "entry_time": "2026-11-19T14:35:59Z",
+   "entry_price": 22.35,
+   "exit_time": "2026-11-19T14:36:30Z",
+   "exit_price": 21.703523,
+   "qty": 897.0,
+   "stop": 22.13,
+   "amount_real_usd": 200.48,
+   "pl_real_usd": -5.8,
+   "pl_pct": -0.028925145413870257,
+   "r": -2.9385318181817897,
+   "fee_a_usd": 2.3952,
+   "fee_b_usd": 0.1976,
+   "reason": "stop-loss",
+   "ai_reason": "Fresh fiscal Q4 earnings with revenue growth on the day's heaviest relative volume (34.9x), reversing a small gap down."
+  }
+ ],
  "intraday": [
   {
    "time": "2026-11-19T14:30:00Z",
@@ -57,57 +76,57 @@
  "curve": [
   {
    "date": "2026-11-19",
-   "before": 1000.0,
-   "after_a": 999.96,
-   "after_b": 999.96,
+   "before": 994.2,
+   "after_a": 991.77,
+   "after_b": 993.97,
    "rules_a": null,
    "rules_b": null,
-   "spy_a": 997.99,
-   "spy_b": 999.49,
-   "fees_a_cum": 0.0,
-   "fees_b_cum": 0.0,
+   "spy_a": 995.84,
+   "spy_b": 997.34,
+   "fees_a_cum": 2.3952,
+   "fees_b_cum": 0.1976,
    "api_cum": 0.0355
   }
  ],
  "metrics": {
   "after_a": {
    "days": 1,
-   "total_return": -3.999999999992898e-05,
+   "total_return": -0.00823000000000007,
    "annual_return": null,
    "volatility": null,
    "sharpe": null,
    "sortino": null,
-   "max_drawdown": 3.999999999992898e-05,
-   "best_day": -3.999999999992898e-05,
-   "worst_day": -3.999999999992898e-05,
+   "max_drawdown": 0.00823000000000007,
+   "best_day": -0.00823000000000007,
+   "worst_day": -0.00823000000000007,
    "up_days": 0.0,
    "beta": null,
    "correlation": null
   },
   "after_b": {
    "days": 1,
-   "total_return": -3.999999999992898e-05,
+   "total_return": -0.00602999999999998,
    "annual_return": null,
    "volatility": null,
    "sharpe": null,
    "sortino": null,
-   "max_drawdown": 3.999999999992898e-05,
-   "best_day": -3.999999999992898e-05,
-   "worst_day": -3.999999999992898e-05,
+   "max_drawdown": 0.00602999999999998,
+   "best_day": -0.00602999999999998,
+   "worst_day": -0.00602999999999998,
    "up_days": 0.0,
    "beta": null,
    "correlation": null
   },
   "before": {
    "days": 1,
-   "total_return": 0.0,
+   "total_return": -0.005799999999999916,
    "annual_return": null,
    "volatility": null,
    "sharpe": null,
    "sortino": null,
-   "max_drawdown": 0.0,
-   "best_day": 0.0,
-   "worst_day": 0.0,
+   "max_drawdown": 0.005799999999999916,
+   "best_day": -0.005799999999999916,
+   "worst_day": -0.005799999999999916,
    "up_days": 0.0,
    "beta": null,
    "correlation": null
@@ -128,14 +147,14 @@
   },
   "spy": {
    "days": 1,
-   "total_return": -0.0020099999999999563,
+   "total_return": -0.0041599999999999415,
    "annual_return": null,
    "volatility": null,
    "sharpe": null,
    "sortino": null,
-   "max_drawdown": 0.0020099999999999563,
-   "best_day": -0.0020099999999999563,
-   "worst_day": -0.0020099999999999563,
+   "max_drawdown": 0.0041599999999999415,
+   "best_day": -0.0041599999999999415,
+   "worst_day": -0.0041599999999999415,
    "up_days": 0.0,
    "beta": null,
    "correlation": null
@@ -143,7 +162,7 @@
  },
  "today": {
   "date": "2026-11-19",
-  "status": "watching",
+  "status": "holding",
   "notes": [],
   "candidates": [
    {
@@ -156,8 +175,8 @@
     "close": 22.08,
     "volume": 14839.0,
     "atr": 1.4688,
-    "state": "waiting",
-    "detail": "",
+    "state": "entered",
+    "detail": "bought 897 at 22.35, stop 22.13",
     "priority": 2,
     "ai_trade": true,
     "ai_score": 6,
@@ -224,8 +243,8 @@
     "close": 35.52,
     "volume": 8558.0,
     "atr": 1.4225,
-    "state": "waiting",
-    "detail": "",
+    "state": "skipped",
+    "detail": "first seen at 35.80, already more than 10% of an ATR above 35.62",
     "priority": 1,
     "ai_trade": true,
     "ai_score": 7,
@@ -368,7 +387,18 @@
     "ai_reason": "A convertible preferred with no news and a flat range."
    }
   ],
-  "entries": [],
+  "entries": [
+   {
+    "symbol": "UTI",
+    "time": "2026-11-19T14:35:41Z",
+    "seen_price": 22.28,
+    "qty": 897,
+    "stop": 22.13,
+    "order_id": "907d4c8b-5d38-4bc7-b227-cdcbf948d773",
+    "status": "filled",
+    "fill_price": 22.35
+   }
+  ],
   "leftovers": [],
   "close_orders": [],
   "scanned_at": "2026-11-19T14:35:27Z",
@@ -392,12 +422,12 @@
  "days": [
   {
    "date": "2026-11-19",
-   "status": "watching",
+   "status": "holding",
    "in_play": 20,
    "eligible": 1735,
    "notes": [],
    "candidates": 13,
-   "entries": 0,
+   "entries": 1,
    "ai_status": "ok",
    "ai_approved": 2,
    "rules_only_ret": null
