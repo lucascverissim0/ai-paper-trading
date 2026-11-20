@@ -303,6 +303,24 @@
    "status": "closed",
    "traded_first_bar": 1449,
    "universe": 12466
+  },
+  {
+   "bench_close": 690.435,
+   "candidates": [],
+   "close_orders": [],
+   "closed_at": "2026-11-20T20:59:55Z",
+   "date": "2026-11-20",
+   "entries": [],
+   "equity_close": 99419.69,
+   "leftovers": [],
+   "notes": [
+    "no scan: the first run of the day started after 12:00"
+   ],
+   "rules_only": {
+    "ret": 0.0,
+    "trades": []
+   },
+   "status": "no scan"
   }
  ],
  "start_date": "2026-11-19",

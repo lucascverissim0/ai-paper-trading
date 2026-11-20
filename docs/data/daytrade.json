@@ -1,5 +1,5 @@
 {
- "refreshed_at": "2026-11-19T22:06:00Z",
+ "refreshed_at": "2026-11-20T20:59:55Z",
  "settings": {
   "real_capital_usd": 1000.0,
   "max_positions": 5,
@@ -26,11 +26,11 @@
  "status": "running",
  "start_date": "2026-11-19",
  "api_cost_usd": 0.0355,
- "market_open": false,
+ "market_open": true,
  "account": {
   "value_real_usd": 994.2,
-  "today_real_usd": -5.8,
-  "today_pct": -0.00579889999999994,
+  "today_real_usd": 0.0,
+  "today_pct": 0.0,
   "cash_weight": 1.0
  },
  "positions": [],
@@ -69,662 +69,248 @@
  ],
  "intraday": [
   {
-   "time": "2026-11-19T14:30:00Z",
-   "value_real_usd": 1000.0
-  },
-  {
-   "time": "2026-11-19T14:45:00Z",
+   "time": "2026-11-20T14:30:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-19T15:00:00Z",
+   "time": "2026-11-20T14:45:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-19T15:15:00Z",
+   "time": "2026-11-20T15:00:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-19T15:30:00Z",
+   "time": "2026-11-20T15:15:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-19T15:45:00Z",
+   "time": "2026-11-20T15:30:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-19T16:00:00Z",
+   "time": "2026-11-20T15:45:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-19T16:15:00Z",
+   "time": "2026-11-20T16:00:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-19T16:30:00Z",
+   "time": "2026-11-20T16:15:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-19T16:45:00Z",
+   "time": "2026-11-20T16:30:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-19T17:00:00Z",
+   "time": "2026-11-20T16:45:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-19T17:15:00Z",
+   "time": "2026-11-20T17:00:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-19T17:30:00Z",
+   "time": "2026-11-20T17:15:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-19T17:45:00Z",
+   "time": "2026-11-20T17:30:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-19T18:00:00Z",
+   "time": "2026-11-20T17:45:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-19T18:15:00Z",
+   "time": "2026-11-20T18:00:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-19T18:30:00Z",
+   "time": "2026-11-20T18:15:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-19T18:45:00Z",
+   "time": "2026-11-20T18:30:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-19T19:00:00Z",
+   "time": "2026-11-20T18:45:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-19T19:15:00Z",
+   "time": "2026-11-20T19:00:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-19T19:30:00Z",
+   "time": "2026-11-20T19:15:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-19T19:45:00Z",
+   "time": "2026-11-20T19:30:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-19T20:00:00Z",
+   "time": "2026-11-20T19:45:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-19T20:15:00Z",
+   "time": "2026-11-20T20:00:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-19T20:30:00Z",
+   "time": "2026-11-20T20:15:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-19T20:45:00Z",
+   "time": "2026-11-20T20:30:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-19T21:00:00Z",
+   "time": "2026-11-20T20:45:00Z",
    "value_real_usd": 994.2
   }
  ],
- "curve": [],
+ "curve": [
+  {
+   "date": "2026-11-19",
+   "before": 994.2,
+   "after_a": 991.77,
+   "after_b": 993.96,
+   "rules_a": 983.51,
+   "rules_b": 994.48,
+   "spy_a": 966.64,
+   "spy_b": 968.14,
+   "fees_a_cum": 2.3952,
+   "fees_b_cum": 0.1976,
+   "api_cum": 0.0355
+  },
+  {
+   "date": "2026-11-20",
+   "before": 994.2,
+   "after_a": 991.77,
+   "after_b": 993.96,
+   "rules_a": 983.51,
+   "rules_b": 994.48,
+   "spy_a": 932.25,
+   "spy_b": 933.75,
+   "fees_a_cum": 2.3952,
+   "fees_b_cum": 0.1976,
+   "api_cum": 0.0355
+  }
+ ],
  "metrics": {
   "after_a": {
-   "days": 0,
-   "total_return": 0.0,
+   "days": 2,
+   "total_return": -0.00823000000000007,
    "annual_return": null,
-   "volatility": null,
+   "volatility": 0.09238152087944941,
    "sharpe": null,
    "sortino": null,
-   "max_drawdown": 0.0,
-   "best_day": null,
-   "worst_day": null,
-   "up_days": null,
+   "max_drawdown": 0.00823000000000007,
+   "best_day": 0.0,
+   "worst_day": -0.00823000000000007,
+   "up_days": 0.0,
    "beta": null,
    "correlation": null
   },
   "after_b": {
-   "days": 0,
-   "total_return": 0.0,
+   "days": 2,
+   "total_return": -0.006039999999999934,
    "annual_return": null,
-   "volatility": null,
+   "volatility": 0.0677988318483431,
    "sharpe": null,
    "sortino": null,
-   "max_drawdown": 0.0,
-   "best_day": null,
-   "worst_day": null,
-   "up_days": null,
+   "max_drawdown": 0.006039999999999934,
+   "best_day": 0.0,
+   "worst_day": -0.006039999999999934,
+   "up_days": 0.0,
    "beta": null,
    "correlation": null
   },
   "before": {
-   "days": 0,
-   "total_return": 0.0,
+   "days": 2,
+   "total_return": -0.005799999999999916,
    "annual_return": null,
-   "volatility": null,
+   "volatility": 0.06510483852986564,
    "sharpe": null,
    "sortino": null,
-   "max_drawdown": 0.0,
-   "best_day": null,
-   "worst_day": null,
-   "up_days": null,
+   "max_drawdown": 0.005799999999999916,
+   "best_day": 0.0,
+   "worst_day": -0.005799999999999916,
+   "up_days": 0.0,
    "beta": null,
    "correlation": null
   },
   "rules_a": {
-   "days": 0,
-   "total_return": 0.0,
+   "days": 2,
+   "total_return": -0.016490000000000005,
    "annual_return": null,
-   "volatility": null,
+   "volatility": 0.18509979092370693,
    "sharpe": null,
    "sortino": null,
-   "max_drawdown": 0.0,
-   "best_day": null,
-   "worst_day": null,
-   "up_days": null,
+   "max_drawdown": 0.016490000000000005,
+   "best_day": 0.0,
+   "worst_day": -0.016490000000000005,
+   "up_days": 0.0,
    "beta": null,
    "correlation": null
   },
   "spy": {
-   "days": 0,
-   "total_return": 0.0,
+   "days": 2,
+   "total_return": -0.06774999999999998,
    "annual_return": null,
-   "volatility": null,
+   "volatility": 0.024884006561535697,
    "sharpe": null,
    "sortino": null,
-   "max_drawdown": 0.0,
-   "best_day": null,
-   "worst_day": null,
-   "up_days": null,
+   "max_drawdown": 0.06774999999999998,
+   "best_day": -0.033360000000000056,
+   "worst_day": -0.03557684349913104,
+   "up_days": 0.0,
    "beta": null,
    "correlation": null
   }
  },
  "today": {
-  "ai": {
-   "approved": 2,
-   "at": "2026-11-19T14:35:37Z",
-   "cost_usd": 0.035516,
-   "detail": "",
-   "model": "claude-opus-5-5",
-   "rated": 13,
-   "status": "ok",
-   "summary": "In a firm market, approve only VVV and UTI, which have fresh earnings and constructive price action, and pass on gap-down reports, stale news, ETFs and structural flows."
-  },
-  "bench_close": 718.855,
-  "candidates": [
-   {
-    "ai_reason": "Fresh fiscal Q4 earnings with revenue growth on the day's heaviest relative volume (34.9x), reversing a small gap down.",
-    "ai_score": 6,
-    "ai_trade": true,
-    "atr": 1.4688,
-    "close": 22.08,
-    "detail": "bought 897 at 22.35, stop 22.13",
-    "high": 22.27,
-    "low": 21.13,
-    "open": 21.78,
-    "priority": 2,
-    "rank": 1,
-    "rv": 34.886,
-    "state": "entered",
-    "symbol": "UTI",
-    "volume": 14839.0
-   },
-   {
-    "ai_reason": "Fiscal Q4 results came with a 2.5% gap down and only a weak bounce, so the reaction is not clearly positive.",
-    "ai_score": 4,
-    "ai_trade": false,
-    "atr": 0.8528,
-    "close": 32.29,
-    "detail": "Claude: Fiscal Q4 results came with a 2.5% gap down and only a weak bounce, so the reaction is not clearly positive.",
-    "high": 32.39,
-    "low": 30.975,
-    "open": 32.13,
-    "priority": 0,
-    "rank": 2,
-    "rv": 29.612,
-    "state": "ai pass",
-    "symbol": "WMG",
-    "volume": 16257.0
-   },
-   {
-    "ai_reason": "No news, and it gapped down.",
-    "ai_score": 2,
-    "ai_trade": false,
-    "atr": 2.3186,
-    "close": 70.655,
-    "detail": "Claude: No news, and it gapped down.",
-    "high": 70.655,
-    "low": 70.02,
-    "open": 70.33,
-    "priority": 0,
-    "rank": 3,
-    "rv": 27.56,
-    "state": "ai pass",
-    "symbol": "SCI",
-    "volume": 36013.0
-   },
-   {
-    "ai_reason": "Q3 results show revenue and EPS growth, but the stock gapped down 6.4%, which signals the market found them disappointing.",
-    "ai_score": 4,
-    "ai_trade": false,
-    "atr": 10.4961,
-    "close": 245.09,
-    "detail": "Claude: Q3 results show revenue and EPS growth, but the stock gapped down 6.4%, which signals the market found them disappointing.",
-    "high": 246.35,
-    "low": 243.44,
-    "open": 243.44,
-    "priority": 0,
-    "rank": 6,
-    "rv": 18.156,
-    "state": "ai pass",
-    "symbol": "WSM",
-    "volume": 3399.0
-   },
-   {
-    "ai_reason": "Fresh fiscal Q4 results with 20th straight year of same-store sales growth, gap up +2.3% and strong +4.0% first 5 minutes on 15x volume in a rising market.",
-    "ai_score": 7,
-    "ai_trade": true,
-    "atr": 1.4225,
-    "close": 35.52,
-    "detail": "first seen at 35.80, already more than 10% of an ATR above 35.62",
-    "high": 35.62,
-    "low": 34.14,
-    "open": 34.14,
-    "priority": 1,
-    "rank": 8,
-    "rv": 15.054,
-    "state": "skipped",
-    "symbol": "VVV",
-    "volume": 8558.0
-   },
-   {
-    "ai_reason": "Only an old price-target raise, and the first 5 minutes were flat.",
-    "ai_score": 2,
-    "ai_trade": false,
-    "atr": 2.8996,
-    "close": 52.69,
-    "detail": "Claude: Only an old price-target raise, and the first 5 minutes were flat.",
-    "high": 52.69,
-    "low": 52.585,
-    "open": 52.65,
-    "priority": 0,
-    "rank": 9,
-    "rv": 13.289,
-    "state": "ai pass",
-    "symbol": "VIST",
-    "volume": 12403.0
-   },
-   {
-    "ai_reason": "A gold ETF with no news and no price movement.",
-    "ai_score": 1,
-    "ai_trade": false,
-    "atr": 0.8452,
-    "close": 36.58,
-    "detail": "Claude: A gold ETF with no news and no price movement.",
-    "high": 36.59,
-    "low": 36.56,
-    "open": 36.56,
-    "priority": 0,
-    "rank": 11,
-    "rv": 13.03,
-    "state": "ai pass",
-    "symbol": "AAAU",
-    "volume": 15275.0
-   },
-   {
-    "ai_reason": "The corporate simplification is a structural event rather than a growth catalyst, so the volume is likely technical.",
-    "ai_score": 2,
-    "ai_trade": false,
-    "atr": 1.1175,
-    "close": 41.82,
-    "detail": "Claude: The corporate simplification is a structural event rather than a growth catalyst, so the volume is likely technical.",
-    "high": 41.9,
-    "low": 41.49,
-    "open": 41.49,
-    "priority": 0,
-    "rank": 12,
-    "rv": 12.367,
-    "state": "ai pass",
-    "symbol": "BIP",
-    "volume": 7393.0
-   },
-   {
-    "ai_reason": "An ETF with no company-specific catalyst.",
-    "ai_score": 2,
-    "ai_trade": false,
-    "atr": 1.4539,
-    "close": 35.19,
-    "detail": "Claude: An ETF with no company-specific catalyst.",
-    "high": 35.19,
-    "low": 34.86,
-    "open": 34.86,
-    "priority": 0,
-    "rank": 16,
-    "rv": 9.363,
-    "state": "ai pass",
-    "symbol": "IVES",
-    "volume": 850.0
-   },
-   {
-    "ai_reason": "Strong first 5 minutes but only an old webinar headline, so there is no catalyst.",
-    "ai_score": 3,
-    "ai_trade": false,
-    "atr": 7.4523,
-    "close": 198.49,
-    "detail": "Claude: Strong first 5 minutes but only an old webinar headline, so there is no catalyst.",
-    "high": 199.195,
-    "low": 194.76,
-    "open": 194.96,
-    "priority": 0,
-    "rank": 17,
-    "rv": 8.898,
-    "state": "ai pass",
-    "symbol": "ICLR",
-    "volume": 5439.0
-   },
-   {
-    "ai_reason": "Volume likely comes from the share conversion in the corporate simplification, not from new demand.",
-    "ai_score": 2,
-    "ai_trade": false,
-    "atr": 1.1184,
-    "close": 41.85,
-    "detail": "Claude: Volume likely comes from the share conversion in the corporate simplification, not from new demand.",
-    "high": 41.9,
-    "low": 41.58,
-    "open": 41.78,
-    "priority": 0,
-    "rank": 18,
-    "rv": 7.932,
-    "state": "ai pass",
-    "symbol": "BIPC",
-    "volume": 10282.0
-   },
-   {
-    "ai_reason": "The raised outlook is a day old and the stock gapped down 2.1% with a flat open.",
-    "ai_score": 3,
-    "ai_trade": false,
-    "atr": 2.1129,
-    "close": 37.24,
-    "detail": "Claude: The raised outlook is a day old and the stock gapped down 2.1% with a flat open.",
-    "high": 37.5,
-    "low": 37.14,
-    "open": 37.22,
-    "priority": 0,
-    "rank": 19,
-    "rv": 7.737,
-    "state": "ai pass",
-    "symbol": "GLBE",
-    "volume": 27509.0
-   },
-   {
-    "ai_reason": "A convertible preferred with no news and a flat range.",
-    "ai_score": 1,
-    "ai_trade": false,
-    "atr": 1.039,
-    "close": 42.64,
-    "detail": "Claude: A convertible preferred with no news and a flat range.",
-    "high": 42.64,
-    "low": 42.6,
-    "open": 42.6,
-    "priority": 0,
-    "rank": 20,
-    "rv": 7.714,
-    "state": "ai pass",
-    "symbol": "GOOGN",
-    "volume": 405.0
-   }
+  "date": "2026-11-20",
+  "status": "no scan",
+  "notes": [
+   "no scan: the first run of the day started after 12:00"
   ],
-  "close_orders": [],
-  "closed_at": "2026-11-19T19:55:01Z",
-  "date": "2026-11-19",
-  "eligible": 1735,
-  "entries": [
-   {
-    "fill_price": 22.35,
-    "order_id": "907d4c8b-5d38-4bc7-b227-cdcbf948d773",
-    "qty": 897,
-    "seen_price": 22.28,
-    "status": "filled",
-    "stop": 22.13,
-    "symbol": "UTI",
-    "time": "2026-11-19T14:35:41Z"
-   }
-  ],
-  "equity_close": 99420.11,
-  "equity_open": 100000.0,
-  "in_play": 20,
+  "candidates": [],
+  "entries": [],
   "leftovers": [],
-  "notes": [],
+  "close_orders": [],
+  "closed_at": "2026-11-20T20:59:55Z",
+  "equity_close": 99419.69,
+  "bench_close": 690.435,
   "rules_only": {
-   "ret": -0.004538082334159888,
-   "trades": [
-    {
-     "entry": 22.28,
-     "exit": 22.13,
-     "reason": "stop-loss",
-     "ret": -0.006732495511669767,
-     "symbol": "UTI"
-    },
-    {
-     "entry": 246.51,
-     "exit": 245.46,
-     "reason": "stop-loss",
-     "ret": -0.004259462090787314,
-     "symbol": "WSM"
-    },
-    {
-     "entry": 52.7,
-     "exit": 52.36,
-     "reason": "stop-loss",
-     "ret": -0.006451612903225823,
-     "symbol": "VIST"
-    },
-    {
-     "entry": 41.91,
-     "exit": 41.8,
-     "reason": "stop-loss",
-     "ret": -0.002624671916010457,
-     "symbol": "BIP"
-    },
-    {
-     "entry": 41.95,
-     "exit": 41.84,
-     "reason": "stop-loss",
-     "ret": -0.0026221692491060766,
-     "symbol": "BIPC"
-    }
-   ]
-  },
-  "scanned_at": "2026-11-19T14:35:27Z",
-  "slot_usd": 20000.0,
-  "status": "closed",
-  "traded_first_bar": 1449,
-  "universe": 12466
- },
- "headlines": [
-  {
-   "time": "2026-11-19T14:32:13Z",
-   "headline": "Warner Music Group Reports Fiscal Q4 2026 Financial Results",
-   "summary": "Warner Music Group announced its fiscal fourth-quarter 2026 financial results, reporting revenue of $2.00 billion and adjusted earnings per share of $0.55.",
-   "source": "fiscal.ai",
-   "url": "https://www.marketscreener.com/news/earnings-flash-wmg-warner-music-group-corp-posts-q4-adjusted-eps-0-55-per-share-ce785ed2db89f526",
-   "symbols": [
-    "WMG"
-   ]
-  },
-  {
-   "time": "2026-11-19T14:31:38Z",
-   "headline": "Williams-Sonoma, Inc. Announces Third Quarter 2026 Financial Results",
-   "summary": "Williams-Sonoma, Inc. reported its financial results for the third quarter ended November 1, 2026, highlighting a 5.8% increase in total revenue and an 11.7% growth in earnings per share.",
-   "source": "fiscal.ai",
-   "url": "https://www.businesswire.com/newsroom/subject/earnings",
-   "symbols": [
-    "WSM"
-   ]
-  },
-  {
-   "time": "2026-11-19T12:33:34Z",
-   "headline": "Brookfield Infrastructure Completes Corporate Simplification",
-   "summary": "Brookfield Infrastructure has finalized its corporate simplification, merging Brookfield Infrastructure Partners L.P. and Brookfield Infrastructure Corporation into a single entity, Brookfield Infrastructure Partners Inc. (BIP Inc.).",
-   "source": "fiscal.ai",
-   "url": "https://www.morningstar.com/news/globe-newswire/9881010/brookfield-infrastructure-announces-completion-of-corporate-simplification",
-   "symbols": [
-    "BIPC"
-   ]
-  },
-  {
-   "time": "2026-11-19T12:33:16Z",
-   "headline": "Valvoline Inc. Reports Fourth Quarter and Fiscal Year 2026 Results",
-   "summary": "Valvoline Inc. reported its financial results for the fourth quarter ended September 30, 2026, highlighting its 20th consecutive year of system-wide same-store sales growth.",
-   "source": "fiscal.ai",
-   "url": "https://www.businesswire.com/newsroom/industry/energy/oil-gas",
-   "symbols": [
-    "VVV"
-   ]
-  },
-  {
-   "time": "2026-11-19T12:32:09Z",
-   "headline": "Brookfield Infrastructure Completes Corporate Simplification and Creates BIP Inc.",
-   "summary": "Brookfield Infrastructure has finalized its corporate simplification, merging Brookfield Infrastructure Partners L.P. and Brookfield Infrastructure Corporation into a single entity, BIP Inc.",
-   "source": "fiscal.ai",
-   "url": "https://www.morningstar.com/news/globe-newswire/9881010/brookfield-infrastructure-announces-completion-of-corporate-simplification",
-   "symbols": [
-    "BIP"
-   ]
-  },
-  {
-   "time": "2026-11-18T22:31:41Z",
-   "headline": "Universal Technical Institute, Inc. Reports Fiscal 2026 Fourth Quarter and Full Year Financial Results",
-   "summary": "Universal Technical Institute, Inc. announced its financial results for the fiscal 2026 fourth quarter and full year ended September 30, 2026, highlighting revenue growth and strategic investments.",
-   "source": "fiscal.ai",
-   "url": "https://www.prnewswire.com/news-releases/universal-technical-institute-reports-fiscal-year-2026-fourth-quarter-and-year-end-results-302944128.html",
-   "symbols": [
-    "UTI"
-   ]
-  },
-  {
-   "time": "2026-11-18T19:02:02Z",
-   "headline": "Warner Music Group CEO Robert Kyncl to Deliver Keynote at CES 2027",
-   "summary": "Warner Music Group CEO Robert Kyncl has been announced as a keynote speaker for CES 2027, marking the first time a music industry leader will headline the event.",
-   "source": "fiscal.ai",
-   "url": "https://www.prnewswire.com/news-releases/warner-music-group-ceo-robert-kyncl-to-cover-the-future-of-music-at-ces-2027-302943990.html",
-   "symbols": [
-    "WMG"
-   ]
-  },
-  {
-   "time": "2026-11-18T19:02:02Z",
-   "headline": "Williams-Sonoma Receives Failing Grade in 2026 Retailer Report Card",
-   "summary": "Toxic-Free Future's 2026 Retailer Report Card assigned Williams-Sonoma a failing grade regarding its policies on toxic chemicals and plastics.",
-   "source": "fiscal.ai",
-   "url": "https://www.einpresswire.com/article/957486071/nearly-half-of-major-retailers-evaluated-are-backsliding-on-efforts-to-protect-health-from-toxic-chemicals-plastics",
-   "symbols": [
-    "WSM"
-   ]
-  },
-  {
-   "time": "2026-11-18T19:02:02Z",
-   "headline": "Williams-Sonoma Recognized as High Scorer in 2026 Wood Furniture Scorecard",
-   "summary": "Williams-Sonoma, Inc. was named a 'High Scorer' in the 2026 Wood Furniture Scorecard for its responsible wood sourcing practices.",
-   "source": "fiscal.ai",
-   "url": "https://www.finanznachrichten.de/nachrichten-2026-11/70167994-cascale-nwf-release-2026-wood-furniture-scorecard-200.htm",
-   "symbols": [
-    "WSM"
-   ]
-  },
-  {
-   "time": "2026-11-18T15:32:20Z",
-   "headline": "UBS Adjusts Price Target on Vista Energy to $100 From $80, Maintains Buy Rating",
-   "summary": "UBS has increased its price target for Vista Energy, S.A.B. de C.V. to $100 from $80 while maintaining a Buy rating on the stock.",
-   "source": "fiscal.ai",
-   "url": "https://www.marketscreener.com/news/ubs-adjusts-price-target-on-vista-energy-to-100-from-80-maintains-buy-rating-ce785eddda8af122",
-   "symbols": [
-    "VIST"
-   ]
-  },
-  {
-   "time": "2026-11-18T12:32:05Z",
-   "headline": "Williams-Sonoma Insider Sells Shares Worth Over $8.8 Million",
-   "summary": "A Williams-Sonoma, Inc. insider has sold shares of the company's stock valued at approximately $8.89 million, according to a recent SEC filing.",
-   "source": "fiscal.ai",
-   "url": "https://www.marketscreener.com/news/williams-sonoma-insider-sold-shares-worth-8-891-042-according-to-a-recent-sec-filing-ce785edcd08ef124",
-   "symbols": [
-    "WSM"
-   ]
-  },
-  {
-   "time": "2026-11-18T12:01:50Z",
-   "headline": "Global-e Reports Third Quarter 2026 Financial Results and Raises Full-Year Outlook",
-   "summary": "Global-e Online Ltd. reported strong financial growth for the third quarter of 2026, with a 35% year-over-year increase in Gross Merchandise Value (GMV) and a 42% increase in revenue, leading the company to raise its full-year 2026 guidance.",
-   "source": "fiscal.ai",
-   "url": "https://www.globenewswire.com/news-release/2026/11/18/3405466/0/en/global-e-continues-gmv-revenue-and-profit-growth-in-the-third-quarter-of-2026-raises-outlook-for-the-year.html",
-   "symbols": [
-    "GLBE"
-   ]
-  },
-  {
-   "time": "2026-11-17T23:02:02Z",
-   "headline": "Roth MKM Maintains Buy Rating and Adjusts Price Target for Valvoline",
-   "summary": "Analyst Scott Stember of Roth MKM has maintained a \"Buy\" rating on Valvoline Inc. while lowering the stock's price target from $46 to $42.",
-   "source": "fiscal.ai",
-   "url": "https://www.moomoo.com/hans/news/post/1004899656/roth-mkm-maintains-valvoline-vvvus-with-buy-rating-cuts-target",
-   "symbols": [
-    "VVV"
-   ]
-  },
-  {
-   "time": "2026-11-17T23:01:55Z",
-   "headline": "Boyz II Men Sign with Warner Records Nashville for Upcoming Country Album",
-   "summary": "Legendary R&B group Boyz II Men has signed with Warner Records Nashville to release their first album in over a decade, which will be a country music project.",
-   "source": "fiscal.ai",
-   "url": "https://tntribune.com/boyz-ii-men-to-release-a-country-album/",
-   "symbols": [
-    "WMG"
-   ]
-  },
-  {
-   "time": "2026-11-17T23:01:27Z",
-   "headline": "Court Dismisses Williams-Sonoma False Advertising Lawsuit Against Quince",
-   "summary": "A federal judge has granted Quince's motion to dismiss the false advertising lawsuit filed by Williams-Sonoma, Inc.",
-   "source": "fiscal.ai",
-   "url": "https://stockanalysis.com/private/quince/",
-   "symbols": [
-    "WSM"
-   ]
-  },
-  {
-   "time": "2026-11-17T18:01:27Z",
-   "headline": "ICON plc Announces Upcoming Webinar on Immunotherapy Development",
-   "summary": "ICON plc has scheduled a live webinar titled 'De-Risking Immunotherapy Development: 5 Key Early Decisions' for December 7, 2026.",
-   "source": "fiscal.ai",
-   "url": "https://www.prnewswire.com/news-releases/de-risking-immunotherapy-development-5-key-early-decisions-upcoming-webinar-hosted-by-xtalks-302941536.html",
-   "symbols": [
-    "ICLR"
-   ]
-  },
-  {
-   "time": "2026-11-17T00:01:49Z",
-   "headline": "Thiel Macro LLC Increases Stake in Vista Energy",
-   "summary": "Thiel Macro LLC has reported an increase in its shareholding position in Vista Energy, S.A.B. de C.V.",
-   "source": "fiscal.ai",
-   "url": "https://www.moomoo.com/news/flash/1004789431/thiel-macro-llc-raises-share-stake-in-vista-energy-sa",
-   "symbols": [
-    "VIST"
-   ]
+   "trades": [],
+   "ret": 0.0
   }
- ],
+ },
  "days": [
+  {
+   "date": "2026-11-20",
+   "status": "no scan",
+   "in_play": null,
+   "eligible": null,
+   "notes": [
+    "no scan: the first run of the day started after 12:00"
+   ],
+   "candidates": 0,
+   "entries": 0,
+   "ai_status": null,
+   "ai_approved": null,
+   "ai_rated": null,
+   "ai_summary": "",
+   "ai_detail": "",
+   "ai_cost_usd": null,
+   "rules_only_ret": 0.0,
+   "picks": []
+  },
   {
    "date": "2026-11-19",
    "status": "closed",
