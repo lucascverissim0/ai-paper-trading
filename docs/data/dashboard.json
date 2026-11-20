@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-20 21:59 UTC",
+ "updated_at": "2026-11-20 22:45 UTC",
  "status": "running",
  "halt_reason": null,
  "start_date": "2026-11-13",
@@ -31,8 +31,8 @@
   "shadows": {
    "s_qqq": -2.98,
    "s_6040": -12.12,
-   "s_equal": -26.89,
-   "s_trend": -28.63
+   "s_equal": -26.7,
+   "s_trend": -28.47
   },
   "stop_fills": 2
  },
@@ -116,28 +116,28 @@
   },
   "s_equal": {
    "days": 2,
-   "total_return": -0.02688999999999997,
+   "total_return": -0.026700000000000057,
    "annual_return": null,
-   "volatility": 0.10183722194625743,
+   "volatility": 0.09968512992855877,
    "sharpe": null,
    "sortino": null,
-   "max_drawdown": 0.02688999999999997,
+   "max_drawdown": 0.026700000000000057,
    "best_day": -0.008990000000000054,
-   "worst_day": -0.018062380803422706,
+   "worst_day": -0.01787065720830272,
    "up_days": 0.0,
    "beta": null,
    "correlation": null
   },
   "s_trend": {
    "days": 2,
-   "total_return": -0.028630000000000044,
+   "total_return": -0.028469999999999995,
    "annual_return": null,
-   "volatility": 0.21045412628221422,
+   "volatility": 0.20864910563331898,
    "sharpe": null,
    "sortino": null,
-   "max_drawdown": 0.028630000000000044,
+   "max_drawdown": 0.028469999999999995,
    "best_day": -0.0050000000000000044,
-   "worst_day": -0.023748743718592924,
+   "worst_day": -0.02358793969849249,
    "up_days": 0.0,
    "beta": null,
    "correlation": null
@@ -1687,8 +1687,8 @@
    "api_cum": 1.6627,
    "s_qqq": 997.02,
    "s_6040": 987.88,
-   "s_equal": 973.11,
-   "s_trend": 971.37
+   "s_equal": 973.3,
+   "s_trend": 971.53
   }
  ],
  "trades": [
