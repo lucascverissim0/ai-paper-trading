@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-20 00:35 UTC",
+ "updated_at": "2026-11-20 01:26 UTC",
  "status": "running",
  "halt_reason": null,
  "start_date": "2026-11-13",
@@ -32,7 +32,7 @@
    "s_qqq": -2.98,
    "s_6040": -12.12,
    "s_equal": -26.84,
-   "s_trend": -28.56
+   "s_trend": -28.63
   },
   "stop_fills": 2
  },
@@ -130,14 +130,14 @@
   },
   "s_trend": {
    "days": 2,
-   "total_return": -0.02855999999999992,
+   "total_return": -0.028630000000000044,
    "annual_return": null,
-   "volatility": 0.20966442974832192,
+   "volatility": 0.21045412628221422,
    "sharpe": null,
    "sortino": null,
-   "max_drawdown": 0.02855999999999992,
+   "max_drawdown": 0.028630000000000044,
    "best_day": -0.0050000000000000044,
-   "worst_day": -0.023678391959798928,
+   "worst_day": -0.023748743718592924,
    "up_days": 0.0,
    "beta": null,
    "correlation": null
@@ -1688,7 +1688,7 @@
    "s_qqq": 997.02,
    "s_6040": 987.88,
    "s_equal": 973.16,
-   "s_trend": 971.44
+   "s_trend": 971.37
   }
  ],
  "trades": [
