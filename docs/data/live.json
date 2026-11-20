@@ -1,15 +1,15 @@
 {
- "refreshed_at": "2026-11-19T21:04:14Z",
- "market_open": false,
- "next_open": "2026-11-20T09:30:00-05:00",
+ "refreshed_at": "2026-11-20T20:50:26Z",
+ "market_open": true,
+ "next_open": "2026-11-23T09:30:00-05:00",
  "next_close": "2026-11-20T16:00:00-05:00",
  "errors": [],
  "account": {
-  "value_real_usd": 985.57,
-  "today_real_usd": -10.67,
-  "today_pct": -0.01070909731313252,
-  "cash_weight": 0.9026281370537516,
-  "open_pl_real_usd": -3.15
+  "value_real_usd": 985.46,
+  "today_real_usd": -0.1,
+  "today_pct": -0.00010516244166913769,
+  "cash_weight": 0.9027226009458242,
+  "open_pl_real_usd": -3.25
  },
  "positions": [
   {
@@ -18,13 +18,13 @@
    "stop": 115.0,
    "qty": 79.0,
    "avg_entry_price": 124.32,
-   "price": 120.37,
-   "weight": 0.09737186294624832,
-   "value_real_usd": 95.97,
-   "pl_real_usd": -3.15,
-   "pl_pct": -0.03177,
-   "today_real_usd": -1.99,
-   "today_pct": -0.02027
+   "price": 120.24,
+   "weight": 0.09727739905417582,
+   "value_real_usd": 95.86,
+   "pl_real_usd": -3.25,
+   "pl_pct": -0.03282,
+   "today_real_usd": -0.1,
+   "today_pct": -0.00108
   }
  ],
  "trades": [
@@ -171,112 +171,108 @@
  },
  "intraday": [
   {
-   "time": "2026-11-19T14:30:00Z",
-   "value_real_usd": 993.12
+   "time": "2026-11-20T14:30:00Z",
+   "value_real_usd": 985.5
   },
   {
-   "time": "2026-11-19T14:45:00Z",
-   "value_real_usd": 997.08
+   "time": "2026-11-20T14:45:00Z",
+   "value_real_usd": 985.5
   },
   {
-   "time": "2026-11-19T15:00:00Z",
-   "value_real_usd": 994.96
+   "time": "2026-11-20T15:00:00Z",
+   "value_real_usd": 986.03
   },
   {
-   "time": "2026-11-19T15:15:00Z",
-   "value_real_usd": 995.66
+   "time": "2026-11-20T15:15:00Z",
+   "value_real_usd": 986.48
   },
   {
-   "time": "2026-11-19T15:30:00Z",
-   "value_real_usd": 992.57
+   "time": "2026-11-20T15:30:00Z",
+   "value_real_usd": 985.82
   },
   {
-   "time": "2026-11-19T15:45:00Z",
-   "value_real_usd": 993.01
+   "time": "2026-11-20T15:45:00Z",
+   "value_real_usd": 986.06
   },
   {
-   "time": "2026-11-19T16:00:00Z",
-   "value_real_usd": 991.4
+   "time": "2026-11-20T16:00:00Z",
+   "value_real_usd": 985.7
   },
   {
-   "time": "2026-11-19T16:15:00Z",
-   "value_real_usd": 991.53
+   "time": "2026-11-20T16:15:00Z",
+   "value_real_usd": 985.68
   },
   {
-   "time": "2026-11-19T16:30:00Z",
-   "value_real_usd": 991.66
+   "time": "2026-11-20T16:30:00Z",
+   "value_real_usd": 985.52
   },
   {
-   "time": "2026-11-19T16:45:00Z",
-   "value_real_usd": 992.06
+   "time": "2026-11-20T16:45:00Z",
+   "value_real_usd": 985.47
   },
   {
-   "time": "2026-11-19T17:00:00Z",
-   "value_real_usd": 990.39
+   "time": "2026-11-20T17:00:00Z",
+   "value_real_usd": 985.64
   },
   {
-   "time": "2026-11-19T17:15:00Z",
-   "value_real_usd": 989.9
+   "time": "2026-11-20T17:15:00Z",
+   "value_real_usd": 985.5
   },
   {
-   "time": "2026-11-19T17:30:00Z",
-   "value_real_usd": 991.46
+   "time": "2026-11-20T17:30:00Z",
+   "value_real_usd": 985.57
   },
   {
-   "time": "2026-11-19T17:45:00Z",
-   "value_real_usd": 990.6
+   "time": "2026-11-20T17:45:00Z",
+   "value_real_usd": 985.47
   },
   {
-   "time": "2026-11-19T18:00:00Z",
-   "value_real_usd": 990.4
+   "time": "2026-11-20T18:00:00Z",
+   "value_real_usd": 985.64
   },
   {
-   "time": "2026-11-19T18:15:00Z",
-   "value_real_usd": 989.13
+   "time": "2026-11-20T18:15:00Z",
+   "value_real_usd": 985.52
   },
   {
-   "time": "2026-11-19T18:30:00Z",
-   "value_real_usd": 989.01
+   "time": "2026-11-20T18:30:00Z",
+   "value_real_usd": 985.69
   },
   {
-   "time": "2026-11-19T18:45:00Z",
-   "value_real_usd": 987.97
+   "time": "2026-11-20T18:45:00Z",
+   "value_real_usd": 985.78
   },
   {
-   "time": "2026-11-19T19:00:00Z",
-   "value_real_usd": 987.95
+   "time": "2026-11-20T19:00:00Z",
+   "value_real_usd": 985.69
   },
   {
-   "time": "2026-11-19T19:15:00Z",
-   "value_real_usd": 987.92
+   "time": "2026-11-20T19:15:00Z",
+   "value_real_usd": 985.45
   },
   {
-   "time": "2026-11-19T19:30:00Z",
-   "value_real_usd": 988.99
+   "time": "2026-11-20T19:30:00Z",
+   "value_real_usd": 985.43
   },
   {
-   "time": "2026-11-19T19:45:00Z",
-   "value_real_usd": 988.32
+   "time": "2026-11-20T19:45:00Z",
+   "value_real_usd": 985.66
   },
   {
-   "time": "2026-11-19T20:00:00Z",
-   "value_real_usd": 988.09
+   "time": "2026-11-20T20:00:00Z",
+   "value_real_usd": 985.37
   },
   {
-   "time": "2026-11-19T20:15:00Z",
-   "value_real_usd": 987.24
+   "time": "2026-11-20T20:15:00Z",
+   "value_real_usd": 985.68
   },
   {
-   "time": "2026-11-19T20:30:00Z",
-   "value_real_usd": 987.61
+   "time": "2026-11-20T20:30:00Z",
+   "value_real_usd": 985.37
   },
   {
-   "time": "2026-11-19T20:45:00Z",
-   "value_real_usd": 986.98
-  },
-  {
-   "time": "2026-11-19T21:00:00Z",
-   "value_real_usd": 985.63
+   "time": "2026-11-20T20:45:00Z",
+   "value_real_usd": 985.25
   }
  ],
  "daily": [
@@ -311,54 +307,80 @@
    "spy_after_costs": 972.05,
    "fees_cum": 9.5135,
    "api_cum": 1.0276
+  },
+  {
+   "date": "2026-11-19",
+   "ai_before_costs": 985.56,
+   "ai_after_costs": 972.17,
+   "spy_after_costs": 952.94,
+   "fees_cum": 11.7363,
+   "api_cum": 1.6627
+  },
+  {
+   "date": "2026-11-20",
+   "ai_before_costs": 985.46,
+   "ai_after_costs": 972.06,
+   "spy_after_costs": 920.47,
+   "fees_cum": 11.7363,
+   "api_cum": 1.6627
   }
  ],
  "daily_metrics": {
   "ai_after_costs": {
-   "days": 4,
-   "total_return": -0.01429999999999998,
+   "days": 6,
+   "total_return": -0.027940000000000076,
    "annual_return": null,
-   "volatility": 0.16067943382831137,
-   "sharpe": null,
-   "sortino": null,
-   "max_drawdown": 0.017169999999999908,
+   "volatility": 0.14464149719890365,
+   "sharpe": -8.435544638050164,
+   "sortino": -8.434457116930195,
+   "max_drawdown": 0.027940000000000076,
    "best_day": 0.007229794042001636,
-   "worst_day": -0.012419999999999987,
-   "up_days": 0.5,
-   "beta": null,
-   "correlation": null
+   "worst_day": -0.01372628588820135,
+   "up_days": 0.3333333333333333,
+   "beta": -0.20249578857329822,
+   "correlation": -0.3030753769891503
   },
   "ai_before_costs": {
-   "days": 4,
-   "total_return": -0.0037599999999999856,
+   "days": 6,
+   "total_return": -0.014539999999999997,
    "annual_return": null,
-   "volatility": 0.12948239993490904,
-   "sharpe": null,
-   "sortino": null,
-   "max_drawdown": 0.011827785846447725,
+   "volatility": 0.11940893431716858,
+   "sharpe": -5.443077995219218,
+   "sortino": -6.142769587230567,
+   "max_drawdown": 0.01969639695203229,
    "best_day": 0.007153448483148361,
    "worst_day": -0.011827785846447725,
-   "up_days": 0.5,
-   "beta": null,
-   "correlation": null
+   "up_days": 0.3333333333333333,
+   "beta": -0.018322575900447925,
+   "correlation": -0.03321829015449658
   },
   "spy_after_costs": {
-   "days": 4,
-   "total_return": -0.02795000000000003,
+   "days": 6,
+   "total_return": -0.07952999999999999,
    "annual_return": null,
-   "volatility": 0.15901708215275004,
-   "sharpe": null,
-   "sortino": null,
-   "max_drawdown": 0.03211191874937769,
+   "volatility": 0.21648487902238467,
+   "sharpe": -16.06727819053056,
+   "sortino": -11.837101739227068,
+   "max_drawdown": 0.08347107438016521,
    "best_day": 0.0042999999999999705,
-   "worst_day": -0.019157622224434956,
-   "up_days": 0.25,
+   "worst_day": -0.0340734988561715,
+   "up_days": 0.16666666666666666,
    "beta": null,
    "correlation": null
   }
  },
  "daily_version": 2,
  "headlines": [
+  {
+   "time": "2026-11-20T19:02:20Z",
+   "headline": "Appian Releases Research on 'Aloneware' and AI-Assisted Development",
+   "summary": "Appian published new research highlighting the risks of 'aloneware,' where AI-assisted software development outside of enterprise platforms creates technical debt and maintenance challenges.",
+   "source": "fiscal.ai",
+   "url": "https://www.prnewswire.com/news-releases/global-survey-uncovers-an-aloneware-crisis-isolated-ai-development-threatens-enterprise-stability-and-adds-maintenance-costs-302947123.html",
+   "symbols": [
+    "APPN"
+   ]
+  },
   {
    "time": "2026-11-18T12:32:28Z",
    "headline": "Haemonetics Announces CE Mark Certification for the VASCADE MVP XL Venous Vascular Closure System",
@@ -747,16 +769,6 @@
    "url": "https://www.finanzen.ch/nachrichten/aktien/hamonetics-q1-profit-declines-but-revenue-rises;-raises-fy-revenue-outlook-1036418976",
    "symbols": [
     "HAE"
-   ]
-  },
-  {
-   "time": "2026-08-06T13:02:31Z",
-   "headline": "Appian Reports Second Quarter 2026 Financial Results",
-   "summary": "Appian Corporation announced its financial results for the second quarter ended June 30, 2026, reporting total revenue of $203.3 million, a 19% increase year-over-year.",
-   "source": "fiscal.ai",
-   "url": "https://www.globenewswire.com/news-release/2026/08/06/3340130/0/en/appian-announces-second-quarter-2026-financial-results.html",
-   "symbols": [
-    "APPN"
    ]
   }
  ]
