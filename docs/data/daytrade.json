@@ -1,5 +1,5 @@
 {
- "refreshed_at": "2026-11-20T20:59:55Z",
+ "refreshed_at": "2026-11-24T00:44:01Z",
  "settings": {
   "real_capital_usd": 1000.0,
   "max_positions": 5,
@@ -26,7 +26,7 @@
  "status": "running",
  "start_date": "2026-11-19",
  "api_cost_usd": 0.0355,
- "market_open": true,
+ "market_open": false,
  "account": {
   "value_real_usd": 994.2,
   "today_real_usd": 0.0,
@@ -69,107 +69,111 @@
  ],
  "intraday": [
   {
-   "time": "2026-11-20T14:30:00Z",
+   "time": "2026-11-23T14:30:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-20T14:45:00Z",
+   "time": "2026-11-23T14:45:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-20T15:00:00Z",
+   "time": "2026-11-23T15:00:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-20T15:15:00Z",
+   "time": "2026-11-23T15:15:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-20T15:30:00Z",
+   "time": "2026-11-23T15:30:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-20T15:45:00Z",
+   "time": "2026-11-23T15:45:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-20T16:00:00Z",
+   "time": "2026-11-23T16:00:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-20T16:15:00Z",
+   "time": "2026-11-23T16:15:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-20T16:30:00Z",
+   "time": "2026-11-23T16:30:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-20T16:45:00Z",
+   "time": "2026-11-23T16:45:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-20T17:00:00Z",
+   "time": "2026-11-23T17:00:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-20T17:15:00Z",
+   "time": "2026-11-23T17:15:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-20T17:30:00Z",
+   "time": "2026-11-23T17:30:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-20T17:45:00Z",
+   "time": "2026-11-23T17:45:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-20T18:00:00Z",
+   "time": "2026-11-23T18:00:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-20T18:15:00Z",
+   "time": "2026-11-23T18:15:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-20T18:30:00Z",
+   "time": "2026-11-23T18:30:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-20T18:45:00Z",
+   "time": "2026-11-23T18:45:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-20T19:00:00Z",
+   "time": "2026-11-23T19:00:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-20T19:15:00Z",
+   "time": "2026-11-23T19:15:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-20T19:30:00Z",
+   "time": "2026-11-23T19:30:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-20T19:45:00Z",
+   "time": "2026-11-23T19:45:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-20T20:00:00Z",
+   "time": "2026-11-23T20:00:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-20T20:15:00Z",
+   "time": "2026-11-23T20:15:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-20T20:30:00Z",
+   "time": "2026-11-23T20:30:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-20T20:45:00Z",
+   "time": "2026-11-23T20:45:00Z",
+   "value_real_usd": 994.2
+  },
+  {
+   "time": "2026-11-23T21:00:00Z",
    "value_real_usd": 994.2
   }
  ],
@@ -194,8 +198,8 @@
    "after_b": 993.96,
    "rules_a": 983.51,
    "rules_b": 994.48,
-   "spy_a": 932.25,
-   "spy_b": 933.75,
+   "spy_a": 931.37,
+   "spy_b": 932.87,
    "fees_a_cum": 2.3952,
    "fees_b_cum": 0.1976,
    "api_cum": 0.0355
@@ -260,37 +264,20 @@
   },
   "spy": {
    "days": 2,
-   "total_return": -0.06774999999999998,
+   "total_return": -0.06862999999999997,
    "annual_return": null,
-   "volatility": 0.024884006561535697,
+   "volatility": 0.035102883807545365,
    "sharpe": null,
    "sortino": null,
-   "max_drawdown": 0.06774999999999998,
+   "max_drawdown": 0.06862999999999997,
    "best_day": -0.033360000000000056,
-   "worst_day": -0.03557684349913104,
+   "worst_day": -0.03648721344037076,
    "up_days": 0.0,
    "beta": null,
    "correlation": null
   }
  },
- "today": {
-  "date": "2026-11-20",
-  "status": "no scan",
-  "notes": [
-   "no scan: the first run of the day started after 12:00"
-  ],
-  "candidates": [],
-  "entries": [],
-  "leftovers": [],
-  "close_orders": [],
-  "closed_at": "2026-11-20T20:59:55Z",
-  "equity_close": 99419.69,
-  "bench_close": 690.435,
-  "rules_only": {
-   "trades": [],
-   "ret": 0.0
-  }
- },
+ "today": null,
  "days": [
   {
    "date": "2026-11-20",
