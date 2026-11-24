@@ -1,5 +1,5 @@
 {
- "refreshed_at": "2026-11-24T00:44:01Z",
+ "refreshed_at": "2026-11-24T22:58:56Z",
  "settings": {
   "real_capital_usd": 1000.0,
   "max_positions": 5,
@@ -69,111 +69,111 @@
  ],
  "intraday": [
   {
-   "time": "2026-11-23T14:30:00Z",
+   "time": "2026-11-24T14:30:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-23T14:45:00Z",
+   "time": "2026-11-24T14:45:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-23T15:00:00Z",
+   "time": "2026-11-24T15:00:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-23T15:15:00Z",
+   "time": "2026-11-24T15:15:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-23T15:30:00Z",
+   "time": "2026-11-24T15:30:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-23T15:45:00Z",
+   "time": "2026-11-24T15:45:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-23T16:00:00Z",
+   "time": "2026-11-24T16:00:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-23T16:15:00Z",
+   "time": "2026-11-24T16:15:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-23T16:30:00Z",
+   "time": "2026-11-24T16:30:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-23T16:45:00Z",
+   "time": "2026-11-24T16:45:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-23T17:00:00Z",
+   "time": "2026-11-24T17:00:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-23T17:15:00Z",
+   "time": "2026-11-24T17:15:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-23T17:30:00Z",
+   "time": "2026-11-24T17:30:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-23T17:45:00Z",
+   "time": "2026-11-24T17:45:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-23T18:00:00Z",
+   "time": "2026-11-24T18:00:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-23T18:15:00Z",
+   "time": "2026-11-24T18:15:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-23T18:30:00Z",
+   "time": "2026-11-24T18:30:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-23T18:45:00Z",
+   "time": "2026-11-24T18:45:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-23T19:00:00Z",
+   "time": "2026-11-24T19:00:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-23T19:15:00Z",
+   "time": "2026-11-24T19:15:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-23T19:30:00Z",
+   "time": "2026-11-24T19:30:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-23T19:45:00Z",
+   "time": "2026-11-24T19:45:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-23T20:00:00Z",
+   "time": "2026-11-24T20:00:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-23T20:15:00Z",
+   "time": "2026-11-24T20:15:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-23T20:30:00Z",
+   "time": "2026-11-24T20:30:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-23T20:45:00Z",
+   "time": "2026-11-24T20:45:00Z",
    "value_real_usd": 994.2
   },
   {
-   "time": "2026-11-23T21:00:00Z",
+   "time": "2026-11-24T21:00:00Z",
    "value_real_usd": 994.2
   }
  ],
@@ -203,14 +203,27 @@
    "fees_a_cum": 2.3952,
    "fees_b_cum": 0.1976,
    "api_cum": 0.0355
+  },
+  {
+   "date": "2026-11-23",
+   "before": 994.2,
+   "after_a": 991.77,
+   "after_b": 993.96,
+   "rules_a": 983.51,
+   "rules_b": 994.48,
+   "spy_a": 975.32,
+   "spy_b": 976.82,
+   "fees_a_cum": 2.3952,
+   "fees_b_cum": 0.1976,
+   "api_cum": 0.0355
   }
  ],
  "metrics": {
   "after_a": {
-   "days": 2,
+   "days": 3,
    "total_return": -0.00823000000000007,
    "annual_return": null,
-   "volatility": 0.09238152087944941,
+   "volatility": 0.07542919593897378,
    "sharpe": null,
    "sortino": null,
    "max_drawdown": 0.00823000000000007,
@@ -221,10 +234,10 @@
    "correlation": null
   },
   "after_b": {
-   "days": 2,
+   "days": 3,
    "total_return": -0.006039999999999934,
    "annual_return": null,
-   "volatility": 0.0677988318483431,
+   "volatility": 0.05535751439506595,
    "sharpe": null,
    "sortino": null,
    "max_drawdown": 0.006039999999999934,
@@ -235,10 +248,10 @@
    "correlation": null
   },
   "before": {
-   "days": 2,
+   "days": 3,
    "total_return": -0.005799999999999916,
    "annual_return": null,
-   "volatility": 0.06510483852986564,
+   "volatility": 0.05315787806148698,
    "sharpe": null,
    "sortino": null,
    "max_drawdown": 0.005799999999999916,
@@ -249,10 +262,10 @@
    "correlation": null
   },
   "rules_a": {
-   "days": 2,
+   "days": 3,
    "total_return": -0.016490000000000005,
    "annual_return": null,
-   "volatility": 0.18509979092370693,
+   "volatility": 0.15113334641964365,
    "sharpe": null,
    "sortino": null,
    "max_drawdown": 0.016490000000000005,
@@ -263,16 +276,16 @@
    "correlation": null
   },
   "spy": {
-   "days": 2,
-   "total_return": -0.06862999999999997,
+   "days": 3,
+   "total_return": -0.024679999999999924,
    "annual_return": null,
-   "volatility": 0.035102883807545365,
+   "volatility": 0.7529795725066544,
    "sharpe": null,
    "sortino": null,
    "max_drawdown": 0.06862999999999997,
-   "best_day": -0.033360000000000056,
+   "best_day": 0.04718855020024271,
    "worst_day": -0.03648721344037076,
-   "up_days": 0.0,
+   "up_days": 0.3333333333333333,
    "beta": null,
    "correlation": null
   }
