@@ -8,14 +8,14 @@ Results restated as if $1,000 had been invested.
 
 | | AI strategy | Buy and hold SPY |
 |---|---|---|
-| Return before costs | -1.44% | -4.28% |
+| Return before costs | -1.44% | -4.40% |
 | Trading fees (modelled) | $10.63 | $2.00 |
 | Claude API cost (measured) | $1.66 | $0.00 |
 | Other costs | $0.00 | $0.00 |
-| Gain after all costs | -$26.71 (-2.67%) | -$44.77 (-4.48%) |
-| Worst fall from a peak | -1.44% | -4.28% |
+| Gain after all costs | -$26.67 (-2.67%) | -$45.99 (-4.60%) |
+| Worst fall from a peak | -1.44% | -4.40% |
 
-**Verdict so far: the AI is AHEAD of buy-and-hold by $18.06 after all costs.**
+**Verdict so far: the AI is AHEAD of buy-and-hold by $19.32 after all costs.**
 
 Days since start: 6 - AI decisions made: 2 - API budget used: $1.66 of $60.00.
 
@@ -29,8 +29,8 @@ Simple rules on the same days, prices and fees (no AI cost):
 |---|---|
 | Buy and hold QQQ (Nasdaq-100) | -$2.98 (-0.30%) |
 | 60% SPY / 40% IEF | -$12.12 (-1.21%) |
-| Equal weight, 8 ETFs | -$26.84 (-2.68%) |
-| Trend rule (above 200-day average) | -$28.56 (-2.86%) |
+| Equal weight, 8 ETFs | -$26.55 (-2.66%) |
+| Trend rule (above 200-day average) | -$28.47 (-2.85%) |
 
 Last decision (2026-11-19): APPN 11%, HAE 10%.
 
