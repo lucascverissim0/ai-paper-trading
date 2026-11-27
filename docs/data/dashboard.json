@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-27 01:42 UTC",
+ "updated_at": "2026-11-27 02:22 UTC",
  "status": "running",
  "halt_reason": null,
  "start_date": "2026-11-13",
@@ -31,7 +31,7 @@
   "shadows": {
    "s_qqq": -2.98,
    "s_6040": -12.12,
-   "s_equal": -26.55,
+   "s_equal": -26.66,
    "s_trend": -28.63
   },
   "stop_fills": 2
@@ -116,14 +116,14 @@
   },
   "s_equal": {
    "days": 2,
-   "total_return": -0.026549999999999963,
+   "total_return": -0.026660000000000017,
    "annual_return": null,
-   "volatility": 0.09798610991458333,
+   "volatility": 0.09923205792483057,
    "sharpe": null,
    "sortino": null,
-   "max_drawdown": 0.026549999999999963,
+   "max_drawdown": 0.026660000000000017,
    "best_day": -0.008990000000000054,
-   "worst_day": -0.017719296475313007,
+   "worst_day": -0.017830294346172004,
    "up_days": 0.0,
    "beta": null,
    "correlation": null
@@ -1687,7 +1687,7 @@
    "api_cum": 1.6627,
    "s_qqq": 997.02,
    "s_6040": 987.88,
-   "s_equal": 973.45,
+   "s_equal": 973.34,
    "s_trend": 971.37
   }
  ],
