@@ -29,8 +29,8 @@ Simple rules on the same days, prices and fees (no AI cost):
 |---|---|
 | Buy and hold QQQ (Nasdaq-100) | -$2.98 (-0.30%) |
 | 60% SPY / 40% IEF | -$12.12 (-1.21%) |
-| Equal weight, 8 ETFs | -$26.56 (-2.66%) |
-| Trend rule (above 200-day average) | -$28.47 (-2.85%) |
+| Equal weight, 8 ETFs | -$26.66 (-2.67%) |
+| Trend rule (above 200-day average) | -$28.63 (-2.86%) |
 
 Last decision (2026-11-19): APPN 11%, HAE 10%.
 
